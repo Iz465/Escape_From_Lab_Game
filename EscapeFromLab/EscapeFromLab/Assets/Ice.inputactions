@@ -1,0 +1,34 @@
+{
+    "name": "Ice",
+    "maps": [
+        {
+            "name": "New action map",
+            "id": "e40e4bc0-8ccf-4aa3-a7ac-e7d65b34317e",
+            "actions": [
+                {
+                    "name": "Punch",
+                    "type": "Button",
+                    "id": "5b5031f8-1dab-41fb-86f4-72cf82771bfd",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "",
+                    "id": "e8b57e6e-9db2-4910-a251-77a2a64368b5",
+                    "path": "<Keyboard>/#(F)",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Punch",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                }
+            ]
+        }
+    ],
+    "controlSchemes": []
+}

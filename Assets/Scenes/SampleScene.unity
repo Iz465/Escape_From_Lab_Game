@@ -1662,38 +1662,14 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1089867518}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 247ea39453ec53b4b963cd7bf0896d0e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  action:
-    m_Name: Action
-    m_Type: 0
-    m_ExpectedControlType: 
-    m_Id: 2eaaabde-deff-4020-8046-925265898df4
-    m_Processors: 
-    m_Interactions: 
-    m_SingletonActionBindings: []
-    m_Flags: 0
-  wallButton:
-    m_Name: Wall Button
-    m_Type: 0
-    m_ExpectedControlType: 
-    m_Id: 6bfa3d74-7e0f-471b-a477-65e996fd19fd
-    m_Processors: 
-    m_Interactions: 
-    m_SingletonActionBindings:
-    - m_Name: 
-      m_Id: ff4e88e9-700a-4daa-a3f2-acbd34fae762
-      m_Path: <Keyboard>/#(I)
-      m_Interactions: 
-      m_Processors: 
-      m_Groups: 
-      m_Action: Wall Button
-      m_Flags: 0
-    m_Flags: 0
   iceWall: {fileID: 456649107855141424, guid: 5a6896da1bc59ba46b49522d06c328cf, type: 3}
+  iceSpike: {fileID: -8679921383154817045, guid: e52666887afbd09498ea4c0c0072e2e5, type: 3}
+  iceFloor: {fileID: 6162183472878615894, guid: 90198696d440bb04e8d89a9be8fddd4e, type: 3}
 --- !u!114 &1089867524
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1701,11 +1677,12 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1089867518}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 338627cb511bd414f9675695c7861e06, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  walkSpeed: 0
 --- !u!1 &1465716483
 GameObject:
   m_ObjectHideFlags: 0
@@ -2260,6 +2237,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 338627cb511bd414f9675695c7861e06, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  walkSpeed: 0
 --- !u!143 &1810886824
 CharacterController:
   m_ObjectHideFlags: 0
@@ -2297,41 +2275,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 247ea39453ec53b4b963cd7bf0896d0e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  action:
-    m_Name: Action
-    m_Type: 0
-    m_ExpectedControlType: 
-    m_Id: 5c888ab0-ada8-4725-90ab-25c10c555500
-    m_Processors: 
-    m_Interactions: 
-    m_SingletonActionBindings:
-    - m_Name: 
-      m_Id: d7e19efe-7cbb-48b1-bb4a-ec1849e8c0a8
-      m_Path: <Keyboard>/#(F)
-      m_Interactions: 
-      m_Processors: 
-      m_Groups: 
-      m_Action: Action
-      m_Flags: 0
-    m_Flags: 0
-  wallButton:
-    m_Name: Wall Button
-    m_Type: 0
-    m_ExpectedControlType: 
-    m_Id: ccc42967-f0f1-4f77-ac4c-70c9591aae73
-    m_Processors: 
-    m_Interactions: 
-    m_SingletonActionBindings:
-    - m_Name: 
-      m_Id: 2a3dfe57-4991-4829-be7d-a6c951f7065f
-      m_Path: <Keyboard>/#(I)
-      m_Interactions: 
-      m_Processors: 
-      m_Groups: 
-      m_Action: Wall Button
-      m_Flags: 0
-    m_Flags: 0
   iceWall: {fileID: 456649107855141424, guid: 5a6896da1bc59ba46b49522d06c328cf, type: 3}
+  iceSpike: {fileID: 0}
+  iceFloor: {fileID: 0}
 --- !u!1 &1888237659
 GameObject:
   m_ObjectHideFlags: 0
@@ -2871,7 +2817,7 @@ Canvas:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2091780318}
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 3
   m_RenderMode: 0
   m_Camera: {fileID: 0}

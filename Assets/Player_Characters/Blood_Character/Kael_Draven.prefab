@@ -11,10 +11,6 @@ GameObject:
   - component: {fileID: 3432382340942504181}
   - component: {fileID: 641563364985248807}
   - component: {fileID: 822532949843248332}
-  - component: {fileID: -2219873868458206592}
-  - component: {fileID: 910861358105300623}
-  - component: {fileID: 1947878343786144658}
-  - component: {fileID: -5854215630603271380}
   - component: {fileID: 1101047850655227778}
   m_Layer: 0
   m_Name: Kael_Draven
@@ -91,66 +87,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!114 &-2219873868458206592
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4179618894739701511}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e54d2cded1fe3034db34248d27e69a1a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  damage: 10
-  stamina: 5
-  powerName: Leeching Blood!
---- !u!114 &910861358105300623
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4179618894739701511}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 285e9b92d4f62b041a5c4ee806808320, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  damage: 20
-  stamina: 10
-  powerName: Throwing Blood!
---- !u!114 &1947878343786144658
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4179618894739701511}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7cafe7cea9e54354abcde67a6c1c6946, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  damage: 100
-  stamina: 50
-  powerName: Insta Killed!
---- !u!114 &-5854215630603271380
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4179618894739701511}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 34afb26412fbb6449933d5ca3bf99294, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  damage: 54
-  stamina: 20
-  powerName: Rage Activated
 --- !u!114 &1101047850655227778
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -1,3 +1,4 @@
+using System;
 using UnityEditor;
 using UnityEngine;
 using UnityEngine.InputSystem;
@@ -12,8 +13,12 @@ public class Move : MonoBehaviour
     float lookY;
     public float walkSpeed;
 
+    public float iceSpeed;
+
     void Walk()
     {
+        
+
         Vector3 dir = new();
         // Get input for movement forward/backward direction
         if (Input.GetKey(KeyCode.W))
@@ -27,8 +32,14 @@ public class Move : MonoBehaviour
         else if (Input.GetKey(KeyCode.A))
             dir -= transform.right;
 
-        controller.Move(dir * Time.deltaTime * walkSpeed);
-
+        RaycastHit hitObj;
+        if(Physics.Raycast(transform.position, Vector3.down, out hitObj, transform.lossyScale.y / 2))
+        {
+            if(hitObj.transform.CompareTag("Ice"))
+                controller.Move(dir*Time.deltaTime*iceSpeed);
+            else
+                controller.Move(dir * Time.deltaTime * walkSpeed);
+        }
     }
     void LookAround()
     {

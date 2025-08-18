@@ -69,6 +69,7 @@ public class Ice : MonoBehaviour
         Transform newFloor = Instantiate(iceFloor);
         newFloor.position = transform.position + transform.forward * 15 - new Vector3(0, transform.lossyScale.y / 2, 0);
         newFloor.rotation = transform.rotation;
+        newFloor.tag = "Ice";
 
         Dictionary<string, object> wallData = new Dictionary<string, object>();
         wallData.Add("item", newFloor);

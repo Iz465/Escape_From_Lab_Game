@@ -1,26 +1,22 @@
 using UnityEngine;
 
-public class Player : MonoBehaviour
+public class Player : MonoBehaviour, IDamageTaken
 {
-    protected static int health;
-    protected int stamina;
+    public static int health;
+    public float stamina;
+    public float maxStamina;
 
-    private void Start()
+   
+    public void takeDamage(int damageTaken) 
     {
-        Debug.Log("STARTING");
-  
-    }
-
-    public void playerHurt()
-    {
-        health -= 5;
+        health -= damageTaken;
         Debug.Log($"Health = {health}");
-        if (health <= 0) 
+        if (health <= 0)
             playerDeath();
     }
 
 
-    protected void playerDeath() 
+    public void playerDeath() 
     {
         Debug.Log("You have died");
     }

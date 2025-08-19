@@ -14,18 +14,15 @@ public class Ice : MonoBehaviour
 
     List<Dictionary<string, object>> items = new List<Dictionary<string, object>>();
 
-    void Start()
-    {
-
-    }
-
-    // Update is called once per frame
     void Update()
     {
         if (Input.GetKeyDown(KeyCode.I))
             IceWall();
 
         if (Input.GetKeyDown(KeyCode.E))
+            SpawnSpikes();
+
+        if(items.Count > 0)
             IceSpikes();
 
         if (Input.GetKeyDown(KeyCode.F))
@@ -45,37 +42,52 @@ public class Ice : MonoBehaviour
         wallData.Add("time", 5f);
 
         items.Add(wallData);
-        //StartCoroutine(CleanUp(newWall, 5));
     }
 
-    void IceSpikes()
+    void SpawnSpikes()
     {
         for (int i = 5; i <= 15; i += 5)
         {
             Transform newSpike = Instantiate(iceSpike);
-            newSpike.position = transform.position + transform.forward * i;
+            newSpike.position = transform.position - new Vector3(0,newSpike.lossyScale.y,0)+ transform.forward * i;
             transform.parent = null;
 
-            Dictionary<string, object> wallData = new Dictionary<string, object>();
-            wallData.Add("item", newSpike);
-            wallData.Add("time", 5f);
-            items.Add(wallData);
-            //StartCoroutine(CleanUp(newSpike, 5));
+            Dictionary<string, object> spikeData = new Dictionary<string, object>();
+            spikeData.Add("item", newSpike);
+            spikeData.Add("time", 5f);
+            spikeData.Add("height", transform.position.y);
+            items.Add(spikeData);
+
+        }
+    }
+
+    void IceSpikes()
+    {
+        for(int i = items.Count-1; i >= 0; i--)
+        {
+            Dictionary<string, object> spikeData = items[i];
+            Transform spike = (Transform)spikeData["item"];
+            
+            if (spike.name != "spike(Clone)") continue;
+
+            float height = float.Parse(spikeData["height"].ToString());
+
+            if (spike.position.y < height)
+                spike.position += Vector3.up * Time.deltaTime*2;
         }
     }
 
     void IceFloor()
     {
         Transform newFloor = Instantiate(iceFloor);
-        newFloor.position = transform.position + transform.forward * 15 - new Vector3(0, transform.lossyScale.y / 2, 0);
+        newFloor.position = transform.position + transform.forward * 15- new Vector3(0, transform.lossyScale.y / 2+0.1f, 0);
         newFloor.rotation = transform.rotation;
         newFloor.tag = "Ice";
 
         Dictionary<string, object> wallData = new Dictionary<string, object>();
         wallData.Add("item", newFloor);
-        wallData.Add("time", 15f);
+        wallData.Add("time", 150f);
         items.Add(wallData);
-        //StartCoroutine(CleanUp(newFloor, 15));
     }
 
     void CleanUp()

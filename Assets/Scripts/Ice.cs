@@ -6,11 +6,13 @@ using UnityEngine.InputSystem;
 public class Ice : MonoBehaviour
 {
     // Start is called once before the first execution of Update after the MonoBehaviour is created
-
+    public float iceSpeed;
+    public float walkSpeed;
 
     public Transform iceWall;
     public Transform iceSpike;
     public Transform iceFloor;
+    Move movement;
 
     List<Dictionary<string, object>> items = new List<Dictionary<string, object>>();
 
@@ -28,9 +30,46 @@ public class Ice : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.F))
             IceFloor();
 
+        IceWalk();
+
         CleanUp();
     }
 
+    private void Start()
+    {
+        movement = transform.GetComponent<Move>();
+    }
+    void IceWalk()
+    {
+        // Get input for movement forward/backward direction
+        Vector3 direction = movement.direction;
+        RaycastHit hitObj;
+
+        if (Physics.Raycast(transform.position, Vector3.down, out hitObj, transform.lossyScale.y / 2 + 1))
+        {
+            if (hitObj.transform.CompareTag("Ice"))
+            {
+                if (direction.magnitude < 0.1f)
+                {
+                    movement.velocity -= movement.velocity.normalized * movement.acceleration * Time.deltaTime;
+                }
+                else
+                {
+                    movement.velocity += direction * movement.acceleration * Time.deltaTime;
+                    movement.velocity = Vector3.ClampMagnitude(movement.velocity, iceSpeed);
+                }
+            }
+            else
+            {
+                movement.velocity = direction * Time.deltaTime * walkSpeed;
+            }
+        }
+        else
+        {
+            movement.velocity = direction * Time.deltaTime * walkSpeed;
+        }
+
+    }
     void IceWall()
     {
         Transform newWall = Instantiate(iceWall);
@@ -108,23 +147,5 @@ public class Ice : MonoBehaviour
                 items.RemoveAt(i);
             }
         }
-    }
-
-    IEnumerator CleanUp(Transform obj, float time)
-    {
-        yield return new WaitForSeconds(time);
-        Destroy(obj.gameObject);
-    }
-
-    IEnumerator CleanUp(GameObject obj, float time)
-    {
-        yield return new WaitForSeconds(time);
-        Destroy(obj.gameObject);
-    }
-
-    private void Punch()
-    {
-        Debug.Log("punch!");
-        throw new System.NotImplementedException();
     }
 }

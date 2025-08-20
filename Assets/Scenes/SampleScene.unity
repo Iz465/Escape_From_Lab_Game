@@ -1039,7 +1039,7 @@ Transform:
   m_GameObject: {fileID: 629184456}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.583, z: 0}
+  m_LocalPosition: {x: 0.75, y: 0.583, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1682,6 +1682,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 338627cb511bd414f9675695c7861e06, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  minCamDistance: 0
+  maxCamDistance: 0
   walkSpeed: 0
 --- !u!1 &1465716483
 GameObject:
@@ -2237,7 +2239,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 338627cb511bd414f9675695c7861e06, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  walkSpeed: 0
+  minCamDistance: 3
+  maxCamDistance: 15
+  walkSpeed: 5
 --- !u!143 &1810886824
 CharacterController:
   m_ObjectHideFlags: 0
@@ -2276,8 +2280,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   iceWall: {fileID: 456649107855141424, guid: 5a6896da1bc59ba46b49522d06c328cf, type: 3}
-  iceSpike: {fileID: 0}
-  iceFloor: {fileID: 0}
+  iceSpike: {fileID: -8679921383154817045, guid: e52666887afbd09498ea4c0c0072e2e5, type: 3}
+  iceFloor: {fileID: 6162183472878615894, guid: 90198696d440bb04e8d89a9be8fddd4e, type: 3}
 --- !u!1 &1888237659
 GameObject:
   m_ObjectHideFlags: 0

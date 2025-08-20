@@ -6,7 +6,13 @@ public class Player : MonoBehaviour, IDamageTaken
     public float stamina;
     public float maxStamina;
 
-   
+    private void Update()
+    {
+        stamina += 5f * Time.deltaTime;
+        stamina = Mathf.Clamp(stamina, 0, maxStamina);
+    }
+
+
     public void takeDamage(int damageTaken) 
     {
         health -= damageTaken;

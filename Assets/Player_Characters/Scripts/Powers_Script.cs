@@ -1,29 +1,29 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-public class Powers_Script : MonoBehaviour 
+public class Powers_Script : MonoBehaviour, IAttack
 {
     public int damage;
     public float stamina;
     public string powerName;
     public GameObject powerVFX;
     protected Rigidbody body;
-    protected GameObject powerInstance;
-    private Player player;
+    static protected GameObject powerInstance;
+    protected Player player;
 
-    private void Awake()
+    protected void Awake()
     {
         player = Object.FindFirstObjectByType<Player>();
     }
 
-    virtual public void activatePower(InputAction.CallbackContext context) 
+    virtual public void Attack(InputAction.CallbackContext context) 
     {
         if (context.performed && consumeStamina()) 
         {
 
             if (powerVFX != null)
             {
-                Debug.Log($"{powerVFX.name} has been cast");
+            //    Debug.Log($"{powerVFX.name} has been cast");
 
                 powerInstance = Instantiate(powerVFX, transform.position, transform.rotation); 
                 powerInstance.AddComponent<Power_Hit_Detection>(); // adds this script to the spawned powers. So I don't have to add manually in editor.
@@ -32,7 +32,7 @@ public class Powers_Script : MonoBehaviour
 
                 if (body != null)
                 {
-                    body.AddForce(transform.up * 10f, ForceMode.Impulse); // Makes the powers move towards player aim.
+                    body.AddForce(transform.up * 10f, ForceMode.Impulse); // Makes the powers move towards player aim. (needs to be set up to aim where player is aiming)
                     Destroy(powerInstance, 5f); 
 
                 }
@@ -49,7 +49,7 @@ public class Powers_Script : MonoBehaviour
     }
 
 
-    private bool consumeStamina()
+    virtual protected bool consumeStamina()
     {
     
         player = Object.FindFirstObjectByType<Player>();
@@ -68,13 +68,6 @@ public class Powers_Script : MonoBehaviour
 
 
     
-    private void Update()
-    {
-        // Regenerates the players stamina over time. 
 
-        player.stamina += 0.01f;
-        player.stamina = Mathf.Clamp(player.stamina, 0, player.maxStamina);
-    
-    }
 
 }

@@ -6,7 +6,7 @@ public class Kael_Draven : Player
     {
         health = 100;
         stamina = 100;
-        maxStamina = stamina;
+        maxStamina = 100;
     }
 
 }

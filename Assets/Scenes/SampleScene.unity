@@ -568,7 +568,7 @@ GameObject:
   - component: {fileID: 330585545}
   - component: {fileID: 330585544}
   - component: {fileID: 330585547}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Main Camera
   m_TagString: MainCamera
   m_Icon: {fileID: 0}
@@ -1023,7 +1023,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 629184457}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: CameraTarget
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1662,7 +1662,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1089867518}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 247ea39453ec53b4b963cd7bf0896d0e, type: 3}
   m_Name: 
@@ -1677,14 +1677,14 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1089867518}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 338627cb511bd414f9675695c7861e06, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  minCamDistance: 0
-  maxCamDistance: 0
+  acceleration: 0
   walkSpeed: 0
+  iceSpeed: 0
 --- !u!1 &1465716483
 GameObject:
   m_ObjectHideFlags: 0
@@ -2129,7 +2129,8 @@ GameObject:
   - component: {fileID: 1810886824}
   - component: {fileID: 1810886823}
   - component: {fileID: 1810886825}
-  m_Layer: 0
+  - component: {fileID: 1810886826}
+  m_Layer: 3
   m_Name: Player
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2239,9 +2240,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 338627cb511bd414f9675695c7861e06, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  minCamDistance: 3
-  maxCamDistance: 15
+  acceleration: 0.1
   walkSpeed: 5
+  iceSpeed: 15
 --- !u!143 &1810886824
 CharacterController:
   m_ObjectHideFlags: 0
@@ -2260,7 +2261,7 @@ CharacterController:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Height: 2
+  m_Height: 1
   m_Radius: 0.5
   m_SlopeLimit: 45
   m_StepOffset: 0.3
@@ -2282,6 +2283,20 @@ MonoBehaviour:
   iceWall: {fileID: 456649107855141424, guid: 5a6896da1bc59ba46b49522d06c328cf, type: 3}
   iceSpike: {fileID: -8679921383154817045, guid: e52666887afbd09498ea4c0c0072e2e5, type: 3}
   iceFloor: {fileID: 6162183472878615894, guid: 90198696d440bb04e8d89a9be8fddd4e, type: 3}
+--- !u!114 &1810886826
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1810886818}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ef046a8c367cc004786b0ea343d07e77, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  minCamDistance: 5
+  maxCamDistance: 15
 --- !u!1 &1888237659
 GameObject:
   m_ObjectHideFlags: 0

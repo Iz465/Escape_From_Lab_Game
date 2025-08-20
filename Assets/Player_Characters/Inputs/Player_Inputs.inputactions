@@ -1,0 +1,122 @@
+{
+    "name": "Player_Inputs",
+    "maps": [
+        {
+            "name": "Blood_Player",
+            "id": "ef2c8989-8613-4380-a6b2-f2614a2cb043",
+            "actions": [
+                {
+                    "name": "Blood_Leech",
+                    "type": "Button",
+                    "id": "fcc914e3-a976-4b98-8a7b-767a8a0cf13f",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "Tap",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "Throw_Blood",
+                    "type": "Button",
+                    "id": "af60cbd6-caa2-4e56-9b06-1f8426050c58",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "Tap",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "Insta_Kill",
+                    "type": "Button",
+                    "id": "81b6c79b-da5d-4d2f-9e29-edf51c6d13c4",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "Tap",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "Rage_Mode",
+                    "type": "Button",
+                    "id": "9b40b8d2-6da5-4421-922b-0fedcc48df7a",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "Tap",
+                    "initialStateCheck": false
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "",
+                    "id": "56d5bc0d-3413-40ce-b4e0-6c9a5b1b6fb3",
+                    "path": "<Keyboard>/1",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Blood_Leech",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "930ace62-c2bf-4040-9a69-ea0b5071618f",
+                    "path": "<Keyboard>/2",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Throw_Blood",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "a4ab622c-c2b5-412a-a3ba-de49f96b8ee4",
+                    "path": "<Keyboard>/3",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Insta_Kill",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "777ec7d3-befb-4721-b423-9723ef007dc7",
+                    "path": "<Keyboard>/4",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Rage_Mode",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                }
+            ]
+        },
+        {
+            "name": "Warrior_Player",
+            "id": "ebc6a570-3e60-4128-bd22-667d6118fb3c",
+            "actions": [
+                {
+                    "name": "New action",
+                    "type": "Button",
+                    "id": "2b22194e-8d37-49da-8a5a-e92e39e7cd22",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "",
+                    "id": "541c127b-abab-4432-82df-26ae3f46cd1e",
+                    "path": "",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "New action",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                }
+            ]
+        }
+    ],
+    "controlSchemes": []
+}

@@ -23,9 +23,12 @@ public class Powers_Script : MonoBehaviour, IAttack
 
             if (powerVFX != null)
             {
-            //    Debug.Log($"{powerVFX.name} has been cast");
+                //    Debug.Log($"{powerVFX.name} has been cast");
 
-                powerInstance = Instantiate(powerVFX, transform.position, transform.rotation); 
+                Vector3 spawnPos = player.transform.position + player.transform.forward * 2f; // 2 units in front
+                Quaternion spawnRot = Quaternion.LookRotation(player.transform.forward);
+
+                powerInstance = Instantiate(powerVFX, spawnPos, spawnRot);
                 powerInstance.AddComponent<Power_Hit_Detection>(); // adds this script to the spawned powers. So I don't have to add manually in editor.
 
                 body = powerInstance.GetComponent<Rigidbody>(); 

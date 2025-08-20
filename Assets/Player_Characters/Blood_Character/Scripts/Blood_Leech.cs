@@ -18,7 +18,7 @@ public class Blood_Leech : Powers_Script
             isHeld = true;
      
             Vector3 distance = new Vector3(0, 2, 0);
-            powerInstance = Instantiate(powerVFX, transform.position + distance, transform.rotation);
+            powerInstance = Instantiate(powerVFX, player.transform.position + distance, player.transform.rotation);
 
         }
 

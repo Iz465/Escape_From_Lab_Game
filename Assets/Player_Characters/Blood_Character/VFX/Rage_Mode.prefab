@@ -115,7 +115,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 34afb26412fbb6449933d5ca3bf99294, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  damage: 0
+  damage: 54
   stamina: 0
   powerName: 
   powerVFX: {fileID: 5609924770734127879}

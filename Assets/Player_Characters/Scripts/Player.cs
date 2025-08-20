@@ -5,6 +5,7 @@ public class Player : MonoBehaviour, IDamageTaken
     public static int health;
     public float stamina;
     public float maxStamina;
+    public static int multiplier;
 
     private void Update()
     {

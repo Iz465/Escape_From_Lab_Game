@@ -11,9 +11,13 @@ public class Powers_Script : MonoBehaviour, IAttack
     static protected GameObject powerInstance;
     protected Player player;
 
-    protected void Awake()
+    virtual protected void Awake()
     {
         player = Object.FindFirstObjectByType<Player>();
+        damage *= Player.multiplier;
+        Debug.Log($"ACTIVE DAMAGE IS {damage}");
+        
+  
     }
 
     virtual public void Attack(InputAction.CallbackContext context) 
@@ -25,9 +29,9 @@ public class Powers_Script : MonoBehaviour, IAttack
             {
                 //    Debug.Log($"{powerVFX.name} has been cast");
 
-                Vector3 spawnPos = player.transform.position + player.transform.forward * 2f; // 2 units in front
+                Vector3 spawnPos = player.transform.position + player.transform.forward * 2f;
                 Quaternion spawnRot = Quaternion.LookRotation(player.transform.forward);
-
+                
                 powerInstance = Instantiate(powerVFX, spawnPos, spawnRot);
                 powerInstance.AddComponent<Power_Hit_Detection>(); // adds this script to the spawned powers. So I don't have to add manually in editor.
 
@@ -35,7 +39,7 @@ public class Powers_Script : MonoBehaviour, IAttack
 
                 if (body != null)
                 {
-                    body.AddForce(transform.up * 10f, ForceMode.Impulse); // Makes the powers move towards player aim. (needs to be set up to aim where player is aiming)
+                    body.AddForce(transform.forward * 10f, ForceMode.Impulse); // Makes the powers move towards player aim. (needs to be set up to aim where player is aiming)
                     Destroy(powerInstance, 5f); 
 
                 }
@@ -69,8 +73,7 @@ public class Powers_Script : MonoBehaviour, IAttack
         return true;
     }
 
-
-    
+ 
 
 
 }

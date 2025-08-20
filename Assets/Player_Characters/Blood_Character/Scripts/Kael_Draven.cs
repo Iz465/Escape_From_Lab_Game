@@ -7,6 +7,8 @@ public class Kael_Draven : Player
         health = 100;
         stamina = 100;
         maxStamina = 100;
+        multiplier = 1;
+  
     }
 
 }

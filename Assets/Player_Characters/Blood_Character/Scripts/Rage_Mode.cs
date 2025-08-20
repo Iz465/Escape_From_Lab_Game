@@ -4,8 +4,7 @@ using UnityEngine.InputSystem;
 
 public class Rage_Mode : Powers_Script
 {
-
-
+  
     public override void Attack(InputAction.CallbackContext context)
     {
       
@@ -13,9 +12,12 @@ public class Rage_Mode : Powers_Script
         {
             if (powerVFX)
             {
-                Debug.Log("Rage Activated");
-                powerInstance = Instantiate(powerVFX);
+                Debug.Log($"Damage = {damage}");
+                Player.multiplier = 2;
+                Player.health -= 100;
+                Debug.Log($"Damage doubled = {damage}");
                 Destroy(powerInstance, 5f);
+             
             }
      
         }
@@ -25,3 +27,21 @@ public class Rage_Mode : Powers_Script
   
 
 }
+
+/*
+ * 
+ *    Debug.Log("Rage Activated");
+                powerInstance = Instantiate(powerVFX);
+
+                player = Object.FindFirstObjectByType<Player>();
+                move = player.GetComponent<Move>();
+                if (move)
+                {
+                    move.walkSpeed *= 5;
+                }
+                else
+                    Debug.Log("Move not found");
+
+ * 
+ * 
+ */

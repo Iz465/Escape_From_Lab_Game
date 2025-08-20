@@ -37,7 +37,9 @@ public class Blood_Leech : Powers_Script
 
         if (player.stamina > 0)
         {
-            Debug.Log($"Stamina left: {player.stamina}");
+
+            //    Debug.Log($"Stamina left: {player.stamina}");
+
             player.stamina -= stamina;
         }
            

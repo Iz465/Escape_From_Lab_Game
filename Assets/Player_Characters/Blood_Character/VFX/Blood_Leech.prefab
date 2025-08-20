@@ -129,7 +129,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   damage: 10
-  stamina: 0.05
+  stamina: 0.1
   powerName: 
   powerVFX: {fileID: 317990663879789788}
 --- !u!64 &3017904106391807618

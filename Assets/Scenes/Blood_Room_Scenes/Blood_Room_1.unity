@@ -178,6 +178,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 1446225533392653128, guid: ac03fe04feb792448b456d91d1cb0b47, type: 3}
       insertIndex: -1
       addedObject: {fileID: 353264970}
+    - targetCorrespondingSourceObject: {fileID: 1446225533392653128, guid: ac03fe04feb792448b456d91d1cb0b47, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 353264978}
   m_SourcePrefab: {fileID: 100100000, guid: ac03fe04feb792448b456d91d1cb0b47, type: 3}
 --- !u!1 &353264969 stripped
 GameObject:
@@ -282,6 +285,20 @@ MonoBehaviour:
   m_DefaultActionMap: Blood_Player
   m_SplitScreenIndex: -1
   m_Camera: {fileID: 0}
+--- !u!114 &353264978
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 353264969}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ef046a8c367cc004786b0ea343d07e77, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  minCamDistance: 5
+  maxCamDistance: 15
 --- !u!1 &448882709
 GameObject:
   m_ObjectHideFlags: 0

@@ -3,21 +3,27 @@ using UnityEngine.InputSystem;
 
 public class Powers_Script : MonoBehaviour, IAttack
 {
-    public int damage;
+    public int damage => startDamage* Player.multiplier;
+    public int startDamage;
     public float stamina;
     public string powerName;
     public GameObject powerVFX;
     protected Rigidbody body;
-    static protected GameObject powerInstance;
+    protected GameObject powerInstance;
     protected Player player;
+
 
     virtual protected void Awake()
     {
         player = Object.FindFirstObjectByType<Player>();
-        damage *= Player.multiplier;
+        // damage *= Player.multiplier;
         Debug.Log($"ACTIVE DAMAGE IS {damage}");
-        
-  
+        body = GetComponent<Rigidbody>();
+        if (body != null)
+        {
+            body.sleepThreshold = 0f;
+
+        }
     }
 
     virtual public void Attack(InputAction.CallbackContext context) 

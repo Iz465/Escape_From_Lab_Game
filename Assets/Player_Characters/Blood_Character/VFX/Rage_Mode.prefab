@@ -119,6 +119,7 @@ MonoBehaviour:
   stamina: 0
   powerName: 
   powerVFX: {fileID: 5609924770734127879}
+  rageOverlay: {fileID: 7488236782497131252}
 --- !u!1 &6850211609364708957
 GameObject:
   m_ObjectHideFlags: 0

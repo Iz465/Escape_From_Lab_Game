@@ -150,7 +150,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 285e9b92d4f62b041a5c4ee806808320, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  damage: 25
+  startDamage: 30
   stamina: 8
   powerName: 
   powerVFX: {fileID: 6594098458241618133}
+  healthDrain: 20

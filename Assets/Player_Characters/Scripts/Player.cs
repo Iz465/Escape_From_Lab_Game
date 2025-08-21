@@ -14,7 +14,7 @@ public class Player : MonoBehaviour, IDamageTaken
     }
 
 
-    public void takeDamage(int damageTaken) 
+    public void takeDamage(int damageTaken, GameObject weapon) 
     {
         health -= damageTaken;
         Debug.Log($"Health = {health}");

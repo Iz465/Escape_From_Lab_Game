@@ -6,6 +6,9 @@ public class Power_Hit_Detection : MonoBehaviour
     IDamageTaken takeDamage;
     Powers_Script power;
     int damage;
+    Blood_Leech bloodLeech;
+    bool collisionStay = false;
+
 
 
     private void Awake()
@@ -21,17 +24,29 @@ public class Power_Hit_Detection : MonoBehaviour
 
     private void OnCollisionEnter(Collision collision)
     {
-         
+        
        // Only objects that take damage (players, enemies etc) will have the IDamageTaken interface
         takeDamage = collision.gameObject.GetComponent<IDamageTaken>();
         if (takeDamage != null)
-            takeDamage.takeDamage(damage);
+            takeDamage.takeDamage(damage, gameObject);
         else
             Debug.Log("Hit something");
-
-        // Destroys the power object once it hits something
+        bloodLeech = GetComponent<Blood_Leech>();
+        if (bloodLeech == null)
             Destroy(gameObject);
+        
+            
     }
+
+    private void OnCollisionStay(Collision collision)
+    {
+        takeDamage.takeDamage(damage, gameObject);
+      
+    }
+
+
+
+
 
 
 }

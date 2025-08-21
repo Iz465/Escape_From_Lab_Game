@@ -15,7 +15,8 @@ GameObject:
   - component: {fileID: 6038724292496286300}
   - component: {fileID: 3935614807929567596}
   - component: {fileID: -8016224844076513350}
-  m_Layer: 0
+  - component: {fileID: 333466948348260355}
+  m_Layer: 3
   m_Name: Kael_Draven
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -150,9 +151,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 338627cb511bd414f9675695c7861e06, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  minCamDistance: 3
-  maxCamDistance: 15
+  acceleration: 0
   walkSpeed: 5
+  iceSpeed: 0
 --- !u!114 &-8016224844076513350
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -167,6 +168,19 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   stamina: 100
   maxStamina: 100
+--- !u!114 &333466948348260355
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1446225533392653128}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b29a0c8370b9de04fb9daa24d0e15a23, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  healthText: {fileID: 0}
 --- !u!1 &4386394422502086194
 GameObject:
   m_ObjectHideFlags: 0
@@ -179,7 +193,7 @@ GameObject:
   - component: {fileID: 4692957477396265382}
   - component: {fileID: 6521372300542328102}
   - component: {fileID: 8745513734413431395}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Main Camera
   m_TagString: MainCamera
   m_Icon: {fileID: 0}
@@ -313,7 +327,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1003560250677784203}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: CameraTarget
   m_TagString: Untagged
   m_Icon: {fileID: 0}

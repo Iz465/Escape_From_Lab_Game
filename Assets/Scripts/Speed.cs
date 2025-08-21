@@ -1,18 +1,31 @@
+using System.Collections;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Speed : MonoBehaviour
 {
     Move movement;
+    PlayerInfo playerInfo;
+    Transform cam;
+
     [SerializeField]
     float normalWalk,normalRun, highSpeedWalk, highSpeedRun, dashSpeed, dashDuration;
-    float dashStart;
+    [SerializeField] float normalRunCost, highSpeedRunCost, dashCost, phazeCost;
+    [SerializeField] float regenRate;
+    [SerializeField] float highSpeedModeScale, highSpeedModeCost;
+    [SerializeField] Text staminaText, healthText;
 
-    bool highSpeedMode;
-    [SerializeField] float highSpeedModeScale;
+    float dashStart;
+    bool highSpeedMode, phazeMode;
+    float lastPowerUsage;
+
+    bool phazePoint = false; //true and false will indicate left and right camera position
 
     void Start()
     {
         movement = transform.GetComponent<Move>();
+        playerInfo = transform.GetComponent<PlayerInfo>();
+        cam = transform.Find("Main Camera").transform;
     }
 
     void Run()
@@ -22,12 +35,15 @@ public class Speed : MonoBehaviour
         {
             if (!highSpeedMode)
             {
+                playerInfo.stamina -= normalRunCost * Time.deltaTime;
                 movement.velocity *= normalRun;
             }
             else
             {
+                playerInfo.stamina -= (highSpeedRunCost + highSpeedModeCost) * Time.deltaTime;
                 movement.velocity *= highSpeedRun;
             }
+            lastPowerUsage = Time.time;
         }
         else
         {
@@ -37,9 +53,13 @@ public class Speed : MonoBehaviour
             }
             else
             {
+                playerInfo.stamina -= highSpeedModeCost * Time.deltaTime;
+                lastPowerUsage = Time.time;
                 movement.velocity *= highSpeedWalk;
             }
         }
+
+        staminaText.text = playerInfo.stamina.ToString()+" stamina";
 
         //right click to (de)activate
         if (Input.GetMouseButtonDown(1))
@@ -53,6 +73,9 @@ public class Speed : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.E))
         {
+            playerInfo.stamina -= dashCost;
+            lastPowerUsage = Time.time;
+            staminaText.text = playerInfo.stamina.ToString() + " stamina";
             dashStart = Time.time;
         }
 
@@ -62,10 +85,69 @@ public class Speed : MonoBehaviour
         }
     }
 
+    void Phaze()
+    {
+        if (Input.GetKeyDown(KeyCode.Q))
+        {
+            phazeMode = !phazeMode;
+
+            GameObject[] objects = GameObject.FindGameObjectsWithTag("PhazeObject");
+            foreach(GameObject obj in objects)
+            {
+                if (phazeMode)
+                {
+                    obj.layer = LayerMask.NameToLayer("Phaze");
+                    MeshRenderer renderer = obj.GetComponent<MeshRenderer>();
+                    Material mat = renderer.material;
+                    Color matColor = mat.color;
+                    matColor.a = 0.5f;
+                    mat.color = matColor;
+                    renderer.material = mat;
+                }
+                else{
+                    obj.layer = LayerMask.NameToLayer("Default");
+                    MeshRenderer renderer = obj.GetComponent<MeshRenderer>();
+                    Material mat = renderer.material;
+                    Color matColor = mat.color;
+                    matColor.a = 1f;
+                    mat.color = matColor;
+                    renderer.material = mat;
+                }
+            }
+        }
+
+        if (phazeMode)
+        {
+            cam.position += phazePoint ? cam.right*0.1f : cam.right *-0.1f;
+            phazePoint = !phazePoint;
+            playerInfo.stamina -= phazeCost;
+            lastPowerUsage = Time.time;
+        }
+    }
+
+    void Heal()
+    {
+        if (playerInfo.health < playerInfo.maxHealth)
+            if (playerInfo.lastDamageTime < Time.time - 5)
+                playerInfo.health += regenRate * Time.deltaTime;
+
+
+        healthText.text = playerInfo.health.ToString() + " health";
+    }
+
+    void Regen()
+    {
+        if(lastPowerUsage < Time.time-5 && playerInfo.stamina < 100)
+            playerInfo.stamina += regenRate * Time.deltaTime;
+    }
+
     // Update is called once per frame
     void Update()
     {
         Run();
         Dash();
+        Phaze();
+        Heal();
+        Regen();
     }
 }

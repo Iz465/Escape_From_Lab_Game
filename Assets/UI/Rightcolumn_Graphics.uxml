@@ -1,0 +1,31 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" editor-extension-mode="False">
+    <Style src="project://database/Assets/UI/Settings.uss?fileID=7433441132597879392&amp;guid=27a27ac5718fc22468d9dff8319b226b&amp;type=3#Settings" />
+    <ui:ToggleButtonGroup label="Quality" name="Quality_ToggleButtonGroup">
+        <ui:Button text="LOW" name="Quality_Low_Button" />
+        <ui:Button text="MID" name="Quality_Mid_Button" />
+        <ui:Button text="HIGH" name="Quality_High_Button" />
+    </ui:ToggleButtonGroup>
+    <ui:ToggleButtonGroup label="Shadows" name="Shadows_ToggleButtonGroup">
+        <ui:Button text="LOW" name="Shadows_Low_Button" />
+        <ui:Button text="MID" name="Shadows_Mid_Button" />
+        <ui:Button text="HIGH" name="Shadows_High_Button" />
+    </ui:ToggleButtonGroup>
+    <ui:ToggleButtonGroup label="Lighting" name="Lighting_ToggleButtonGroup">
+        <ui:Button text="LOW" name="Lighting_Low_Button" />
+        <ui:Button text="MID" name="Lighting_Mid_Button" />
+        <ui:Button text="HIGH" name="Lighting_High_Button" />
+    </ui:ToggleButtonGroup>
+    <ui:ToggleButtonGroup label="Texures" name="Texures_ToggleButtonGroup" value="001">
+        <ui:Button text="LOW" name="Texures_Low_Button" />
+        <ui:Button text="MID" name="Texures_Mid_Button" />
+        <ui:Button text="HIGH" name="Texures_High_Button" />
+    </ui:ToggleButtonGroup>
+    <ui:ToggleButtonGroup label="Texures" name="Anit-Aliasing_ToggleButtonGroup">
+        <ui:Button text="OFF" name="Anit-Aliasing_Off_Button" />
+        <ui:Button text="ON" name="Anit-Aliasing_On_Button" />
+    </ui:ToggleButtonGroup>
+    <ui:ToggleButtonGroup label="Motion Blur" name="Motionblur_ToggleButtonGroup" value="01">
+        <ui:Button text="OFF" name="MotionBlur_Off_Button" />
+        <ui:Button text="ON" name="MontionBlur_On_Button" />
+    </ui:ToggleButtonGroup>
+</ui:UXML>

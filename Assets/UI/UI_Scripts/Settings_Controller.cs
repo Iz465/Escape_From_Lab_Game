@@ -1,0 +1,100 @@
+using UnityEngine;
+using UnityEngine.UIElements;
+public class Settings_Controller : MonoBehaviour
+{
+    public VisualTreeAsset DefaultTemplate;
+    public VisualTreeAsset Template_Settings_Display;
+    public VisualTreeAsset Template_Settings_Graphics;
+    public VisualTreeAsset Template_Settings_Controls;
+    public VisualTreeAsset Template_Settings_Audio;
+
+    private VisualElement _root;
+    private TemplateContainer _current;
+    private Button _swapBtn;
+    private Button DisplayButton;
+    private Button GraphicsButton;
+    private Button ControlsButton;
+    private Button AudioButton;
+
+    private void OnEnable()
+    {
+        // Grab root from UIDocument
+        var uiDoc = GetComponent<UIDocument>();
+        _root = uiDoc.rootVisualElement;
+
+        // Query the button and the placeholder container
+        DisplayButton = _root.Q<Button>("DisplayButton");
+        GraphicsButton = _root.Q<Button>("GraphicsButton");
+        ControlsButton = _root.Q<Button>("ControlsButton");
+        AudioButton = _root.Q<Button>("AudioButton");
+        var host = _root.Q<VisualElement>("templateRoot");
+
+        // Instantiate and add the first template
+        _current = DefaultTemplate.Instantiate();
+        _current.name = DefaultTemplate.name;
+        host.Add(_current);
+        void Settins_page_buttons(char ButtonName) 
+        {
+            _current.RemoveFromHierarchy();
+            _current = null;
+            switch (ButtonName)
+            {
+                case 'D':
+                    DisplayButton.SetEnabled(false);
+                    GraphicsButton.SetEnabled(true);
+                    ControlsButton.SetEnabled(true);
+                    AudioButton.SetEnabled(true);
+                    _current = Template_Settings_Display.Instantiate();
+                    _current.name = Template_Settings_Display.name;
+                    break;
+                case 'G':
+                    DisplayButton.SetEnabled(true);
+                    GraphicsButton.SetEnabled(false);
+                    ControlsButton.SetEnabled(true);
+                    AudioButton.SetEnabled(true);
+                    _current = Template_Settings_Graphics.Instantiate();
+                    _current.name = Template_Settings_Graphics.name;
+                    break;
+                case 'C':
+                    DisplayButton.SetEnabled(true);
+                    GraphicsButton.SetEnabled(true);
+                    ControlsButton.SetEnabled(false);
+                    AudioButton.SetEnabled(true);
+                    _current = Template_Settings_Controls.Instantiate();
+                    _current.name = Template_Settings_Controls.name;
+                    break;
+                case 'A':
+                    DisplayButton.SetEnabled(true);
+                    GraphicsButton.SetEnabled(true);
+                    ControlsButton.SetEnabled(true);
+                    AudioButton.SetEnabled(false);
+                    _current = Template_Settings_Audio.Instantiate();
+                    _current.name = Template_Settings_Audio.name;
+                    break;
+
+            }
+            host.Add(_current);
+        }
+
+      
+        DisplayButton.clicked += () => Settins_page_buttons('D');
+
+        GraphicsButton.clicked += () => Settins_page_buttons('G');
+
+        ControlsButton.clicked += () => Settins_page_buttons('C');
+
+        AudioButton.clicked += () => Settins_page_buttons('A');
+  
+
+    }
+    private void Awake()
+    {
+      //  Button Display_Settings_button = _root.Q<Button>("DisplayButton");
+
+    }
+    // Update is called once per frame
+    void Update()
+    {
+        
+    }
+}

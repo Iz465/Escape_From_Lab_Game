@@ -1,0 +1,16 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" editor-extension-mode="False">
+    <Style src="project://database/Assets/UI/Settings.uss?fileID=7433441132597879392&amp;guid=27a27ac5718fc22468d9dff8319b226b&amp;type=3#Settings" />
+    <ui:ToggleButtonGroup label="Fullscreen" style="padding-right: 0; right: 0;">
+        <ui:Button text="OFF" name="FS_Off_Button" />
+        <ui:Button text="ON" name="FS_On_Button" />
+    </ui:ToggleButtonGroup>
+    <ui:DropdownField label="Resolution" style="font-size: 70px;" />
+    <ui:ToggleButtonGroup label="HDR">
+        <ui:Button text="OFF" name="HDR_Off_Button" />
+        <ui:Button text="ON" name="HDR_On_Button" />
+    </ui:ToggleButtonGroup>
+    <ui:ToggleButtonGroup label="Windows" style="font-size: 60px;">
+        <ui:Button text="Bordered" name="Bordered_Button" />
+        <ui:Button text="BorderLess" name="Borderless_Button" />
+    </ui:ToggleButtonGroup>
+</ui:UXML>

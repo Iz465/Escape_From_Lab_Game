@@ -1,0 +1,13 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" editor-extension-mode="False">
+    <Style src="project://database/Assets/UI/Settings.uss?fileID=7433441132597879392&amp;guid=27a27ac5718fc22468d9dff8319b226b&amp;type=3#Settings" />
+    <ui:VisualElement name="Panel" class="Panel" style="flex-grow: 1; flex-direction: row;">
+        <ui:VisualElement name="LeftColumn" class="Column" style="flex-grow: 1; width: 45%;">
+            <ui:Button text="Main Menu" name="MMReturnButton" class="Bigbutton" />
+            <ui:Button text="Display" name="DisplayButton" enabled="true" focusable="false" selectable="false" class="Bigbutton" />
+            <ui:Button text="Graphics" name="GraphicsButton" class="Bigbutton" />
+            <ui:Button text="Controls" name="ControlsButton" class="Bigbutton" />
+            <ui:Button text="Audio" name="AudioButton" class="Bigbutton" />
+        </ui:VisualElement>
+        <ui:VisualElement name="templateRoot" class="Column" style="flex-grow: 1; align-content: stretch; padding-left: 10px; padding-right: 10px; padding-bottom: 10px; padding-top: 10px; margin-left: 50px; margin-right: 50px; width: 55%;" />
+    </ui:VisualElement>
+</ui:UXML>

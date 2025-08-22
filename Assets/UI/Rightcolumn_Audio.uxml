@@ -1,0 +1,11 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" editor-extension-mode="False">
+    <Style src="project://database/Assets/UI/Settings.uss?fileID=7433441132597879392&amp;guid=27a27ac5718fc22468d9dff8319b226b&amp;type=3#Settings" />
+    <ui:Slider label="Music" value="0.4" high-value="1" name="Music_Volume_slider" low-value="0.0001" focusable="true" picking-mode="Ignore" show-input-field="false" page-size="0" usage-hints="GroupTransform" />
+    <ui:Slider label="Sfx" value="0.4" high-value="1" name="Sfx_Volume_slider" low-value="0.0001" focusable="true" picking-mode="Ignore" show-input-field="false" page-size="0" usage-hints="GroupTransform" />
+    <ui:Slider label="Dialogue" value="0.4" high-value="1" name="Dialogue_Volume_slider" low-value="0.0001" focusable="true" picking-mode="Ignore" show-input-field="false" page-size="0" usage-hints="GroupTransform" />
+    <ui:Slider label="Master" value="0.4" high-value="1" name="Master_Volume_slider" low-value="0.0001" focusable="true" picking-mode="Ignore" show-input-field="false" page-size="0" usage-hints="GroupTransform" />
+    <ui:ToggleButtonGroup label="Motion Blur" name="Subtitles_ToggleButtonGroup" value="01">
+        <ui:Button text="OFF" name="Subtitles_Off_Button" />
+        <ui:Button text="ON" name="Subtitles_On_Button" />
+    </ui:ToggleButtonGroup>
+</ui:UXML>

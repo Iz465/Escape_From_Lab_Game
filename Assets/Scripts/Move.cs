@@ -6,56 +6,31 @@ using UnityEngine.InputSystem;
 public class Move : MonoBehaviour
 {
     CharacterController controller;
-    
-    
+    public Vector3 direction;
     public float acceleration;
+    public Vector3 velocity;
+    public bool useOtherScript;
+
+    [Header("Edit if character dont have powers that influence speed")]
     public float walkSpeed;
-    public float iceSpeed;
-    Vector3 velocity;
 
-    void IceWalk(Vector3 dir)
+    public void Walk()
     {
-        if (dir.magnitude < 0.1f)
-        {
-            velocity -= velocity.normalized * acceleration * Time.deltaTime;
-        }
-        else
-        {
-            velocity += dir * acceleration * Time.deltaTime;
-            velocity = Vector3.ClampMagnitude(velocity, iceSpeed);
-        }
-        controller.Move(velocity);
-    }
-
-    void Walk()
-    {
-        Vector3 dir = new();
-        // Get input for movement forward/backward direction
+        direction = new Vector3();
         if (Input.GetKey(KeyCode.W))
-            dir += transform.forward;
-        else if (Input.GetKey(KeyCode.S))
-            dir -= transform.forward;
+            direction += transform.forward;
+        if (Input.GetKey(KeyCode.S))
+            direction -= transform.forward;
 
-        // Get input for movement left/right direction
         if (Input.GetKey(KeyCode.D))
-            dir += transform.right;
-        else if (Input.GetKey(KeyCode.A))
-            dir -= transform.right;
+            direction += transform.right;
+        if (Input.GetKey(KeyCode.A))
+            direction -= transform.right;
 
-
-        RaycastHit hitObj;
-        
-        if (Physics.Raycast(transform.position, Vector3.down, out hitObj, transform.lossyScale.y/2 + 1))
-        {
-            if (hitObj.transform.CompareTag("Ice")) {
-                IceWalk(dir);
-                return;
-            }
-        }
-
-        velocity = Vector3.zero;
-        controller.Move(dir * Time.deltaTime * walkSpeed);
-        
+        if (useOtherScript)
+            controller.Move(velocity);
+        else
+            controller.Move(direction * walkSpeed * Time.deltaTime);
     }
     
 

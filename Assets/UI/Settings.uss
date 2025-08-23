@@ -32,9 +32,6 @@
     align-content: center;
 }
 
-.unity-button {
-}
-
 .Bigbutton {
     -unity-text-align: middle-center;
     text-overflow: ellipsis;
@@ -142,4 +139,22 @@
     border-bottom-color: rgb(0, 0, 0);
     -unity-background-image-tint-color: rgba(255, 255, 255, 0);
     color: rgb(0, 0, 0);
+}
+
+.Leftbutton {
+    -unity-text-align: middle-center;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    font-size: 110px;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    padding-right: 17.5px;
+    padding-left: 17.5px;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    width: auto;
+    align-self: stretch;
+    align-items: center;
+    justify-content: flex-start;
+    align-content: auto;
 }

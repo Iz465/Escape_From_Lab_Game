@@ -2,23 +2,25 @@ using UnityEngine;
 
 public class Player : MonoBehaviour, IDamageTaken
 {
-    public static int health;
-    public float stamina;
-    public float maxStamina;
-    public static int multiplier;
+    public PlayerData playerData;
+
+    private void Awake()
+    {
+        playerData.stamina = playerData.maxStamina;
+    }
 
     private void Update()
     {
-        stamina += 5f * Time.deltaTime;
-        stamina = Mathf.Clamp(stamina, 0, maxStamina);
+        playerData.stamina += 5f * Time.deltaTime;
+        playerData.stamina = Mathf.Clamp(playerData.stamina, 0, playerData.maxStamina);
     }
 
 
-    public void takeDamage(int damageTaken, GameObject weapon) 
+    public void takeDamage(float damageTaken, GameObject weapon) 
     {
-        health -= damageTaken;
-        Debug.Log($"Health = {health}");
-        if (health <= 0)
+        playerData.health -= damageTaken;
+        Debug.Log($"Health = {playerData.health}");
+        if (playerData.health <= 0)
             playerDeath();
     }
 

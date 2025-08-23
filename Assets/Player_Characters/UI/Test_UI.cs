@@ -8,19 +8,20 @@ public class Test_UI : MonoBehaviour
     Text healthText;
     [SerializeField]
     Text staminaText;
-    Player player;
+    [SerializeField]
+    PlayerData playerData;
 
-    private void Awake()
-    {
-        player = Object.FindFirstObjectByType<Player>();
-    }
+   
 
     private void Update()
     {
-        if (healthText)
-            healthText.text = $"Health : {Player.health}";
-        if (staminaText)
-            staminaText.text = $"STamina : {player.stamina}";
+        if (playerData != null)
+        {
+            if (healthText)
+                healthText.text = $"Health : {playerData.health}";
+            if (staminaText)
+                staminaText.text = $"Stamina : {playerData.stamina}";
+        }
 
     }
 }

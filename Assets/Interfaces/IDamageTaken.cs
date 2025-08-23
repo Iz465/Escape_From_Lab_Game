@@ -2,6 +2,6 @@ using UnityEngine;
 
 public interface IDamageTaken
 {
-    void takeDamage(int damage, GameObject weapon);
+    void takeDamage(float damage, GameObject weapon);
     
 }

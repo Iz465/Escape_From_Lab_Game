@@ -14,12 +14,12 @@ public class Rage_Mode : Blood_Powers
       
         if (context.performed)
         {
-            if (powerVFX)
+            if (powerData.powerVFX)
             {
             
-                powerInstance = Instantiate(powerVFX);
+                powerInstance = Instantiate(powerData.powerVFX);
                 rage = powerInstance.GetComponent<Rage_Mode>();
-                Player.multiplier = 2;
+                playerData.dmgMultiplier = 2;
 
                 rage.StartCoroutine((rage.rageActive(5)));
 
@@ -33,18 +33,18 @@ public class Rage_Mode : Blood_Powers
     IEnumerator rageActive(float time)
     {
         float timer = 0;
-        float start = Player.health;
+        float start = playerData.health;
         float end = start - 50f;
         while (timer < time)
         {
-            if (Player.health > 10)
-                Player.health = (int)Mathf.Lerp(start, end, timer / time);
+            if (playerData.health > 10)
+                playerData.health = (int)Mathf.Lerp(start, end, timer / time);
    
             timer += Time.deltaTime;
             yield return null;
         }
 
-        Player.multiplier = 1;
+        playerData.dmgMultiplier = 1;
         Destroy(gameObject);
 
     }

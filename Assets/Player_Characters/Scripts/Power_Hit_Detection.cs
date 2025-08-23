@@ -4,23 +4,11 @@ using UnityEngine;
 public class Power_Hit_Detection : MonoBehaviour
 {
     IDamageTaken takeDamage;
-    Powers_Script power;
-    int damage;
-    Blood_Leech bloodLeech;
-    bool collisionStay = false;
+    [SerializeField]
+    PowerData powerData;
 
 
 
-    private void Awake()
-    {
-        // Checks if the power this script is being added to exists.
-        power = GetComponent<Powers_Script>();
-        if (power != null)
-            damage = power.damage;
-     
-        else
-            Debug.Log("Power can't be found");
-    }
 
     private void OnCollisionEnter(Collision collision)
     {
@@ -28,11 +16,11 @@ public class Power_Hit_Detection : MonoBehaviour
        // Only objects that take damage (players, enemies etc) will have the IDamageTaken interface
         takeDamage = collision.gameObject.GetComponent<IDamageTaken>();
         if (takeDamage != null)
-            takeDamage.takeDamage(damage, gameObject);
+            takeDamage.takeDamage(powerData.damage, gameObject);
         else
             Debug.Log("Hit something");
-        bloodLeech = GetComponent<Blood_Leech>();
-        if (bloodLeech == null)
+      
+        if (!powerData.hold)
             Destroy(gameObject);
         
             
@@ -40,7 +28,8 @@ public class Power_Hit_Detection : MonoBehaviour
 
     private void OnCollisionStay(Collision collision)
     {
-        takeDamage.takeDamage(damage, gameObject);
+        if (takeDamage != null)
+            takeDamage.takeDamage(powerData.damage, gameObject);
       
     }
 

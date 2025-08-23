@@ -1,19 +1,24 @@
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class Blood_Powers : Powers_Script
 {
-    [SerializeField]
-    protected int healthDrain;
-    protected new void Awake()
+
+
+    public override void Attack(InputAction.CallbackContext context)
     {
-           
-        if (Player.health > 10)
-            Player.health -= healthDrain;
-        Player.health = Mathf.Clamp(Player.health, 10, 100);
+        base.Attack(context);
+      
+        if (playerData != null)
+        {
+            Debug.Log(playerData.health);
+            if (playerData.health > 10)
+                playerData.health -= powerData.healthDrain;
+            playerData.health = Mathf.Clamp(playerData.health, 10, 100);
+        }
+
+
     }
-
-
-
 
 
 

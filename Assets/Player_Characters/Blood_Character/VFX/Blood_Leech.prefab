@@ -12,8 +12,8 @@ GameObject:
   - component: {fileID: 6689242087308793238}
   - component: {fileID: 8503092569220996082}
   - component: {fileID: -7860871884239300714}
-  - component: {fileID: -4250781680640777435}
   - component: {fileID: 1722925239926326428}
+  - component: {fileID: -5633267537718226760}
   m_Layer: 0
   m_Name: Blood_Leech
   m_TagString: Untagged
@@ -112,26 +112,10 @@ Rigidbody:
   m_ImplicitCom: 1
   m_ImplicitTensor: 1
   m_UseGravity: 0
-  m_IsKinematic: 0
+  m_IsKinematic: 1
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
---- !u!114 &-4250781680640777435
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 317990663879789788}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e54d2cded1fe3034db34248d27e69a1a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  startDamage: 1
-  stamina: 0.1
-  powerName: 
-  powerVFX: {fileID: 317990663879789788}
 --- !u!136 &1722925239926326428
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -155,3 +139,16 @@ CapsuleCollider:
   m_Height: 1.0082495
   m_Direction: 1
   m_Center: {x: 0, y: -0.002584182, z: 0}
+--- !u!114 &-5633267537718226760
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 317990663879789788}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6ca545025a208684890ede2bf03439d2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  powerData: {fileID: 11400000, guid: b3e11c5b7b775594a842582599979afd, type: 2}

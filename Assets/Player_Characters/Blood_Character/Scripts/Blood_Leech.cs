@@ -31,7 +31,7 @@ public class Blood_Leech : Powers_Script, IGetHealth
         if (context.canceled)
         {
             isHeld = false;
-            Destroy(powerInstance);
+            poolManager.ReleaseToPool(powerData.powerVFX, powerInstance);
         }
 
     }
@@ -39,7 +39,11 @@ public class Blood_Leech : Powers_Script, IGetHealth
     protected override bool consumeStamina()
     {
         if (playerData.stamina < powerData.stamina)
+        {
             Destroy(powerInstance);
+            isHeld = false;
+        }
+          
         return base.consumeStamina();
     }
 

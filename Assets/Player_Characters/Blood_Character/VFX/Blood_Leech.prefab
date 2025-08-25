@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: -7860871884239300714}
   - component: {fileID: 1722925239926326428}
   - component: {fileID: -5633267537718226760}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Blood_Leech
   m_TagString: Untagged
   m_Icon: {fileID: 0}

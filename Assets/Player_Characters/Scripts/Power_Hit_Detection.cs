@@ -20,8 +20,8 @@ public class Power_Hit_Detection : MonoBehaviour
         takeDamage = collision.gameObject.GetComponent<IDamageTaken>();
         if (takeDamage != null)
             takeDamage.takeDamage(powerData.damage, gameObject);
-        else
-            Debug.Log("Hit something");
+     //   else
+       //     Debug.Log("Hit something");
       
         if (!powerData.hold)
             Destroy(gameObject);

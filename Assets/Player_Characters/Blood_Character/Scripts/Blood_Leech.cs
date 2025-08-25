@@ -66,16 +66,25 @@ public class Blood_Leech : Powers_Script, IGetHealth
         leechSize.transform.SetParent(boxAim.transform);
         leechSize.transform.localPosition = new Vector3(0f, 0f, 0.254f);
 
-        float maxDistance = 20f; 
-        Vector3 direction = boxAim.transform.forward;
+        float maxDistance = 20f;
+        //   Vector3 direction = boxAim.transform.forward;
+        Vector3 direction = cam.transform.forward;
 
-        if (Physics.Raycast(boxAim.transform.position, direction, out RaycastHit hit, maxDistance))
+        if (Physics.Raycast(cam.transform.position, direction, out RaycastHit hit, maxDistance))
         {
+     
             // shrink size
-            float hitDistance = hit.distance;
-            var scale = boxAim.transform.localScale;
-            scale.z = Mathf.Clamp(hitDistance, 1f, maxDistance); 
-            boxAim.transform.localScale = scale;
+            LayerMask layerMask = 0;
+            if (hit.collider == gameObject) return;
+            else
+            {
+                float hitDistance = hit.distance;
+                var scale = boxAim.transform.localScale;
+                scale.z = Mathf.Clamp(hitDistance, 1f, maxDistance);
+                boxAim.transform.localScale = scale;
+                Debug.Log(hit.collider);
+            }
+           
         }
         else
         {
@@ -83,6 +92,12 @@ public class Blood_Leech : Powers_Script, IGetHealth
             var scale = boxAim.transform.localScale;
             scale.z = Mathf.Clamp(scale.z + maxDistance, 1f, maxDistance);
             boxAim.transform.localScale = scale;
+            boxAim.transform.rotation = cam.transform.rotation;
+            var rot = boxAim.transform.rotation;
+            rot.x = Mathf.Clamp(rot.x, -20f, 20f);
+            boxAim.transform.rotation = rot;
+         
+          
         }
     }
 

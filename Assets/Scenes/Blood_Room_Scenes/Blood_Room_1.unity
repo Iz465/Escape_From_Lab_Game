@@ -154,6 +154,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: Kael_Draven
       objectReference: {fileID: 0}
+    - target: {fileID: 7942580397591843012, guid: ac03fe04feb792448b456d91d1cb0b47, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.4577
+      objectReference: {fileID: 0}
+    - target: {fileID: 7942580397591843012, guid: ac03fe04feb792448b456d91d1cb0b47, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0.622
+      objectReference: {fileID: 0}
     - target: {fileID: 8685979672057956148, guid: ac03fe04feb792448b456d91d1cb0b47, type: 3}
       propertyPath: m_LocalPosition.x
       value: -0.17581
@@ -799,13 +807,13 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1037777581}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.5087738, y: 0.4911883, z: -0.49556893, w: 0.5042764}
-  m_LocalPosition: {x: -0.57, y: 5.41, z: 0.17}
-  m_LocalScale: {x: 7.8792, y: 4.9461, z: 1}
+  m_LocalRotation: {x: 0, y: 0, z: -0.7071068, w: 0.7071068}
+  m_LocalPosition: {x: -0.61, y: 0.37, z: 0.17}
+  m_LocalScale: {x: 7.8792, y: 1.6687152, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 90.509, y: 88.493, z: 0}
+  m_LocalEulerAnglesHint: {x: 180, y: 180, z: 90}
 --- !u!1 &1181860340
 GameObject:
   m_ObjectHideFlags: 0

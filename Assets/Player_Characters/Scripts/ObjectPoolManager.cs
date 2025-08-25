@@ -1,6 +1,8 @@
 ﻿using UnityEngine;
 using System.Collections.Generic;
 
+#pragma warning disable // annoying warning keeps coming up that doesnt matter.
+
 public class ObjectPoolManager : MonoBehaviour
 {
     [System.Serializable]
@@ -10,6 +12,7 @@ public class ObjectPoolManager : MonoBehaviour
         public int initialSize = 10;
     }
 
+    private Rigidbody objectBody;
     public List<PoolItem> poolItems = new List<PoolItem>();
 
     // dict for all prefabs that can be active.
@@ -24,7 +27,7 @@ public class ObjectPoolManager : MonoBehaviour
             var availableQueue = new Queue<GameObject>();
             var activeSet = new HashSet<GameObject>();
 
-            // Pre-instantiate exactly initialSize
+          
             for (int i = 0; i < item.initialSize; i++)
             {
                 GameObject obj = Instantiate(item.prefab);
@@ -37,7 +40,7 @@ public class ObjectPoolManager : MonoBehaviour
         }
     }
 
-    
+    // Activates prefabs
     public GameObject SpawnFromPool(GameObject prefab, Vector3 position, Quaternion rotation)
     {
         if (!poolAvailable.ContainsKey(prefab))
@@ -46,22 +49,27 @@ public class ObjectPoolManager : MonoBehaviour
             return null;
         }
 
-        if (poolAvailable[prefab].Count == 0)
-        {
-            Debug.LogWarning($"No more {prefab.name} can be active");
-            return null; 
-        }
+        if (poolAvailable[prefab].Count <= 0) return null;
+         
+        
 
         GameObject obj = poolAvailable[prefab].Dequeue();
-     
-        obj.SetActive(true);
+        objectBody = obj.GetComponent<Rigidbody>();
+        if (objectBody)
+        {
+            objectBody.linearVelocity = Vector3.zero;
+            objectBody.angularVelocity = Vector3.zero;
+        }
+      
         obj.transform.SetPositionAndRotation(position, rotation);
+        obj.SetActive(true);
+ 
 
         poolActive[prefab].Add(obj);
         return obj;
     }
 
-  
+  // Deactivates prefabs.
     public void ReleaseToPool(GameObject prefab, GameObject obj)
     {
         if (!poolActive.ContainsKey(prefab))

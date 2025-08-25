@@ -6,14 +6,17 @@ public class Power_Hit_Detection : MonoBehaviour
     IDamageTaken takeDamage;
     [SerializeField]
     PowerData powerData;
+    IGetHealth getHealth;
+    Blood_Leech bloodLeech;
+ 
 
 
 
 
     private void OnCollisionEnter(Collision collision)
     {
-        
-       // Only objects that take damage (players, enemies etc) will have the IDamageTaken interface
+       
+        // Only objects that take damage (players, enemies etc) will have the IDamageTaken interface
         takeDamage = collision.gameObject.GetComponent<IDamageTaken>();
         if (takeDamage != null)
             takeDamage.takeDamage(powerData.damage, gameObject);
@@ -30,7 +33,10 @@ public class Power_Hit_Detection : MonoBehaviour
     {
         if (takeDamage != null)
             takeDamage.takeDamage(powerData.damage, gameObject);
-      
+
+
+
+
     }
 
 

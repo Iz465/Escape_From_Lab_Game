@@ -4,30 +4,36 @@ using UnityEngine.InputSystem;
 public class Blood_Leech : Powers_Script, IGetHealth
 {
     static bool isHeld;
-    private float spawnLoc;
+
 
     protected void Update()
     {
         if (isHeld)
-        consumeStamina();
+        {
+            consumeStamina();        
+            if (powerInstance != null)
+                changeSize(powerInstance);
+        }
+       
     }
 
-    private void Awake()
-    {
-        spawnLoc = 5f;
-    }
+ 
 
     public override void Attack(InputAction.CallbackContext context)
     {
         base.Attack(context);
 
- 
+
         if (context.performed && powerInstance != null)
         {
             isHeld = true;
-            powerInstance.transform.position += cam.transform.forward * spawnLoc;
+            powerInstance.transform.position += cam.transform.forward;
+            changeSize(powerInstance);
+            var rot = powerInstance.transform.rotation.eulerAngles;
+            rot.x = 90f;
+            powerInstance.transform.rotation = Quaternion.Euler(rot);
         }
-         
+
         if (context.canceled)
         {
             isHeld = false;
@@ -43,7 +49,7 @@ public class Blood_Leech : Powers_Script, IGetHealth
             Destroy(powerInstance);
             isHeld = false;
         }
-          
+
         return base.consumeStamina();
     }
 
@@ -53,5 +59,34 @@ public class Blood_Leech : Powers_Script, IGetHealth
         playerData.health += 1;
         playerData.health = Mathf.Clamp(playerData.health, 0, 100);
     }
+
+
+    public void changeSize(GameObject leechSize)
+    {
+        leechSize.transform.SetParent(boxAim.transform);
+        leechSize.transform.localPosition = new Vector3(0f, 0f, 0.254f);
+
+        float maxDistance = 20f; 
+        Vector3 direction = boxAim.transform.forward;
+
+        if (Physics.Raycast(boxAim.transform.position, direction, out RaycastHit hit, maxDistance))
+        {
+            // shrink size
+            float hitDistance = hit.distance;
+            var scale = boxAim.transform.localScale;
+            scale.z = Mathf.Clamp(hitDistance, 1f, maxDistance); 
+            boxAim.transform.localScale = scale;
+        }
+        else
+        {
+            // Nothing hit: extend normally
+            var scale = boxAim.transform.localScale;
+            scale.z = Mathf.Clamp(scale.z + maxDistance, 1f, maxDistance);
+            boxAim.transform.localScale = scale;
+        }
+    }
+
+
+
 
 }

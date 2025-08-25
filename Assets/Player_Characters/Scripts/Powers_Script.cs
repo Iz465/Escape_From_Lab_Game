@@ -7,7 +7,7 @@ public class Powers_Script : MonoBehaviour
 {
 
     public PowerData powerData;
-    private Transform boxAim;
+    protected Transform boxAim;
     private Rigidbody powerBody;
     protected GameObject powerInstance;
     protected Camera cam;

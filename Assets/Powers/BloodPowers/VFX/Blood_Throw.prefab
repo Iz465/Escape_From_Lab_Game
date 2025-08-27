@@ -151,7 +151,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6ca545025a208684890ede2bf03439d2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  powerData: {fileID: 0}
+  powerData: {fileID: 11400000, guid: 21f81e0a5260d804db05b7fc5008f255, type: 2}
 --- !u!114 &9001348356109490781
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -171,4 +171,4 @@ MonoBehaviour:
   cam: {fileID: 0}
   enemyLayer:
     serializedVersion: 2
-    m_Bits: 8
+    m_Bits: 128

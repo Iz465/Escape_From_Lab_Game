@@ -20,7 +20,7 @@ public class Player : MonoBehaviour, IDamageTaken
     }
 
 
-    public void takeDamage(float damageTaken, GameObject weapon) 
+    public void TakeDamage(float damageTaken, GameObject weapon) 
     {
         playerData.health -= damageTaken;
         Debug.Log($"Health = {playerData.health}");

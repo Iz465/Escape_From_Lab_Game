@@ -4,41 +4,60 @@ using UnityEngine;
 public class Power_Hit_Detection : MonoBehaviour
 {
     IDamageTaken takeDamage;
-    IGetHealth getHealth;
     [SerializeField]
     PowerData powerData;
     ICollide iCollide;
- 
+    private int num;
+    ObjectPoolManager poolManager;
 
+    private void Awake()
+    {
+        
+        num = 0;
+    }
+
+    private void Start()
+    {
+        poolManager = FindFirstObjectByType<ObjectPoolManager>();
+        if (!poolManager)
+            Debug.Log("pool manager null");
+
+    }
 
 
 
     private void OnCollisionEnter(Collision collision)
     {
 
-        Debug.Log("Hit");
+            
+
+        takeDamage = collision.gameObject.GetComponent<IDamageTaken>();
+            
+        if (takeDamage == null)
+        {
+            poolManager.ReleaseToPool(powerData.prefab, gameObject);
+            return;
+        }
+
+      
 
         iCollide = GetComponent<ICollide>();
         if (iCollide != null)
-            iCollide.CollideResult(gameObject);
+        {
+            num++;
+            if (num >= 2) poolManager.ReleaseToPool(powerData.prefab, gameObject);
+            iCollide.CollideResult(collision.collider, gameObject);
+        }
 
-        // Only objects that take damage (players, enemies etc) will have the IDamageTaken interface
-        //      takeDamage = collision.gameObject.GetComponent<IDamageTaken>();
-        //      if (takeDamage != null)
-        //       takeDamage.takeDamage(powerData.damage, gameObject);
-        //   else
-        //     Debug.Log("Hit something");
-
-        //     if (!powerData.hold)
-        //        Destroy(gameObject);
+    
 
 
     }
 
     private void OnCollisionStay(Collision collision)
     {
-        if (takeDamage != null)
-            takeDamage.takeDamage(powerData.damage, gameObject);
+       // if (takeDamage != null)
+     //       takeDamage.TakeDamage(powerData.damage, gameObject);
 
 
 

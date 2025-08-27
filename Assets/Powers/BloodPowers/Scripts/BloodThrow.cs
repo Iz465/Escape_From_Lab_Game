@@ -9,6 +9,8 @@ public class BloodThrow : BasePower, ICollide
     [SerializeField]
     private LayerMask enemyLayer;
     private Collider[] enemyDetected;
+    
+    Vector3 direction;
     private void Awake()
     {
         bloodData = (BloodPowerData)powerData;
@@ -26,32 +28,45 @@ public class BloodThrow : BasePower, ICollide
         return base.UseStamina();
     }
 
-    public void CollideResult(GameObject power)
+    public void CollideResult(Collider objectHit, GameObject power)
     {
+        
+        Collider collider = power.GetComponent<Collider>();
+        if (!collider) return;
+        Debug.Log("Entered collide result");
+        rb = power.GetComponent<Rigidbody>();
+        if (!rb) return;
         enemyDetected = Physics.OverlapSphere(power.transform.position, radius, enemyLayer);
         if (enemyDetected.Length <= 0) return;
-        StartCoroutine(TrackEnemy(3f, power));
-
-
-
-
-    }
-
-    private IEnumerator TrackEnemy(float time, GameObject power)
-    {
-        float timer = 0;
-        var startLoc = power.transform.position;
-   //     var enemyLoc = enemyDetected[0].transform.position;
-       
-        Debug.Log("Tracking enemy");
-        while (timer < time)
+  
+        if (enemyDetected[0] == objectHit)
         {
-            power.transform.position = Vector3.Lerp(startLoc, enemyDetected[0].transform.position, timer / time);
-            timer += Time.deltaTime;
-            yield return null;
+            if (enemyDetected.Length <= 1) return;
+       //     Physics.IgnoreCollision(collider, enemyDetected[0], false);
+            direction = (enemyDetected[1].transform.position - power.transform.position).normalized;
+            Physics.IgnoreCollision(collider, enemyDetected[0]);  
+        }   
+
+       
+         
+        else
+        {
+        //    Physics.IgnoreCollision(collider, enemyDetected[1], false);
+            direction = (enemyDetected[0].transform.position - power.transform.position).normalized;
+            if (enemyDetected.Length > 1) 
+                Physics.IgnoreCollision(collider, enemyDetected[1]);
         }
 
+        rb.linearVelocity = Vector3.zero;
+        rb.angularVelocity = Vector3.zero;
+
+        rb.AddForce(direction * powerData.speed, ForceMode.Impulse);
+        
+
     }
+
+ 
+    
 
 
 }

@@ -41,12 +41,12 @@ public class Powers_Script : MonoBehaviour
         if (context.performed && consumeStamina())
         {
 
-            if (!powerData.powerVFX) return;
+            if (!powerData.prefab) return;
                        
             Vector3 aimDir = cam.transform.forward;
                 
             // hide/unhide objects instead of spawning them to save memory.
-            powerInstance = poolManager.SpawnFromPool(powerData.powerVFX, boxAim.position, Quaternion.LookRotation(aimDir));
+            powerInstance = poolManager.SpawnFromPool(powerData.prefab, boxAim.position, Quaternion.LookRotation(aimDir));
 
             if (powerInstance == null) return;
                 
@@ -70,7 +70,7 @@ public class Powers_Script : MonoBehaviour
     private IEnumerator hidePower(int time, GameObject disablePower)
     {
         yield return new WaitForSeconds(time);
-        poolManager.ReleaseToPool(powerData.powerVFX, disablePower);
+        poolManager.ReleaseToPool(powerData.prefab, disablePower);
         Debug.Log("hidden");
     }
 

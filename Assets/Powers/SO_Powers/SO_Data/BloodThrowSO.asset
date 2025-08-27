@@ -9,13 +9,14 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 20bba7fae98b052488689b8a8f9d8b90, type: 3}
+  m_Script: {fileID: 11500000, guid: c4ab90e18bda613409f7c01c0db98e66, type: 3}
   m_Name: BloodThrowSO
   m_EditorClassIdentifier: 
-  powerName: Blood Throw
-  damage: 20
-  stamina: 10
-  speed: 30
-  healthDrain: 20
+  power: 
+  damage: 15
+  stamina: 20
+  speed: 20
   duration: 3
-  powerVFX: {fileID: 6594098458241618133, guid: 5954267c87598d64db007ac04428db6e, type: 3}
+  prefab: {fileID: 6594098458241618133, guid: 5954267c87598d64db007ac04428db6e, type: 3}
+  getHealth: 0
+  loseHealth: 20

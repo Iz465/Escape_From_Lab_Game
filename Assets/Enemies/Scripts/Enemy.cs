@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class Enemy : MonoBehaviour, IDamageTaken
+public class Enemy : MonoBehaviour//, IDamageTaken
 {
     [SerializeField]
     protected float health;
@@ -13,11 +13,11 @@ public class Enemy : MonoBehaviour, IDamageTaken
     {
 
         health -= damageTaken;
-        getHealth = weapon.GetComponent<IGetHealth>();
-        if (getHealth != null)
-            getHealth.GetHealth();
-        else
-            Debug.Log(weapon);
+      //  getHealth = weapon.GetComponent<IGetHealth>();
+     //   if (getHealth != null)
+     //       getHealth.GetHealth();
+     //   else
+       //     Debug.Log(weapon);
         if (health <= 0)
             enemyDeath();
 

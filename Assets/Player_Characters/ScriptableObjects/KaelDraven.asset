@@ -14,6 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playerName: Kael Draven
   health: 100
-  stamina: 64.610794
+  maxHealth: 100
+  stamina: 100
   maxStamina: 100
   dmgMultiplier: 1

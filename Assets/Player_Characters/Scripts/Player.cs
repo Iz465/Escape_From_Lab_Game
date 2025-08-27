@@ -6,11 +6,15 @@ public class Player : MonoBehaviour, IDamageTaken
 
     private void Awake()
     {
-        playerData.stamina = playerData.maxStamina;
+        if (playerData) playerData.ResetStats();
+
+        else Debug.LogWarning("No player data");
+
     }
 
     private void Update()
     {
+        if (!playerData) return;
         playerData.stamina += 5f * Time.deltaTime;
         playerData.stamina = Mathf.Clamp(playerData.stamina, 0, playerData.maxStamina);
     }

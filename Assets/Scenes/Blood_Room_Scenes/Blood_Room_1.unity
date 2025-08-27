@@ -147,6 +147,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 95123714}
     - target: {fileID: 333466948348260355, guid: ac03fe04feb792448b456d91d1cb0b47, type: 3}
+      propertyPath: playerData
+      value: 
+      objectReference: {fileID: 11400000, guid: 5fede77d8d72b8f41b8c552a7afbbc5a, type: 2}
+    - target: {fileID: 333466948348260355, guid: ac03fe04feb792448b456d91d1cb0b47, type: 3}
       propertyPath: staminaText
       value: 
       objectReference: {fileID: 1181860341}
@@ -214,13 +218,13 @@ PrefabInstance:
       addedObject: {fileID: 353264978}
     - targetCorrespondingSourceObject: {fileID: 1446225533392653128, guid: ac03fe04feb792448b456d91d1cb0b47, type: 3}
       insertIndex: -1
-      addedObject: {fileID: 353264989}
+      addedObject: {fileID: 353264999}
     - targetCorrespondingSourceObject: {fileID: 1446225533392653128, guid: ac03fe04feb792448b456d91d1cb0b47, type: 3}
       insertIndex: -1
-      addedObject: {fileID: 353264988}
+      addedObject: {fileID: 353265000}
     - targetCorrespondingSourceObject: {fileID: 1446225533392653128, guid: ac03fe04feb792448b456d91d1cb0b47, type: 3}
       insertIndex: -1
-      addedObject: {fileID: 353264987}
+      addedObject: {fileID: 353265001}
   m_SourcePrefab: {fileID: 100100000, guid: ac03fe04feb792448b456d91d1cb0b47, type: 3}
 --- !u!1 &353264969 stripped
 GameObject:
@@ -254,8 +258,8 @@ MonoBehaviour:
   m_ActionEvents:
   - m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 353264989}
-        m_TargetAssemblyTypeName: Blood_Leech, Assembly-CSharp
+      - m_Target: {fileID: 353264999}
+        m_TargetAssemblyTypeName: HoldPower, Assembly-CSharp
         m_MethodName: Attack
         m_Mode: 0
         m_Arguments:
@@ -270,8 +274,8 @@ MonoBehaviour:
     m_ActionName: 'Blood_Player/Blood_Leech[/Keyboard/1]'
   - m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 353264988}
-        m_TargetAssemblyTypeName: Powers_Script, Assembly-CSharp
+      - m_Target: {fileID: 353265000}
+        m_TargetAssemblyTypeName: BasePower, Assembly-CSharp
         m_MethodName: Attack
         m_Mode: 0
         m_Arguments:
@@ -302,7 +306,7 @@ MonoBehaviour:
     m_ActionName: 'Blood_Player/Insta_Kill[/Keyboard/3]'
   - m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 353264987}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: Rage_Mode, Assembly-CSharp
         m_MethodName: Attack
         m_Mode: 0
@@ -339,7 +343,41 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   minCamDistance: 5
   maxCamDistance: 15
---- !u!114 &353264987
+--- !u!114 &353264999
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 353264969}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6242ff20def17cf4ab40a158a8c9826c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  powerData: {fileID: 11400000, guid: b3e11c5b7b775594a842582599979afd, type: 2}
+  playerData: {fileID: 11400000, guid: 5fede77d8d72b8f41b8c552a7afbbc5a, type: 2}
+  poolManager: {fileID: 1744317720}
+  boxAim: {fileID: 1696684447}
+  cam: {fileID: 1869249470}
+--- !u!114 &353265000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 353264969}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2e480abf8e5416143a56eb11a59dece9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  powerData: {fileID: 11400000, guid: 21f81e0a5260d804db05b7fc5008f255, type: 2}
+  playerData: {fileID: 11400000, guid: 5fede77d8d72b8f41b8c552a7afbbc5a, type: 2}
+  poolManager: {fileID: 1744317720}
+  boxAim: {fileID: 1696684447}
+  cam: {fileID: 1869249470}
+--- !u!114 &353265001
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -355,36 +393,6 @@ MonoBehaviour:
   playerData: {fileID: 0}
   poolManager: {fileID: 1744317720}
   rageOverlay: {fileID: 0}
---- !u!114 &353264988
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 353264969}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 285e9b92d4f62b041a5c4ee806808320, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  powerData: {fileID: 11400000, guid: 21f81e0a5260d804db05b7fc5008f255, type: 2}
-  playerData: {fileID: 11400000, guid: 5fede77d8d72b8f41b8c552a7afbbc5a, type: 2}
-  poolManager: {fileID: 1744317720}
---- !u!114 &353264989
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 353264969}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e54d2cded1fe3034db34248d27e69a1a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  powerData: {fileID: 11400000, guid: b3e11c5b7b775594a842582599979afd, type: 2}
-  playerData: {fileID: 11400000, guid: 5fede77d8d72b8f41b8c552a7afbbc5a, type: 2}
-  poolManager: {fileID: 1744317720}
 --- !u!1 &448882709
 GameObject:
   m_ObjectHideFlags: 0
@@ -600,7 +608,7 @@ PrefabInstance:
     - target: {fileID: -707220764679766152, guid: 1a1ce240431addd4686600324c2cfe8b, type: 3}
       propertyPath: playerData
       value: 
-      objectReference: {fileID: 11400000, guid: 5fede77d8d72b8f41b8c552a7afbbc5a, type: 2}
+      objectReference: {fileID: 0}
     - target: {fileID: -707220764679766152, guid: 1a1ce240431addd4686600324c2cfe8b, type: 3}
       propertyPath: staminaText
       value: 
@@ -808,7 +816,7 @@ Transform:
   m_GameObject: {fileID: 1037777581}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: -0.7071068, w: 0.7071068}
-  m_LocalPosition: {x: -0.61, y: 0.37, z: 0.17}
+  m_LocalPosition: {x: 8.19, y: 0.37, z: 10.92}
   m_LocalScale: {x: 7.8792, y: 1.6687152, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -893,6 +901,11 @@ RectTransform:
   m_AnchoredPosition: {x: 99, y: 24}
   m_SizeDelta: {x: 160, y: 30}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!4 &1696684447 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 7942580397591843012, guid: ac03fe04feb792448b456d91d1cb0b47, type: 3}
+  m_PrefabInstance: {fileID: 353264968}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1744317718
 GameObject:
   m_ObjectHideFlags: 0
@@ -942,6 +955,11 @@ MonoBehaviour:
     initialSize: 1
   - prefab: {fileID: 6594098458241618133, guid: 5954267c87598d64db007ac04428db6e, type: 3}
     initialSize: 5
+--- !u!20 &1869249470 stripped
+Camera:
+  m_CorrespondingSourceObject: {fileID: 4692957477396265382, guid: ac03fe04feb792448b456d91d1cb0b47, type: 3}
+  m_PrefabInstance: {fileID: 353264968}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0

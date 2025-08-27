@@ -2,5 +2,5 @@ using UnityEngine;
 
 public interface IGetHealth
 {
-    void GetHealth();
+    void GetHealth(GameObject gameObject);
 }

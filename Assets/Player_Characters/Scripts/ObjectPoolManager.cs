@@ -63,7 +63,7 @@ public class ObjectPoolManager : MonoBehaviour
       
         obj.transform.SetPositionAndRotation(position, rotation);
         obj.SetActive(true);
- 
+
 
         poolActive[prefab].Add(obj);
         return obj;

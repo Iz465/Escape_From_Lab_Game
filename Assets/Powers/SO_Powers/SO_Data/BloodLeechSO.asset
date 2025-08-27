@@ -9,14 +9,14 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 20bba7fae98b052488689b8a8f9d8b90, type: 3}
+  m_Script: {fileID: 11500000, guid: c4ab90e18bda613409f7c01c0db98e66, type: 3}
   m_Name: BloodLeechSO
   m_EditorClassIdentifier: 
-  powerName: Blood Leech
+  power: 
   damage: 1
-  stamina: 0.05
+  stamina: 0.1
   speed: 0
-  healthDrain: 0
-  duration: 50
-  hold: 1
-  powerVFX: {fileID: 317990663879789788, guid: 96741fe45a8ab9a4e81b4a92abe49c23, type: 3}
+  duration: 0
+  prefab: {fileID: 317990663879789788, guid: 96741fe45a8ab9a4e81b4a92abe49c23, type: 3}
+  getHealth: 0.1
+  loseHealth: 0

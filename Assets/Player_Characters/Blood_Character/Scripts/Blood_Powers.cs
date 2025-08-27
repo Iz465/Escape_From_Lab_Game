@@ -12,9 +12,9 @@ public class Blood_Powers : Powers_Script
         if (playerData != null)
         {
        //     Debug.Log(playerData.health);
-            if (playerData.health > 10)
-                playerData.health -= powerData.healthDrain;
-            playerData.health = Mathf.Clamp(playerData.health, 10, 100);
+     //       if (playerData.health > 10)
+      //          playerData.health -= powerData.healthDrain;
+     //       playerData.health = Mathf.Clamp(playerData.health, 10, 100);
         }
 
 

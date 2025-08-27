@@ -14,10 +14,10 @@ public class Rage_Mode : Blood_Powers
       
         if (context.performed)
         {
-            if (powerData.powerVFX)
+            if (powerData.prefab)
             {
             
-                powerInstance = Instantiate(powerData.powerVFX);
+                powerInstance = Instantiate(powerData.prefab);
                 rage = powerInstance.GetComponent<Rage_Mode>();
                 playerData.dmgMultiplier = 2;
 

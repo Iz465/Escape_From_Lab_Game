@@ -1,7 +1,7 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-public class Blood_Leech : Powers_Script, IGetHealth
+public class Blood_Leech : Powers_Script
 {
     static bool isHeld;
 
@@ -37,7 +37,7 @@ public class Blood_Leech : Powers_Script, IGetHealth
         if (context.canceled)
         {
             isHeld = false;
-            poolManager.ReleaseToPool(powerData.powerVFX, powerInstance);
+            poolManager.ReleaseToPool(powerData.prefab, powerInstance);
         }
 
     }

@@ -467,6 +467,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 1446225533392653128, guid: ac03fe04feb792448b456d91d1cb0b47, type: 3}
       insertIndex: -1
       addedObject: {fileID: 353265001}
+    - targetCorrespondingSourceObject: {fileID: 1446225533392653128, guid: ac03fe04feb792448b456d91d1cb0b47, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 353265002}
   m_SourcePrefab: {fileID: 100100000, guid: ac03fe04feb792448b456d91d1cb0b47, type: 3}
 --- !u!1 &353264969 stripped
 GameObject:
@@ -532,13 +535,13 @@ MonoBehaviour:
     m_ActionName: 'Blood_Player/Throw_Blood[/Keyboard/2]'
   - m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 353264969}
-        m_TargetAssemblyTypeName: 
-        m_MethodName: 
-        m_Mode: 1
+      - m_Target: {fileID: 353265002}
+        m_TargetAssemblyTypeName: BasePower, Assembly-CSharp
+        m_MethodName: Attack
+        m_Mode: 0
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: 
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
@@ -599,7 +602,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   powerData: {fileID: 11400000, guid: b3e11c5b7b775594a842582599979afd, type: 2}
   playerData: {fileID: 11400000, guid: 5fede77d8d72b8f41b8c552a7afbbc5a, type: 2}
-  poolManager: {fileID: 1744317720}
   boxAim: {fileID: 1696684447}
   cam: {fileID: 1869249470}
 --- !u!114 &353265000
@@ -616,13 +618,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   powerData: {fileID: 11400000, guid: 21f81e0a5260d804db05b7fc5008f255, type: 2}
   playerData: {fileID: 11400000, guid: 5fede77d8d72b8f41b8c552a7afbbc5a, type: 2}
-  poolManager: {fileID: 1744317720}
   boxAim: {fileID: 1696684447}
   cam: {fileID: 1869249470}
-  enemyLayer:
-    serializedVersion: 2
-    m_Bits: 0
-  enemyHit: []
+  yLoc: 15
+  zLoc: 20
 --- !u!114 &353265001
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -637,8 +636,28 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   powerData: {fileID: 0}
   playerData: {fileID: 0}
-  poolManager: {fileID: 1744317720}
-  rageOverlay: {fileID: 0}
+  boxAim: {fileID: 0}
+  cam: {fileID: 0}
+--- !u!114 &353265002
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 353264969}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7cafe7cea9e54354abcde67a6c1c6946, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  powerData: {fileID: 11400000, guid: 21abd4435c1adf9488f2666a9ab955a1, type: 2}
+  playerData: {fileID: 11400000, guid: 5fede77d8d72b8f41b8c552a7afbbc5a, type: 2}
+  boxAim: {fileID: 1696684447}
+  cam: {fileID: 1869249470}
+  enemyLayer:
+    serializedVersion: 2
+    m_Bits: 0
+  enemyHit: []
 --- !u!1 &448882709
 GameObject:
   m_ObjectHideFlags: 0
@@ -1321,6 +1340,8 @@ MonoBehaviour:
   - prefab: {fileID: 317990663879789788, guid: 96741fe45a8ab9a4e81b4a92abe49c23, type: 3}
     initialSize: 1
   - prefab: {fileID: 6594098458241618133, guid: 5954267c87598d64db007ac04428db6e, type: 3}
+    initialSize: 5
+  - prefab: {fileID: 6238471719548748225, guid: bde3e606eb56e5b408b620be76526047, type: 3}
     initialSize: 5
 --- !u!20 &1869249470 stripped
 Camera:

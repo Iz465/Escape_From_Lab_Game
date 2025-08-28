@@ -31,7 +31,10 @@ public class Power_Hit_Detection : MonoBehaviour
             iCollide = GetComponent<ICollide>();
         if (iCollide != null)     
             iCollide.CollideResult(collision.collider, gameObject);
-   
+        else
+            poolManager.ReleaseToPool(powerData.prefab, gameObject);
+
+
     }
 
 

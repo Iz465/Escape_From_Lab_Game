@@ -3,10 +3,9 @@ using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.UI;
 
-public class Rage_Mode : Blood_Powers
-{
-
-    Rage_Mode rage;
+public class Rage_Mode : BasePower
+{ 
+   /* Rage_Mode rage;
     [SerializeField]
     Image rageOverlay;
     public override void Attack(InputAction.CallbackContext context)

@@ -9,7 +9,7 @@ public class Enemy : MonoBehaviour//, IDamageTaken
     IGetHealth getHealth;
     
 
-    public void takeDamage(float damageTaken, GameObject weapon)
+    public void takeDamage(float damageTaken)
     {
 
         health -= damageTaken;

@@ -1,21 +1,28 @@
+using NUnit.Framework;
 using System.Collections;
+using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
 
 public class BloodThrow : BasePower, ICollide
 {
-    BloodPowerData bloodData;
+    private BloodPowerData bloodData;
     private float radius = 100f;
     [SerializeField]
     private LayerMask enemyLayer;
     private Collider[] enemyDetected;
+    private Collider powerCollider;
+
+    public List<Collider> enemyHit = new List<Collider>();
     
     Vector3 direction;
     private void Awake()
     {
         bloodData = (BloodPowerData)powerData;
+        powerCollider = GetComponent<Collider>();
 
     }
+
 
     // this ability will explode when collides
     protected override bool UseStamina()
@@ -30,38 +37,42 @@ public class BloodThrow : BasePower, ICollide
 
     public void CollideResult(Collider objectHit, GameObject power)
     {
-        
-        Collider collider = power.GetComponent<Collider>();
-        if (!collider) return;
-        Debug.Log("Entered collide result");
+       
+    
+        if (!powerCollider) return;
         rb = power.GetComponent<Rigidbody>();
         if (!rb) return;
+        if (!enemyHit.Contains(objectHit)) enemyHit.Add(objectHit);
         enemyDetected = Physics.OverlapSphere(power.transform.position, radius, enemyLayer);
         if (enemyDetected.Length <= 0) return;
-  
-        if (enemyDetected[0] == objectHit)
-        {
-            if (enemyDetected.Length <= 1) return;
-       //     Physics.IgnoreCollision(collider, enemyDetected[0], false);
-            direction = (enemyDetected[1].transform.position - power.transform.position).normalized;
-            Physics.IgnoreCollision(collider, enemyDetected[0]);  
-        }   
 
-       
-         
-        else
+        Collider target = null;
+
+        foreach (var enemy in enemyDetected)
         {
-        //    Physics.IgnoreCollision(collider, enemyDetected[1], false);
-            direction = (enemyDetected[0].transform.position - power.transform.position).normalized;
-            if (enemyDetected.Length > 1) 
-                Physics.IgnoreCollision(collider, enemyDetected[1]);
+            if (!enemyHit.Contains(enemy))
+            {
+                target = enemy; break;
+            }
         }
-
+      
+        if (target == null)
+        {
+    
+            foreach (var enemy in enemyHit)
+                if (enemy)
+                    Physics.IgnoreCollision(enemy, powerCollider, false);
+            enemyHit.Clear();
+            poolManager.ReleaseToPool(powerData.prefab, gameObject);
+            return;
+        }
+       
+        direction = (target.transform.position - power.transform.position).normalized;
+         
+        Physics.IgnoreCollision(powerCollider, objectHit);
         rb.linearVelocity = Vector3.zero;
         rb.angularVelocity = Vector3.zero;
-
         rb.AddForce(direction * powerData.speed, ForceMode.Impulse);
-        
 
     }
 

@@ -24,7 +24,7 @@ public class HoldPower : BasePower
         if (context.canceled)
         {
             isHeld = false;
-            StartCoroutine(DestroyPower(powerData.duration, powerInstance));
+            poolManager.ReleaseToPool(powerData.prefab, powerInstance);
         }
        
     }
@@ -47,7 +47,7 @@ public class HoldPower : BasePower
         if (playerData.stamina < powerData.stamina)
         {
             isHeld = false;
-            StartCoroutine(DestroyPower(powerData.duration, powerInstance));
+            poolManager.ReleaseToPool(powerData.prefab, powerInstance);
             return false;
         } 
 

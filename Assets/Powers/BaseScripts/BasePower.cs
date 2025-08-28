@@ -1,6 +1,8 @@
 using System.Collections;
+using System.Threading;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.InputSystem.Controls;
 
 public class BasePower : MonoBehaviour
 {
@@ -9,7 +11,6 @@ public class BasePower : MonoBehaviour
     [SerializeField]
     protected PlayerData playerData;
     protected GameObject powerInstance;
-    [SerializeField]
     protected  ObjectPoolManager poolManager;
     [SerializeField]
     protected Transform boxAim;
@@ -18,15 +19,24 @@ public class BasePower : MonoBehaviour
 
     protected Rigidbody rb;
 
+    private void Awake()
+    {
+  
+    }
+
+    private void Start()
+    {
+        poolManager = FindFirstObjectByType<ObjectPoolManager>();
+    }
+
     virtual public void Attack(InputAction.CallbackContext context)
     {
         if (!context.performed) return;
         if (!PowerChecks()) return;
         if (!powerInstance) return;
         FirePower(powerInstance);
-        StartCoroutine(DestroyPower(powerData.duration, powerInstance));
-
     }
+
 
     protected bool PowerChecks()
     {
@@ -48,7 +58,7 @@ public class BasePower : MonoBehaviour
             Debug.LogWarning("Camera Not Found");
             return false;
         }
-
+        if (!poolManager) Debug.LogWarning("no pool");
         powerInstance = poolManager.SpawnFromPool(powerData.prefab, boxAim.position, Quaternion.LookRotation(cam.transform.forward));
 
         return true;
@@ -77,10 +87,5 @@ public class BasePower : MonoBehaviour
         return true;
     }
 
-    protected IEnumerator DestroyPower(int time, GameObject disablePower)
-    {
-        yield return new WaitForSeconds(time);
-        poolManager.ReleaseToPool(powerData.prefab, disablePower);
-    }
 
 }

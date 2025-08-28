@@ -7,7 +7,6 @@ public class PowerData : ScriptableObject
     public float damage;
     public float stamina;
     public float speed;
-    public int duration;
     public GameObject prefab;
     
 }

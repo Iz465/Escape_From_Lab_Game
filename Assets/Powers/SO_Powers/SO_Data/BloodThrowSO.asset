@@ -15,8 +15,7 @@ MonoBehaviour:
   power: 
   damage: 15
   stamina: 20
-  speed: 20
-  duration: 3
+  speed: 50
   prefab: {fileID: 6594098458241618133, guid: 5954267c87598d64db007ac04428db6e, type: 3}
   getHealth: 0
   loseHealth: 20

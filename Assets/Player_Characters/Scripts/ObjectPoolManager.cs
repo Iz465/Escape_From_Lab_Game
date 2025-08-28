@@ -81,7 +81,7 @@ public class ObjectPoolManager : MonoBehaviour
 
         if (!poolActive[prefab].Contains(obj))
         {
-            Debug.LogWarning($"{prefab.name} is not in pool");
+        //    Debug.LogWarning($"{prefab.name} is not in pool");
             return;
         }
 

@@ -60,7 +60,7 @@ public class Speed : MonoBehaviour
             }
         }
 
-        staminaText.text = playerInfo.stamina.ToString()+" stamina";
+        //staminaText.text = playerInfo.stamina.ToString()+" stamina";
 
         //right click to (de)activate
         if (Input.GetMouseButtonDown(1))

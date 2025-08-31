@@ -1,20 +1,26 @@
 using UnityEngine;
 
-public class Enemy : MonoBehaviour
+public class Enemy : MonoBehaviour, IDamageTaken
 {
     [SerializeField]
-    protected int health;
+    protected float health;
     [SerializeField]
-    protected int damage;
+    protected float damage;
+    IGetHealth getHealth;
     
 
-    public void TakeDamage(int damageTaken)
+    public void takeDamage(float damageTaken)
     {
-        Debug.Log($"Enemy has been hit! {damageTaken} damage has been dealt");
+
         health -= damageTaken;
+      //  getHealth = weapon.GetComponent<IGetHealth>();
+     //   if (getHealth != null)
+     //       getHealth.GetHealth();
+     //   else
+       //     Debug.Log(weapon);
         if (health <= 0)
             enemyDeath();
-        Debug.Log($"Enemy has {health} left");
+
     }
     void OnCollisionEnter(Collision collision)
     {

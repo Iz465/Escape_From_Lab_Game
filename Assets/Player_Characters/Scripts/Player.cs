@@ -2,16 +2,29 @@ using UnityEngine;
 
 public class Player : MonoBehaviour, IDamageTaken
 {
-    public static int health;
-    public float stamina;
-    public float maxStamina;
+    public PlayerData playerData;
 
-   
-    public void takeDamage(int damageTaken) 
+    private void Awake()
     {
-        health -= damageTaken;
-        Debug.Log($"Health = {health}");
-        if (health <= 0)
+        if (playerData) playerData.ResetStats();
+
+        else Debug.LogWarning("No player data");
+
+    }
+
+    private void Update()
+    {
+        if (!playerData) return;
+        playerData.stamina += 5f * Time.deltaTime;
+        playerData.stamina = Mathf.Clamp(playerData.stamina, 0, playerData.maxStamina);
+    }
+
+
+    public void TakeDamage(float damageTaken) 
+    {
+        playerData.health -= damageTaken;
+        Debug.Log($"Health = {playerData.health}");
+        if (playerData.health <= 0)
             playerDeath();
     }
 

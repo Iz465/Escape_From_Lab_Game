@@ -88,6 +88,12 @@ public class Ice : MonoBehaviour
         for (int i = 5; i <= 15; i += 5)
         {
             Transform newSpike = Instantiate(iceSpike);
+            GameObject spikeBody = newSpike.gameObject;
+            Rigidbody body = spikeBody.AddComponent<Rigidbody>();
+            body.useGravity = false;
+            body.isKinematic = true;
+            spikeBody.AddComponent<BoxCollider>();
+            spikeBody.AddComponent<DamageEnemy>().damageAmount = 10;
             newSpike.position = transform.position - new Vector3(0,newSpike.lossyScale.y,0)+ transform.forward * i;
             transform.parent = null;
 

@@ -16,7 +16,7 @@ public class Speed : MonoBehaviour
     [SerializeField] Text staminaText, healthText;
 
     float dashStart;
-    bool highSpeedMode, phazeMode;
+    public bool highSpeedMode, phazeMode;
     float lastPowerUsage;
 
     bool phazePoint = false; //true and false will indicate left and right camera position
@@ -26,6 +26,7 @@ public class Speed : MonoBehaviour
         movement = transform.GetComponent<Move>();
         playerInfo = transform.GetComponent<PlayerInfo>();
         cam = transform.Find("Main Camera").transform;
+
     }
 
     void Run()
@@ -63,10 +64,14 @@ public class Speed : MonoBehaviour
 
         //right click to (de)activate
         if (Input.GetMouseButtonDown(1))
-        {
-            highSpeedMode = !highSpeedMode;
-            Time.timeScale = highSpeedMode ? highSpeedModeScale : 1;
-        }
+            HighSpeedMode();
+    }
+
+    public void HighSpeedMode()
+    {
+        highSpeedMode = !highSpeedMode;
+        Time.timeScale = highSpeedMode ? highSpeedModeScale : 1;
+        Time.fixedDeltaTime = 0.02f * Time.timeScale;
     }
 
     void Dash()
@@ -140,6 +145,7 @@ public class Speed : MonoBehaviour
         if(lastPowerUsage < Time.time-5 && playerInfo.stamina < 100)
             playerInfo.stamina += regenRate * Time.deltaTime;
     }
+
 
     // Update is called once per frame
     void Update()

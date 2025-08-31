@@ -17,4 +17,5 @@ public class PlayerData: ScriptableObject
         health = maxHealth;
         stamina = maxStamina;
     }
+    
 }

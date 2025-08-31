@@ -6,10 +6,11 @@ public class Player : MonoBehaviour, IDamageTaken
 
     private void Awake()
     {
-        if (playerData) playerData.ResetStats();
-
-        else Debug.LogWarning("No player data");
-
+        if (playerData) 
+            playerData.ResetStats();
+        
+        else 
+            Debug.LogWarning("No player data");
     }
 
     private void Update()
@@ -23,7 +24,6 @@ public class Player : MonoBehaviour, IDamageTaken
     public void TakeDamage(float damageTaken) 
     {
         playerData.health -= damageTaken;
-        Debug.Log($"Health = {playerData.health}");
         if (playerData.health <= 0)
             playerDeath();
     }
@@ -34,5 +34,9 @@ public class Player : MonoBehaviour, IDamageTaken
         Debug.Log("You have died");
     }
 
-    
+    private void OnControllerColliderHit(ControllerColliderHit hit)
+    {
+        Debug.Log($"Controller hit something : {hit.gameObject}");
+    }
+
 }

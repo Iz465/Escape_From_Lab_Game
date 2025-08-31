@@ -19,11 +19,9 @@ public class Power_Hit_Detection : MonoBehaviour
 
     virtual protected void OnCollisionEnter(Collision collision)
     {
-       
-        Debug.Log("Detected");
+   
         takeDamage = collision.gameObject.GetComponent<IDamageTaken>();
   
-        
         if (takeDamage == null)
         {
             poolManager.ReleaseToPool(powerData.prefab, gameObject);

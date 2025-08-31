@@ -1,29 +1,24 @@
 using UnityEngine;
 
-public class Enemy : MonoBehaviour//, IDamageTaken
+public class Enemy : MonoBehaviour, IDamageTaken
 {
     [SerializeField]
     protected float health;
     [SerializeField]
-    protected float damage;
-    IGetHealth getHealth;
+    public float damage;
+
     
 
-    public void takeDamage(float damageTaken)
+    public void TakeDamage(float damageTaken)
     {
 
         health -= damageTaken;
-      //  getHealth = weapon.GetComponent<IGetHealth>();
-     //   if (getHealth != null)
-     //       getHealth.GetHealth();
-     //   else
-       //     Debug.Log(weapon);
         if (health <= 0)
             enemyDeath();
 
     }
 
-
+    
     virtual protected void enemyDeath()
     {
         Destroy(gameObject);
@@ -36,6 +31,11 @@ public class Enemy : MonoBehaviour//, IDamageTaken
     {
         Vector3 direction = player.position - transform.position;
 
-        controller.Move(direction.normalized * walkSpeed * Time.deltaTime);
+        if (direction.magnitude > 5)
+            controller.Move(direction.normalized * walkSpeed * Time.deltaTime);
+        else
+            Debug.Log("Attack");
     }
+
+    
 }

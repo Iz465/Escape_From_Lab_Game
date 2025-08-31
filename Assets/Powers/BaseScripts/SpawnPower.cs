@@ -1,3 +1,4 @@
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class SpawnPower : BasePower
@@ -6,7 +7,7 @@ public class SpawnPower : BasePower
     private float yLoc;
     [SerializeField]
     private float zLoc;
-    private Vector3 forwardPos;
+ 
 
 
 
@@ -15,11 +16,12 @@ public class SpawnPower : BasePower
     {
         var powerLoc = power.transform.position;
 
-        power.transform.rotation = Quaternion.LookRotation(new Vector3(0, 0, 0));
-   
+        power.transform.rotation = Quaternion.LookRotation(Vector3.forward);
+
+
         if (zLoc != 0)
         {
-            forwardPos = cam.transform.forward * zLoc;
+            Vector3 forwardPos = cam.transform.forward * zLoc;
             powerLoc.z = forwardPos.z;
             power.transform.position += forwardPos;
         }
@@ -30,9 +32,8 @@ public class SpawnPower : BasePower
             upPos.y = yLoc;
             power.transform.position = upPos;
         }
-
-
-
     }
+
+ 
 }
 

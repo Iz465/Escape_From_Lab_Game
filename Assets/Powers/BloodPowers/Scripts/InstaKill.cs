@@ -12,7 +12,7 @@ public class InstaKill : BasePower, ICollide
     private Collider[] enemyDetected;
     private Collider powerCollider;
 
-    public List<Collider> enemyHit = new List<Collider>();
+    private List<Collider> enemyHit = new List<Collider>();
 
     private void Awake()
     {
@@ -35,7 +35,6 @@ public class InstaKill : BasePower, ICollide
     public void CollideResult(Collider objectHit, GameObject power)
     {
 
-
         if (!powerCollider) return;
         rb = power.GetComponent<Rigidbody>();
         if (!rb) return;
@@ -44,6 +43,7 @@ public class InstaKill : BasePower, ICollide
 
 
         Collider target = null;
+
 
         foreach (var enemy in enemyDetected)
         {
@@ -55,7 +55,7 @@ public class InstaKill : BasePower, ICollide
 
         if (!target)
         {
-
+         
             foreach (var enemy in enemyHit)
                 if (enemy)
                     Physics.IgnoreCollision(enemy, powerCollider, false);

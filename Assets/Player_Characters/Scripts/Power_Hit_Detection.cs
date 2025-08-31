@@ -3,10 +3,10 @@ using UnityEngine;
 
 public class Power_Hit_Detection : MonoBehaviour
 {
-    private IDamageTaken takeDamage;
+    protected IDamageTaken takeDamage;
     [SerializeField]
-    private PowerData powerData;
-    private ICollide iCollide;
+    protected PowerData powerData;
+    protected ICollide iCollide;
     private ObjectPoolManager poolManager;
 
 
@@ -15,10 +15,15 @@ public class Power_Hit_Detection : MonoBehaviour
         poolManager = FindFirstObjectByType<ObjectPoolManager>();
     }
 
-    private void OnCollisionEnter(Collision collision)
-    {
-        takeDamage = collision.gameObject.GetComponent<IDamageTaken>();
 
+
+    virtual protected void OnCollisionEnter(Collision collision)
+    {
+       
+        Debug.Log("Detected");
+        takeDamage = collision.gameObject.GetComponent<IDamageTaken>();
+  
+        
         if (takeDamage == null)
         {
             poolManager.ReleaseToPool(powerData.prefab, gameObject);
@@ -32,21 +37,13 @@ public class Power_Hit_Detection : MonoBehaviour
         if (iCollide != null)     
             iCollide.CollideResult(collision.collider, gameObject);
         else
-            poolManager.ReleaseToPool(powerData.prefab, gameObject);
-
-
-    }
-
-
-    private void OnCollisionStay(Collision collision)
-    {
-       // if (takeDamage != null)
-     //       takeDamage.TakeDamage(powerData.damage, gameObject);
-
-
-
+            poolManager.ReleaseToPool(powerData.prefab, gameObject); 
 
     }
+
+
+   
+    
 
 
 

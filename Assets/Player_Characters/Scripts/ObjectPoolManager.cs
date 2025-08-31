@@ -50,20 +50,10 @@ public class ObjectPoolManager : MonoBehaviour
         }
 
         if (poolAvailable[prefab].Count <= 0) return null;
-         
-        
 
         GameObject obj = poolAvailable[prefab].Dequeue();
-        objectBody = obj.GetComponent<Rigidbody>();
-        if (objectBody)
-        {
-            objectBody.linearVelocity = Vector3.zero;
-            objectBody.angularVelocity = Vector3.zero;
-        }
-      
         obj.transform.SetPositionAndRotation(position, rotation);
         obj.SetActive(true);
-
 
         poolActive[prefab].Add(obj);
         return obj;

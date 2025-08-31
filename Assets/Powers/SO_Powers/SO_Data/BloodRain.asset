@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: c4ab90e18bda613409f7c01c0db98e66, type: 3}
-  m_Name: BloodThrowSO
+  m_Name: BloodRain
   m_EditorClassIdentifier: 
   power: 
   damage: 15

@@ -11,9 +11,11 @@ GameObject:
   - component: {fileID: 1624616412807061872}
   - component: {fileID: 6689242087308793238}
   - component: {fileID: 8503092569220996082}
-  - component: {fileID: -7860871884239300714}
-  - component: {fileID: 1722925239926326428}
-  m_Layer: 2
+  - component: {fileID: -7270296914241063168}
+  - component: {fileID: -4192645223753525801}
+  - component: {fileID: 3629033955157401871}
+  - component: {fileID: 3934641983359149524}
+  m_Layer: 8
   m_Name: Blood_Leech
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -88,7 +90,7 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!54 &-7860871884239300714
+--- !u!54 &-7270296914241063168
 Rigidbody:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -96,7 +98,7 @@ Rigidbody:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 317990663879789788}
   serializedVersion: 5
-  m_Mass: 1
+  m_Mass: 20
   m_LinearDamping: 0
   m_AngularDamping: 0.05
   m_CenterOfMass: {x: 0, y: 0, z: 0}
@@ -115,8 +117,40 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
---- !u!136 &1722925239926326428
-CapsuleCollider:
+--- !u!114 &-4192645223753525801
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 317990663879789788}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2b0f8575b912dc142959b8088c144443, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  powerData: {fileID: 11400000, guid: b3e11c5b7b775594a842582599979afd, type: 2}
+--- !u!114 &3629033955157401871
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 317990663879789788}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6242ff20def17cf4ab40a158a8c9826c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  powerData: {fileID: 11400000, guid: b3e11c5b7b775594a842582599979afd, type: 2}
+  playerData: {fileID: 11400000, guid: 5fede77d8d72b8f41b8c552a7afbbc5a, type: 2}
+  boxAim: {fileID: 0}
+  cam: {fileID: 0}
+  playerLayer:
+    serializedVersion: 2
+    m_Bits: 0
+--- !u!64 &3934641983359149524
+MeshCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -128,13 +162,12 @@ CapsuleCollider:
     m_Bits: 0
   m_ExcludeLayers:
     serializedVersion: 2
-    m_Bits: 8
+    m_Bits: 264
   m_LayerOverridePriority: 0
   m_IsTrigger: 0
   m_ProvidesContacts: 0
   m_Enabled: 1
-  serializedVersion: 2
-  m_Radius: 0.5
-  m_Height: 1.0082495
-  m_Direction: 1
-  m_Center: {x: 0, y: -0.002584182, z: 0}
+  serializedVersion: 5
+  m_Convex: 1
+  m_CookingOptions: 30
+  m_Mesh: {fileID: 10207, guid: 0000000000000000e000000000000000, type: 0}

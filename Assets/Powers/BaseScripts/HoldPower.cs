@@ -3,8 +3,8 @@ using UnityEngine.InputSystem;
 
 public class HoldPower : BasePower
 {
-    static bool isHeld;
-    private void Update()
+   protected static bool isHeld;
+   virtual protected void Update()
     {
         if (isHeld) UseStamina();
        
@@ -40,18 +40,6 @@ public class HoldPower : BasePower
         rb.sleepThreshold = 0;
     }
 
-    protected override bool UseStamina()
-    {
-
-        if (!playerData || !powerData) return false;
-        if (playerData.stamina < powerData.stamina)
-        {
-            isHeld = false;
-            poolManager.ReleaseToPool(powerData.prefab, powerInstance);
-            return false;
-        } 
-
-        return base.UseStamina();
-    }
-
+   
+   
 }

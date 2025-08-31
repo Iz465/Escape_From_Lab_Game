@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class TestEnemy : MonoBehaviour, IDamageTaken
 {
-    private float health;
+    public float health;
 
     private void Awake()
     {
@@ -12,8 +12,8 @@ public class TestEnemy : MonoBehaviour, IDamageTaken
 
     public void TakeDamage(float damage)
     {
+        Debug.Log($"Enemy Health: {health}");
         health -= damage;
-        Debug.Log($"Health : {health}");
         if (health <= 0) 
             Death();
     }

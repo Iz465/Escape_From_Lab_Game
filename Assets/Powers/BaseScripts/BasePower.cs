@@ -19,11 +19,7 @@ public class BasePower : MonoBehaviour
 
     protected Rigidbody rb;
 
-    private void Awake()
-    {
   
-    }
-
     private void Start()
     {
         poolManager = FindFirstObjectByType<ObjectPoolManager>();
@@ -85,6 +81,12 @@ public class BasePower : MonoBehaviour
         playerData.stamina -= powerData.stamina;
         playerData.stamina = Mathf.Clamp(playerData.stamina, 0, playerData.maxStamina);
         return true;
+    }
+
+    protected IEnumerator DestroyPower(int time, GameObject power)
+    {
+        yield return new WaitForSeconds(time);
+        poolManager.ReleaseToPool(powerData.prefab, power);
     }
 
 

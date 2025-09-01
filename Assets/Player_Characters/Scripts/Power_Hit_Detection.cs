@@ -25,16 +25,13 @@ public class Power_Hit_Detection : MonoBehaviour
   
         if (takeDamage == null)
         {
-            Debug.Log($"Power prefab : {power.stats.prefab}, instace : {gameObject}");
             poolManager.ReleaseToPool(gameObject);
             return;
         }
 
         else
-        {
-            Debug.Log($"Power prefab : {power.stats.prefab}, instace : {gameObject}");
             takeDamage.TakeDamage(power.stats.damage);
-        }
+        
   
 
             iCollide = GetComponent<ICollide>();

@@ -6,18 +6,13 @@ public class Enemy : MonoBehaviour, IDamageTaken
     protected float health;
     [SerializeField]
     protected float damage;
-    IGetHealth getHealth;
+
     
 
-    public void takeDamage(float damageTaken)
+    public void TakeDamage(float damageTaken)
     {
 
         health -= damageTaken;
-      //  getHealth = weapon.GetComponent<IGetHealth>();
-     //   if (getHealth != null)
-     //       getHealth.GetHealth();
-     //   else
-       //     Debug.Log(weapon);
         if (health <= 0)
             enemyDeath();
 

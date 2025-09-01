@@ -5,20 +5,33 @@ public class Enemy : MonoBehaviour, IDamageTaken
     [SerializeField]
     protected float health;
     [SerializeField]
-    public float damage;
-
+    protected float damage;
+    IGetHealth getHealth;
     
 
-    public void TakeDamage(float damageTaken)
+    public void takeDamage(float damageTaken)
     {
+
         health -= damageTaken;
-        Debug.Log($"Enemy Health : {health}");
+      //  getHealth = weapon.GetComponent<IGetHealth>();
+     //   if (getHealth != null)
+     //       getHealth.GetHealth();
+     //   else
+       //     Debug.Log(weapon);
         if (health <= 0)
             enemyDeath();
 
     }
+    void OnCollisionEnter(Collision collision)
+    {
+        print("Collision detected with: " + collision.gameObject.name);
+        Transform otherTransform = collision.transform;
+        if (otherTransform.name.Contains("spike"))
+        {
+            damage -= 10; // Assuming spikes deal 10 damage
+        }
+    }
 
-    
     virtual protected void enemyDeath()
     {
         Destroy(gameObject);
@@ -26,24 +39,11 @@ public class Enemy : MonoBehaviour, IDamageTaken
     public Transform player;
     public CharacterController controller;
     public float walkSpeed;
-    [SerializeField]
-    protected float attackRange;
-
     // Update is called once per frame
-   virtual public void Update()
+    void Update()
     {
         Vector3 direction = player.position - transform.position;
-        if (direction.magnitude > attackRange)
-            controller.Move(direction.normalized * walkSpeed * Time.deltaTime);
-        else
-            Attack();
-        
+
+        controller.Move(direction.normalized * walkSpeed * Time.deltaTime);
     }
-
-    virtual protected void Attack()
-    {
-
-    }
-
-    
 }

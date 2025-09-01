@@ -34,13 +34,18 @@ public class InstaKill : BasePower, ICollide
 
     public void CollideResult(Collider objectHit, GameObject power)
     {
-
+        Debug.Log("Activating insta kill");
         if (!powerCollider) return;
         rb = power.GetComponent<Rigidbody>();
+    //    CharacterController characterController = objectHit.GetComponent<CharacterController>();
+    //    characterController.enabled = false;
         if (!rb) return;
         if (!enemyHit.Contains(objectHit)) enemyHit.Add(objectHit);
-        enemyDetected = Physics.OverlapSphere(power.transform.position, radius, enemyLayer);
+         
+        enemyDetected = Physics.OverlapSphere(power.transform.position, radius, enemyLayer); 
+        
 
+        Debug.Log(enemyDetected.Length);
 
         Collider target = null;
 
@@ -55,7 +60,6 @@ public class InstaKill : BasePower, ICollide
 
         if (!target)
         {
-         
             foreach (var enemy in enemyHit)
                 if (enemy)
                     Physics.IgnoreCollision(enemy, powerCollider, false);
@@ -64,13 +68,15 @@ public class InstaKill : BasePower, ICollide
             return;
         }
 
+      
         Vector3 direction = (target.transform.position - power.transform.position).normalized;
+ 
 
         Physics.IgnoreCollision(powerCollider, objectHit);
         rb.linearVelocity = Vector3.zero;
         rb.angularVelocity = Vector3.zero;
         rb.AddForce(direction * stats.speed, ForceMode.Impulse);
-
+      
     }
 
 }

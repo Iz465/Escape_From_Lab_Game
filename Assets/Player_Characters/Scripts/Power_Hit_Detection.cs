@@ -3,12 +3,13 @@ using UnityEngine;
 
 public class Power_Hit_Detection : MonoBehaviour
 {
-    protected IDamageTaken takeDamage;
+    
     [SerializeField]
     protected BasePower power;
     protected ICollide iCollide;
     private ObjectPoolManager poolManager;
-  
+    protected Enemy enemy;
+
 
     private void Awake()
     {
@@ -20,25 +21,33 @@ public class Power_Hit_Detection : MonoBehaviour
 
     virtual protected void OnCollisionEnter(Collision collision)
     {
-   
-        takeDamage = collision.gameObject.GetComponent<IDamageTaken>();
+        Debug.Log("Power hitting");
+        enemy = collision.gameObject.GetComponent<Enemy>();
   
-        if (takeDamage == null)
+        if (!enemy)
         {
+            Debug.Log("Not Enemy");
             poolManager.ReleaseToPool(gameObject);
             return;
         }
 
         else
-            takeDamage.TakeDamage(power.stats.damage);
+            enemy.TakeDamage(power.stats.damage);
         
-  
-
+    
             iCollide = GetComponent<ICollide>();
-        if (iCollide != null)     
+        if (iCollide != null)
+        {
+            Debug.Log("No collide");
             iCollide.CollideResult(collision.collider, gameObject);
+        }
+
         else
-            poolManager.ReleaseToPool(gameObject); 
+        {
+            Debug.Log("Is collide");
+            poolManager.ReleaseToPool(gameObject);
+        }
+    
 
     }
 

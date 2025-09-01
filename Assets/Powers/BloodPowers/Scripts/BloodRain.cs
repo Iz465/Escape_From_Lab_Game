@@ -6,7 +6,7 @@ using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-public class BloodRain : SpawnPower
+public class BloodRain : BasePower
 {
   
     private Collider[] enemyColliders;
@@ -19,27 +19,25 @@ public class BloodRain : SpawnPower
 
 
 
+    //  protected override bool UseStamina()
+    //    { 
+    //    player.stats.health -= bloodData.loseHealth;
+    //      player.stats.health = Mathf.Clamp(player.stats.health, 10, player.maxHealth);
+    //    return base.UseStamina();
+    //   }
 
-    protected override void FirePower(GameObject power)
+    protected override void spawnPower()
     {
-        base.FirePower(power);
-        RainBlood(power);
-        StartCoroutine(DestroyPower(5, power));   
+        base.spawnPower();
+        RainBlood();
+        StartCoroutine(DestroyPower(5, powerInstance));
     }
 
-
-  //  protected override bool UseStamina()
-//    { 
-    //    player.stats.health -= bloodData.loseHealth;
-  //      player.stats.health = Mathf.Clamp(player.stats.health, 10, player.maxHealth);
-    //    return base.UseStamina();
- //   }
-
-    private void RainBlood(GameObject power) 
+    private void RainBlood() 
     {
         enemyColliders = Physics.OverlapSphere(transform.position, 100f, enemyLayer);
         if (enemyColliders.Length == 0) return;
-        var renderer = power.GetComponent<Renderer>();
+        var renderer = powerInstance.GetComponent<Renderer>();
         if (!renderer) return;
 
         foreach (var enemy in enemyColliders)

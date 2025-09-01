@@ -3,7 +3,7 @@ using UnityEngine;
 using static UnityEditor.ShaderGraph.Internal.KeywordDependentCollection;
 using static UnityEngine.UI.Image;
 
-public class BloodLeech : HoldPower, ICollide
+public class BloodLeech : BasePower, ICollide
 
 {
   
@@ -11,16 +11,20 @@ public class BloodLeech : HoldPower, ICollide
  //   private LineRenderer lineRenderer;
     [SerializeField]
     private LayerMask playerLayer;
-    
 
-
-
-    protected override bool UseStamina()
+    private void Update()
     {
-
-        UpdateBeam();
-        return base.UseStamina();
+        if (isHeld)
+            UpdateBeam();
+        
+        else if (!isHeld && powerInstance)
+        {
+            poolManager.ReleaseToPool(powerInstance);
+        }
     }
+
+
+
 
     // dynamically changes the length of blood leech based on how far the enemy is.
     void UpdateBeam()

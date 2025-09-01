@@ -10,9 +10,9 @@ public class SpikeDamage : MonoBehaviour
 
     void DamageEnemy(Enemy enemy)
     {
-        enemy.takeDamage(20f);
+        enemy.TakeDamage(20f);
     }
-
+    /*
     void DamagePlayer(PlayerData plr)
     {
         plr.health -= 20;
@@ -42,7 +42,7 @@ public class SpikeDamage : MonoBehaviour
         {
             DamagePlayer(collision.transform.GetComponent<PlayerData>());
         }
-    }
+    } */
 
     void Update()
     {

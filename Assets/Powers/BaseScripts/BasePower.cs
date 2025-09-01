@@ -19,6 +19,8 @@ public class BasePower : MonoBehaviour
     protected Camera cam;
 
     protected Rigidbody rb;
+    protected static bool isHeld;
+
 
     [System.Serializable]
 
@@ -32,15 +34,15 @@ public class BasePower : MonoBehaviour
 
     public PowerStats stats;
 
-    [Serializable]
-    protected enum PowerType
+    [SerializeField]
+    public enum PowerType
     {
         Shoot,
         Hold,
         Spawn,
         Melee
     }
-    protected PowerType powerType;
+    public PowerType powerType;
 
     private void Start()
     {
@@ -50,21 +52,20 @@ public class BasePower : MonoBehaviour
 
     virtual public void Attack(InputAction.CallbackContext context)
     {
+        if (context.canceled) isHeld = false;
         if (!context.performed) return;
         if (!PowerChecks()) return;
         if (!powerInstance) return;
 
-  /*      switch case(powerType)
+        switch (powerType)
         {
-            case PowerType.Shoot: break;
-            case PowerType.Hold: break;
-            case PowerType.Spawn: break;
-            case PowerType.Melee: break;
+            case PowerType.Shoot: ShootPower(); break;
+            case PowerType.Hold:  HoldPower(context); break;
+            case PowerType.Spawn: spawnPower(); break;
+            case PowerType.Melee: MeleePower(); break;
             default: break;
+        }
 
-        } */
-
-        FirePower(powerInstance);
     }
 
 
@@ -91,26 +92,26 @@ public class BasePower : MonoBehaviour
         if (!poolManager) Debug.LogWarning("no pool");
         powerInstance = poolManager.SpawnFromPool(stats.prefab, boxAim.position, Quaternion.LookRotation(cam.transform.forward));
 
+        rb = powerInstance.GetComponent<Rigidbody>();
+        if (!rb)
+        {
+            Debug.LogWarning("Power has no rigidbody");
+            return false;
+        }
+
         return true;
     }
 
 
 
-    virtual protected void FirePower(GameObject power)
-    {
-        rb = powerInstance.GetComponent<Rigidbody>();
-        if (!rb)
-        {
-            Debug.LogWarning("Power has no rigidbody");
-            return;
-        }
-        rb.sleepThreshold = 0;
-        rb.AddForce(cam.transform.forward * stats.speed, ForceMode.Impulse);
-    }
 
    virtual protected bool UseStamina()
     {
-        if (player.stats.stamina < stats.stamina) return false;
+        if (player.stats.stamina < stats.stamina)
+        {
+            isHeld = false;
+            return false;
+        } 
 
         player.stats.stamina -= stats.stamina;
         player.stats.stamina = Mathf.Clamp(player.stats.stamina, 0, player.maxStamina);
@@ -123,5 +124,42 @@ public class BasePower : MonoBehaviour
         poolManager.ReleaseToPool(power);
     }
 
+    virtual protected void HoldPower(InputAction.CallbackContext context)
+    {
+        isHeld = true;
+        rb.sleepThreshold = 0;
+    }
+
+    virtual protected void MeleePower()
+    {
+
+    }
+
+    virtual protected void spawnPower()
+    {
+        float yLoc = 15;
+        float zLoc = 15;
+
+        var powerLoc = powerInstance.transform.position;
+
+        powerInstance.transform.rotation = Quaternion.LookRotation(Vector3.forward);
+
+        Vector3 forwardPos = cam.transform.forward * zLoc;
+        powerLoc.z = forwardPos.z;
+        powerInstance.transform.position += forwardPos;
+       
+        var upPos = powerInstance.transform.position;
+        upPos.y = yLoc;
+        powerInstance.transform.position = upPos;
+        
+    }
+
+    virtual protected void ShootPower()
+    {
+        rb.sleepThreshold = 0;
+        rb.AddForce(cam.transform.forward * stats.speed, ForceMode.Impulse);
+    }
+
+  
 
 }

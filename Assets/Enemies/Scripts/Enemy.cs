@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class Enemy : MonoBehaviour, IDamageTaken
+public class Enemy : MonoBehaviour
 {
     [SerializeField]
     protected float health;
@@ -17,7 +17,7 @@ public class Enemy : MonoBehaviour, IDamageTaken
             enemyDeath();
 
     }
-    void OnCollisionEnter(Collision collision)
+    /*void OnCollisionEnter(Collision collision)
     {
         print("Collision detected with: " + collision.gameObject.name);
         Transform otherTransform = collision.transform;
@@ -25,7 +25,7 @@ public class Enemy : MonoBehaviour, IDamageTaken
         {
             damage -= 10; // Assuming spikes deal 10 damage
         }
-    }
+    }*/
 
     virtual protected void enemyDeath()
     {

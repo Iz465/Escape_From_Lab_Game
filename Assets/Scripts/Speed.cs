@@ -27,6 +27,10 @@ public class Speed : MonoBehaviour
         playerInfo = transform.GetComponent<PlayerInfo>();
         cam = transform.Find("Main Camera").transform;
 
+        Transform stats = GameObject.Find("Canvas").transform.Find("Stats");
+
+        staminaText = stats.Find("Stamina").GetComponent<Text>();
+        healthText = stats.Find("Health").GetComponent <Text>();
     }
 
     void Run()
@@ -60,7 +64,7 @@ public class Speed : MonoBehaviour
             }
         }
 
-        staminaText.text = playerInfo.stamina.ToString()+" stamina";
+        //staminaText.text = playerInfo.stamina.ToString()+" stamina";
 
         //right click to (de)activate
         if (Input.GetMouseButtonDown(1))

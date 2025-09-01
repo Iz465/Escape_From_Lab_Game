@@ -8,6 +8,7 @@ public class Ice : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     public float iceSpeed;
     public float walkSpeed;
+    public float characterHeight;
 
     public Transform iceWall;
     public Transform iceSpike;
@@ -45,7 +46,7 @@ public class Ice : MonoBehaviour
         Vector3 direction = movement.direction;
         RaycastHit hitObj;
 
-        if (Physics.Raycast(transform.position, Vector3.down, out hitObj, transform.lossyScale.y / 2 + 1))
+        if (Physics.Raycast(transform.position, Vector3.down, out hitObj, characterHeight/2+1))
         {
             if (hitObj.transform.CompareTag("Ice"))
             {

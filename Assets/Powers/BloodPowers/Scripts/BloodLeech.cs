@@ -6,21 +6,18 @@ using static UnityEngine.UI.Image;
 public class BloodLeech : HoldPower, ICollide
 
 {
-    BloodPowerData bloodData;
+  
   //  [SerializeField]
  //   private LineRenderer lineRenderer;
     [SerializeField]
     private LayerMask playerLayer;
     
 
-    private void Awake()
-    {
-        bloodData = (BloodPowerData)powerData;
-    }
+
 
     protected override bool UseStamina()
     {
-        if (!bloodData) return false;
+
         UpdateBeam();
         return base.UseStamina();
     }
@@ -36,7 +33,8 @@ public class BloodLeech : HoldPower, ICollide
 
         if (Physics.Raycast(boxAim.position, boxAim.forward, out hit, 20f, playerLayer))
         {
-            beamLength = hit.distance + 1.5f; 
+            Debug.Log("Leech is hitting object");
+            beamLength = hit.distance; 
         }
 
    
@@ -52,9 +50,9 @@ public class BloodLeech : HoldPower, ICollide
 
     public void CollideResult(Collider objectHit, GameObject collider)
     {
-        Debug.Log($"Health is : {playerData.health}, blood health is : {bloodData.getHealth}");
-        playerData.health += bloodData.getHealth;
-        playerData.health = Mathf.Clamp(playerData.health, 0, playerData.maxHealth);
+      //  Debug.Log($"Health is : {player.stats.health}, blood health is : {bloodData.getHealth}");
+    //    player.stats.health += bloodData.getHealth;
+      //  player.stats.health = Mathf.Clamp(player.stats.health, 0, player.maxHealth);
     }
 
 }

@@ -5,23 +5,24 @@ using UnityEngine.UI;
 public class Test_UI : MonoBehaviour
 {
     [SerializeField]
-    Text healthText;
+    private Text healthText;
     [SerializeField]
-    Text staminaText;
+    private  Text staminaText;
     [SerializeField]
-    PlayerData playerData;
+    private Player player;
+
 
    
 
     private void Update()
     {
-        if (playerData != null)
+        if (player)
         {
             if (healthText)
-                healthText.text = $"Health : {playerData.health}";
+                healthText.text = $"Health : {player.stats.health}";
             if (staminaText)
-                staminaText.text = $"Stamina : {playerData.stamina}";
-        }
+                staminaText.text = $"Stamina : {player.stats.stamina}";
+        } 
 
     }
 }

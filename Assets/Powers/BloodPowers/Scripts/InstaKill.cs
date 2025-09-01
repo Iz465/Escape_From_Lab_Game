@@ -5,7 +5,7 @@ using UnityEngine.InputSystem;
 // this ability will insta kill all enemies under 50% hp. also ricochets to another enemy if it hits an enemy.
 public class InstaKill : BasePower, ICollide
 {
-    BloodPowerData bloodData;
+    
     private float radius = 100f;
     [SerializeField]
     private LayerMask enemyLayer;
@@ -16,7 +16,7 @@ public class InstaKill : BasePower, ICollide
 
     private void Awake()
     {
-        bloodData = (BloodPowerData)powerData;
+   
         powerCollider = GetComponent<Collider>();
     }
 
@@ -24,9 +24,9 @@ public class InstaKill : BasePower, ICollide
     
     protected override bool UseStamina()
     {
-        if (!bloodData) return false;
-        playerData.health -= bloodData.loseHealth;
-        playerData.health = Mathf.Clamp(playerData.health, 10, playerData.maxHealth);
+
+     //   player.stats.health -= bloodData.loseHealth;
+        player.stats.health = Mathf.Clamp(player.stats.health, 10, player.maxHealth);
 
 
         return base.UseStamina();
@@ -60,7 +60,7 @@ public class InstaKill : BasePower, ICollide
                 if (enemy)
                     Physics.IgnoreCollision(enemy, powerCollider, false);
             enemyHit.Clear();
-            poolManager.ReleaseToPool(powerData.prefab, gameObject);
+            poolManager.ReleaseToPool(gameObject);
             return;
         }
 
@@ -69,7 +69,7 @@ public class InstaKill : BasePower, ICollide
         Physics.IgnoreCollision(powerCollider, objectHit);
         rb.linearVelocity = Vector3.zero;
         rb.angularVelocity = Vector3.zero;
-        rb.AddForce(direction * powerData.speed, ForceMode.Impulse);
+        rb.AddForce(direction * stats.speed, ForceMode.Impulse);
 
     }
 

@@ -11,8 +11,8 @@ public class Enemy : MonoBehaviour, IDamageTaken
 
     public void TakeDamage(float damageTaken)
     {
-
         health -= damageTaken;
+        Debug.Log($"Enemy Health : {health}");
         if (health <= 0)
             enemyDeath();
 
@@ -26,15 +26,23 @@ public class Enemy : MonoBehaviour, IDamageTaken
     public Transform player;
     public CharacterController controller;
     public float walkSpeed;
+    [SerializeField]
+    protected float attackRange;
+
     // Update is called once per frame
-    void Update()
+   virtual public void Update()
     {
         Vector3 direction = player.position - transform.position;
-
-        if (direction.magnitude > 5)
+        if (direction.magnitude > attackRange)
             controller.Move(direction.normalized * walkSpeed * Time.deltaTime);
         else
-            Debug.Log("Attack");
+            Attack();
+        
+    }
+
+    virtual protected void Attack()
+    {
+
     }
 
     

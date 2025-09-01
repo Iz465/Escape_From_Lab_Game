@@ -129,7 +129,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2b0f8575b912dc142959b8088c144443, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  powerData: {fileID: 11400000, guid: b3e11c5b7b775594a842582599979afd, type: 2}
+  power: {fileID: 3629033955157401871}
 --- !u!114 &3629033955157401871
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -142,13 +142,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6242ff20def17cf4ab40a158a8c9826c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  powerData: {fileID: 11400000, guid: b3e11c5b7b775594a842582599979afd, type: 2}
-  playerData: {fileID: 11400000, guid: 5fede77d8d72b8f41b8c552a7afbbc5a, type: 2}
+  player: {fileID: -8016224844076513350, guid: ac03fe04feb792448b456d91d1cb0b47, type: 3}
   boxAim: {fileID: 0}
   cam: {fileID: 0}
+  stats:
+    prefab: {fileID: 317990663879789788}
+    damage: 0.1
+    speed: 0
+    stamina: 0.1
   playerLayer:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 8
 --- !u!64 &3934641983359149524
 MeshCollider:
   m_ObjectHideFlags: 0

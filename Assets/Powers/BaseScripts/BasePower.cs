@@ -6,10 +6,9 @@ using UnityEngine.InputSystem.Controls;
 
 public class BasePower : MonoBehaviour
 {
+    
     [SerializeField]
-    protected PowerData powerData;
-    [SerializeField]
-    protected PlayerData playerData;
+    protected Player player;
     protected GameObject powerInstance;
     protected  ObjectPoolManager poolManager;
     [SerializeField]
@@ -18,6 +17,18 @@ public class BasePower : MonoBehaviour
     protected Camera cam;
 
     protected Rigidbody rb;
+
+    [System.Serializable]
+
+    public struct PowerStats
+    {
+        public GameObject prefab;
+        public float damage;
+        public float speed;
+        public float stamina;
+    }
+
+    public PowerStats stats;
 
   
     private void Start()
@@ -36,7 +47,7 @@ public class BasePower : MonoBehaviour
 
     protected bool PowerChecks()
     {
-        if (!powerData.prefab)
+        if (!stats.prefab)
         {
             Debug.LogWarning("Power Prefab Not Found");
             return false;
@@ -55,7 +66,7 @@ public class BasePower : MonoBehaviour
             return false;
         }
         if (!poolManager) Debug.LogWarning("no pool");
-        powerInstance = poolManager.SpawnFromPool(powerData.prefab, boxAim.position, Quaternion.LookRotation(cam.transform.forward));
+        powerInstance = poolManager.SpawnFromPool(stats.prefab, boxAim.position, Quaternion.LookRotation(cam.transform.forward));
 
         return true;
     }
@@ -71,22 +82,22 @@ public class BasePower : MonoBehaviour
             return;
         }
         rb.sleepThreshold = 0;
-        rb.AddForce(cam.transform.forward * powerData.speed, ForceMode.Impulse);
+        rb.AddForce(cam.transform.forward * stats.speed, ForceMode.Impulse);
     }
 
    virtual protected bool UseStamina()
     {
-        if (playerData.stamina < powerData.stamina) return false;
+        if (player.stats.stamina < stats.stamina) return false;
 
-        playerData.stamina -= powerData.stamina;
-        playerData.stamina = Mathf.Clamp(playerData.stamina, 0, playerData.maxStamina);
+        player.stats.stamina -= stats.stamina;
+        player.stats.stamina = Mathf.Clamp(player.stats.stamina, 0, player.maxStamina);
         return true;
     }
 
     protected IEnumerator DestroyPower(int time, GameObject power)
     {
         yield return new WaitForSeconds(time);
-        poolManager.ReleaseToPool(powerData.prefab, power);
+        poolManager.ReleaseToPool(power);
     }
 
 

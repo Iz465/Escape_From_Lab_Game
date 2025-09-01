@@ -5,14 +5,15 @@ public class Power_Hit_Detection : MonoBehaviour
 {
     protected IDamageTaken takeDamage;
     [SerializeField]
-    protected PowerData powerData;
+    protected BasePower power;
     protected ICollide iCollide;
     private ObjectPoolManager poolManager;
-
+  
 
     private void Awake()
     {
         poolManager = FindFirstObjectByType<ObjectPoolManager>();
+   
     }
 
 
@@ -24,18 +25,23 @@ public class Power_Hit_Detection : MonoBehaviour
   
         if (takeDamage == null)
         {
-            poolManager.ReleaseToPool(powerData.prefab, gameObject);
+            Debug.Log($"Power prefab : {power.stats.prefab}, instace : {gameObject}");
+            poolManager.ReleaseToPool(gameObject);
             return;
         }
 
         else
-            takeDamage.TakeDamage(powerData.damage);
+        {
+            Debug.Log($"Power prefab : {power.stats.prefab}, instace : {gameObject}");
+            takeDamage.TakeDamage(power.stats.damage);
+        }
+  
 
             iCollide = GetComponent<ICollide>();
         if (iCollide != null)     
             iCollide.CollideResult(collision.collider, gameObject);
         else
-            poolManager.ReleaseToPool(powerData.prefab, gameObject); 
+            poolManager.ReleaseToPool(gameObject); 
 
     }
 

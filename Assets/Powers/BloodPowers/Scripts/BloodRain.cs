@@ -8,7 +8,7 @@ using UnityEngine.InputSystem;
 
 public class BloodRain : SpawnPower
 {
-    private BloodPowerData bloodData;
+  
     private Collider[] enemyColliders;
     [SerializeField]
     private LayerMask enemyLayer;
@@ -18,10 +18,6 @@ public class BloodRain : SpawnPower
     List<Collider> enemyList = new List<Collider>();
 
 
-    private void Awake()
-    {
-        bloodData = (BloodPowerData)powerData;
-    }
 
 
     protected override void FirePower(GameObject power)
@@ -32,14 +28,12 @@ public class BloodRain : SpawnPower
     }
 
 
-    protected override bool UseStamina()
-    {
-        if (!bloodData) return false;
-        playerData.health -= bloodData.loseHealth;
-        playerData.health = Mathf.Clamp(playerData.health, 10, playerData.maxHealth);
-
-        return base.UseStamina();
-    }
+  //  protected override bool UseStamina()
+//    { 
+    //    player.stats.health -= bloodData.loseHealth;
+  //      player.stats.health = Mathf.Clamp(player.stats.health, 10, player.maxHealth);
+    //    return base.UseStamina();
+ //   }
 
     private void RainBlood(GameObject power) 
     {
@@ -91,7 +85,7 @@ public class BloodRain : SpawnPower
         if (!collider) yield break;
         if (enemyList.Count == 0)
         {
-            poolManager.ReleaseToPool(rainPrefab, test);
+            poolManager.ReleaseToPool(test);
             yield break;
         }
 
@@ -100,14 +94,14 @@ public class BloodRain : SpawnPower
       
         if (!target)
         {
-            poolManager.ReleaseToPool(rainPrefab, test);
+            poolManager.ReleaseToPool(test);
             yield break;
         }
 
         Vector3 direction = (target.transform.position - collider.transform.position).normalized;
         test.SetActive(true);
         Rigidbody rainBody = test.GetComponent<Rigidbody>();
-        rainBody.AddForce(direction * powerData.speed, ForceMode.Impulse);
+        rainBody.AddForce(direction * stats.speed, ForceMode.Impulse);
         enemyList.Add(target);
       
     }

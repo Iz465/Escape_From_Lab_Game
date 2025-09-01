@@ -24,7 +24,7 @@ public class HoldPower : BasePower
         if (context.canceled)
         {
             isHeld = false;
-            poolManager.ReleaseToPool(powerData.prefab, powerInstance);
+            poolManager.ReleaseToPool(powerInstance);
         }
        
     }

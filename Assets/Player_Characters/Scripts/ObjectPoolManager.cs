@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections.Generic;
 
-#pragma warning disable // annoying warning keeps coming up that doesnt matter.
+#pragma warning disable
 
 public class ObjectPoolManager : MonoBehaviour
 {
@@ -12,13 +12,14 @@ public class ObjectPoolManager : MonoBehaviour
         public int initialSize = 10;
     }
 
-    private Rigidbody objectBody;
     public List<PoolItem> poolItems = new List<PoolItem>();
 
-    // dict for all prefabs that can be active.
+    // all objects in the pool.
     private Dictionary<GameObject, Queue<GameObject>> poolAvailable = new();
-    // Dict for the objects that are active
+    // dict of the current powers
     private Dictionary<GameObject, HashSet<GameObject>> poolActive = new();
+    // dict of the prefabs
+    private Dictionary<GameObject, GameObject> objectToPrefab = new();
 
     void Awake()
     {
@@ -27,12 +28,13 @@ public class ObjectPoolManager : MonoBehaviour
             var availableQueue = new Queue<GameObject>();
             var activeSet = new HashSet<GameObject>();
 
-          
             for (int i = 0; i < item.initialSize; i++)
             {
                 GameObject obj = Instantiate(item.prefab);
                 obj.SetActive(false);
+
                 availableQueue.Enqueue(obj);
+                objectToPrefab[obj] = item.prefab; // Track which prefab the instance is.
             }
 
             poolAvailable[item.prefab] = availableQueue;
@@ -40,7 +42,7 @@ public class ObjectPoolManager : MonoBehaviour
         }
     }
 
-    // Activates prefabs
+
     public GameObject SpawnFromPool(GameObject prefab, Vector3 position, Quaternion rotation)
     {
         if (!poolAvailable.ContainsKey(prefab))
@@ -54,32 +56,30 @@ public class ObjectPoolManager : MonoBehaviour
         GameObject obj = poolAvailable[prefab].Dequeue();
         obj.transform.SetPositionAndRotation(position, rotation);
         obj.SetActive(true);
+        Rigidbody rb = obj.GetComponent<Rigidbody>();
+        rb.linearVelocity = Vector3.zero;
+        rb.angularVelocity = Vector3.zero;
 
         poolActive[prefab].Add(obj);
         return obj;
     }
 
-  // Deactivates prefabs.
-    public void ReleaseToPool(GameObject prefab, GameObject obj)
+    public void ReleaseToPool(GameObject obj)
     {
-        if (!poolActive.ContainsKey(prefab))
+        if (obj == null) return;
+
+        
+        if (!objectToPrefab.TryGetValue(obj, out var prefab))
         {
-            Debug.LogWarning($"Pool for {prefab.name} unavailable");
+            Debug.LogWarning($"Object {obj.name} is not from any pool");
             Destroy(obj); // Not from pool
             return;
         }
 
-        if (!poolActive[prefab].Contains(obj))
-        {
-        //    Debug.LogWarning($"{prefab.name} is not in pool");
-            return;
-        }
+        if (!poolActive[prefab].Contains(obj)) return;
 
-        if (obj != null)
-        {
-            obj.SetActive(false);
-            poolActive[prefab].Remove(obj);
-            poolAvailable[prefab].Enqueue(obj);
-        }
+        obj.SetActive(false);
+        poolActive[prefab].Remove(obj);
+        poolAvailable[prefab].Enqueue(obj);
     }
 }

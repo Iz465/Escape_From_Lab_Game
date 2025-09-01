@@ -151,7 +151,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6ca545025a208684890ede2bf03439d2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  powerData: {fileID: 11400000, guid: 21f81e0a5260d804db05b7fc5008f255, type: 2}
+  power: {fileID: 9001348356109490781}
+  test: {fileID: 0}
 --- !u!114 &9001348356109490781
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -164,13 +165,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2e480abf8e5416143a56eb11a59dece9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  powerData: {fileID: 11400000, guid: 21f81e0a5260d804db05b7fc5008f255, type: 2}
-  playerData: {fileID: 11400000, guid: 5fede77d8d72b8f41b8c552a7afbbc5a, type: 2}
+  player: {fileID: -8016224844076513350, guid: ac03fe04feb792448b456d91d1cb0b47, type: 3}
   boxAim: {fileID: 0}
   cam: {fileID: 0}
+  stats:
+    prefab: {fileID: 6594098458241618133}
+    damage: 20
+    speed: 50
+    stamina: 20
   yLoc: 0
   zLoc: 0
   enemyLayer:
     serializedVersion: 2
     m_Bits: 128
-  rainPrefab: {fileID: 0}
+  rainPrefab: {fileID: 6238471719548748225, guid: 7baace4e4fb96514fbb295adcbded399, type: 3}

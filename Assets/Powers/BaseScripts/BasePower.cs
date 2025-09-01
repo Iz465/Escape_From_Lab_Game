@@ -1,6 +1,8 @@
+using System;
 using System.Collections;
 using System.Threading;
 using UnityEngine;
+using UnityEngine.Assertions.Must;
 using UnityEngine.InputSystem;
 using UnityEngine.InputSystem.Controls;
 
@@ -30,10 +32,20 @@ public class BasePower : MonoBehaviour
 
     public PowerStats stats;
 
-  
+    [Serializable]
+    protected enum PowerType
+    {
+        Shoot,
+        Hold,
+        Spawn,
+        Melee
+    }
+    protected PowerType powerType;
+
     private void Start()
     {
         poolManager = FindFirstObjectByType<ObjectPoolManager>();
+    
     }
 
     virtual public void Attack(InputAction.CallbackContext context)
@@ -41,6 +53,17 @@ public class BasePower : MonoBehaviour
         if (!context.performed) return;
         if (!PowerChecks()) return;
         if (!powerInstance) return;
+
+  /*      switch case(powerType)
+        {
+            case PowerType.Shoot: break;
+            case PowerType.Hold: break;
+            case PowerType.Spawn: break;
+            case PowerType.Melee: break;
+            default: break;
+
+        } */
+
         FirePower(powerInstance);
     }
 

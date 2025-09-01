@@ -27,6 +27,10 @@ public class Speed : MonoBehaviour
         playerInfo = transform.GetComponent<PlayerInfo>();
         cam = transform.Find("Main Camera").transform;
 
+        Transform stats = GameObject.Find("Canvas").transform.Find("Stats");
+
+        staminaText = stats.Find("Stamina").GetComponent<Text>();
+        healthText = stats.Find("Health").GetComponent <Text>();
     }
 
     void Run()

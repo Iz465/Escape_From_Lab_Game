@@ -56,7 +56,7 @@ public class BasePower : MonoBehaviour
         if (!context.performed) return;
         if (!PowerChecks()) return;
         if (!powerInstance) return;
-        Debug.Log("power check test");
+
         switch (powerType)
         {
             case PowerType.Shoot: ShootPower(); break;

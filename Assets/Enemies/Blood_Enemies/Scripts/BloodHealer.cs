@@ -22,7 +22,7 @@ public class BloodHealer : Enemy
     private void OnDrawGizmosSelected()
     {
         Gizmos.color = Color.red;
-        Gizmos.DrawWireSphere(transform.position, 50f);
+     //   Gizmos.DrawWireSphere(transform.position, 50f);
     }
 
     private void Resurrect()

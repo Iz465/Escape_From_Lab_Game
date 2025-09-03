@@ -103,7 +103,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   power: {fileID: -2446333469775463948}
-  test: {fileID: 6238471719548748225, guid: 7baace4e4fb96514fbb295adcbded399, type: 3}
 --- !u!114 &-2446333469775463948
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -121,9 +120,10 @@ MonoBehaviour:
   cam: {fileID: 0}
   stats:
     prefab: {fileID: 6238471719548748225}
-    damage: 15
+    damage: 40
     speed: 30
     stamina: 15
+  powerType: 0
   enemyLayer:
     serializedVersion: 2
     m_Bits: 128

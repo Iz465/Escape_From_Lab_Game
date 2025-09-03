@@ -46,10 +46,12 @@ public class Ice : MonoBehaviour
         Vector3 direction = movement.direction;
         RaycastHit hitObj;
 
-        if (Physics.Raycast(transform.position, Vector3.down, out hitObj, characterHeight/2+1))
+        Debug.DrawRay(transform.position, Vector3.down * (characterHeight / 2 + 1), Color.blue,.1f,false);
+        if (Physics.Raycast(transform.position, Vector3.down, out hitObj, characterHeight / 2 + 1))
         {
             if (hitObj.transform.CompareTag("Ice"))
             {
+                print(direction.magnitude);
                 if (direction.magnitude < 0.1f)
                 {
                     movement.velocity -= movement.velocity.normalized * movement.acceleration * Time.deltaTime;
@@ -58,17 +60,14 @@ public class Ice : MonoBehaviour
                 {
                     movement.velocity += direction * movement.acceleration * Time.deltaTime;
                     movement.velocity = Vector3.ClampMagnitude(movement.velocity, iceSpeed);
+                    print("clamped velocity");
                 }
+                return;
             }
-            else
-            {
-                movement.velocity = direction * Time.deltaTime * walkSpeed;
-            }
+
         }
-        else
-        {
-            movement.velocity = direction * Time.deltaTime * walkSpeed;
-        }
+        
+        movement.velocity = direction * Time.deltaTime * walkSpeed;
 
     }
     void IceWall()

@@ -8,12 +8,12 @@ public class Speed : MonoBehaviour
     PlayerInfo playerInfo;
     Transform cam;
 
-    [SerializeField]
+    public 
     float normalWalk,normalRun, highSpeedWalk, highSpeedRun, dashSpeed, dashDuration;
-    [SerializeField] float normalRunCost, highSpeedRunCost, dashCost, phazeCost;
-    [SerializeField] float regenRate;
-    [SerializeField] float highSpeedModeScale, highSpeedModeCost;
-    [SerializeField] Text staminaText, healthText;
+    public float normalRunCost, highSpeedRunCost, dashCost, phazeCost;
+    public float regenRate;
+    public float highSpeedModeScale, highSpeedModeCost;
+    public Text staminaText, healthText;
 
     float dashStart;
     public bool highSpeedMode, phazeMode;

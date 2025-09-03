@@ -18,15 +18,13 @@ public class Power_Hit_Detection : MonoBehaviour
     }
 
 
-
     virtual protected void OnCollisionEnter(Collision collision)
     {
-        Debug.Log("Power hitting");
         enemy = collision.gameObject.GetComponent<Enemy>();
   
+
         if (!enemy)
         {
-            Debug.Log("Not Enemy");
             poolManager.ReleaseToPool(gameObject);
             return;
         }
@@ -37,28 +35,12 @@ public class Power_Hit_Detection : MonoBehaviour
     
             iCollide = GetComponent<ICollide>();
         if (iCollide != null)
-        {
-            Debug.Log("No collide");
             iCollide.CollideResult(collision.collider, gameObject);
-        }
 
         else
-        {
-            Debug.Log("Is collide");
             poolManager.ReleaseToPool(gameObject);
-        }
-    
 
     }
-
-
-   
-    
-
-
-
-
-
 
 }
 

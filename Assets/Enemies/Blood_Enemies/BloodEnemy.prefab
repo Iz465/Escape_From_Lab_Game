@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 3388846910621281927}
   - component: {fileID: 7352929393803942496}
   - component: {fileID: -5095830852844784899}
-  - component: {fileID: 2492309231103551819}
+  - component: {fileID: 6384041770413681702}
   m_Layer: 7
   m_Name: BloodEnemy
   m_TagString: Untagged
@@ -123,7 +123,7 @@ CharacterController:
     m_Bits: 0
   m_ExcludeLayers:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 256
   m_LayerOverridePriority: 0
   m_ProvidesContacts: 0
   m_Enabled: 1
@@ -135,7 +135,7 @@ CharacterController:
   m_SkinWidth: 0.08
   m_MinMoveDistance: 0.001
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &2492309231103551819
+--- !u!114 &6384041770413681702
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -144,11 +144,15 @@ MonoBehaviour:
   m_GameObject: {fileID: 496276402558071130}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1a785eb2ca5532a4397709eca2f63c7b, type: 3}
+  m_Script: {fileID: 11500000, guid: 8dee01f764c90404c969807c1da06d6f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   health: 100
-  damage: 100
+  damage: 20
+  corpse: {fileID: 4936041091994629948, guid: cf6dcf4645f3d57468fc7e436994699f, type: 3}
+  enemyPrefab: {fileID: 11400000, guid: 27b2d9d709958ba4bae42a9aec72ed14, type: 2}
   player: {fileID: 8685979672057956148, guid: ac03fe04feb792448b456d91d1cb0b47, type: 3}
-  controller: {fileID: 6038724292496286300, guid: ac03fe04feb792448b456d91d1cb0b47, type: 3}
-  walkSpeed: 5
+  controller: {fileID: -5095830852844784899}
+  walkSpeed: 2
+  attackRange: 5
+  cooldown: 5

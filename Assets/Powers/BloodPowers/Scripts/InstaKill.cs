@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -12,7 +13,7 @@ public class InstaKill : BasePower, ICollide
     private Collider[] enemyDetected;
     private Collider powerCollider;
 
-    private List<Collider> enemyHit = new List<Collider>();
+    private List<GameObject> enemyHit = new List<GameObject>();
 
     private void Awake()
     {
@@ -37,32 +38,30 @@ public class InstaKill : BasePower, ICollide
         Debug.Log("Activating insta kill");
         if (!powerCollider) return;
         rb = power.GetComponent<Rigidbody>();
-    //    CharacterController characterController = objectHit.GetComponent<CharacterController>();
-    //    characterController.enabled = false;
         if (!rb) return;
-        if (!enemyHit.Contains(objectHit)) enemyHit.Add(objectHit);
+        if (!enemyHit.Contains(objectHit.gameObject)) enemyHit.Add(objectHit.gameObject);
          
-        enemyDetected = Physics.OverlapSphere(power.transform.position, radius, enemyLayer); 
-        
-
-        Debug.Log(enemyDetected.Length);
+        enemyDetected = Physics.OverlapSphere(power.transform.position, radius, enemyLayer);
+       
 
         Collider target = null;
 
-
+ 
         foreach (var enemy in enemyDetected)
         {
-            if (!enemyHit.Contains(enemy))
+            if (!enemyHit.Contains(enemy.gameObject))
             {
                 target = enemy; break;
             }
+            
         }
+
 
         if (!target)
         {
             foreach (var enemy in enemyHit)
                 if (enemy)
-                    Physics.IgnoreCollision(enemy, powerCollider, false);
+                    Physics.IgnoreCollision(objectHit, powerCollider, false);
             enemyHit.Clear();
             poolManager.ReleaseToPool(gameObject);
             return;

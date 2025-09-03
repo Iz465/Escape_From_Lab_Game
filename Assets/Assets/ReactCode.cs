@@ -3,9 +3,11 @@ using UnityEngine;
 public class ReactCode : MonoBehaviour
 {
     Speed speedCode;
-    void Start()
+    void Awake()
     {
-        speedCode = transform.parent.GetComponent<Speed>();
+        if(!transform.parent.TryGetComponent<Speed>(out speedCode))
+            transform.gameObject.SetActive(false);
+            
     }
     void React(Collider collider)
     {

@@ -4,11 +4,21 @@
     <ui:ToggleButtonGroup label="Invert Vertical Aim" name="Vertical-Inversion_ToggleButtonGroup" style="font-size: 55px;">
         <ui:Button text="OFF" name="Anit-Aliasing_Off_Button" />
         <ui:Button text="ON" name="Anit-Aliasing_On_Button" />
+        <Bindings>
+            <ui:DataBinding property="value" data-source-path="InverVerticalAimToggleState" data-source="project://database/Assets/UI/SettingsBindingsSO.asset?fileID=11400000&amp;guid=566d48fb7836c144a9f0810a79e719bc&amp;type=2#SettingsBindingsSO" binding-mode="TwoWay" />
+        </Bindings>
     </ui:ToggleButtonGroup>
     <ui:ToggleButtonGroup label="Invert Horizontal Aim" name="Horizontal-Inversion_ToggleButtonGroup" style="font-size: 55px;">
         <ui:Button text="OFF" name="Anit-Aliasing_Off_Button" />
         <ui:Button text="ON" name="Anit-Aliasing_On_Button" />
+        <Bindings>
+            <ui:DataBinding property="value" data-source-path="InvertHorizontalAimToggleState" data-source="project://database/Assets/UI/SettingsBindingsSO.asset?fileID=11400000&amp;guid=566d48fb7836c144a9f0810a79e719bc&amp;type=2#SettingsBindingsSO" binding-mode="TwoWay" />
+        </Bindings>
     </ui:ToggleButtonGroup>
-    <ui:Slider label="Mouse&#10;sensitivity" value="42" high-value="100" name="Mouse_Sensitivity_Slider" style="font-size: 45px;" />
+    <ui:Slider label="Mouse&#10;sensitivity" value="42" high-value="100" name="Mouse_Sensitivity_Slider" style="font-size: 45px;">
+        <Bindings>
+            <ui:DataBinding property="value" data-source-path="MouseSensitivity" data-source="project://database/Assets/UI/SettingsBindingsSO.asset?fileID=11400000&amp;guid=566d48fb7836c144a9f0810a79e719bc&amp;type=2#SettingsBindingsSO" binding-mode="TwoWay" />
+        </Bindings>
+    </ui:Slider>
     <ui:Button text="Reset Controls" name="Reset_Controls_Button" class="Leftbutton" style="align-self: stretch; margin-left: 0; margin-right: 0;" />
 </ui:UXML>

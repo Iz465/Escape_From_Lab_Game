@@ -1,5 +1,7 @@
 using UnityEngine;
 using UnityEngine.UIElements;
+using Unity.Properties;
+
 public class Settings_Controller : MonoBehaviour
 {
     public VisualTreeAsset DefaultTemplate;
@@ -10,16 +12,18 @@ public class Settings_Controller : MonoBehaviour
 
     private VisualElement _root;
     private TemplateContainer _current;
-    private Button _swapBtn;
     private Button DisplayButton;
     private Button GraphicsButton;
     private Button ControlsButton;
     private Button AudioButton;
+    private UIDocument uiDoc;
+
+   
 
     private void OnEnable()
     {
         // Grab root from UIDocument
-        var uiDoc = GetComponent<UIDocument>();
+        uiDoc = GetComponent<UIDocument>();
         _root = uiDoc.rootVisualElement;
 
         // Query the button and the placeholder container
@@ -33,7 +37,7 @@ public class Settings_Controller : MonoBehaviour
         _current = DefaultTemplate.Instantiate();
         _current.name = DefaultTemplate.name;
         host.Add(_current);
-        void Settins_page_buttons(char ButtonName) 
+        void Settings_page_buttons(char ButtonName) 
         {
             _current.RemoveFromHierarchy();
             _current = null;
@@ -77,24 +81,15 @@ public class Settings_Controller : MonoBehaviour
         }
 
       
-        DisplayButton.clicked += () => Settins_page_buttons('D');
+        DisplayButton.clicked += () => Settings_page_buttons('D');
 
-        GraphicsButton.clicked += () => Settins_page_buttons('G');
+        GraphicsButton.clicked += () => Settings_page_buttons('G');
 
-        ControlsButton.clicked += () => Settins_page_buttons('C');
+        ControlsButton.clicked += () => Settings_page_buttons('C');
 
-        AudioButton.clicked += () => Settins_page_buttons('A');
+        AudioButton.clicked += () => Settings_page_buttons('A');
   
 
     }
-    private void Awake()
-    {
-      //  Button Display_Settings_button = _root.Q<Button>("DisplayButton");
 
-    }
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
 }

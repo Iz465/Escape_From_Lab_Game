@@ -12,49 +12,53 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 089c69a3786dfd64fafb636fe058c6c2, type: 3}
   m_Name: SettingsBindingsSO
   m_EditorClassIdentifier: 
-  ResolutionOptions:
-  - "1280\xD7720"
-  - "1920\xD71080"
-  - "2560\xD71440"
-  ResolutionIndex: 2
-  FullscreenToggleState:
-    m_Data: 1
-    m_Length: 2
-  HDRToggleState:
-    m_Data: 2
-    m_Length: 2
-  WindowsBorderToggleState:
-    m_Data: 1
-    m_Length: 2
-  QualityToggleState:
-    m_Data: 4
-    m_Length: 3
-  ShadowsToggleState:
-    m_Data: 1
-    m_Length: 3
-  LightingToggleState:
-    m_Data: 4
-    m_Length: 64
-  TexturesToggleState:
-    m_Data: 4
-    m_Length: 3
-  AntiAliasingToggleState:
-    m_Data: 2
-    m_Length: 2
-  MotionBlurToggleState:
-    m_Data: 2
-    m_Length: 2
-  MouseSensitivity: 83.4
-  InverVerticalAimToggleState:
-    m_Data: 1
-    m_Length: 2
-  InvertHorizontalAimToggleState:
-    m_Data: 1
-    m_Length: 2
-  MusicVolume: 0.631
-  SfxVolume: 0.304
-  Dialogue: 0.453
-  Master: 0.603
-  SubtitlesToggleState:
-    m_Data: 2
-    m_Length: 2
+  displaySettings:
+    ResolutionOptions:
+    - "1280\xD7720"
+    - "1920\xD71080"
+    - "2560\xD71440"
+    ResolutionIndex: 2
+    FullscreenToggleState:
+      m_Data: 2
+      m_Length: 2
+    HDRToggleState:
+      m_Data: 2
+      m_Length: 2
+    WindowsBorderToggleState:
+      m_Data: 2
+      m_Length: 2
+  graphicsSettings:
+    QualityToggleState:
+      m_Data: 1
+      m_Length: 3
+    ShadowsToggleState:
+      m_Data: 4
+      m_Length: 3
+    LightingToggleState:
+      m_Data: 4
+      m_Length: 3
+    TexturesToggleState:
+      m_Data: 2
+      m_Length: 3
+    AntiAliasingToggleState:
+      m_Data: 2
+      m_Length: 2
+    MotionBlurToggleState:
+      m_Data: 2
+      m_Length: 2
+  controlSettings:
+    MouseSensitivity: 3.86
+    InverVerticalAimToggleState:
+      m_Data: 2
+      m_Length: 2
+    InvertHorizontalAimToggleState:
+      m_Data: 2
+      m_Length: 2
+  audioSettings:
+    MusicVolume: 0.16147733
+    SfxVolume: 0.273
+    Dialogue: 0.248
+    Master: 0.864
+    SubtitlesToggleState:
+      m_Data: 2
+      m_Length: 2

@@ -1,50 +1,51 @@
 <ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" editor-extension-mode="False">
     <Style src="project://database/Assets/UI/Settings.uss?fileID=7433441132597879392&amp;guid=27a27ac5718fc22468d9dff8319b226b&amp;type=3#Settings" />
-    <ui:ToggleButtonGroup label="Shadows" name="Shadows_ToggleButtonGroup">
-        <ui:Button text="LOW" name="Shadows_Low_Button" />
-        <ui:Button text="MID" name="Shadows_Mid_Button" />
-        <ui:Button text="HIGH" name="Shadows_High_Button" />
-        <Bindings>
-            <ui:DataBinding property="value" data-source-path="ShadowsToggleState" data-source="project://database/Assets/UI/SettingsBindingsSO.asset?fileID=11400000&amp;guid=566d48fb7836c144a9f0810a79e719bc&amp;type=2#SettingsBindingsSO" binding-mode="TwoWay" />
-        </Bindings>
-    </ui:ToggleButtonGroup>
-    <ui:ToggleButtonGroup label="Lighting" name="Lighting_ToggleButtonGroup">
-        <ui:Button text="HIGH" name="Lighting_High_Button" />
-        <ui:Button text="MID" name="Lighting_Mid_Button" />
-        <ui:Button text="LOW" name="Lighting_Low_Button" />
-        <Bindings>
-            <ui:DataBinding property="value" data-source-path="LightingToggleState" data-source="project://database/Assets/UI/SettingsBindingsSO.asset?fileID=11400000&amp;guid=566d48fb7836c144a9f0810a79e719bc&amp;type=2#SettingsBindingsSO" binding-mode="ToTarget" />
-            <ui:DataBinding property="value" data-source-path="LightingToggleState" data-source="project://database/Assets/UI/SettingsBindingsSO.asset?fileID=11400000&amp;guid=566d48fb7836c144a9f0810a79e719bc&amp;type=2#SettingsBindingsSO" binding-mode="ToSource" />
-        </Bindings>
-    </ui:ToggleButtonGroup>
-    <ui:ToggleButtonGroup label="Texture" name="Texures_ToggleButtonGroup" value="001">
-        <ui:Button text="LOW" name="Texures_Low_Button" />
-        <ui:Button text="MID" name="Texures_Mid_Button" />
-        <ui:Button text="HIGH" name="Texures_High_Button" />
-        <Bindings>
-            <ui:DataBinding property="value" data-source-path="TexturesToggleState" data-source="project://database/Assets/UI/SettingsBindingsSO.asset?fileID=11400000&amp;guid=566d48fb7836c144a9f0810a79e719bc&amp;type=2#SettingsBindingsSO" binding-mode="TwoWay" />
-        </Bindings>
-    </ui:ToggleButtonGroup>
-    <ui:ToggleButtonGroup label="Anti-Aliasing" name="Anit-Aliasing_ToggleButtonGroup">
-        <ui:Button text="OFF" name="Anit-Aliasing_Off_Button" />
-        <ui:Button text="ON" name="Anit-Aliasing_On_Button" />
-        <Bindings>
-            <ui:DataBinding property="value" data-source-path="AntiAliasingToggleState" data-source="project://database/Assets/UI/SettingsBindingsSO.asset?fileID=11400000&amp;guid=566d48fb7836c144a9f0810a79e719bc&amp;type=2#SettingsBindingsSO" binding-mode="TwoWay" />
-        </Bindings>
-    </ui:ToggleButtonGroup>
-    <ui:ToggleButtonGroup label="Motion Blur" name="Motionblur_ToggleButtonGroup" value="01">
-        <ui:Button text="OFF" name="MotionBlur_Off_Button" />
-        <ui:Button text="ON" name="MontionBlur_On_Button" />
-        <Bindings>
-            <ui:DataBinding property="value" data-source-path="MotionBlurToggleState" data-source="project://database/Assets/UI/SettingsBindingsSO.asset?fileID=11400000&amp;guid=566d48fb7836c144a9f0810a79e719bc&amp;type=2#SettingsBindingsSO" binding-mode="TwoWay" />
-        </Bindings>
-    </ui:ToggleButtonGroup>
-    <ui:ToggleButtonGroup label="Quality" name="Quality_ToggleButtonGroup">
-        <ui:Button text="LOW" />
-        <ui:Button text="MID" />
-        <ui:Button text="HIGH" />
-        <Bindings>
-            <ui:DataBinding property="value" data-source-path="QualityToggleState" data-source="project://database/Assets/UI/SettingsBindingsSO.asset?fileID=11400000&amp;guid=566d48fb7836c144a9f0810a79e719bc&amp;type=2#SettingsBindingsSO" binding-mode="TwoWay" />
-        </Bindings>
-    </ui:ToggleButtonGroup>
+    <ui:VisualElement data-source="project://database/Assets/UI/SettingsBindingsSO.asset?fileID=11400000&amp;guid=566d48fb7836c144a9f0810a79e719bc&amp;type=2#SettingsBindingsSO" data-source-path="graphicsSettings" style="flex-grow: 1;">
+        <ui:ToggleButtonGroup label="Quality" name="Quality_ToggleButtonGroup">
+            <ui:Button text="LOW" />
+            <ui:Button text="MID" />
+            <ui:Button text="HIGH" />
+            <Bindings>
+                <ui:DataBinding property="value" data-source-path="QualityToggleState" binding-mode="TwoWay" />
+            </Bindings>
+        </ui:ToggleButtonGroup>
+        <ui:ToggleButtonGroup label="Shadows" name="Shadows_ToggleButtonGroup">
+            <ui:Button text="LOW" name="Shadows_Low_Button" />
+            <ui:Button text="MID" name="Shadows_Mid_Button" />
+            <ui:Button text="HIGH" name="Shadows_High_Button" />
+            <Bindings>
+                <ui:DataBinding property="value" data-source-path="ShadowsToggleState" binding-mode="TwoWay" />
+            </Bindings>
+        </ui:ToggleButtonGroup>
+        <ui:ToggleButtonGroup label="Lighting" name="Lighting_ToggleButtonGroup">
+            <ui:Button text="LOW" name="Lighting_Low_Button" />
+            <ui:Button text="MID" name="Lighting_Mid_Button" />
+            <ui:Button text="HIGH" name="Lighting_High_Button" />
+            <Bindings>
+                <ui:DataBinding property="value" data-source-path="LightingToggleState" binding-mode="TwoWay" />
+            </Bindings>
+        </ui:ToggleButtonGroup>
+        <ui:ToggleButtonGroup label="Texture" name="Texures_ToggleButtonGroup" value="001">
+            <ui:Button text="LOW" name="Texures_Low_Button" />
+            <ui:Button text="MID" name="Texures_Mid_Button" />
+            <ui:Button text="HIGH" name="Texures_High_Button" />
+            <Bindings>
+                <ui:DataBinding property="value" data-source-path="TexturesToggleState" binding-mode="TwoWay" />
+            </Bindings>
+        </ui:ToggleButtonGroup>
+        <ui:ToggleButtonGroup label="Anti-Aliasing" name="Anit-Aliasing_ToggleButtonGroup">
+            <ui:Button text="OFF" name="Anit-Aliasing_Off_Button" />
+            <ui:Button text="ON" name="Anit-Aliasing_On_Button" />
+            <Bindings>
+                <ui:DataBinding property="value" data-source-path="AntiAliasingToggleState" binding-mode="TwoWay" />
+            </Bindings>
+        </ui:ToggleButtonGroup>
+        <ui:ToggleButtonGroup label="Motion Blur" name="Motionblur_ToggleButtonGroup" value="01">
+            <ui:Button text="OFF" name="MotionBlur_Off_Button" />
+            <ui:Button text="ON" name="MontionBlur_On_Button" />
+            <Bindings>
+                <ui:DataBinding property="value" data-source-path="MotionBlurToggleState" binding-mode="TwoWay" />
+            </Bindings>
+        </ui:ToggleButtonGroup>
+    </ui:VisualElement>
 </ui:UXML>

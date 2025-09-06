@@ -403,6 +403,7 @@ MonoBehaviour:
   Template_Settings_Graphics: {fileID: 9197481963319205126, guid: ee8e78dcc22fc6843985c53232b79eb6, type: 3}
   Template_Settings_Controls: {fileID: 9197481963319205126, guid: 093d5d9df17b5054a88aa29c31656f50, type: 3}
   Template_Settings_Audio: {fileID: 9197481963319205126, guid: b93bc70acae55f04d89c7c2e74187ee4, type: 3}
+  settingsBindings: {fileID: 11400000, guid: 566d48fb7836c144a9f0810a79e719bc, type: 2}
 --- !u!1 &2033309895
 GameObject:
   m_ObjectHideFlags: 0

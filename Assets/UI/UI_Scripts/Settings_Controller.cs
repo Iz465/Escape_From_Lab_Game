@@ -1,6 +1,7 @@
 using UnityEngine;
 using UnityEngine.UIElements;
 using Unity.Properties;
+using Unity.VisualScripting;
 
 public class Settings_Controller : MonoBehaviour
 {
@@ -18,7 +19,14 @@ public class Settings_Controller : MonoBehaviour
     private Button AudioButton;
     private UIDocument uiDoc;
 
-   
+    public SettingsBindings settingsBindings;
+
+
+    void Start()
+    {
+        Debug.Log("Settings_Controller: Start - Loading Settings");
+        SettingsIO.LoadSettings(settingsBindings);
+    }
 
     private void OnEnable()
     {
@@ -80,16 +88,16 @@ public class Settings_Controller : MonoBehaviour
             host.Add(_current);
         }
 
-      
         DisplayButton.clicked += () => Settings_page_buttons('D');
-
         GraphicsButton.clicked += () => Settings_page_buttons('G');
-
         ControlsButton.clicked += () => Settings_page_buttons('C');
-
         AudioButton.clicked += () => Settings_page_buttons('A');
-  
-
     }
 
+    private void OnDisable()
+    {
+        
+        SettingsIO.SaveSettings(settingsBindings); // Use the instance to call SaveSettings
+      
+    }
 }

@@ -1,30 +1,32 @@
 <ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" editor-extension-mode="False">
     <Style src="project://database/Assets/UI/Settings.uss?fileID=7433441132597879392&amp;guid=27a27ac5718fc22468d9dff8319b226b&amp;type=3#Settings" />
-    <ui:Slider label="Music" value="0.4" high-value="1" name="Music_Volume_slider" low-value="0.0001" focusable="true" picking-mode="Ignore" show-input-field="false" page-size="0" usage-hints="GroupTransform">
-        <Bindings>
-            <ui:DataBinding property="value" data-source-path="MusicVolume" data-source="project://database/Assets/UI/SettingsBindingsSO.asset?fileID=11400000&amp;guid=566d48fb7836c144a9f0810a79e719bc&amp;type=2#SettingsBindingsSO" binding-mode="TwoWay" />
-        </Bindings>
-    </ui:Slider>
-    <ui:Slider label="Sfx" value="0.4" high-value="1" name="Sfx_Volume_slider" low-value="0.0001" focusable="true" picking-mode="Ignore" show-input-field="false" page-size="0" usage-hints="GroupTransform">
-        <Bindings>
-            <ui:DataBinding property="value" data-source-path="SfxVolume" data-source="project://database/Assets/UI/SettingsBindingsSO.asset?fileID=11400000&amp;guid=566d48fb7836c144a9f0810a79e719bc&amp;type=2#SettingsBindingsSO" binding-mode="TwoWay" />
-        </Bindings>
-    </ui:Slider>
-    <ui:Slider label="Dialogue" value="0.4" high-value="1" name="Dialogue_Volume_slider" low-value="0.0001" focusable="true" picking-mode="Ignore" show-input-field="false" page-size="0" usage-hints="GroupTransform">
-        <Bindings>
-            <ui:DataBinding property="value" data-source-path="Dialogue" data-source="project://database/Assets/UI/SettingsBindingsSO.asset?fileID=11400000&amp;guid=566d48fb7836c144a9f0810a79e719bc&amp;type=2#SettingsBindingsSO" binding-mode="TwoWay" />
-        </Bindings>
-    </ui:Slider>
-    <ui:Slider label="Master" value="0.4" high-value="1" name="Master_Volume_slider" low-value="0.0001" focusable="true" picking-mode="Ignore" show-input-field="false" page-size="0" usage-hints="GroupTransform">
-        <Bindings>
-            <ui:DataBinding property="value" data-source-path="Master" data-source="project://database/Assets/UI/SettingsBindingsSO.asset?fileID=11400000&amp;guid=566d48fb7836c144a9f0810a79e719bc&amp;type=2#SettingsBindingsSO" binding-mode="TwoWay" />
-        </Bindings>
-    </ui:Slider>
-    <ui:ToggleButtonGroup label="Subtitles" name="Subtitles_ToggleButtonGroup" value="01">
-        <ui:Button text="OFF" name="Subtitles_Off_Button" />
-        <ui:Button text="ON" name="Subtitles_On_Button" />
-        <Bindings>
-            <ui:DataBinding property="value" data-source-path="SubtitlesToggleState" data-source="project://database/Assets/UI/SettingsBindingsSO.asset?fileID=11400000&amp;guid=566d48fb7836c144a9f0810a79e719bc&amp;type=2#SettingsBindingsSO" binding-mode="TwoWay" />
-        </Bindings>
-    </ui:ToggleButtonGroup>
+    <ui:VisualElement data-source="project://database/Assets/UI/SettingsBindingsSO.asset?fileID=11400000&amp;guid=566d48fb7836c144a9f0810a79e719bc&amp;type=2#SettingsBindingsSO" data-source-path="audioSettings" style="flex-grow: 1;">
+        <ui:Slider label="Master" value="0.4" high-value="20" name="Master_Volume_slider" low-value="-80" focusable="true" picking-mode="Ignore" show-input-field="false" page-size="0" usage-hints="GroupTransform">
+            <Bindings>
+                <ui:DataBinding property="value" data-source-path="Master" binding-mode="TwoWay" />
+            </Bindings>
+        </ui:Slider>
+        <ui:Slider label="Sfx" value="0.4" high-value="20" name="Sfx_Volume_slider" low-value="-80" focusable="true" picking-mode="Ignore" show-input-field="false" page-size="0" usage-hints="GroupTransform">
+            <Bindings>
+                <ui:DataBinding property="value" data-source-path="SfxVolume" binding-mode="TwoWay" />
+            </Bindings>
+        </ui:Slider>
+        <ui:Slider label="Music" value="0.4" high-value="20" name="Music_Volume_slider" low-value="-80" focusable="true" picking-mode="Ignore" show-input-field="false" page-size="0" usage-hints="GroupTransform">
+            <Bindings>
+                <ui:DataBinding property="value" data-source-path="MusicVolume" binding-mode="TwoWay" />
+            </Bindings>
+        </ui:Slider>
+        <ui:Slider label="Dialogue" value="0.4" high-value="20" name="Dialogue_Volume_slider" low-value="-80" focusable="true" picking-mode="Ignore" show-input-field="false" page-size="0" usage-hints="GroupTransform">
+            <Bindings>
+                <ui:DataBinding property="value" data-source-path="Dialogue" binding-mode="TwoWay" />
+            </Bindings>
+        </ui:Slider>
+        <ui:ToggleButtonGroup label="Subtitles" name="Subtitles_ToggleButtonGroup" value="01">
+            <ui:Button text="OFF" name="Subtitles_Off_Button" />
+            <ui:Button text="ON" name="Subtitles_On_Button" />
+            <Bindings>
+                <ui:DataBinding property="value" data-source-path="SubtitlesToggleState" binding-mode="TwoWay" />
+            </Bindings>
+        </ui:ToggleButtonGroup>
+    </ui:VisualElement>
 </ui:UXML>

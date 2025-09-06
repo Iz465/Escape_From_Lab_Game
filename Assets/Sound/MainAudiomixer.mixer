@@ -14,6 +14,22 @@ AudioMixerEffectController:
   m_SendTarget: {fileID: 0}
   m_EnableWetMix: 0
   m_Bypass: 0
+--- !u!244 &-3532359522705476349
+AudioMixerEffectController:
+  m_ObjectHideFlags: 3
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: 
+  m_EffectID: 02057c317a74bdc4f92d6a825d691a2f
+  m_EffectName: Highpass Simple
+  m_MixLevel: 5bcd7574ac2685545a7978cafbb30322
+  m_Parameters:
+  - m_ParameterName: Cutoff freq
+    m_GUID: 8b00dedf9a8c9bb45a1d222607c7ecb2
+  m_SendTarget: {fileID: 0}
+  m_EnableWetMix: 0
+  m_Bypass: 0
 --- !u!244 &-2248690159783943469
 AudioMixerEffectController:
   m_ObjectHideFlags: 3
@@ -73,18 +89,18 @@ AudioMixerController:
   m_Snapshots:
   - {fileID: 24500006}
   m_StartSnapshot: {fileID: 24500006}
-  m_SuspendThreshold: -80
+  m_SuspendThreshold: 0
   m_EnableSuspend: 1
   m_UpdateMode: 0
   m_ExposedParameters:
   - guid: 7b8e3e27f8fc5e74eb67066350e55c33
-    name: MyExposedParam 3
+    name: Volume_Dialogue
   - guid: a78bfda95c2276e48b902d42a6eec816
-    name: MyExposedParam
+    name: Volume_Master
   - guid: 03ec6b9be28e6bc4f9f7f7e0486691b1
-    name: MyExposedParam 2
+    name: Volume_Music
   - guid: 13958c3a301df1e4f9769260877398d6
-    name: MyExposedParam 1
+    name: Volume_SFX
   m_AudioMixerGroupViews:
   - guids:
     - 4c71de4b50cb67644b816006cad247cf

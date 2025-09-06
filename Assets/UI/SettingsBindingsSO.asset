@@ -55,8 +55,8 @@ MonoBehaviour:
       m_Data: 2
       m_Length: 2
   audioSettings:
-    MusicVolume: 0.16147733
-    SfxVolume: 0.273
+    MusicVolume: -37.8
+    SfxVolume: -71.3
     Dialogue: 0.248
     Master: 0.864
     SubtitlesToggleState:

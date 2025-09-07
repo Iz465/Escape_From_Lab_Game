@@ -157,7 +157,7 @@ public class Speed : MonoBehaviour
         Run();
         Dash();
         Phaze();
-        Heal();
-        Regen();
+        //Heal();
+        //Regen();
     }
 }

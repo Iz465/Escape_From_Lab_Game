@@ -59,6 +59,7 @@ public class CharacterSelection : MonoBehaviour
     void FinishSetup(Transform newPlayerModel)
     {
         newPlayerModel.parent = null;
+        newPlayerModel.AddComponent<PlayerInfo>();
         Destroy(GameObject.Find("Camera"));
         gameObject.SetActive(false);
     }

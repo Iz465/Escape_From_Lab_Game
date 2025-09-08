@@ -1,24 +1,22 @@
 using System.Collections;
+using Unity.VisualScripting;
 using UnityEngine;
 
+[ExecuteInEditMode]
 public class Trash : MonoBehaviour
 {
-    Vector3 pos;
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
+    [SerializeField] GameObject tile;
+    private void OnEnable()
     {
-        pos = transform.position;
-    }
-
-
-    private void OnCollisionEnter(Collision collision)
-    {
-        transform.position = pos;
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        transform.GetComponent<Rigidbody>().linearVelocity = new Vector3(0, 0, -25);
+        for (int x = 0; x < 15; x++)
+        {
+            for (int z = 0; z < 200; z++)
+            {
+                GameObject newTile = Instantiate(tile);
+                newTile.transform.parent = GameObject.Find("FallingTiles").transform;
+                newTile.transform.position = transform.position + transform.right * x;
+                newTile.transform.position += transform.forward * z;
+            }
+        }
     }
 }

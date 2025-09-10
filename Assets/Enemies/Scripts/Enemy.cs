@@ -1,22 +1,31 @@
 using UnityEngine;
 
-public class Enemy : MonoBehaviour, IDamageTaken
+public class Enemy : MonoBehaviour
 {
     [SerializeField]
-    protected int health;
+    protected float health;
     [SerializeField]
-    protected int damage;
+    protected float damage;
+
     
 
-    public void takeDamage(int damageTaken)
+    public void TakeDamage(float damageTaken)
     {
-        Debug.Log($"Enemy has been hit! {damageTaken} damage has been dealt");
+
         health -= damageTaken;
         if (health <= 0)
             enemyDeath();
-        Debug.Log($"Enemy has {health} left");
-    }
 
+    }
+    /*void OnCollisionEnter(Collision collision)
+    {
+        print("Collision detected with: " + collision.gameObject.name);
+        Transform otherTransform = collision.transform;
+        if (otherTransform.name.Contains("spike"))
+        {
+            damage -= 10; // Assuming spikes deal 10 damage
+        }
+    }*/
 
     virtual protected void enemyDeath()
     {

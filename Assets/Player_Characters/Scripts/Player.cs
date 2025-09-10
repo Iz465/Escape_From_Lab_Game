@@ -2,16 +2,36 @@ using UnityEngine;
 
 public class Player : MonoBehaviour, IDamageTaken
 {
-    public static int health;
-    public float stamina;
+    [System.Serializable]
+    public struct PlayerStats
+    {
+        public string name;
+        public float health;
+        public float stamina;
+    }
+    public PlayerStats stats;
+    [HideInInspector]
+    public float maxHealth;
+    [HideInInspector]
     public float maxStamina;
 
-   
-    public void takeDamage(int damageTaken) 
+    private void Awake()
     {
-        health -= damageTaken;
-        Debug.Log($"Health = {health}");
-        if (health <= 0)
+        maxHealth = stats.health;
+        maxStamina = stats.stamina;
+    }
+
+    private void Update()
+    {
+        stats.stamina += 5f * Time.deltaTime;
+        stats.stamina = Mathf.Clamp(stats.stamina, 0, maxStamina);
+    }
+
+
+    public void TakeDamage(float damageTaken) 
+    {
+        stats.health -= damageTaken;
+        if (stats.health <= 0)
             playerDeath();
     }
 
@@ -21,5 +41,9 @@ public class Player : MonoBehaviour, IDamageTaken
         Debug.Log("You have died");
     }
 
-    
+    private void OnControllerColliderHit(ControllerColliderHit hit)
+    {
+        Debug.Log($"Controller hit something : {hit.gameObject}");
+    }
+
 }

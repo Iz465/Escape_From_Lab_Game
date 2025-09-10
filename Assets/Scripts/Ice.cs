@@ -8,6 +8,7 @@ public class Ice : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     public float iceSpeed;
     public float walkSpeed;
+    public float characterHeight;
 
     public Transform iceWall;
     public Transform iceSpike;
@@ -45,10 +46,12 @@ public class Ice : MonoBehaviour
         Vector3 direction = movement.direction;
         RaycastHit hitObj;
 
-        if (Physics.Raycast(transform.position, Vector3.down, out hitObj, transform.lossyScale.y / 2 + 1))
+        Debug.DrawRay(transform.position, Vector3.down * (characterHeight / 2 + 1), Color.blue,.1f,false);
+        if (Physics.Raycast(transform.position, Vector3.down, out hitObj, characterHeight / 2 + 1))
         {
             if (hitObj.transform.CompareTag("Ice"))
             {
+                print(direction.magnitude);
                 if (direction.magnitude < 0.1f)
                 {
                     movement.velocity -= movement.velocity.normalized * movement.acceleration * Time.deltaTime;
@@ -57,17 +60,14 @@ public class Ice : MonoBehaviour
                 {
                     movement.velocity += direction * movement.acceleration * Time.deltaTime;
                     movement.velocity = Vector3.ClampMagnitude(movement.velocity, iceSpeed);
+                    print("clamped velocity");
                 }
+                return;
             }
-            else
-            {
-                movement.velocity = direction * Time.deltaTime * walkSpeed;
-            }
+
         }
-        else
-        {
-            movement.velocity = direction * Time.deltaTime * walkSpeed;
-        }
+        
+        movement.velocity = direction * Time.deltaTime * walkSpeed;
 
     }
     void IceWall()
@@ -88,6 +88,12 @@ public class Ice : MonoBehaviour
         for (int i = 5; i <= 15; i += 5)
         {
             Transform newSpike = Instantiate(iceSpike);
+            GameObject spikeBody = newSpike.gameObject;
+            Rigidbody body = spikeBody.AddComponent<Rigidbody>();
+            body.useGravity = false;
+            body.isKinematic = true;
+            spikeBody.AddComponent<BoxCollider>();
+            spikeBody.AddComponent<DamageEnemy>().damageAmount = 10;
             newSpike.position = transform.position - new Vector3(0,newSpike.lossyScale.y,0)+ transform.forward * i;
             transform.parent = null;
 

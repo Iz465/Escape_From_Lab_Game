@@ -28,17 +28,25 @@ public class Move : MonoBehaviour
             direction -= transform.right;
 
         if (useOtherScript)
+        {
             controller.Move(velocity);
+        }
         else
+        {
             controller.Move(direction * walkSpeed * Time.deltaTime);
+        }
     }
     
 
     private void Start()
     {
         //find objects in the scene to remove the need for public variables
-        
-        controller = GetComponent<CharacterController>();
+
+        CharacterController ctrl;
+        if (transform.TryGetComponent<CharacterController>(out ctrl))
+            controller = ctrl;
+        else
+            Debug.LogWarning("No controller found in player");
         Cursor.lockState = CursorLockMode.Locked;
     }
 

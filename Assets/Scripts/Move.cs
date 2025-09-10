@@ -34,7 +34,7 @@ public class Move : MonoBehaviour
         }
         else
         {
-            print("using internal mover");
+    //        print("using internal mover");
             controller.Move(direction * walkSpeed * Time.deltaTime);
         }
     }

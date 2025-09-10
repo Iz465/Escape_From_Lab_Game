@@ -9,7 +9,7 @@ public class Power_Hit_Detection : MonoBehaviour
     protected ICollide iCollide;
     private ObjectPoolManager poolManager;
     protected Enemy enemy;
-
+    
 
     private void Awake()
     {
@@ -21,25 +21,27 @@ public class Power_Hit_Detection : MonoBehaviour
     virtual protected void OnCollisionEnter(Collision collision)
     {
         enemy = collision.gameObject.GetComponent<Enemy>();
-  
-
+        iCollide = GetComponent<ICollide>();
+            
         if (!enemy)
         {
             poolManager.ReleaseToPool(gameObject);
             return;
         }
 
-        else
-            enemy.TakeDamage(power.stats.damage);
-        
-    
-            iCollide = GetComponent<ICollide>();
         if (iCollide != null)
+        {
+            enemy.TakeDamage(power.stats.damage);
             iCollide.CollideResult(collision.collider, gameObject);
+        }
+          
 
-        else
+        if (iCollide == null)
+        {
+            enemy.TakeDamage(power.stats.damage);
             poolManager.ReleaseToPool(gameObject);
-
+        }
+     
     }
 
 }

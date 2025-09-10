@@ -150,9 +150,11 @@ MonoBehaviour:
   health: 100
   damage: 20
   corpse: {fileID: 4936041091994629948, guid: cf6dcf4645f3d57468fc7e436994699f, type: 3}
-  enemyPrefab: {fileID: 11400000, guid: 27b2d9d709958ba4bae42a9aec72ed14, type: 2}
+  enemyPrefab: Blood Assets/BloodEnemy
   player: {fileID: 8685979672057956148, guid: ac03fe04feb792448b456d91d1cb0b47, type: 3}
   controller: {fileID: -5095830852844784899}
   walkSpeed: 2
-  attackRange: 5
+  attackRange: 10
   cooldown: 5
+  power: {fileID: 6238471719548748225, guid: 9600bd1612759c1469ae03decff32ab4, type: 3}
+  speed: 15

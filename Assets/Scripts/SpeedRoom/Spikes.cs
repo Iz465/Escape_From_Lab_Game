@@ -34,17 +34,28 @@ public class Spikes : MonoBehaviour
         }
     }
 
+    void ResetDamage()
+    {
+        for (int i = 0; i < topArray.Count; i++)
+        {
+            topArray[i].GetComponent<SpikeDamage>().damaged = false;
+            bottomArray[i].GetComponent<SpikeDamage>().damaged = false;
+        }
+    }
 
     void MoveTopSpikes()
     {
+        float topPosition = 0;
         if (moveMode)
         {
             if (topArray[0].position.y > bottomY)
             {
-                topArray[0].position -= new Vector3(0, moveSpeed * Time.deltaTime, 0);
+                topPosition = topArray[0].position.y - moveSpeed * Time.deltaTime;
+                topArray[0].Translate(new Vector3(0, -moveSpeed * Time.deltaTime, 0), Space.World);
             }
             else
             {
+                ResetDamage();
                 moveMode = false;
             }
         }
@@ -52,41 +63,31 @@ public class Spikes : MonoBehaviour
         {
             if(topArray[0].position.y < topy)
             {
-                topArray[0].position += new Vector3(0, moveSpeed * Time.deltaTime, 0);
+                topPosition = topArray[0].position.y + moveSpeed * Time.deltaTime;
+                topArray[0].Translate(new Vector3(0, moveSpeed * Time.deltaTime, 0), Space.World);
             }
             else
             {
+                ResetDamage();
                 moveMode = true;
             }
         }
+
         for(int i = 1; i < topArray.Count; i++)
         {
-            topArray[i].position = new Vector3(topArray[i].position.x, topArray[0].position.y, topArray[i].position.z);
+            float direction = topPosition - topArray[i].position.y;
+            topArray[i].Translate(new Vector3(0,direction*Time.deltaTime, 0), Space.World);
         }
     }
 
     void MoveBottomSpikes()
     {
+        float yGoal = topy - topArray[0].position.y;
+
         for (int i = 0; i < bottomArray.Count; i++)
         {
-            Vector3 spikePos = bottomArray[i].position;
-            bottomArray[i].position = new Vector3(spikePos.x, topy - topArray[0].position.y, spikePos.z);
-            /*if (moveMode)
-            {
-                //if (bottomArray[i].position.y < bottomY)
-                //{
-                  //  print("moving 3");
-                    bottomArray[i].position -= new Vector3(0, 50 * Time.deltaTime, 0);
-                //}
-            }
-            else
-            {
-                //if (bottomArray[i].position.y > bottomY)
-                //{
-                  //  print("moving 4");
-                    bottomArray[i].position += new Vector3(0, 50 * Time.deltaTime, 0);
-                //}
-            }*/
+            float direction = yGoal - bottomArray[i].position.y;
+            bottomArray[i].Translate(new Vector3(0, direction*Time.deltaTime, 0),Space.World);
         }
     }
 
@@ -95,14 +96,4 @@ public class Spikes : MonoBehaviour
         MoveTopSpikes();
         MoveBottomSpikes();
     }
-
-    
-    private void OnEnable()
-    {
-        
-        
-    }
-    
-
-    // Update is called once per frame
 }

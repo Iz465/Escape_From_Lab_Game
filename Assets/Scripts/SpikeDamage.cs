@@ -2,19 +2,17 @@ using UnityEngine;
 
 public class SpikeDamage : MonoBehaviour
 {
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
-    {
-        
-    }
+    public bool damaged;
 
     void DamageEnemy(Enemy enemy)
     {
         enemy.takeDamage(20f);
     }
 
-    void DamagePlayer(PlayerData plr)
+    void DamagePlayer(PlayerInfo plr)
     {
+        if (damaged) return;
+        damaged = true;
         plr.health -= 20;
     }
 
@@ -25,9 +23,9 @@ public class SpikeDamage : MonoBehaviour
             DamageEnemy(other.transform.GetComponent<Enemy>());
         }
 
-        if(other.transform.GetComponent<PlayerData>() != null)
+        if(other.transform.GetComponent<PlayerInfo>() != null)
         {
-            DamagePlayer(other.transform.GetComponent<PlayerData>());
+            DamagePlayer(other.transform.GetComponent<PlayerInfo>());
         }
     }
 
@@ -38,14 +36,9 @@ public class SpikeDamage : MonoBehaviour
             DamageEnemy(collision.transform.GetComponent<Enemy>());
         }
 
-        if (collision.transform.GetComponent<PlayerData>() != null)
+        if (collision.transform.GetComponent<PlayerInfo>() != null)
         {
-            DamagePlayer(collision.transform.GetComponent<PlayerData>());
+            DamagePlayer(collision.transform.GetComponent<PlayerInfo>());
         }
-    }
-
-    void Update()
-    {
-        
     }
 }

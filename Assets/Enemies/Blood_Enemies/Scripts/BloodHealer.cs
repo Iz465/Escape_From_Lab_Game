@@ -6,7 +6,7 @@ public class BloodHealer : BloodEnemy
     private Collider[] corpseCount;
     [SerializeField]
     private LayerMask corpseLayer;
-    protected override void Attack()
+    public override void Attack()
     {
         corpseCount = Physics.OverlapSphere(transform.position, 50f, corpseLayer);
         if (corpseCount.Length > 0)

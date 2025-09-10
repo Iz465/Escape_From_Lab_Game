@@ -94,7 +94,7 @@ public class Enemy : MonoBehaviour
         else if (canAttack)
         {
            
-            Attack();
+     //       Attack();
             StartCoroutine(ResetAttack(cooldown));
             canAttack = false;
         }
@@ -103,7 +103,7 @@ public class Enemy : MonoBehaviour
     }
 
     // Implement Unique Attacks for child enemies
-    virtual protected void Attack()
+    virtual public void Attack()
     {
    
     }

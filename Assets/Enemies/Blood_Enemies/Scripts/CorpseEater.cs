@@ -6,7 +6,7 @@ public class CorpseEater : BloodEnemy
     [SerializeField]
     private LayerMask corpseLayer;
     private Collider[] corpseCount;
-    protected override void Attack()
+    public override void Attack()
     {
         
         ConsumeCorpse();

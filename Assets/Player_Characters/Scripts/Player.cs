@@ -46,4 +46,6 @@ public class Player : MonoBehaviour, IDamageTaken
         Debug.Log($"Controller hit something : {hit.gameObject}");
     }
 
+
+
 }

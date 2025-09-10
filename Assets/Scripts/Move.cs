@@ -29,10 +29,12 @@ public class Move : MonoBehaviour
 
         if (useOtherScript)
         {
+            print("using 3rd party mover");
             controller.Move(velocity);
         }
         else
         {
+    //        print("using internal mover");
             controller.Move(direction * walkSpeed * Time.deltaTime);
         }
     }

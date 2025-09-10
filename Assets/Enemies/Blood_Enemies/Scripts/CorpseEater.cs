@@ -1,7 +1,7 @@
 using System.Collections;
 using UnityEngine;
 
-public class CorpseEater : Enemy
+public class CorpseEater : BloodEnemy
 {
     [SerializeField]
     private LayerMask corpseLayer;

@@ -1,7 +1,7 @@
 using System.Collections;
 using UnityEngine;
 
-public class BloodHealer : Enemy
+public class BloodHealer : BloodEnemy
 {
     private Collider[] corpseCount;
     [SerializeField]

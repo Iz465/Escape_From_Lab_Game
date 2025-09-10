@@ -1,6 +1,7 @@
 using NUnit.Framework;
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor.Animations;
 using UnityEngine;
 
 public class Enemy : MonoBehaviour
@@ -8,18 +9,22 @@ public class Enemy : MonoBehaviour
     [SerializeField]
     protected float health;
     [SerializeField]
-    protected float damage;
+    public float damage;
     [SerializeField]
     private GameObject corpse;
 
     public static List<GameObject> deadEnemies = new List<GameObject>();
 
     [SerializeField]
-    private SOEnemy enemyPrefab;
+    private string enemyPrefab;
+
+
 
     private void Start()
     {
         player = GameObject.FindWithTag("Player").transform;
+      
+
     }
 
     public void TakeDamage(float damageTaken)
@@ -46,14 +51,13 @@ public class Enemy : MonoBehaviour
         if (corpse)
         {
             Instantiate(corpse, transform.position, Quaternion.identity);
-            if (enemyPrefab)
-            {
-                Debug.Log($"Prefab : {enemyPrefab.prefab} Added");
-                deadEnemies.Add(enemyPrefab.prefab);
-            }
-
+            
+            GameObject prefab = Resources.Load<GameObject>(enemyPrefab);
+            if (prefab)
+                deadEnemies.Add(prefab);
+           
             else
-                Debug.LogWarning($"Prefab : {enemyPrefab.prefab} Not available");
+                Debug.LogWarning($"Prefab : {enemyPrefab} Not available");
         }
       
         Destroy(gameObject);
@@ -70,14 +74,26 @@ public class Enemy : MonoBehaviour
     protected float cooldown;
     protected bool canAttack = true;
     // Update is called once per frame
+    protected Vector3 direction;
+    [SerializeField]
+
     void Update()
     {
-        Vector3 direction = player.position - transform.position;
+        direction = player.position - transform.position;
+
+  
 
         if (direction.magnitude > attackRange)
-            controller.Move(direction.normalized * walkSpeed * Time.deltaTime);
+        {
+            transform.rotation = Quaternion.LookRotation(direction);
+            if (controller.enabled == true)
+                controller.Move(direction.normalized * walkSpeed * Time.deltaTime);
+      
+        }
+
         else if (canAttack)
         {
+           
             Attack();
             StartCoroutine(ResetAttack(cooldown));
             canAttack = false;

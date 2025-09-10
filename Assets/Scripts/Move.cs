@@ -23,7 +23,8 @@ public class Move : MonoBehaviour
 
     void Fall()
     {
-        if(!Physics.Raycast(transform.position, Vector3.down, height / 2))
+        Debug.DrawRay(transform.position + new Vector3(0,controller.center.y-0.1f,0), Vector3.down * (height / 2));
+        if(!Physics.Raycast(transform.position + new Vector3(0, controller.center.y-0.1f, 0), Vector3.down, height / 2))
         {
             print("floating");
             fallSpeed -= fallAcceleration * Time.deltaTime;
@@ -36,7 +37,7 @@ public class Move : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Space))
         {
             print("pressed space");
-            if(Physics.Raycast(transform.position, Vector3.down, height / 2))
+            if(Physics.Raycast(transform.position + new Vector3(0, controller.center.y - 0.1f, 0), Vector3.down, height / 2))
             {
                 print("standing on object");
                 fallSpeed = jumpStrength;
@@ -84,7 +85,7 @@ public class Move : MonoBehaviour
             Debug.LogWarning("No controller found in player");
         Cursor.lockState = CursorLockMode.Locked;
 
-        height = transform.GetComponent<BoxCollider>().size.y;
+        height = transform.GetComponent<CharacterController>().height;
     }
 
     void Update()

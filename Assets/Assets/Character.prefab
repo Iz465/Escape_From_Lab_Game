@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 8117530052080672064}
   m_Layer: 3
   m_Name: Main Camera
-  m_TagString: MainCamera
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -152,7 +152,7 @@ GameObject:
   - component: {fileID: 2713075886522855013}
   m_Layer: 3
   m_Name: Sphere
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -269,7 +269,7 @@ GameObject:
   - component: {fileID: 6881900984047466210}
   m_Layer: 3
   m_Name: CameraTarget
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -341,21 +341,41 @@ PrefabInstance:
       propertyPath: m_Layer
       value: 3
       objectReference: {fileID: 0}
+    - target: {fileID: -8508461122926741843, guid: 061208e5e13dafb4aaa26f86d9e71634, type: 3}
+      propertyPath: m_TagString
+      value: Player
+      objectReference: {fileID: 0}
     - target: {fileID: -7348555901452710524, guid: 061208e5e13dafb4aaa26f86d9e71634, type: 3}
       propertyPath: m_Layer
       value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: -7348555901452710524, guid: 061208e5e13dafb4aaa26f86d9e71634, type: 3}
+      propertyPath: m_TagString
+      value: Player
       objectReference: {fileID: 0}
     - target: {fileID: -5231025915140057479, guid: 061208e5e13dafb4aaa26f86d9e71634, type: 3}
       propertyPath: m_Layer
       value: 3
       objectReference: {fileID: 0}
+    - target: {fileID: -5231025915140057479, guid: 061208e5e13dafb4aaa26f86d9e71634, type: 3}
+      propertyPath: m_TagString
+      value: Player
+      objectReference: {fileID: 0}
     - target: {fileID: -741832106251744268, guid: 061208e5e13dafb4aaa26f86d9e71634, type: 3}
       propertyPath: m_Layer
       value: 3
       objectReference: {fileID: 0}
+    - target: {fileID: -741832106251744268, guid: 061208e5e13dafb4aaa26f86d9e71634, type: 3}
+      propertyPath: m_TagString
+      value: Player
+      objectReference: {fileID: 0}
     - target: {fileID: -259972160606440404, guid: 061208e5e13dafb4aaa26f86d9e71634, type: 3}
       propertyPath: m_Layer
       value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: -259972160606440404, guid: 061208e5e13dafb4aaa26f86d9e71634, type: 3}
+      propertyPath: m_TagString
+      value: Player
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 061208e5e13dafb4aaa26f86d9e71634, type: 3}
       propertyPath: m_Name
@@ -373,9 +393,17 @@ PrefabInstance:
       propertyPath: m_Layer
       value: 3
       objectReference: {fileID: 0}
+    - target: {fileID: 3257792644167915994, guid: 061208e5e13dafb4aaa26f86d9e71634, type: 3}
+      propertyPath: m_TagString
+      value: Player
+      objectReference: {fileID: 0}
     - target: {fileID: 4147582051511559177, guid: 061208e5e13dafb4aaa26f86d9e71634, type: 3}
       propertyPath: m_Layer
       value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 4147582051511559177, guid: 061208e5e13dafb4aaa26f86d9e71634, type: 3}
+      propertyPath: m_TagString
+      value: Player
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -423,11 +451,11 @@ BoxCollider:
     serializedVersion: 2
     m_Bits: 0
   m_LayerOverridePriority: 0
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 1.6160355, y: 4.6219726, z: 1}
+  m_Size: {x: 1.6160355, y: 5.08, z: 1}
   m_Center: {x: -0.0019874573, y: -0.3722508, z: 0}
 --- !u!114 &576274144564960273
 MonoBehaviour:
@@ -460,6 +488,8 @@ MonoBehaviour:
   velocity: {x: 0, y: 0, z: 0}
   useOtherScript: 0
   walkSpeed: 0
+  fallAcceleration: 5
+  jumpStrength: 1.5
 --- !u!143 &8542792657036889860
 CharacterController:
   m_ObjectHideFlags: 0
@@ -478,13 +508,13 @@ CharacterController:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Height: 2
+  m_Height: 4.48
   m_Radius: 0.5
   m_SlopeLimit: 45
   m_StepOffset: 0.3
   m_SkinWidth: 0.08
   m_MinMoveDistance: 0.001
-  m_Center: {x: 0, y: 0, z: 0}
+  m_Center: {x: 0, y: -0.51, z: 0}
 --- !u!4 &5324372976683105097 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 061208e5e13dafb4aaa26f86d9e71634, type: 3}

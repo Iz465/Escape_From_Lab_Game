@@ -38,8 +38,12 @@ public class Spikes : MonoBehaviour
     {
         for (int i = 0; i < topArray.Count; i++)
         {
-            topArray[i].GetComponent<SpikeDamage>().damaged = false;
-            bottomArray[i].GetComponent<SpikeDamage>().damaged = false;
+            for(int j = 0; j < topArray[i].childCount; j++)
+            {
+                topArray[i].GetChild(j).GetComponent<SpikeDamage>().damaged = false;
+                bottomArray[i].GetChild(j).GetComponent<SpikeDamage>().damaged = false;
+            }
+            
         }
     }
 

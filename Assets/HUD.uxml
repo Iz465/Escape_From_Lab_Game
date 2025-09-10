@@ -1,0 +1,18 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" editor-extension-mode="False">
+    <Style src="project://database/Assets/UI/HUD.uss?fileID=7433441132597879392&amp;guid=be2ebbb08a429cd49a0d75ab7bf2d565&amp;type=3#HUD" />
+    <ui:VisualElement name="VisualElement" data-source="project://database/Assets/UI/Sample_Data_Hud.asset?fileID=11400000&amp;guid=fa03aa8c88629a74e9272513fbe736d0&amp;type=2#Sample_Data_Hud" style="flex-grow: 1; flex-direction: row; flex-basis: auto; align-items: stretch; justify-content: space-between; align-self: flex-start;">
+        <ui:VisualElement name="VisualElement" style="flex-grow: 1; flex-direction: row; flex-basis: auto; align-items: center; justify-content: flex-start; align-self: flex-end; align-content: flex-start;">
+            <ui:Label text="Label" name="Health" style="align-items: auto; align-content: flex-end; text-overflow: ellipsis; align-self: center; -unity-text-align: upper-left;">
+                <Bindings>
+                    <ui:DataBinding property="text" data-source-path="Health" binding-mode="ToTarget" />
+                </Bindings>
+            </ui:Label>
+            <ui:Label text="‎ ‎ ‎ ‎ ‎ ‎ " name="Power_Icon" style="align-items: auto; align-content: flex-end; text-overflow: ellipsis; align-self: center; background-image: url(&quot;project://database/Assets/UI/HUDI_Icons/Teleport.png?fileID=2800000&amp;guid=db52e3616eefe28499db43ca7b75b182&amp;type=3#Teleport&quot;); -unity-background-scale-mode: scale-to-fit; font-size: 133px;" />
+            <ui:Label text="Label" name="Ammo" style="align-items: auto; align-content: flex-end; text-overflow: ellipsis; align-self: center;">
+                <Bindings>
+                    <ui:DataBinding property="text" data-source-path="Ammo" binding-mode="ToTarget" />
+                </Bindings>
+            </ui:Label>
+        </ui:VisualElement>
+    </ui:VisualElement>
+</ui:UXML>

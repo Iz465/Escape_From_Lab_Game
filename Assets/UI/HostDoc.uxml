@@ -1,0 +1,4 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements" editor-extension-mode="False">
+    <ui:Button name="swapButton" text="Swap Template" style="font-size: 100px;" />
+    <ui:VisualElement name="templateRoot" style="height: 100%; width: 100%;" />
+</ui:UXML>

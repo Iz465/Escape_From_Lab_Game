@@ -4,7 +4,7 @@
         <ui:Label text="Escape &#10;The Lab" name="Label" style="white-space: pre-wrap; text-overflow: clip; -unity-background-scale-mode: scale-to-fit; background-size: contain; -unity-font-style: bold-and-italic; -unity-text-align: upper-center; align-self: center; align-items: center; font-size: 256px; transform-origin: center; background-color: rgb(255, 255, 255); padding-top: 0; padding-right: 40px; padding-bottom: 0; padding-left: 40px; top: 25px; border-top-width: 5px; border-right-width: 5px; border-bottom-width: 5px; border-left-width: 5px; border-top-left-radius: 15px; border-top-right-radius: 15px; border-bottom-right-radius: 15px; border-bottom-left-radius: 15px; border-left-color: rgba(0, 0, 0, 0.58); border-right-color: rgba(0, 0, 0, 0.58); border-top-color: rgba(0, 0, 0, 0.58); border-bottom-color: rgba(0, 0, 0, 0.58);" />
         <ui:VisualElement name="Container" class="Menu">
             <ui:Button text="Play Game" name="PlayButton" />
-            <ui:Button text="Settings" name="SettingsButton" />
+            <ui:Button text="Settings" name="SMReturnButton" />
         </ui:VisualElement>
     </ui:VisualElement>
 </ui:UXML>

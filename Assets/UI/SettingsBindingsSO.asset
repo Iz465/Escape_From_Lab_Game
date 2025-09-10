@@ -17,15 +17,15 @@ MonoBehaviour:
     - "1280\xD7720"
     - "1920\xD71080"
     - "2560\xD71440"
-    ResolutionIndex: 2
+    ResolutionIndex: 1
     FullscreenToggleState:
-      m_Data: 2
+      m_Data: 1
       m_Length: 2
     HDRToggleState:
-      m_Data: 2
+      m_Data: 1
       m_Length: 2
     WindowsBorderToggleState:
-      m_Data: 2
+      m_Data: 1
       m_Length: 2
   graphicsSettings:
     QualityToggleState:
@@ -55,10 +55,10 @@ MonoBehaviour:
       m_Data: 2
       m_Length: 2
   audioSettings:
-    MusicVolume: -37.8
-    SfxVolume: -71.3
-    Dialogue: 0.248
-    Master: 0.864
+    MusicVolume: 0.358
+    SfxVolume: 0.377
+    Dialogue: 0.0001
+    Master: 0.184
     SubtitlesToggleState:
       m_Data: 2
       m_Length: 2

@@ -119,6 +119,73 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
+--- !u!1 &244837266
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 244837268}
+  - component: {fileID: 244837267}
+  - component: {fileID: 244837269}
+  m_Layer: 5
+  m_Name: UIDocument_MainMenu
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &244837267
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 244837266}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 19102, guid: 0000000000000000e000000000000000, type: 0}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_PanelSettings: {fileID: 11400000, guid: 6464231ceac48114293278461913078d, type: 2}
+  m_ParentUI: {fileID: 0}
+  sourceAsset: {fileID: 9197481963319205126, guid: c28d613abaefaa649973632cac750ea7, type: 3}
+  m_SortingOrder: 0
+  m_WorldSpaceSizeMode: 1
+  m_WorldSpaceWidth: 1920
+  m_WorldSpaceHeight: 1080
+--- !u!4 &244837268
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 244837266}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &244837269
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 244837266}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fca09d1fe455eb54c87f0a756710c155, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  SettingsMenu_UIDoc: {fileID: 1943686767}
+  settingsBindings: {fileID: 11400000, guid: 566d48fb7836c144a9f0810a79e719bc, type: 2}
+  mainAudioMixer: {fileID: 24100000, guid: 20959e952804140468f952d082e26b36, type: 2}
 --- !u!1 &673361311
 GameObject:
   m_ObjectHideFlags: 0
@@ -717,9 +784,8 @@ GameObject:
   - component: {fileID: 1943686768}
   - component: {fileID: 1943686767}
   - component: {fileID: 1943686770}
-  - component: {fileID: 1943686771}
   m_Layer: 5
-  m_Name: UIDocument
+  m_Name: UIDocument_Settings
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -771,33 +837,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f8dd8bb7f4007be4c9c64cc8c76a0b23, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  mainMenuUIDoc: {fileID: 244837267}
   DefaultTemplate: {fileID: 9197481963319205126, guid: 23a5ea9a2d72af84d894a3afb8293a37, type: 3}
   Template_Settings_Display: {fileID: 9197481963319205126, guid: d271516010548184c9892fdc783f5613, type: 3}
   Template_Settings_Graphics: {fileID: 9197481963319205126, guid: ee8e78dcc22fc6843985c53232b79eb6, type: 3}
   Template_Settings_Controls: {fileID: 9197481963319205126, guid: 093d5d9df17b5054a88aa29c31656f50, type: 3}
   Template_Settings_Audio: {fileID: 9197481963319205126, guid: b93bc70acae55f04d89c7c2e74187ee4, type: 3}
-  settingsBindings: {fileID: 11400000, guid: 566d48fb7836c144a9f0810a79e719bc, type: 2}
---- !u!114 &1943686771
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1943686766}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c1db5375e5c9d6e4b98fa5d00cd51774, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  audioSettings:
-    MusicVolume: 0
-    SfxVolume: 0
-    Dialogue: 0
-    Master: 0
-    SubtitlesToggleState:
-      m_Data: 0
-      m_Length: 0
   mainAudioMixer: {fileID: 24100000, guid: 20959e952804140468f952d082e26b36, type: 2}
+  settingsBindings: {fileID: 11400000, guid: 566d48fb7836c144a9f0810a79e719bc, type: 2}
 --- !u!1 &2033309895
 GameObject:
   m_ObjectHideFlags: 0
@@ -897,6 +944,7 @@ SceneRoots:
   - {fileID: 2033309898}
   - {fileID: 673361313}
   - {fileID: 1474853721}
+  - {fileID: 244837268}
   - {fileID: 1943686768}
   - {fileID: 1936615797}
   - {fileID: 755151595}

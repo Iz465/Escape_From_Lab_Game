@@ -8,8 +8,7 @@ public class Speed : MonoBehaviour
     PlayerInfo playerInfo;
     Transform cam;
 
-    public 
-    float normalWalk,normalRun, highSpeedWalk, highSpeedRun, dashSpeed, dashDuration;
+    public float normalWalk,normalRun, highSpeedWalk, highSpeedRun, dashSpeed, dashDuration;
     public float normalRunCost, highSpeedRunCost, dashCost, phazeCost;
     public float regenRate;
     public float highSpeedModeScale, highSpeedModeCost;
@@ -36,17 +35,22 @@ public class Speed : MonoBehaviour
     void Run()
     {
         movement.velocity = movement.direction * Time.deltaTime;
+        Vector3 vel = movement.velocity;
+
         if (Input.GetKey(KeyCode.LeftShift))
         {
             if (!highSpeedMode)
             {
                 playerInfo.stamina -= normalRunCost * Time.deltaTime;
-                movement.velocity *= normalRun;
+                vel.x *= normalRun;
+                vel.z *= normalRun;
             }
             else
             {
                 playerInfo.stamina -= (highSpeedRunCost + highSpeedModeCost) * Time.deltaTime;
-                movement.velocity *= highSpeedRun;
+                //movement.velocity *= highSpeedRun;
+                vel.x *= highSpeedRun;
+                vel.z *= highSpeedRun;
             }
             lastPowerUsage = Time.time;
         }
@@ -54,15 +58,21 @@ public class Speed : MonoBehaviour
         {
             if (!highSpeedMode)
             {
-                movement.velocity *= normalWalk;
+                //movement.velocity *= normalWalk;
+                vel.x *= normalWalk;
+                vel.z *= normalWalk;
             }
             else
             {
                 playerInfo.stamina -= highSpeedModeCost * Time.deltaTime;
                 lastPowerUsage = Time.time;
-                movement.velocity *= highSpeedWalk;
+                //movement.velocity *= highSpeedWalk;
+                vel.x *= highSpeedWalk;
+                vel.z *= highSpeedWalk;
             }
         }
+
+        movement.velocity = vel;
 
         //staminaText.text = playerInfo.stamina.ToString()+" stamina";
 

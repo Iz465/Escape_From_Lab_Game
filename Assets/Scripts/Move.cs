@@ -14,8 +14,41 @@ public class Move : MonoBehaviour
     [Header("Edit if character dont have powers that influence speed")]
     public float walkSpeed;
 
+    //fall/just parameters
+    float fallSpeed = 0;
+    public float fallAcceleration = 5;
+    public float jumpStrength = 1.5f;
+
+    float height;
+
+    void Fall()
+    {
+        Debug.DrawRay(transform.position + new Vector3(0,controller.center.y-0.1f,0), Vector3.down * (height / 2));
+        if(!Physics.Raycast(transform.position + new Vector3(0, controller.center.y-0.1f, 0), Vector3.down, height / 2))
+        {
+            print("floating");
+            fallSpeed -= fallAcceleration * Time.deltaTime;
+            fallSpeed = Mathf.Clamp(fallSpeed, -50, 10);
+        }
+    }
+
+    void Jump()
+    {
+        if (Input.GetKeyDown(KeyCode.Space))
+        {
+            print("pressed space");
+            if(Physics.Raycast(transform.position + new Vector3(0, controller.center.y - 0.1f, 0), Vector3.down, height / 2))
+            {
+                print("standing on object");
+                fallSpeed = jumpStrength;
+            }
+        }
+    }
     public void Walk()
     {
+        Jump();
+        Fall();
+
         direction = new Vector3();
         if (Input.GetKey(KeyCode.W))
             direction += transform.forward;
@@ -27,8 +60,11 @@ public class Move : MonoBehaviour
         if (Input.GetKey(KeyCode.A))
             direction -= transform.right;
 
+        direction.y += fallSpeed;
+
         if (useOtherScript)
         {
+            velocity.y += fallSpeed * Time.deltaTime;
             controller.Move(velocity);
         }
         else
@@ -48,6 +84,8 @@ public class Move : MonoBehaviour
         else
             Debug.LogWarning("No controller found in player");
         Cursor.lockState = CursorLockMode.Locked;
+
+        height = transform.GetComponent<CharacterController>().height;
     }
 
     void Update()

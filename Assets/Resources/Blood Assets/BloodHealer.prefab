@@ -1,58 +1,5 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1 &823275485032358607
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 527897360556037492}
-  - component: {fileID: 4862521902792386641}
-  m_Layer: 7
-  m_Name: MeleeBox
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &527897360556037492
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 823275485032358607}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: -0.0051, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 7417270410273149054}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!65 &4862521902792386641
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 823275485032358607}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 896
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 1
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Size: {x: 0.016960261, y: 0.056444995, z: 0.015272432}
-  m_Center: {x: 0.000000014938356, y: 0.01491557, z: -0.00095770194}
 --- !u!1 &6533568301510874772
 GameObject:
   m_ObjectHideFlags: 0
@@ -110,15 +57,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 955fa8d74deb1aa42a89eb634ed0c8f1, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 37.1593
+      value: 46.26
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 955fa8d74deb1aa42a89eb634ed0c8f1, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.18401718
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 955fa8d74deb1aa42a89eb634ed0c8f1, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0.1228466
+      value: 11.54
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 955fa8d74deb1aa42a89eb634ed0c8f1, type: 3}
       propertyPath: m_LocalRotation.w
@@ -196,6 +143,18 @@ PrefabInstance:
       propertyPath: m_Layer
       value: 7
       objectReference: {fileID: 0}
+    - target: {fileID: -3980780951373865430, guid: 955fa8d74deb1aa42a89eb634ed0c8f1, type: 3}
+      propertyPath: 'm_Materials.Array.data[1]'
+      value: 
+      objectReference: {fileID: -8811324377359469424, guid: 955fa8d74deb1aa42a89eb634ed0c8f1, type: 3}
+    - target: {fileID: -3980780951373865430, guid: 955fa8d74deb1aa42a89eb634ed0c8f1, type: 3}
+      propertyPath: 'm_Materials.Array.data[2]'
+      value: 
+      objectReference: {fileID: -6478536213147159724, guid: 3963fc83db57f77479811ddc6d4dcb55, type: 3}
+    - target: {fileID: -3980780951373865430, guid: 955fa8d74deb1aa42a89eb634ed0c8f1, type: 3}
+      propertyPath: 'm_Materials.Array.data[3]'
+      value: 
+      objectReference: {fileID: 897041775524431196, guid: 955fa8d74deb1aa42a89eb634ed0c8f1, type: 3}
     - target: {fileID: -3799395697873186154, guid: 955fa8d74deb1aa42a89eb634ed0c8f1, type: 3}
       propertyPath: m_Layer
       value: 7
@@ -250,7 +209,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 955fa8d74deb1aa42a89eb634ed0c8f1, type: 3}
       propertyPath: m_Name
-      value: Evil Wizard
+      value: BloodHealer
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 955fa8d74deb1aa42a89eb634ed0c8f1, type: 3}
       propertyPath: m_Layer
@@ -315,7 +274,7 @@ PrefabInstance:
     - target: {fileID: 5866666021909216657, guid: 955fa8d74deb1aa42a89eb634ed0c8f1, type: 3}
       propertyPath: m_Controller
       value: 
-      objectReference: {fileID: 9100000, guid: 5b2d273f857b0de468b1ac0154a2cd0e, type: 2}
+      objectReference: {fileID: 9100000, guid: 445fffc64fd04574881a8b5041966e11, type: 2}
     - target: {fileID: 5866666021909216657, guid: 955fa8d74deb1aa42a89eb634ed0c8f1, type: 3}
       propertyPath: m_ApplyRootMotion
       value: 0
@@ -339,9 +298,6 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects:
-    - targetCorrespondingSourceObject: {fileID: 6502182839619065283, guid: 955fa8d74deb1aa42a89eb634ed0c8f1, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 527897360556037492}
     - targetCorrespondingSourceObject: {fileID: 1852576806548013000, guid: 955fa8d74deb1aa42a89eb634ed0c8f1, type: 3}
       insertIndex: -1
       addedObject: {fileID: 2405388752199314152}
@@ -351,13 +307,13 @@ PrefabInstance:
       addedObject: {fileID: 4320608544420388736}
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 955fa8d74deb1aa42a89eb634ed0c8f1, type: 3}
       insertIndex: -1
-      addedObject: {fileID: 5615487812961025621}
-    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 955fa8d74deb1aa42a89eb634ed0c8f1, type: 3}
-      insertIndex: -1
       addedObject: {fileID: -353530974294157111}
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 955fa8d74deb1aa42a89eb634ed0c8f1, type: 3}
       insertIndex: -1
       addedObject: {fileID: 4682741289837931134}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 955fa8d74deb1aa42a89eb634ed0c8f1, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 4585605646633631884}
   m_SourcePrefab: {fileID: 100100000, guid: 955fa8d74deb1aa42a89eb634ed0c8f1, type: 3}
 --- !u!4 &2695044004429544053 stripped
 Transform:
@@ -382,7 +338,7 @@ CharacterController:
     m_Bits: 0
   m_ExcludeLayers:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 256
   m_LayerOverridePriority: 0
   m_ProvidesContacts: 0
   m_Enabled: 1
@@ -394,28 +350,6 @@ CharacterController:
   m_SkinWidth: 0.08
   m_MinMoveDistance: 0.001
   m_Center: {x: 0, y: 0.085, z: 0}
---- !u!114 &5615487812961025621
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3463968663809784044}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8dee01f764c90404c969807c1da06d6f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  health: 100
-  roamRadius: 30
-  roamDelay: 10
-  attackRange: 10
-  corpse: {fileID: 4936041091994629948, guid: cf6dcf4645f3d57468fc7e436994699f, type: 3}
-  enemyPrefab: Blood Assets/Evil Wizard
-  power: {fileID: 6238471719548748225, guid: 9600bd1612759c1469ae03decff32ab4, type: 3}
-  speed: 20
-  aimLoc: {fileID: 2405388752199314152}
-  meleeBox: {fileID: 4862521902792386641}
 --- !u!64 &-353530974294157111
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -460,8 +394,24 @@ NavMeshAgent:
   m_BaseOffset: 0
   m_WalkableMask: 4294967295
   m_ObstacleAvoidanceType: 4
---- !u!4 &7417270410273149054 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 6502182839619065283, guid: 955fa8d74deb1aa42a89eb634ed0c8f1, type: 3}
-  m_PrefabInstance: {fileID: 4382869902503593405}
+--- !u!114 &4585605646633631884
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3463968663809784044}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a1c1a4c7ca9a7d246a18908a7c88e33a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  health: 500
+  roamRadius: 30
+  roamDelay: 10
+  attackRange: 40
+  corpse: {fileID: 4936041091994629948, guid: cf6dcf4645f3d57468fc7e436994699f, type: 3}
+  enemyPrefab: Blood Assets/BloodHealer
+  corpseLayer:
+    serializedVersion: 2
+    m_Bits: 0

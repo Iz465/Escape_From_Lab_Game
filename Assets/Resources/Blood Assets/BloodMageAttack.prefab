@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: -1174776146538612963}
   - component: {fileID: 1467703969382719796}
   - component: {fileID: 432721525218911689}
-  m_Layer: 7
+  m_Layer: 0
   m_Name: BloodMageAttack
   m_TagString: Untagged
   m_Icon: {fileID: 0}

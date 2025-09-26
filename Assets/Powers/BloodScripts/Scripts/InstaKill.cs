@@ -56,7 +56,6 @@ public class InstaKill : BasePower, ICollide
             
         }
 
-
         if (!target)
         {
             foreach (var enemy in enemyHit)

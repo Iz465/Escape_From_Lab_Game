@@ -1,12 +1,12 @@
 using System.Collections;
 using UnityEngine;
 
-public class CorpseEater : BloodEnemy
+public class CorpseEater : navmeshtestscript
 {
     [SerializeField]
     private LayerMask corpseLayer;
     private Collider[] corpseCount;
-    public override void Attack()
+    protected override void Attack()
     {
         
         ConsumeCorpse();

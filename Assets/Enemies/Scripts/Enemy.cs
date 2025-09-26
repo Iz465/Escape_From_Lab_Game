@@ -23,7 +23,7 @@ public class Enemy : MonoBehaviour
     private void Start()
     {
         player = GameObject.FindWithTag("Player").transform;
-      
+     
 
     }
 
@@ -79,13 +79,12 @@ public class Enemy : MonoBehaviour
 
     void Update()
     {
+        
         direction = player.position - transform.position;
 
-  
 
         if (direction.magnitude > attackRange)
         {
-            transform.rotation = Quaternion.LookRotation(direction);
             if (controller.enabled == true)
                 controller.Move(direction.normalized * walkSpeed * Time.deltaTime);
       
@@ -93,7 +92,7 @@ public class Enemy : MonoBehaviour
 
         else if (canAttack)
         {
-           
+        
      //       Attack();
             StartCoroutine(ResetAttack(cooldown));
             canAttack = false;
@@ -109,10 +108,11 @@ public class Enemy : MonoBehaviour
     }
 
 
-    protected IEnumerator ResetAttack(float time)
+    virtual public IEnumerator ResetAttack(float time)
     {
         yield return new WaitForSeconds(time);
         canAttack = true;
+      
     }
 
     

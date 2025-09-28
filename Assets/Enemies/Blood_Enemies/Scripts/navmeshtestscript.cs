@@ -23,7 +23,7 @@ public class navmeshtestscript : MonoBehaviour
     protected Animator animator;
     protected CharacterController controller;
     private float timer = 0f;
-    protected bool canAttack = true;
+    public bool canAttack = true;
     protected float distanceToPlayer;
     public static List<GameObject> deadEnemies = new List<GameObject>();
 
@@ -121,8 +121,22 @@ public class navmeshtestscript : MonoBehaviour
 
         if (corpse)
         {
-            Debug.Log("spawn");
-            Instantiate(corpse, transform.position, Quaternion.identity);
+      
+            GameObject ragdoll = Instantiate(corpse, transform.position, Quaternion.identity);
+            Vector3 hitDirection = (ragdoll.transform.position - player.transform.position).normalized;
+            Rigidbody[] rb = ragdoll.GetComponentsInChildren<Rigidbody>();
+   //         Debug.Log($" RB LENGTH : {rb.Length}");
+
+    
+
+            foreach (Rigidbody rigid in rb)
+            {
+                Debug.Log("Force added");
+                Debug.Log(rigid.isKinematic);
+                rigid.AddForce(hitDirection * 15, ForceMode.VelocityChange);
+            }
+             
+        
 
             GameObject prefab = Resources.Load<GameObject>(enemyPrefab);
             if (prefab)
@@ -134,6 +148,7 @@ public class navmeshtestscript : MonoBehaviour
 
         Destroy(gameObject);
     }
+
 
 
 }

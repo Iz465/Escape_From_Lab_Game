@@ -46,7 +46,7 @@ public class BasePower : MonoBehaviour
 
     private void Start()
     {
-        poolManager = FindFirstObjectByType<ObjectPoolManager>();
+   //     poolManager = FindFirstObjectByType<ObjectPoolManager>();
     
     }
 
@@ -89,6 +89,7 @@ public class BasePower : MonoBehaviour
             Debug.LogWarning("Camera Not Found");
             return false;
         }
+        poolManager = FindFirstObjectByType<ObjectPoolManager>(); // temporary
         if (!poolManager) Debug.LogWarning("no pool");
         powerInstance = poolManager.SpawnFromPool(stats.prefab, boxAim.position, Quaternion.LookRotation(cam.transform.forward));
 

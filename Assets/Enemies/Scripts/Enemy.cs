@@ -48,17 +48,6 @@ public class Enemy : MonoBehaviour
     virtual protected void EnemyDeath()
     {
     
-        if (corpse)
-        {
-            Instantiate(corpse, transform.position, Quaternion.identity);
-            
-            GameObject prefab = Resources.Load<GameObject>(enemyPrefab);
-            if (prefab)
-                deadEnemies.Add(prefab);
-           
-            else
-                Debug.LogWarning($"Prefab : {enemyPrefab} Not available");
-        }
       
         Destroy(gameObject);
     }

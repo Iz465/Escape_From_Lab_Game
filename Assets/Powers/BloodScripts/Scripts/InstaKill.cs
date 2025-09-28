@@ -12,6 +12,7 @@ public class InstaKill : BasePower, ICollide
     private LayerMask enemyLayer;
     private Collider[] enemyDetected;
     private Collider powerCollider;
+    Animator animator;
 
     private List<GameObject> enemyHit = new List<GameObject>();
 
@@ -21,8 +22,20 @@ public class InstaKill : BasePower, ICollide
         powerCollider = GetComponent<Collider>();
     }
 
+    private void Start()
+    {
+        animator = GetComponentInChildren<Animator>();
+    }
 
-    
+    public override void Attack(InputAction.CallbackContext context)
+    {
+        base.Attack(context);
+        if (animator)
+            animator.SetBool("InstaKill", true);
+    }
+
+
+
     protected override bool UseStamina()
     {
 
@@ -62,12 +75,12 @@ public class InstaKill : BasePower, ICollide
                 if (enemy)
                     Physics.IgnoreCollision(objectHit, powerCollider, false);
             enemyHit.Clear();
+            poolManager = FindFirstObjectByType<ObjectPoolManager>(); // temporary. 
             poolManager.ReleaseToPool(gameObject);
             return;
         }
 
-      
-        Vector3 direction = (target.transform.position - power.transform.position).normalized;
+        Vector3 direction = (target.bounds.center - power.transform.position).normalized;
  
 
         Physics.IgnoreCollision(powerCollider, objectHit);

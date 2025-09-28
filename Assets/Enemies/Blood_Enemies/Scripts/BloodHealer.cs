@@ -1,15 +1,24 @@
 using System.Collections;
+using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 public class BloodHealer : BloodEnemy
 {
     private Collider[] corpseCount;
     [SerializeField] private LayerMask corpseLayer;
+    private HashSet<GameObject> uniqueCorpse = new HashSet<GameObject>();
     protected override void Attack()
     {
         corpseCount = Physics.OverlapSphere(transform.position, 50f, corpseLayer);
-      
-        if (corpseCount.Length > 0)
+
+        foreach (Collider collider in corpseCount)
+        {
+            GameObject corpse = collider.transform.root.gameObject;
+            uniqueCorpse.Add(corpse);
+        }
+
+        if (uniqueCorpse.Count > 0)
         {
             Debug.Log("Resurrecting Enemies");
             Resurrect();
@@ -19,21 +28,15 @@ public class BloodHealer : BloodEnemy
             Debug.Log("Nothing To Resurrect");
     }
 
-    private void OnDrawGizmosSelected()
-    {
-        Gizmos.color = Color.red;
-        Gizmos.DrawWireSphere(transform.position, 50f);
-    }
-
     private void Resurrect()
     {
-        for (int i = 0; i < corpseCount.Length; i++)
+        foreach (GameObject corpse in uniqueCorpse)
         {
-            Instantiate(navmeshtestscript.deadEnemies[i], corpseCount[i].transform.position, transform.rotation);
-            Destroy(corpseCount[i].gameObject);
+            Instantiate(navmeshtestscript.deadEnemies[0], corpse.transform.position, transform.rotation);
+            Destroy(corpse);
         }
-        Enemy.deadEnemies.Clear();
- 
+        navmeshtestscript.deadEnemies.Clear();
+      
     }
 
 
@@ -41,13 +44,7 @@ public class BloodHealer : BloodEnemy
     {
         yield return new WaitForSeconds(time);
         animator.SetBool("CanAttack", false);
-
-     
-
-
-       
         StartCoroutine(ResetAttack(20f));
-
 
     }
 
@@ -58,6 +55,10 @@ public class BloodHealer : BloodEnemy
       
     }
 
-
+    private void OnDrawGizmosSelected()
+    {
+        Gizmos.color = Color.red;
+        Gizmos.DrawWireSphere(transform.position, 50f);
+    }
 
 }

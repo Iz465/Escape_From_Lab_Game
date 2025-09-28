@@ -21,7 +21,7 @@ public class Player : MonoBehaviour, IDamageTaken
         maxStamina = stats.stamina;
     }
 
-    private void Update()
+    virtual protected void Update()
     {
         stats.stamina += 5f * Time.deltaTime;
         stats.stamina = Mathf.Clamp(stats.stamina, 0, maxStamina);
@@ -45,5 +45,7 @@ public class Player : MonoBehaviour, IDamageTaken
     {
         Debug.Log($"Controller hit something : {hit.gameObject}");
     }
+
+
 
 }

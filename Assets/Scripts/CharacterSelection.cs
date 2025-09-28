@@ -1,5 +1,7 @@
 using Unity.VisualScripting;
+using UnityEditor.SearchService;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class CharacterSelection : MonoBehaviour
@@ -10,6 +12,7 @@ public class CharacterSelection : MonoBehaviour
     {
         transform.Find("Speed").GetComponent<Button>().onClick.AddListener(Speed);
         transform.Find("Ice").GetComponent<Button>().onClick.AddListener(Ice);
+        transform.Find("Blood").GetComponent<Button>().onClick.AddListener(Blood);
     }
 
 
@@ -54,6 +57,11 @@ public class CharacterSelection : MonoBehaviour
 
         newPlayerModel.GetComponent<Move>().useOtherScript = true;
         FinishSetup(newPlayerModel);
+    }
+
+    void Blood()
+    {
+        SceneManager.LoadScene(1); 
     }
 
     void FinishSetup(Transform newPlayerModel)

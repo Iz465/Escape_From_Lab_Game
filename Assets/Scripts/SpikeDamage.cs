@@ -6,7 +6,7 @@ public class SpikeDamage : MonoBehaviour
 
     void DamageEnemy(Enemy enemy)
     {
-        enemy.takeDamage(20f);
+        enemy.TakeDamage(20f);
     }
 
     void DamagePlayer(PlayerInfo plr)

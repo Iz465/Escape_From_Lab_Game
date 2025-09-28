@@ -1,3 +1,7 @@
+using NUnit.Framework;
+using System.Collections;
+using System.Collections.Generic;
+using UnityEditor.Animations;
 using UnityEngine;
 
 public class Enemy : MonoBehaviour
@@ -5,16 +9,30 @@ public class Enemy : MonoBehaviour
     [SerializeField]
     protected float health;
     [SerializeField]
-    protected float damage;
+    public float damage;
+    [SerializeField]
+    private GameObject corpse;
 
-    
+    public static List<GameObject> deadEnemies = new List<GameObject>();
+
+    [SerializeField]
+    private string enemyPrefab;
+
+
+
+    private void Start()
+    {
+        player = GameObject.FindWithTag("Player").transform;
+     
+
+    }
 
     public void TakeDamage(float damageTaken)
     {
 
         health -= damageTaken;
         if (health <= 0)
-            enemyDeath();
+            EnemyDeath();
 
     }
     /*void OnCollisionEnter(Collision collision)
@@ -27,18 +45,65 @@ public class Enemy : MonoBehaviour
         }
     }*/
 
-    virtual protected void enemyDeath()
+    virtual protected void EnemyDeath()
     {
+    
+      
         Destroy(gameObject);
     }
+
+
+
     public Transform player;
     public CharacterController controller;
     public float walkSpeed;
+    [SerializeField]
+    protected float attackRange;
+    [SerializeField]
+    protected float cooldown;
+    protected bool canAttack = true;
     // Update is called once per frame
+    protected Vector3 direction;
+    [SerializeField]
+
     void Update()
     {
-        Vector3 direction = player.position - transform.position;
+        
+        direction = player.position - transform.position;
 
-        controller.Move(direction.normalized * walkSpeed * Time.deltaTime);
+
+        if (direction.magnitude > attackRange)
+        {
+            if (controller.enabled == true)
+                controller.Move(direction.normalized * walkSpeed * Time.deltaTime);
+      
+        }
+
+        else if (canAttack)
+        {
+        
+     //       Attack();
+            StartCoroutine(ResetAttack(cooldown));
+            canAttack = false;
+        }
+     
+
     }
+
+    // Implement Unique Attacks for child enemies
+    virtual public void Attack()
+    {
+   
+    }
+
+
+    virtual public IEnumerator ResetAttack(float time)
+    {
+        yield return new WaitForSeconds(time);
+        canAttack = true;
+      
+    }
+
+    
+
 }

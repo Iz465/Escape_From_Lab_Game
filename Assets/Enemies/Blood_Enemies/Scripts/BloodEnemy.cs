@@ -1,10 +1,6 @@
 using UnityEngine;
 
-public class BloodEnemy : Enemy
+public class BloodEnemy : navmeshtestscript
 {
-
-
-
     
-
 }

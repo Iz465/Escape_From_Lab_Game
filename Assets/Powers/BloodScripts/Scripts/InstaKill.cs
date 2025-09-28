@@ -24,7 +24,7 @@ public class InstaKill : BasePower, ICollide
 
     private void Start()
     {
-        animator = GetComponentInChildren<Animator>();
+        animator = GetComponent<Animator>();
     }
 
     public override void Attack(InputAction.CallbackContext context)
@@ -90,4 +90,8 @@ public class InstaKill : BasePower, ICollide
       
     }
 
+    private void ResetAnim()
+    {
+        animator.SetBool("InstaKill", false);
+    }
 }

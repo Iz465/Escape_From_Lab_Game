@@ -302,6 +302,11 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!20 &446123956 stripped
+Camera:
+  m_CorrespondingSourceObject: {fileID: 3903964391775887633, guid: 86c5a7ad85c47fa4e8f0aec2fa00bc76, type: 3}
+  m_PrefabInstance: {fileID: 1289176123}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &448050820
 GameObject:
   m_ObjectHideFlags: 0
@@ -610,6 +615,11 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!4 &550851553 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 4142715037925659057, guid: 86c5a7ad85c47fa4e8f0aec2fa00bc76, type: 3}
+  m_PrefabInstance: {fileID: 1289176123}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &783429099
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1084,6 +1094,97 @@ RectTransform:
   m_AnchoredPosition: {x: 99, y: 24}
   m_SizeDelta: {x: 160, y: 30}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!1 &1225703030 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1693581653088352625, guid: 86c5a7ad85c47fa4e8f0aec2fa00bc76, type: 3}
+  m_PrefabInstance: {fileID: 1289176123}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1225703033
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1225703030}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 62899f850307741f2a39c98a8b639597, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Actions: {fileID: -944628639613478452, guid: c679da301a6037042920dd6ca6256862, type: 3}
+  m_NotificationBehavior: 2
+  m_UIInputModule: {fileID: 0}
+  m_DeviceLostEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  m_DeviceRegainedEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  m_ControlsChangedEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  m_ActionEvents:
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: fcc914e3-a976-4b98-8a7b-767a8a0cf13f
+    m_ActionName: 'Blood_Player/Blood_Leech[/Keyboard/1]'
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: af60cbd6-caa2-4e56-9b06-1f8426050c58
+    m_ActionName: 'Blood_Player/Throw_Blood[/Keyboard/2]'
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1225703034}
+        m_TargetAssemblyTypeName: InstaKill, Assembly-CSharp
+        m_MethodName: Attack
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: 81b6c79b-da5d-4d2f-9e29-edf51c6d13c4
+    m_ActionName: 'Blood_Player/Insta_Kill[/Keyboard/3]'
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 9b40b8d2-6da5-4421-922b-0fedcc48df7a
+    m_ActionName: 'Blood_Player/Rage_Mode[/Keyboard/4]'
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 2b22194e-8d37-49da-8a5a-e92e39e7cd22
+    m_ActionName: Warrior_Player/New action
+  m_NeverAutoSwitchControlSchemes: 0
+  m_DefaultControlScheme: 
+  m_DefaultActionMap: Blood_Player
+  m_SplitScreenIndex: -1
+  m_Camera: {fileID: 0}
+--- !u!114 &1225703034
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1225703030}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7cafe7cea9e54354abcde67a6c1c6946, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  player: {fileID: 1350280999}
+  boxAim: {fileID: 550851553}
+  cam: {fileID: 446123956}
+  stats:
+    prefab: {fileID: 6238471719548748225, guid: bde3e606eb56e5b408b620be76526047, type: 3}
+    damage: 20
+    speed: 60
+    stamina: 40
+  powerType: 0
+  enemyLayer:
+    serializedVersion: 2
+    m_Bits: 128
 --- !u!1001 &1289176123
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1092,6 +1193,14 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 256767599899347802, guid: 86c5a7ad85c47fa4e8f0aec2fa00bc76, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2614924736524293519, guid: 86c5a7ad85c47fa4e8f0aec2fa00bc76, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4760173679925032191, guid: 86c5a7ad85c47fa4e8f0aec2fa00bc76, type: 3}
       propertyPath: m_LocalPosition.x
       value: 33.554424
@@ -1140,11 +1249,32 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 5344422498383346097, guid: 86c5a7ad85c47fa4e8f0aec2fa00bc76, type: 3}
+      propertyPath: m_ApplyRootMotion
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 1693581653088352625, guid: 86c5a7ad85c47fa4e8f0aec2fa00bc76, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1225703034}
+    - targetCorrespondingSourceObject: {fileID: 1693581653088352625, guid: 86c5a7ad85c47fa4e8f0aec2fa00bc76, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1225703033}
   m_SourcePrefab: {fileID: 100100000, guid: 86c5a7ad85c47fa4e8f0aec2fa00bc76, type: 3}
+--- !u!114 &1350280999 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: -8182214750323311212, guid: 86c5a7ad85c47fa4e8f0aec2fa00bc76, type: 3}
+  m_PrefabInstance: {fileID: 1289176123}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ec65f06f9e238cf468c88dc5f314d2b0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1744317718
 GameObject:
   m_ObjectHideFlags: 0

@@ -145,6 +145,8 @@ MonoBehaviour:
   velocity: {x: 0, y: 0, z: 0}
   useOtherScript: 0
   walkSpeed: 5
+  fallAcceleration: 5
+  jumpStrength: 1.5
 --- !u!114 &-3322194195255502517
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -172,7 +174,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   stats:
-    name: 
+    name: Kael Draven
     health: 100
     stamina: 100
   maxHealth: 0

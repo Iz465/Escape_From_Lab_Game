@@ -1714,7 +1714,7 @@ GameObject:
   - component: {fileID: 1085025775}
   - component: {fileID: 1085025774}
   m_Layer: 0
-  m_Name: IceRoom
+  m_Name: SpeedRoom2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1732,7 +1732,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 02a75f9cbb6da274b8d5c9f67c3be2ac, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  sceneIndex: 2
+  sceneIndex: 3
 --- !u!65 &1085025775
 BoxCollider:
   m_ObjectHideFlags: 0

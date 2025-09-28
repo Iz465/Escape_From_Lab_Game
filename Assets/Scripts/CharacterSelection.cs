@@ -59,7 +59,12 @@ public class CharacterSelection : MonoBehaviour
     void FinishSetup(Transform newPlayerModel)
     {
         newPlayerModel.parent = null;
-        newPlayerModel.AddComponent<PlayerInfo>();
+        PlayerInfo info = newPlayerModel.AddComponent<PlayerInfo>();
+
+        info.health = 100;
+        info.stamina = 100;
+        info.maxHealth = 100;
+
         Destroy(GameObject.Find("Camera"));
         gameObject.SetActive(false);
     }

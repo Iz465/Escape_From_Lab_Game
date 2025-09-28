@@ -16,7 +16,10 @@ public class PlayerSpawner : MonoBehaviour
         {
             yield return null;
         }
-        Destroy(GameObject.Find("Camera") == null ? GameObject.Find("Main Camera") : GameObject.Find("Camera"));
+        if (GameObject.Find("Camera"))
+        {
+            Destroy(GameObject.Find("Camera"));
+        }
 
         plr = GameObject.FindGameObjectWithTag("Player").transform;
 

@@ -43,7 +43,7 @@ public class Player : MonoBehaviour, IDamageTaken
 
     private void OnControllerColliderHit(ControllerColliderHit hit)
     {
-        Debug.Log($"Controller hit something : {hit.gameObject}");
+     //   Debug.Log($"Controller hit something : {hit.gameObject}");
     }
 
 

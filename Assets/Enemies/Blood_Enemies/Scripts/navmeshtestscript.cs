@@ -125,14 +125,12 @@ public class navmeshtestscript : MonoBehaviour
             GameObject ragdoll = Instantiate(corpse, transform.position, Quaternion.identity);
             Vector3 hitDirection = (ragdoll.transform.position - player.transform.position).normalized;
             Rigidbody[] rb = ragdoll.GetComponentsInChildren<Rigidbody>();
-   //         Debug.Log($" RB LENGTH : {rb.Length}");
+
 
     
 
             foreach (Rigidbody rigid in rb)
             {
-                Debug.Log("Force added");
-                Debug.Log(rigid.isKinematic);
                 rigid.AddForce(hitDirection * 15, ForceMode.VelocityChange);
             }
              

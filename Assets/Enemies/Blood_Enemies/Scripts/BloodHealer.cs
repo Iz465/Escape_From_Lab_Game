@@ -32,7 +32,8 @@ public class BloodHealer : BloodEnemy
     {
         foreach (GameObject corpse in uniqueCorpse)
         {
-            Instantiate(navmeshtestscript.deadEnemies[0], corpse.transform.position, transform.rotation);
+            if (navmeshtestscript.deadEnemies[0])
+                Instantiate(navmeshtestscript.deadEnemies[0], corpse.transform.position, transform.rotation);
             Destroy(corpse);
         }
         navmeshtestscript.deadEnemies.Clear();

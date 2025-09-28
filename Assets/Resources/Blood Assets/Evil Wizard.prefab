@@ -406,12 +406,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8dee01f764c90404c969807c1da06d6f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  health: 100
+  health: 30
   roamRadius: 30
   roamDelay: 10
   attackRange: 10
-  corpse: {fileID: 4936041091994629948, guid: cf6dcf4645f3d57468fc7e436994699f, type: 3}
+  corpse: {fileID: 6713651688933525234, guid: 79574544957788848aed7a901ddb378f, type: 3}
   enemyPrefab: Blood Assets/Evil Wizard
+  canAttack: 1
   power: {fileID: 6238471719548748225, guid: 9600bd1612759c1469ae03decff32ab4, type: 3}
   speed: 20
   aimLoc: {fileID: 2405388752199314152}

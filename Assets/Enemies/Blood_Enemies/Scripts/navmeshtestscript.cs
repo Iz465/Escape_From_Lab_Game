@@ -109,7 +109,7 @@ public class navmeshtestscript : MonoBehaviour
 
     public void TakeDamage(float damageTaken)
     {
-    
+        Debug.Log("Taking damage!");
         health -= damageTaken;
         if (health <= 0)
             EnemyDeath();
@@ -118,7 +118,8 @@ public class navmeshtestscript : MonoBehaviour
 
     virtual protected void EnemyDeath()
     {
-
+        player.stats.health += 10;
+        player.stats.health = Mathf.Clamp(player.stats.health, 0, 100);
         if (corpse)
         {
       

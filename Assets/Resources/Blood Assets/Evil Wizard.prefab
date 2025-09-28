@@ -110,7 +110,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 955fa8d74deb1aa42a89eb634ed0c8f1, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 37.1593
+      value: 32.89511
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 955fa8d74deb1aa42a89eb634ed0c8f1, type: 3}
       propertyPath: m_LocalPosition.y
@@ -118,7 +118,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 955fa8d74deb1aa42a89eb634ed0c8f1, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0.1228466
+      value: 0.7514839
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 955fa8d74deb1aa42a89eb634ed0c8f1, type: 3}
       propertyPath: m_LocalRotation.w
@@ -382,7 +382,7 @@ CharacterController:
     m_Bits: 0
   m_ExcludeLayers:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 768
   m_LayerOverridePriority: 0
   m_ProvidesContacts: 0
   m_Enabled: 1
@@ -430,7 +430,7 @@ MeshCollider:
     m_Bits: 0
   m_ExcludeLayers:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 512
   m_LayerOverridePriority: 0
   m_IsTrigger: 0
   m_ProvidesContacts: 0

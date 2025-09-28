@@ -12,7 +12,7 @@ public class InstaKill : BasePower, ICollide
     private LayerMask enemyLayer;
     private Collider[] enemyDetected;
     private Collider powerCollider;
-    Animator animator;
+
 
     private List<GameObject> enemyHit = new List<GameObject>();
 
@@ -22,27 +22,14 @@ public class InstaKill : BasePower, ICollide
         powerCollider = GetComponent<Collider>();
     }
 
-    private void Start()
-    {
-        animator = GetComponent<Animator>();
-    }
-
-    public override void Attack(InputAction.CallbackContext context)
-    {
-        base.Attack(context);
-        if (animator)
-            animator.SetBool("InstaKill", true);
-    }
-
-
-
+   
     protected override bool UseStamina()
     {
 
      //   player.stats.health -= bloodData.loseHealth;
         player.stats.health = Mathf.Clamp(player.stats.health, 10, player.maxHealth);
 
-
+     
         return base.UseStamina();
     }
 

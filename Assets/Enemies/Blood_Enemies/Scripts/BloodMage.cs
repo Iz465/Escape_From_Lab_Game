@@ -1,5 +1,6 @@
 using System.Collections;
 using UnityEngine;
+using static UnityEngine.GraphicsBuffer;
 
 public class BloodMage : BloodEnemy
 {
@@ -29,10 +30,12 @@ public class BloodMage : BloodEnemy
         if (!powerInstance) return;
         Rigidbody rb = powerInstance.GetComponent<Rigidbody>();
         if (!rb) return;
-        Vector3 aimDir = player.transform.position - aimLoc.position;
-        rb.AddForce(aimDir, ForceMode.Impulse);
+        Collider collider = player.GetComponent<Collider>();
+        Vector3 aimDir = (collider.bounds.center - aimLoc.position).normalized;
+        
+        rb.AddForce(aimDir * 10, ForceMode.Impulse);
 
-      
+
 
     }
 

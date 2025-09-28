@@ -17,6 +17,9 @@ public class BasePower : MonoBehaviour
     protected Transform boxAim;
     [SerializeField]
     protected Camera cam;
+    protected Animator animator;
+
+    
 
     protected Rigidbody rb;
     protected static bool isHeld;
@@ -26,6 +29,7 @@ public class BasePower : MonoBehaviour
 
     public struct PowerStats
     {
+        public string powerName;
         public GameObject prefab;
         public float damage;
         public float speed;
@@ -46,8 +50,9 @@ public class BasePower : MonoBehaviour
 
     private void Start()
     {
-   //     poolManager = FindFirstObjectByType<ObjectPoolManager>();
-    
+        //     poolManager = FindFirstObjectByType<ObjectPoolManager>();
+        animator = GetComponent<Animator>();
+
     }
 
     virtual public void Attack(InputAction.CallbackContext context)
@@ -77,6 +82,7 @@ public class BasePower : MonoBehaviour
             return false;
         }
         if (!UseStamina()) return false;
+        animator.SetBool(stats.powerName, true);
 
         if (!boxAim)
         {

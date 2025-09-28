@@ -15,6 +15,7 @@ public class BloodHealer : BloodEnemy
         foreach (Collider collider in corpseCount)
         {
             GameObject corpse = collider.transform.root.gameObject;
+          //  GameObject corpse = collider.gameObject;
             uniqueCorpse.Add(corpse);
         }
 
@@ -30,12 +31,16 @@ public class BloodHealer : BloodEnemy
 
     private void Resurrect()
     {
+  
         foreach (GameObject corpse in uniqueCorpse)
         {
             if (navmeshtestscript.deadEnemies[0])
+                Debug.Log($"Corpse name is : {corpse}");
                 Instantiate(navmeshtestscript.deadEnemies[0], corpse.transform.position, transform.rotation);
+            navmeshtestscript.deadEnemies.RemoveAt(0);
             Destroy(corpse);
-        }
+        } 
+        uniqueCorpse.Clear();
         navmeshtestscript.deadEnemies.Clear();
       
     }

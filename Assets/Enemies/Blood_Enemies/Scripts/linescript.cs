@@ -20,7 +20,7 @@ public class linescript : MonoBehaviour
         line.startColor = Color.red;
         line.endColor = Color.red;
 
-      
+        radius += 1;
         
         enemy = GetComponent<Brute>();
         enemy.toggleCircle = false;

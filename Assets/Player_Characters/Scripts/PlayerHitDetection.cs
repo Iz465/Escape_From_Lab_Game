@@ -8,6 +8,7 @@ public class PlayerHitDetection : MonoBehaviour
 
     private void OnCollisionEnter(Collision collision)
     {
+        Debug.Log($"Something has been hit : {collision.gameObject}");
         Player player = collision.gameObject.GetComponent<Player>();
         if (player)
             player.TakeDamage(damage);

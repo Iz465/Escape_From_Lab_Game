@@ -19,12 +19,12 @@ public class BloodRain : BasePower
 
 
 
-    //  protected override bool UseStamina()
-    //    { 
-    //    player.stats.health -= bloodData.loseHealth;
-    //      player.stats.health = Mathf.Clamp(player.stats.health, 10, player.maxHealth);
-    //    return base.UseStamina();
-    //   }
+    public override void Attack(InputAction.CallbackContext context)
+    {
+        base.Attack(context);
+        if (animator)
+            animator.SetBool("BloodRain", true);
+    }
 
     protected override void spawnPower()
     {
@@ -102,6 +102,11 @@ public class BloodRain : BasePower
         rainBody.AddForce(direction * stats.speed, ForceMode.Impulse);
         enemyList.Add(target);
       
+    }
+
+    private void ResetAnim()
+    {
+        animator.SetBool("BloodRain", false);
     }
 
 

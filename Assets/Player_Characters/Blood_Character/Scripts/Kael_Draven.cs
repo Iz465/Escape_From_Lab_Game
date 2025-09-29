@@ -21,7 +21,7 @@ public class Kael_Draven : Player
 
         Vector3 movement = move.controller.velocity;
 
-        // Ignores jumping ands falling
+        // Ignores jumping/falling
         Vector3 horizontalVelocity = new Vector3(movement.x, 0, movement.z);
 
      

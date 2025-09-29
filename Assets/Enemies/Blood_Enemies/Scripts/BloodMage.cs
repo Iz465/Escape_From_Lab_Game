@@ -32,8 +32,8 @@ public class BloodMage : BloodEnemy
         if (!rb) return;
         Collider collider = player.GetComponent<Collider>();
         Vector3 aimDir = (collider.bounds.center - aimLoc.position).normalized;
-        
-        rb.AddForce(aimDir * 10, ForceMode.Impulse);
+        rb.collisionDetectionMode = CollisionDetectionMode.Continuous;
+        rb.AddForce(aimDir * speed * 100 * Time.deltaTime, ForceMode.Impulse);
 
 
 

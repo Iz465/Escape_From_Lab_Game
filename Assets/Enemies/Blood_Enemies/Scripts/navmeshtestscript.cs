@@ -53,6 +53,7 @@ public class navmeshtestscript : MonoBehaviour
 
         if (distanceToPlayer <= 40)
         {
+            
             Vector3 lookDir = player.transform.position - transform.position;
             lookDir.y = 0; // keep only horizontal rotation
             transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(lookDir), Time.deltaTime * 5f);

@@ -1296,6 +1296,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: BloodBeam
       objectReference: {fileID: 0}
+    - target: {fileID: 7539040078107595411, guid: 397f6d962876b71469454d13a388b377, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 8884663498921486380, guid: 397f6d962876b71469454d13a388b377, type: 3}
       propertyPath: playerLayer.m_Bits
       value: 8

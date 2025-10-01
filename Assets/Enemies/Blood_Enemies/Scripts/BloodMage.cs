@@ -23,9 +23,7 @@ public class BloodMage : BloodEnemy
     protected override void Attack()
     {
      
-        BeamAttack();
-        /*
-            if (distanceToPlayer >= 10) speed = 300;
+        if (distanceToPlayer >= 10) speed = 300;
         if (distanceToPlayer < 10) speed = 200;
   
         GameObject powerInstance = Instantiate(power, aimLoc.position, transform.rotation);
@@ -36,7 +34,7 @@ public class BloodMage : BloodEnemy
         Vector3 aimDir = (collider.bounds.center - aimLoc.position).normalized;
         rb.collisionDetectionMode = CollisionDetectionMode.Continuous;
         rb.AddForce(aimDir * speed * 100 * Time.deltaTime, ForceMode.Impulse);
-         */
+         
     }
 
 
@@ -45,6 +43,7 @@ public class BloodMage : BloodEnemy
     {
         yield return new WaitForSeconds(time);
         animator.SetBool("CanAttack", false);
+        
         //     meleeBox.enabled=false;
 
 
@@ -59,14 +58,22 @@ public class BloodMage : BloodEnemy
         yield return new WaitForSeconds (time);
         canAttack = true;
 
+
     }
 
     private void BeamAttack()
     {
 
         GameObject beam = Instantiate(beamPrefab, aimLoc.position, transform.rotation);
-   //     beam.transform.SetParent(aimLoc);
-    //    animator.SetBool("Beam", true);
+        StartCoroutine(ResetBeam(beam, 5));
+    }
+
+    private IEnumerator ResetBeam(GameObject beam,int time)
+    {
+        yield return new WaitForSeconds(time);
+        animator.SetBool("Beam", false);
+        Destroy(beam);
+        StartCoroutine(ResetAttack(3f));
 
     }
 

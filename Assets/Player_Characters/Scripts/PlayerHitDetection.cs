@@ -58,26 +58,12 @@ public class PlayerHitDetection : MonoBehaviour
         else
             beamLength = Mathf.Lerp(beamLength, 20f, Time.deltaTime / 1f);
            
-        
-    
-
 
         var scale = transform.parent.localScale;
         scale.z = beamLength;
         transform.parent.localScale = scale;
 
 
-        // Rotate the beam to face the player
-        if (hit.collider != null)
-        {
-            // Rotate directly towards the hit point (player)
-            transform.parent.LookAt(hit.point);
-        }
-        else
-        {
-            // If nothing hit, just align with enemy forward
-      //      transform.parent.rotation = transform.parent.parent.rotation;
-        }
 
 
     }

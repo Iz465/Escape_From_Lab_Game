@@ -56,7 +56,7 @@ ModelImporter:
       curves: []
       events:
       - time: 0.366041
-        functionName: Attack
+        functionName: BeamAttack
         data: 
         objectReferenceParameter: {instanceID: 0}
         floatParameter: 0

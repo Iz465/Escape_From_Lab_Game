@@ -7,6 +7,8 @@ public class Brute : BloodEnemy
     public bool toggleCircle;
     protected override void Attack()
     {
+       
+        
         Debug.Log("SLAM");
         Collider[] playerCheck;
         playerCheck = Physics.OverlapSphere(transform.position, 10f, playerLayer);
@@ -16,7 +18,19 @@ public class Brute : BloodEnemy
             Debug.Log("Player Slammed!");
             player.TakeDamage(50);
         }
+        
+    }
 
+    // Causes enemy to charge a certain distance in the direction of player.
+    public void Charge()
+    {
+        Debug.Log("Charge!");
+        agent.speed = 50;
+        agent.acceleration = 50;
+        agent.isStopped = false;
+        Vector3 chargeLocation = transform.position + transform.forward * 30;
+        agent.SetDestination(chargeLocation);
+        StartCoroutine(ResetAttack(3));
     }
 
     private IEnumerator ResetAnim(int time)
@@ -30,6 +44,8 @@ public class Brute : BloodEnemy
     private IEnumerator ResetAttack(int time)
     {
         yield return new WaitForSeconds(time);
+
+        animator.SetBool("Beam", false);
         canAttack = true;
     }
 

@@ -21,7 +21,7 @@ public class navmeshtestscript : MonoBehaviour
     protected Player player;
 
     // Agent variables
-    private NavMeshAgent agent;
+    protected NavMeshAgent agent;
     protected Animator animator;
     protected CharacterController controller;
     private float timer = 0f;
@@ -57,9 +57,9 @@ public class navmeshtestscript : MonoBehaviour
         if (distanceToPlayer <= 40)
         {
             
-            Vector3 lookDir = player.transform.position - transform.position;
-            lookDir.y = 0; // keep only horizontal rotation
-            transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(lookDir), Time.deltaTime * 5f);
+            Vector3 lookDirection = player.transform.position - transform.position;
+            lookDirection.y = 0; // keep only horizontal rotation
+            transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(lookDirection), Time.deltaTime * 5f);
           
             if (distanceToPlayer > 10 && canAttack)
             {
@@ -70,7 +70,16 @@ public class navmeshtestscript : MonoBehaviour
             else if (distanceToPlayer <= attackRange && canAttack)
             {
                 agent.isStopped = true;
-                animator.SetBool("CanAttack", true);
+                int num = Random.Range(0, 2);
+                BloodMage mage = GetComponent<BloodMage>();
+                Brute brute = GetComponent<Brute>();
+                if (num == 0) 
+                    animator.SetBool("CanAttack", true);
+                if (num == 1 && mage)
+                    animator.SetBool("Beam", true);
+                if (num == 1 && brute)
+                    brute.Charge();
+
                 canAttack = false;
             }
             

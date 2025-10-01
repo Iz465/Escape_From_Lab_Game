@@ -14,7 +14,6 @@ public class MazeSpawner : MonoBehaviour
         foreach (Transform pos in transform)
         {
             spawnPositions.Add(pos.position);
-            print(pos.position);
         }
         StartCoroutine(WaitForPlayer());
 

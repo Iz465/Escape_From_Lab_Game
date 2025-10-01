@@ -1,5 +1,7 @@
+using System.Collections;
 using System.Collections.Generic;
 using System.Runtime.CompilerServices;
+using UnityEditor.Rendering.LookDev;
 using UnityEngine;
 using UnityEngine.AI;
 
@@ -39,6 +41,7 @@ public class navmeshtestscript : MonoBehaviour
 
       
     }
+
     virtual protected void Update()
     {
         timer += Time.deltaTime;
@@ -57,14 +60,14 @@ public class navmeshtestscript : MonoBehaviour
             Vector3 lookDir = player.transform.position - transform.position;
             lookDir.y = 0; // keep only horizontal rotation
             transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(lookDir), Time.deltaTime * 5f);
-
+          
             if (distanceToPlayer > 10 && canAttack)
             {
                 agent.isStopped = false;
                 agent.SetDestination(player.transform.position);
             }
-              
-            if (distanceToPlayer <= attackRange && canAttack)
+
+            else if (distanceToPlayer <= attackRange && canAttack)
             {
                 agent.isStopped = true;
                 animator.SetBool("CanAttack", true);

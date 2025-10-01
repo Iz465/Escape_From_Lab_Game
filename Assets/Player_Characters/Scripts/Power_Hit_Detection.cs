@@ -23,10 +23,11 @@ public class Power_Hit_Detection : MonoBehaviour
         enemy = collision.gameObject.GetComponent<navmeshtestscript>();
         iCollide = GetComponent<ICollide>();
 
-        Debug.Log("Hit something");
+       
             
         if (!enemy)
         {
+         //   Debug.Log("Hit something");
             poolManager.ReleaseToPool(gameObject);
             return;
         }
@@ -34,7 +35,7 @@ public class Power_Hit_Detection : MonoBehaviour
         if (iCollide != null)
         {
             Debug.Log("Hit Enemy");
-            enemy.TakeDamage(power.stats.damage);
+            enemy.TakeDamage(power.stats.damage);       
             iCollide.CollideResult(collision.collider, gameObject);
         }
           
@@ -47,6 +48,7 @@ public class Power_Hit_Detection : MonoBehaviour
         }
      
     }
+
 
 }
 

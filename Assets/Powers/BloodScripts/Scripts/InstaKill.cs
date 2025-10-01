@@ -36,6 +36,7 @@ public class InstaKill : BasePower, ICollide
     public void CollideResult(Collider objectHit, GameObject power)
     {
         Debug.Log("Activating insta kill");
+        Debug.Log($"Object hit : {objectHit}");
         if (!powerCollider) return;
         rb = power.GetComponent<Rigidbody>();
         if (!rb) return;
@@ -55,6 +56,7 @@ public class InstaKill : BasePower, ICollide
             }
             
         }
+        Debug.Log($"Target: {target}");
 
         if (!target)
         {

@@ -4,14 +4,11 @@ using static UnityEngine.GraphicsBuffer;
 
 public class BloodMage : BloodEnemy
 {
-    [SerializeField]
-    private GameObject power;
-    [SerializeField]
-    private float speed;
-    [SerializeField]
-    private Transform aimLoc;
-    [SerializeField]
-    private Collider meleeBox;
+    [SerializeField] private GameObject power;
+    [SerializeField] private float speed;
+    [SerializeField] private Transform aimLoc;
+    [SerializeField] private Collider meleeBox;
+    [SerializeField] private GameObject beamPrefab;
 
     protected override void Start()
     {
@@ -25,6 +22,11 @@ public class BloodMage : BloodEnemy
 
     protected override void Attack()
     {
+     
+        BeamAttack();
+        /*
+            if (distanceToPlayer >= 10) speed = 300;
+        if (distanceToPlayer < 10) speed = 200;
   
         GameObject powerInstance = Instantiate(power, aimLoc.position, transform.rotation);
         if (!powerInstance) return;
@@ -34,19 +36,16 @@ public class BloodMage : BloodEnemy
         Vector3 aimDir = (collider.bounds.center - aimLoc.position).normalized;
         rb.collisionDetectionMode = CollisionDetectionMode.Continuous;
         rb.AddForce(aimDir * speed * 100 * Time.deltaTime, ForceMode.Impulse);
-
-
-
+         */
     }
 
-  
+
 
     private IEnumerator ResetAnim(int time)
     {
         yield return new WaitForSeconds(time);
         animator.SetBool("CanAttack", false);
-
-   //     meleeBox.enabled=false;
+        //     meleeBox.enabled=false;
 
 
 
@@ -62,6 +61,14 @@ public class BloodMage : BloodEnemy
 
     }
 
+    private void BeamAttack()
+    {
+
+        GameObject beam = Instantiate(beamPrefab, aimLoc.position, transform.rotation);
+   //     beam.transform.SetParent(aimLoc);
+    //    animator.SetBool("Beam", true);
+
+    }
 
 
     private void Melee()

@@ -1549,25 +1549,9 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: -353530974294157111, guid: 37c604bfec25b8341ba273f8b1567039, type: 3}
-      propertyPath: m_Convex
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: -353530974294157111, guid: 37c604bfec25b8341ba273f8b1567039, type: 3}
-      propertyPath: m_Enabled
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 823275485032358607, guid: 37c604bfec25b8341ba273f8b1567039, type: 3}
-      propertyPath: m_Layer
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 3463968663809784044, guid: 37c604bfec25b8341ba273f8b1567039, type: 3}
       propertyPath: m_Name
       value: Evil Wizard
-      objectReference: {fileID: 0}
-    - target: {fileID: 3463968663809784044, guid: 37c604bfec25b8341ba273f8b1567039, type: 3}
-      propertyPath: m_IsActive
-      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4276640125318275670, guid: 37c604bfec25b8341ba273f8b1567039, type: 3}
       propertyPath: m_LocalPosition.x
@@ -1579,7 +1563,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4276640125318275670, guid: 37c604bfec25b8341ba273f8b1567039, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -7.3487887
+      value: 14.65
       objectReference: {fileID: 0}
     - target: {fileID: 4276640125318275670, guid: 37c604bfec25b8341ba273f8b1567039, type: 3}
       propertyPath: m_LocalRotation.w
@@ -1608,38 +1592,6 @@ PrefabInstance:
     - target: {fileID: 4276640125318275670, guid: 37c604bfec25b8341ba273f8b1567039, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4320608544420388736, guid: 37c604bfec25b8341ba273f8b1567039, type: 3}
-      propertyPath: m_Enabled
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4320608544420388736, guid: 37c604bfec25b8341ba273f8b1567039, type: 3}
-      propertyPath: m_ExcludeLayers.m_Bits
-      value: 640
-      objectReference: {fileID: 0}
-    - target: {fileID: 5615487812961025621, guid: 37c604bfec25b8341ba273f8b1567039, type: 3}
-      propertyPath: beam
-      value: 
-      objectReference: {fileID: 7539040078107595411, guid: 397f6d962876b71469454d13a388b377, type: 3}
-    - target: {fileID: 5615487812961025621, guid: 37c604bfec25b8341ba273f8b1567039, type: 3}
-      propertyPath: speed
-      value: 300
-      objectReference: {fileID: 0}
-    - target: {fileID: 5615487812961025621, guid: 37c604bfec25b8341ba273f8b1567039, type: 3}
-      propertyPath: health
-      value: 100
-      objectReference: {fileID: 0}
-    - target: {fileID: 5615487812961025621, guid: 37c604bfec25b8341ba273f8b1567039, type: 3}
-      propertyPath: beamPrefab
-      value: 
-      objectReference: {fileID: 7539040078107595411, guid: 397f6d962876b71469454d13a388b377, type: 3}
-    - target: {fileID: 5615487812961025621, guid: 37c604bfec25b8341ba273f8b1567039, type: 3}
-      propertyPath: attackRange
-      value: 15
-      objectReference: {fileID: 0}
-    - target: {fileID: 7304587620682528845, guid: 37c604bfec25b8341ba273f8b1567039, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 0.259
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -1771,7 +1723,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b3e104f9fa3d6e942b25dbb347591121, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  cooldown: 3
+  cooldown: 1.5
 --- !u!1 &1504807653
 GameObject:
   m_ObjectHideFlags: 0
@@ -2270,6 +2222,10 @@ PrefabInstance:
     - target: {fileID: 2730701633640099234, guid: 0fe37d3bccce71043ad09542d714748d, type: 3}
       propertyPath: m_Name
       value: Explosive Blood
+      objectReference: {fileID: 0}
+    - target: {fileID: 2730701633640099234, guid: 0fe37d3bccce71043ad09542d714748d, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8460055656891745982, guid: 0fe37d3bccce71043ad09542d714748d, type: 3}
       propertyPath: m_LocalPosition.x

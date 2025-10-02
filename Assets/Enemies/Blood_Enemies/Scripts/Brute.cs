@@ -64,7 +64,7 @@ public class Brute : BloodEnemy
         agent.isStopped = false;
         Vector3 chargeLocation = transform.position + transform.forward * 30;
         agent.SetDestination(chargeLocation);
-        Debug.Log(agent.velocity.magnitude);
+    
         while (agent.remainingDistance > 0.5f || agent.pathPending)
             yield return null;
 

@@ -71,7 +71,8 @@ public class navmeshtestscript : MonoBehaviour
     {
         Vector3 lookDirection = player.transform.position - transform.position;
         lookDirection.y = 0; // keeps horizontal rotation only
-        transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(lookDirection), Time.deltaTime * 5f);
+      //  transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(lookDirection), Time.deltaTime * 5f);
+        transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(lookDirection), 0.007f);
 
         if (distanceToPlayer > attackRange && canAttack)
         {

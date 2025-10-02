@@ -6,7 +6,7 @@ using UnityEngine.InputSystem;
 public class Dodge : MonoBehaviour
 {
     private Animator animator;
-    [SerializeField] int cooldown;
+    [SerializeField] float cooldown;
     private bool canDodge;
     private void Start()
     {
@@ -108,7 +108,7 @@ public class Dodge : MonoBehaviour
         animator.SetBool("DodgeBack", false);
     }
 
-    private IEnumerator ResetDodge(int time)
+    private IEnumerator ResetDodge(float time)
     {
         yield return new WaitForSeconds(time);
         canDodge = true;

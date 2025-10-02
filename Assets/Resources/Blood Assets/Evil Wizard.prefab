@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 527897360556037492}
   - component: {fileID: 4862521902792386641}
-  m_Layer: 7
+  m_Layer: 0
   m_Name: MeleeBox
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -62,6 +62,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2405388752199314152}
+  - component: {fileID: 4085546457055663359}
   m_Layer: 7
   m_Name: AimLoc
   m_TagString: Untagged
@@ -77,13 +78,21 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6533568301510874772}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.14249346, y: -0.000000059604645, z: -0.000000067055225, w: 0.9897958}
-  m_LocalPosition: {x: -0.00000001207809, y: -0.003649512, z: 0.015713394}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalRotation: {x: -0.7111928, y: 0.07313449, z: 0.29474762, w: 0.6340189}
+  m_LocalPosition: {x: -0.00000006610958, y: 0.00090751867, z: 0.00009957177}
+  m_LocalScale: {x: 1, y: 1, z: 17.136557}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 2695044004429544053}
-  m_LocalEulerAnglesHint: {x: 16.384, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: -109.103, y: 86.095, z: -55.505}
+--- !u!33 &4085546457055663359
+MeshFilter:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6533568301510874772}
+  m_Mesh: {fileID: 3613567641014311022, guid: e52666887afbd09498ea4c0c0072e2e5, type: 3}
 --- !u!1001 &4382869902503593405
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -110,7 +119,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 955fa8d74deb1aa42a89eb634ed0c8f1, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 32.89511
+      value: 21.76
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 955fa8d74deb1aa42a89eb634ed0c8f1, type: 3}
       propertyPath: m_LocalPosition.y
@@ -118,7 +127,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 955fa8d74deb1aa42a89eb634ed0c8f1, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0.7514839
+      value: 14.65
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 955fa8d74deb1aa42a89eb634ed0c8f1, type: 3}
       propertyPath: m_LocalRotation.w
@@ -207,6 +216,10 @@ PrefabInstance:
     - target: {fileID: -3086436065929644917, guid: 955fa8d74deb1aa42a89eb634ed0c8f1, type: 3}
       propertyPath: m_Layer
       value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: -2770822863827681808, guid: 955fa8d74deb1aa42a89eb634ed0c8f1, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0.259
       objectReference: {fileID: 0}
     - target: {fileID: -2084811680363313996, guid: 955fa8d74deb1aa42a89eb634ed0c8f1, type: 3}
       propertyPath: m_Layer
@@ -382,10 +395,10 @@ CharacterController:
     m_Bits: 0
   m_ExcludeLayers:
     serializedVersion: 2
-    m_Bits: 768
+    m_Bits: 640
   m_LayerOverridePriority: 0
   m_ProvidesContacts: 0
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 3
   m_Height: 0.16
   m_Radius: 0.03
@@ -406,18 +419,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8dee01f764c90404c969807c1da06d6f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  health: 30
+  health: 100
   roamRadius: 30
   roamDelay: 10
-  attackRange: 10
+  attackRange: 15
   corpse: {fileID: 6713651688933525234, guid: 79574544957788848aed7a901ddb378f, type: 3}
   enemyPrefab: Blood Assets/Evil Wizard
   canAttack: 1
   power: {fileID: 6238471719548748225, guid: 9600bd1612759c1469ae03decff32ab4, type: 3}
-  speed: 20
+  speed: 300
   aimLoc: {fileID: 2405388752199314152}
   meleeBox: {fileID: 4862521902792386641}
-  beamPrefab: {fileID: 0}
+  beamPrefab: {fileID: 7539040078107595411, guid: 397f6d962876b71469454d13a388b377, type: 3}
+  playerLayer:
+    serializedVersion: 2
+    m_Bits: 8
 --- !u!64 &-353530974294157111
 MeshCollider:
   m_ObjectHideFlags: 0

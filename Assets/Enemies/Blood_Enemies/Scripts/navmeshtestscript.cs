@@ -12,7 +12,7 @@ public class navmeshtestscript : MonoBehaviour
     [SerializeField] private float health;
     [SerializeField] private float roamRadius = 10f;
     [SerializeField] private float roamDelay = 5f;
-    [SerializeField] private float attackRange;
+    [SerializeField] protected float attackRange;
     [SerializeField] private GameObject corpse;
     [SerializeField] private string enemyPrefab;
 
@@ -33,59 +33,25 @@ public class navmeshtestscript : MonoBehaviour
     {
         agent = GetComponent<NavMeshAgent>();
         timer = roamDelay;
-
         animator = GetComponent<Animator>();
         controller = GetComponent<CharacterController>();
-
         player = FindAnyObjectByType<Player>();
-
-      
     }
 
     virtual protected void Update()
     {
         timer += Time.deltaTime;
 
-    
         if (!agent) return;
         if (!player) return;
         if (!animator) return;
 
         distanceToPlayer = Vector3.Distance(transform.position, player.transform.position);
-        animator.SetFloat("PlayerDistance", distanceToPlayer);
 
-        if (distanceToPlayer <= 40)
-        {
+        if (distanceToPlayer <= 40)  
+            ChasePlayer();
             
-            Vector3 lookDirection = player.transform.position - transform.position;
-            lookDirection.y = 0; // keep only horizontal rotation
-            transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(lookDirection), Time.deltaTime * 5f);
-          
-            if (distanceToPlayer > 10 && canAttack)
-            {
-                agent.isStopped = false;
-                agent.SetDestination(player.transform.position);
-            }
-
-            else if (distanceToPlayer <= attackRange && canAttack)
-            {
-                agent.isStopped = true;
-                int num = Random.Range(0, 2);
-                BloodMage mage = GetComponent<BloodMage>();
-                Brute brute = GetComponent<Brute>();
-                if (num == 0) 
-                    animator.SetBool("CanAttack", true);
-                if (num == 1 && mage)
-                    animator.SetBool("Beam", true);
-                if (num == 1 && brute)
-                    brute.Charge();
-
-                canAttack = false;
-            }
-            
-        }
-
-
+        
         else if (timer > roamDelay)
         {
             Vector3 newPos = RandomLocation();
@@ -100,6 +66,47 @@ public class navmeshtestscript : MonoBehaviour
             animator.SetBool("Roam", true);
     }
 
+
+    virtual protected void ChasePlayer()
+    {
+        Vector3 lookDirection = player.transform.position - transform.position;
+        lookDirection.y = 0; // keeps horizontal rotation only
+        transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(lookDirection), Time.deltaTime * 5f);
+
+        if (distanceToPlayer > attackRange && canAttack)
+        {
+            agent.isStopped = false;
+            agent.SetDestination(player.transform.position);
+        }
+
+        else if (distanceToPlayer <= attackRange && canAttack)
+            AttackPlayer();
+            
+        
+    }
+
+    virtual protected void AttackPlayer()
+    {
+        agent.isStopped = true;
+        animator.SetBool("CanAttack", true);
+        canAttack = false;
+            
+        
+         /*   agent.isStopped = true;
+            int num = Random.Range(0, 2);
+            BloodMage mage = GetComponent<BloodMage>();
+            Brute brute = GetComponent<Brute>();
+            if (num == 0)
+                animator.SetBool("CanAttack", true);
+            if (num == 1 && mage)
+                animator.SetBool("Beam", true);
+            if (num == 1 && brute)
+                brute.Charge();
+
+            canAttack = false; 
+         */
+        
+    }
 
 
     private Vector3 RandomLocation()

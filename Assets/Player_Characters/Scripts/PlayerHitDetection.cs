@@ -34,10 +34,11 @@ public class PlayerHitDetection : MonoBehaviour
  //       Debug.Log("Beam Hitting");
  //   }
     float beamLength;
-
+    /*
     private void Start()
     {
         beamLength = 20f;
+
         var scale = transform.parent.localScale;
         scale.z = beamLength;
         transform.parent.localScale = scale;
@@ -67,6 +68,7 @@ public class PlayerHitDetection : MonoBehaviour
 
 
     }
+    */
 
 }
 

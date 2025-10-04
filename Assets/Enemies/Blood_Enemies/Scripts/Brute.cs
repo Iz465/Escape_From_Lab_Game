@@ -9,11 +9,13 @@ public class Brute : BloodEnemy
     private bool charge;
     private bool canChargeDamage;
 
+
     protected override void Start()
     {
         base.Start();
         charge = true;
         attackRange = 20;
+       
     }
 
     // random enemy attack chosen.
@@ -25,9 +27,9 @@ public class Brute : BloodEnemy
             animator.SetBool("CanAttack", true);
         if (charge)
         {
-            Debug.Log("STARTING CHARGE");
+           
             animator.SetBool("CanCharge", true);
-            StartCoroutine(Charge(3));
+            StartCoroutine(Charge(1));
         }
           
         canAttack = false;
@@ -35,17 +37,17 @@ public class Brute : BloodEnemy
 
     }
     // slam attack 
+    int number;
     protected override void Attack()
     {
-       
-        
-        Debug.Log("SLAM");
+
+        number++;
+ 
         Collider[] playerCheck;
         playerCheck = Physics.OverlapSphere(transform.position, 10f, playerLayer);
         
         if (playerCheck.Length > 0)
         {
-            Debug.Log("Player Slammed!");
             player.TakeDamage(50);
         }
         
@@ -57,6 +59,8 @@ public class Brute : BloodEnemy
     private IEnumerator Charge(int time)
     {
         yield return new WaitForSeconds(time);
+
+        number++;
         canChargeDamage = true;
         animator.SetBool("ChargeActivate", true);
         agent.speed = 120;
@@ -77,7 +81,10 @@ public class Brute : BloodEnemy
         yield return new WaitForSeconds(time);
         toggleCircle = false;
         animator.SetBool("CanAttack", false);
-        StartCoroutine(ResetAttack(3));
+        if (number >= 3)
+            StartCoroutine(ResetAttack(2));
+        else
+            StartCoroutine(ResetAttack(0)); 
     }
 
     private void ResetCharge()
@@ -87,15 +94,29 @@ public class Brute : BloodEnemy
         agent.acceleration = 8;
         animator.SetBool("CanCharge", false);
         animator.SetBool("ChargeActivate", false);
-        StartCoroutine(ResetAttack(3));
+        if (number >= 3)
+            StartCoroutine(ResetAttack(2));
+        else
+            StartCoroutine(ResetAttack(1));
     }
 
-    private IEnumerator ResetAttack(int time)
+    private IEnumerator ResetAttack(float time)
     {
         yield return new WaitForSeconds(time);
 
-      
+        if (number <= 2 && charge)
+        {
+            StartCoroutine(Charge(0));
+            yield break;
+        }
 
+        else if (number <= 2 && attack)
+        {
+            animator.SetBool("CanAttack", true);
+            yield break;
+        }
+
+            number = 0;
         int num = Random.Range(0, 2);
         
         if (num == 0)

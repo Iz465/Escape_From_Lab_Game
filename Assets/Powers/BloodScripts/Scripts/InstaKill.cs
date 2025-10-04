@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.Collections;
 using System.Linq;
 using UnityEngine;
 using UnityEngine.InputSystem;
@@ -12,6 +13,7 @@ public class InstaKill : BasePower, ICollide
     private LayerMask enemyLayer;
     private Collider[] enemyDetected;
     private Collider powerCollider;
+    private bool canAttack;
 
 
     private List<GameObject> enemyHit = new List<GameObject>();
@@ -20,16 +22,47 @@ public class InstaKill : BasePower, ICollide
     {
    
         powerCollider = GetComponent<Collider>();
+      
     }
 
-   
+    protected override void Start()
+    {
+        base.Start();
+        canAttack = true;
+    }
+
+    public override void Attack(InputAction.CallbackContext context)
+    {
+        if (!context.performed) return;
+        
+       
+        if (canAttack)
+        {
+            canAttack = false;
+            Debug.Log($"starting attack!!!");
+            base.Attack(context);
+        }
+        else if (!canAttack) 
+        {
+            Debug.Log($"Unable to attack!");
+        }
+           
+    }
+
+ 
+
+    private IEnumerator ResetAttack(int time)
+    {
+        yield return new WaitForSeconds(time);
+        canAttack = true;
+    }
+
     protected override bool UseStamina()
     {
 
-     //   player.stats.health -= bloodData.loseHealth;
-        player.stats.health = Mathf.Clamp(player.stats.health, 10, player.maxHealth);
-
-     
+        //   player.stats.health -= bloodData.loseHealth;
+        //   player.stats.health = Mathf.Clamp(player.stats.health, 10, player.maxHealth);
+   //     StartCoroutine(ResetAttack(1));
         return base.UseStamina();
     }
 
@@ -82,5 +115,6 @@ public class InstaKill : BasePower, ICollide
     private void ResetAnim()
     {
         animator.SetBool("InstaKill", false);
+        StartCoroutine(ResetAttack(1));
     }
 }

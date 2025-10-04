@@ -34,15 +34,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 83852099e54a755438ff0e9d4dda9f49, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 29.9
+      value: 19.51
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 83852099e54a755438ff0e9d4dda9f49, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.3
+      value: 0.18401623
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 83852099e54a755438ff0e9d4dda9f49, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 20
+      value: 16.31
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 83852099e54a755438ff0e9d4dda9f49, type: 3}
       propertyPath: m_LocalRotation.w
@@ -749,7 +749,6 @@ MonoBehaviour:
   attackRange: 10
   corpse: {fileID: 8569907671077136166, guid: a6ff6eea623561b4fa112ab48b3aea5e, type: 3}
   enemyPrefab: Blood Assets/Brute
-  canAttack: 1
   playerLayer:
     serializedVersion: 2
     m_Bits: 8
@@ -769,7 +768,7 @@ CapsuleCollider:
     serializedVersion: 2
     m_Bits: 0
   m_LayerOverridePriority: 0
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 2

@@ -48,12 +48,13 @@ public class BasePower : MonoBehaviour
     }
     public PowerType powerType;
 
-    private void Start()
+    virtual protected void Start()
     {
         //     poolManager = FindFirstObjectByType<ObjectPoolManager>();
         animator = GetComponent<Animator>();
 
     }
+
 
     virtual public void Attack(InputAction.CallbackContext context)
     {

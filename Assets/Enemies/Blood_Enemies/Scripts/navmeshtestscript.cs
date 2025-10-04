@@ -25,9 +25,14 @@ public class navmeshtestscript : MonoBehaviour
     protected Animator animator;
     protected CharacterController controller;
     private float timer = 0f;
-    public bool canAttack = true;
+    public static bool canAttack = true;
     protected float distanceToPlayer;
     public static List<GameObject> deadEnemies = new List<GameObject>();
+    protected GlobalEnemyManager globalEnemyManager;
+
+    
+
+    protected float rotateSpeed;
 
     virtual protected void Start()
     {
@@ -36,6 +41,8 @@ public class navmeshtestscript : MonoBehaviour
         animator = GetComponent<Animator>();
         controller = GetComponent<CharacterController>();
         player = FindAnyObjectByType<Player>();
+        rotateSpeed = 5f;
+        globalEnemyManager = FindFirstObjectByType<GlobalEnemyManager>();
     }
 
     virtual protected void Update()
@@ -66,47 +73,52 @@ public class navmeshtestscript : MonoBehaviour
             animator.SetBool("Roam", true);
     }
 
-
+    private static int random;
+    
     virtual protected void ChasePlayer()
     {
         Vector3 lookDirection = player.transform.position - transform.position;
         lookDirection.y = 0; // keeps horizontal rotation only
-      //  transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(lookDirection), Time.deltaTime * 5f);
-        transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(lookDirection), 0.007f);
+        transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(lookDirection), Time.deltaTime * rotateSpeed);
+
 
         if (distanceToPlayer > attackRange && canAttack)
         {
             agent.isStopped = false;
             agent.SetDestination(player.transform.position);
+            GlobalEnemyManager.enemiesInRange.Remove(gameObject);
         }
 
-        else if (distanceToPlayer <= attackRange && canAttack)
-            AttackPlayer();
+        else if (distanceToPlayer <= attackRange)
+        {
+         
+            GlobalEnemyManager.enemiesInRange.Add(gameObject);
+         
+            if (canAttack)
+            {
+                agent.isStopped = true;
+                random = globalEnemyManager.RandomiseAttack();
+                int num = 0;
+                foreach (GameObject enemy in GlobalEnemyManager.enemiesInRange)
+                {
+                    if (num == random)
+                        if (gameObject == enemy)
+                            AttackPlayer();
+                    num++;
+                }
+             
+            }
+        
+        }
             
         
     }
 
     virtual protected void AttackPlayer()
     {
-        agent.isStopped = true;
         animator.SetBool("CanAttack", true);
         canAttack = false;
-            
-        
-         /*   agent.isStopped = true;
-            int num = Random.Range(0, 2);
-            BloodMage mage = GetComponent<BloodMage>();
-            Brute brute = GetComponent<Brute>();
-            if (num == 0)
-                animator.SetBool("CanAttack", true);
-            if (num == 1 && mage)
-                animator.SetBool("Beam", true);
-            if (num == 1 && brute)
-                brute.Charge();
-
-            canAttack = false; 
-         */
-        
+           
     }
 
 
@@ -130,7 +142,7 @@ public class navmeshtestscript : MonoBehaviour
 
     public void TakeDamage(float damageTaken)
     {
-        Debug.Log("Taking damage!");
+        Debug.Log($"Taking damage! Health Left : {health}");
         health -= damageTaken;
         if (health <= 0)
             EnemyDeath();
@@ -139,6 +151,18 @@ public class navmeshtestscript : MonoBehaviour
 
     virtual protected void EnemyDeath()
     {
+
+      
+
+        int num = 0;
+        foreach (GameObject enemy in  GlobalEnemyManager.enemiesInRange)
+        {
+            if(num == random)
+                canAttack = true;
+        }
+
+        GlobalEnemyManager.enemiesInRange.Remove(gameObject);
+
         player.stats.health += 10;
         player.stats.health = Mathf.Clamp(player.stats.health, 0, 100);
         if (corpse)

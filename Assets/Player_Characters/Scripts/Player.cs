@@ -25,6 +25,9 @@ public class Player : MonoBehaviour, IDamageTaken
     {
         stats.stamina += 5f * Time.deltaTime;
         stats.stamina = Mathf.Clamp(stats.stamina, 0, maxStamina);
+
+        if (stats.health <= 0)
+            playerDeath();
     }
 
 
@@ -39,6 +42,7 @@ public class Player : MonoBehaviour, IDamageTaken
     public void playerDeath() 
     {
         Debug.Log("You have died");
+        gameObject.SetActive(false);
     }
 
     private void OnControllerColliderHit(ControllerColliderHit hit)

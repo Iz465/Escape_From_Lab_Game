@@ -12,6 +12,8 @@ public class BloodLevel : MonoBehaviour
 
     void Update()
     {
-      //  player.stats.health -= 0.005f;
+        player.stats.health -= 1f * Time.deltaTime;
+
+        
     }
 }

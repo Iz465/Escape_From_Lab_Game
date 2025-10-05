@@ -43,6 +43,9 @@ public class navmeshtestscript : MonoBehaviour
         player = FindAnyObjectByType<Player>();
         rotateSpeed = 5f;
         globalEnemyManager = FindFirstObjectByType<GlobalEnemyManager>();
+
+        if (globalEnemyManager)
+            globalEnemyManager.AddEnemy(gameObject);
     }
 
     virtual protected void Update()
@@ -152,16 +155,10 @@ public class navmeshtestscript : MonoBehaviour
     virtual protected void EnemyDeath()
     {
 
-      
-
-        int num = 0;
-        foreach (GameObject enemy in  GlobalEnemyManager.enemiesInRange)
-        {
-            if(num == random)
-                canAttack = true;
-        }
+        canAttack = true;
 
         GlobalEnemyManager.enemiesInRange.Remove(gameObject);
+        globalEnemyManager.EmptyEnemies(gameObject);
 
         player.stats.health += 10;
         player.stats.health = Mathf.Clamp(player.stats.health, 0, 100);

@@ -55,19 +55,25 @@ public class BasePower : MonoBehaviour
 
     }
 
-
-    virtual public void Attack(InputAction.CallbackContext context)
+    virtual public void StartAttack(InputAction.CallbackContext context)
     {
         if (context.canceled) isHeld = false;
         if (!context.performed) return;
+        animator.SetBool(stats.powerName, true);
+    }
+
+
+    virtual public void Attack()
+    {
+      
         if (!PowerChecks()) return;
         if (!powerInstance) return;
 
         switch (powerType)
         {
             case PowerType.Shoot: ShootPower(); break;
-            case PowerType.Hold:  HoldPower(context); break;
-            case PowerType.Spawn: spawnPower(); break;
+            case PowerType.Hold:  HoldPower(); break;
+            case PowerType.Spawn: SpawnPower(); break;
             case PowerType.Melee: MeleePower(); break;
             default: break;
         }
@@ -83,7 +89,7 @@ public class BasePower : MonoBehaviour
             return false;
         }
         if (!UseStamina()) return false;
-        animator.SetBool(stats.powerName, true);
+  
 
         if (!boxAim)
         {
@@ -98,6 +104,7 @@ public class BasePower : MonoBehaviour
         }
         poolManager = FindFirstObjectByType<ObjectPoolManager>(); // temporary
         if (!poolManager) Debug.LogWarning("no pool");
+        Debug.Log($"Spawning power :{stats.prefab}");
         powerInstance = poolManager.SpawnFromPool(stats.prefab, boxAim.position, Quaternion.LookRotation(cam.transform.forward));
 
         if (!powerInstance)
@@ -138,7 +145,7 @@ public class BasePower : MonoBehaviour
         poolManager.ReleaseToPool(power);
     }
 
-    virtual protected void HoldPower(InputAction.CallbackContext context)
+    virtual protected void HoldPower()
     {
         isHeld = true;
         rb.sleepThreshold = 0;
@@ -149,7 +156,7 @@ public class BasePower : MonoBehaviour
 
     }
 
-    virtual protected void spawnPower()
+    virtual protected void SpawnPower()
     {
         float yLoc = 15;
         float zLoc = 15;

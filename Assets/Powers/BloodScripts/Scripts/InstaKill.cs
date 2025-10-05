@@ -31,7 +31,7 @@ public class InstaKill : BasePower, ICollide
         canAttack = true;
     }
 
-    public override void Attack(InputAction.CallbackContext context)
+    public override void StartAttack(InputAction.CallbackContext context)
     {
         if (!context.performed) return;
         
@@ -40,13 +40,18 @@ public class InstaKill : BasePower, ICollide
         {
             canAttack = false;
             Debug.Log($"starting attack!!!");
-            base.Attack(context);
+            base.StartAttack(context);
         }
         else if (!canAttack) 
         {
             Debug.Log($"Unable to attack!");
         }
            
+    }
+
+    private void StartInstaKill()
+    {
+        Attack();
     }
 
  

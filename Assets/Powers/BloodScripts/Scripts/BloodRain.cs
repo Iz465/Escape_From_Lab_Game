@@ -19,16 +19,14 @@ public class BloodRain : BasePower
 
 
 
-    public override void Attack(InputAction.CallbackContext context)
+    private void StartBloodRain()
     {
-        base.Attack(context);
-        if (animator)
-            animator.SetBool("BloodRain", true);
+        Attack();
     }
 
-    protected override void spawnPower()
+    protected override void SpawnPower()
     {
-        base.spawnPower();
+        base.SpawnPower();
         RainBlood();
         StartCoroutine(DestroyPower(5, powerInstance));
     }

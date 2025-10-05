@@ -114,7 +114,7 @@ CharacterController:
     m_Bits: 0
   m_ExcludeLayers:
     serializedVersion: 2
-    m_Bits: 904
+    m_Bits: 776
   m_LayerOverridePriority: 0
   m_ProvidesContacts: 0
   m_Enabled: 1
@@ -143,7 +143,7 @@ MonoBehaviour:
   acceleration: 0
   velocity: {x: 0, y: 0, z: 0}
   useOtherScript: 0
-  walkSpeed: 5
+  walkSpeed: 4
   fallAcceleration: 5
   jumpStrength: 1.5
 --- !u!114 &-3322194195255502517
@@ -546,13 +546,7 @@ PrefabInstance:
       objectReference: {fileID: 9100000, guid: 877ba2e8fcf1624409a75d0853fc1386, type: 2}
     - target: {fileID: 5866666021909216657, guid: 88917694e0f7ea249a5b6490a97a932a, type: 3}
       propertyPath: m_WarningMessage
-      value: "\nBinding warning: Some generic clip(s) animate transforms that are
-        already bound by a Humanoid avatar. These transforms can only be changed
-        by Humanoid clips.\n\tTransform 'mixamorig:Hips'\n\tTransform 'mixamorig:LeftFoot'\n\tTransform
-        'mixamorig:Spine1'\n\tTransform 'mixamorig:RightArm'\n\tTransform 'mixamorig:LeftLeg'\n\tTransform
-        'mixamorig:LeftShoulder'\n\tTransform 'mixamorig:RightFoot'\n\tTransform
-        'mixamorig:Head'\n\tTransform 'mixamorig:LeftUpLeg'\n\tTransform 'mixamorig:LeftArm'\n\tand
-        more ...\n\tFrom animation clip 'mixamo.com'\n\tFrom animation clip 'mixamo.com'"
+      value: 
       objectReference: {fileID: 0}
     - target: {fileID: 5866666021909216657, guid: 88917694e0f7ea249a5b6490a97a932a, type: 3}
       propertyPath: m_ApplyRootMotion
@@ -578,6 +572,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 88917694e0f7ea249a5b6490a97a932a, type: 3}
       insertIndex: -1
       addedObject: {fileID: 516728661651162371}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 88917694e0f7ea249a5b6490a97a932a, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 6855898415280742524}
   m_SourcePrefab: {fileID: 100100000, guid: 88917694e0f7ea249a5b6490a97a932a, type: 3}
 --- !u!1 &1693581653088352625 stripped
 GameObject:
@@ -602,9 +599,9 @@ MonoBehaviour:
   stats:
     powerName: InstaKill
     prefab: {fileID: 6238471719548748225, guid: bde3e606eb56e5b408b620be76526047, type: 3}
-    damage: 20
+    damage: 10
     speed: 60
-    stamina: 40
+    stamina: 15
   powerType: 0
   enemyLayer:
     serializedVersion: 2
@@ -642,7 +639,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 516728661651162371}
         m_TargetAssemblyTypeName: BloodRain, Assembly-CSharp
-        m_MethodName: Attack
+        m_MethodName: StartAttack
         m_Mode: 0
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -658,7 +655,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 3285271435179753306}
         m_TargetAssemblyTypeName: InstaKill, Assembly-CSharp
-        m_MethodName: Attack
+        m_MethodName: StartAttack
         m_Mode: 0
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -678,6 +675,54 @@ MonoBehaviour:
       m_Calls: []
     m_ActionId: 2b22194e-8d37-49da-8a5a-e92e39e7cd22
     m_ActionName: Warrior_Player/New action
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 6855898415280742524}
+        m_TargetAssemblyTypeName: Dodge, Assembly-CSharp
+        m_MethodName: DodgeLeft
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: 674a3096-dec7-40c1-902a-854c5707572d
+    m_ActionName: 'Blood_Player/Dodge Left[/Keyboard/shift,/Keyboard/a]'
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 6855898415280742524}
+        m_TargetAssemblyTypeName: Dodge, Assembly-CSharp
+        m_MethodName: DodgeRight
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: 9c16dad6-6e14-4635-adbc-475725cd0eea
+    m_ActionName: 'Blood_Player/Dodge Right[/Keyboard/shift,/Keyboard/d]'
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 6855898415280742524}
+        m_TargetAssemblyTypeName: Dodge, Assembly-CSharp
+        m_MethodName: DodgeBackwards
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: ed5e7060-33d0-4fcd-a776-94f403a9a712
+    m_ActionName: 'Blood_Player/Dodge Backwards[/Keyboard/shift,/Keyboard/s]'
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: 
   m_DefaultActionMap: Blood_Player
@@ -701,14 +746,27 @@ MonoBehaviour:
   stats:
     powerName: BloodRain
     prefab: {fileID: 6594098458241618133, guid: 5954267c87598d64db007ac04428db6e, type: 3}
-    damage: 20
+    damage: 10
     speed: 10
-    stamina: 40
+    stamina: 15
   powerType: 2
   enemyLayer:
     serializedVersion: 2
     m_Bits: 128
   rainPrefab: {fileID: 6238471719548748225, guid: 7baace4e4fb96514fbb295adcbded399, type: 3}
+--- !u!114 &6855898415280742524
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1693581653088352625}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b3e104f9fa3d6e942b25dbb347591121, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  cooldown: 1.5
 --- !u!4 &2074786304704603083 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 88917694e0f7ea249a5b6490a97a932a, type: 3}

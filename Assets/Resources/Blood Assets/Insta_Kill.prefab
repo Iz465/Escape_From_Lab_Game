@@ -121,7 +121,7 @@ MonoBehaviour:
   stats:
     powerName: 
     prefab: {fileID: 6238471719548748225}
-    damage: 10
+    damage: 20
     speed: 30
     stamina: 15
   powerType: 0

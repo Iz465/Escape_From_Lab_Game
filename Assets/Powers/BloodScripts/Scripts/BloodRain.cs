@@ -14,10 +14,39 @@ public class BloodRain : BasePower
     private LayerMask enemyLayer;
     [SerializeField]
     private GameObject rainPrefab;
-
+    private bool canAttack;
     List<Collider> enemyList = new List<Collider>();
 
+    protected override void Start()
+    {
+        base.Start();
+        canAttack = true;
+    }
+    public override void StartAttack(InputAction.CallbackContext context) 
+    {
+        if (!context.performed) return;
 
+
+        if (canAttack)
+        {
+            canAttack = false;
+            Debug.Log($"starting attack!!!");
+            base.StartAttack(context);
+        }
+        else if (!canAttack)
+        {
+            Debug.Log($"Unable to attack!");
+        }
+
+    }
+
+
+    private IEnumerator ResetAttack(int time)
+    {
+        yield return new WaitForSeconds(time);
+        Debug.Log("Blood Rain active!");
+        canAttack = true;
+    }
 
     private void StartBloodRain()
     {
@@ -105,6 +134,7 @@ public class BloodRain : BasePower
     private void ResetAnim()
     {
         animator.SetBool("BloodRain", false);
+        StartCoroutine(ResetAttack(15));
     }
 
 

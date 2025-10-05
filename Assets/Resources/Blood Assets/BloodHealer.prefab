@@ -57,15 +57,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 955fa8d74deb1aa42a89eb634ed0c8f1, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 46.26
+      value: 47.671387
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 955fa8d74deb1aa42a89eb634ed0c8f1, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0
+      value: 0.18401909
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 955fa8d74deb1aa42a89eb634ed0c8f1, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 11.54
+      value: 15.281321
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 955fa8d74deb1aa42a89eb634ed0c8f1, type: 3}
       propertyPath: m_LocalRotation.w
@@ -406,7 +406,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a1c1a4c7ca9a7d246a18908a7c88e33a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  health: 500
+  health: 60
   roamRadius: 30
   roamDelay: 10
   attackRange: 40
@@ -414,4 +414,4 @@ MonoBehaviour:
   enemyPrefab: Blood Assets/BloodHealer
   corpseLayer:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 512

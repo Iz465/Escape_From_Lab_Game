@@ -7,6 +7,8 @@ public class CompleteLevel : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
+        Player player = other.GetComponent<Player>();
+        if (!player) return;
         if (GlobalEnemyManager.levelComplete)
         {
             Debug.Log("Level Complete!");

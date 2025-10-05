@@ -94,12 +94,13 @@ public class navmeshtestscript : MonoBehaviour
 
         else if (distanceToPlayer <= attackRange)
         {
-         
+            
             GlobalEnemyManager.enemiesInRange.Add(gameObject);
-         
+            agent.isStopped = true;
+
             if (canAttack)
             {
-                agent.isStopped = true;
+     
                 random = globalEnemyManager.RandomiseAttack();
                 int num = 0;
                 foreach (GameObject enemy in GlobalEnemyManager.enemiesInRange)

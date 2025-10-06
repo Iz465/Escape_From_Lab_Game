@@ -12,6 +12,9 @@ public class GlobalEnemyManager : MonoBehaviour
         private void Start()
     {
         levelComplete = false;
+        navmeshtestscript.canAttack = true;
+        enemiesInRange.Clear();
+        totalEnemies.Clear();
     }
 
     private void Update()
@@ -43,6 +46,8 @@ public class GlobalEnemyManager : MonoBehaviour
         return random;
     }
 
-  
-    
+   
+
+
+
 }

@@ -14,6 +14,7 @@ public class navmeshtestscript : MonoBehaviour
     [SerializeField] private float roamDelay = 5f;
     [SerializeField] protected float attackRange;
     [SerializeField] private GameObject corpse;
+    [SerializeField] private GameObject upperCorpse;
     [SerializeField] private string enemyPrefab;
 
     // Object References
@@ -163,6 +164,7 @@ public class navmeshtestscript : MonoBehaviour
 
         player.stats.health += 10;
         player.stats.health = Mathf.Clamp(player.stats.health, 0, 100);
+
         if (corpse)
         {
       
@@ -188,7 +190,24 @@ public class navmeshtestscript : MonoBehaviour
                 Debug.LogWarning($"Prefab : {enemyPrefab} Not available");
         }
 
-        Destroy(gameObject);
+        if (corpse)
+        {
+
+            GameObject ragdoll = Instantiate(corpse, transform.position + new Vector3(0,1,0), Quaternion.identity);
+            Vector3 hitDirection = (ragdoll.transform.position - player.transform.position).normalized;
+            Rigidbody[] rb = ragdoll.GetComponentsInChildren<Rigidbody>();
+
+
+
+
+            foreach (Rigidbody rigid in rb)
+            {
+                rigid.AddForce(hitDirection * 5, ForceMode.VelocityChange);
+            }
+        }
+
+
+            Destroy(gameObject);
     }
 
 

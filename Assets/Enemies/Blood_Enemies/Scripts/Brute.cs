@@ -68,9 +68,13 @@ public class Brute : BloodEnemy
         agent.isStopped = false;
         Vector3 chargeLocation = transform.position + transform.forward * 30;
         agent.SetDestination(chargeLocation);
-    
+
         while (agent.remainingDistance > 0.5f || agent.pathPending)
+        {
+            Debug.Log($"Distance left {chargeLocation - transform.position}");
             yield return null;
+        }
+        
 
 
         ResetCharge();
@@ -144,6 +148,7 @@ public class Brute : BloodEnemy
 
     private void OnTriggerEnter(Collider other)
     {
+
         if (!canChargeDamage)
         {
             Debug.Log("Cant charge");

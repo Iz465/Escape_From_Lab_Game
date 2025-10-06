@@ -1459,10 +1459,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: Explosive Blood (29)
       objectReference: {fileID: 0}
-    - target: {fileID: 2730701633640099234, guid: 0fe37d3bccce71043ad09542d714748d, type: 3}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 8460055656891745982, guid: 0fe37d3bccce71043ad09542d714748d, type: 3}
       propertyPath: m_LocalPosition.x
       value: 25.62
@@ -1628,7 +1624,7 @@ PrefabInstance:
     - target: {fileID: 5615487812961025621, guid: 37c604bfec25b8341ba273f8b1567039, type: 3}
       propertyPath: corpse
       value: 
-      objectReference: {fileID: 6713651688933525234, guid: 79574544957788848aed7a901ddb378f, type: 3}
+      objectReference: {fileID: 79091708346402239, guid: a5d2d23b6905a6d4aaf349e31fa68c49, type: 3}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -2707,6 +2703,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 4661378002182716094, guid: 86c5a7ad85c47fa4e8f0aec2fa00bc76, type: 3}
+      propertyPath: m_ExcludeLayers.m_Bits
+      value: 776
+      objectReference: {fileID: 0}
     - target: {fileID: 4760173679925032191, guid: 86c5a7ad85c47fa4e8f0aec2fa00bc76, type: 3}
       propertyPath: m_LocalPosition.x
       value: 33.554424
@@ -2750,6 +2750,10 @@ PrefabInstance:
     - target: {fileID: 5131523210844252951, guid: 86c5a7ad85c47fa4e8f0aec2fa00bc76, type: 3}
       propertyPath: m_Name
       value: Blood Player
+      objectReference: {fileID: 0}
+    - target: {fileID: 6184887894105021891, guid: 86c5a7ad85c47fa4e8f0aec2fa00bc76, type: 3}
+      propertyPath: m_ExcludeLayers.m_Bits
+      value: 776
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

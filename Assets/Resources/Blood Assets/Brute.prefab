@@ -606,7 +606,7 @@ NavMeshAgent:
   m_AutoTraverseOffMeshLink: 1
   m_AutoBraking: 1
   m_AutoRepath: 1
-  m_Height: 2
+  m_Height: 0.03
   m_BaseOffset: 0
   m_WalkableMask: 4294967295
   m_ObstacleAvoidanceType: 4
@@ -748,6 +748,7 @@ MonoBehaviour:
   roamDelay: 5
   attackRange: 10
   corpse: {fileID: 8569907671077136166, guid: a6ff6eea623561b4fa112ab48b3aea5e, type: 3}
+  upperCorpse: {fileID: 0}
   enemyPrefab: Blood Assets/Brute
   playerLayer:
     serializedVersion: 2

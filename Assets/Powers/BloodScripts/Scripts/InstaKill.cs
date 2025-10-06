@@ -63,7 +63,7 @@ public class InstaKill : BasePower, ICollide
 
  
 
-    private IEnumerator ResetAttack(int time)
+    private IEnumerator ResetAttack(float time)
     {
         yield return new WaitForSeconds(time);
         canAttack = true;
@@ -135,6 +135,6 @@ public class InstaKill : BasePower, ICollide
     private void ResetAnim()
     {
         animator.SetBool("InstaKill", false);
-        StartCoroutine(ResetAttack(1));
+        StartCoroutine(ResetAttack(0.5f));
     }
 }

@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class Player : MonoBehaviour, IDamageTaken
 {
@@ -42,7 +43,8 @@ public class Player : MonoBehaviour, IDamageTaken
     public void playerDeath() 
     {
         Debug.Log("You have died");
-        gameObject.SetActive(false);
+        SceneManager.LoadScene("Blood_Room_1");
+       // gameObject.SetActive(false);
     }
 
     private void OnControllerColliderHit(ControllerColliderHit hit)

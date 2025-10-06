@@ -20,12 +20,14 @@ public class Power_Hit_Detection : MonoBehaviour
 
     virtual protected void OnCollisionEnter(Collision collision)
     {
+        Debug.Log($"Power hit: {collision.gameObject}");
         enemy = collision.gameObject.GetComponent<navmeshtestscript>();
         ApplyDamage();
     }
 
     private void OnTriggerEnter(Collider other)
     {
+        Debug.Log($"Power hit: {other.gameObject}");
         enemy = other.gameObject.GetComponent<navmeshtestscript>();
         ApplyDamage();
     }
@@ -33,7 +35,7 @@ public class Power_Hit_Detection : MonoBehaviour
 
     private void ApplyDamage()
     {
-       
+
         //      iCollide = GetComponent<ICollide>();
 
         if (!enemy)

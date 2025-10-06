@@ -17,6 +17,7 @@ public class InstaKill : BasePower, ICollide
 
 
     private List<GameObject> enemyHit = new List<GameObject>();
+    CameraShake cameraShake;
 
     private void Awake()
     {
@@ -29,6 +30,7 @@ public class InstaKill : BasePower, ICollide
     {
         base.Start();
         canAttack = true;
+     
     }
 
     public override void StartAttack(InputAction.CallbackContext context)
@@ -42,6 +44,7 @@ public class InstaKill : BasePower, ICollide
             Debug.Log($"starting attack!!!");
             base.StartAttack(context);
         }
+
         else if (!canAttack) 
         {
             Debug.Log($"Unable to attack!");
@@ -51,6 +54,10 @@ public class InstaKill : BasePower, ICollide
 
     private void StartInstaKill()
     {
+        if (!cam) return;
+        cameraShake = cam.GetComponent<CameraShake>();
+        if (!cameraShake) return;
+        StartCoroutine(cameraShake.Shake(0.1f));
         Attack();
     }
 
@@ -115,6 +122,14 @@ public class InstaKill : BasePower, ICollide
         rb.angularVelocity = Vector3.zero;
         rb.AddForce(direction * stats.speed, ForceMode.Impulse);
       
+    }
+
+    private void StartShake()
+    {
+        if (!cam) return;
+        cameraShake = cam.GetComponent<CameraShake>();
+        if (!cameraShake) return;
+        StartCoroutine(cameraShake.Shake(0.1f));
     }
 
     private void ResetAnim()

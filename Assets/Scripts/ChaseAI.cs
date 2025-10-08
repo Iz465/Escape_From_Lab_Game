@@ -6,7 +6,8 @@ public class ChaseAI : MonoBehaviour
     protected NavMeshAgent agent;
     protected void Chase(Transform obj)
     {
-        agent.SetDestination(obj.position);
+        bool set = agent.SetDestination(obj.position);
+        print("set desination: "+set.ToString());
     }
 
     protected bool DetectObj(Transform obj)

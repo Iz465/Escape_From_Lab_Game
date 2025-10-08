@@ -5,9 +5,13 @@ using UnityEngine.AI;
 public class Soldier : ChaseAI
 {
     public Transform plr;
+    public Transform muzzle;
+    public GameObject bullet;
     PlayerInfo playerInfo;
 
     [SerializeField] float shootDelay, shootSpeed, timeBetweenBullet;
+    [SerializeField] float health;
+    [SerializeField] float stunned, hitStunTime;
 
     float timeWhenSeenPlayer = 0;
     float lastBullet;
@@ -29,10 +33,11 @@ public class Soldier : ChaseAI
             Destroy(GameObject.Find("Camera"));
         }
 
+        yield return new WaitForSeconds(1);
         plr = GameObject.FindGameObjectWithTag("Player").transform;
         playerInfo = plr.GetComponent<PlayerInfo>();
-
-        //Chase(plr);
+        print("starting to chase player");
+        Chase(plr);
     }
 
     private void OnEnable()
@@ -43,6 +48,7 @@ public class Soldier : ChaseAI
     // Update is called once per frame
     void Update()
     {
+        if (plr == null) return;
         if (DetectPlayer())
         {
             ShootPlayer();
@@ -69,28 +75,41 @@ public class Soldier : ChaseAI
     
     void ShootPlayer()
     {
-        Vector3 direction = (plr.position - transform.position).normalized;
-        Vector3 face = transform.forward;
+        Vector3 relativePos = plr.position - transform.position;
+        Quaternion rotation = Quaternion.LookRotation(relativePos, Vector3.up);
+        float fov = Vector3.Dot(transform.forward, relativePos.normalized);
+        transform.rotation = Quaternion.Lerp(transform.rotation, rotation, fov+Time.deltaTime);
 
-        float angleInRadians = Vector3.Dot(face, direction);
-        float degrees = angleInRadians * 180 / Mathf.PI;
-        float turn = Mathf.Acos(angleInRadians);
-
-        print(turn);
-        while (angleInRadians != 3)
-        {
-            direction = (plr.position - transform.position).normalized;
-            face = transform.forward;
-            transform.Rotate(new Vector3(0,turn, 0));
-            angleInRadians = Vector3.Dot(face, direction);
-        }
-
-
-
-        if (Time.time > timeWhenSeenPlayer + shootDelay)
+        if (Time.time > timeWhenSeenPlayer + shootDelay && Time.time > stunned)
         {
             timeWhenSeenPlayer += timeBetweenBullet;
+            GameObject newBullet = Instantiate(bullet);
+            newBullet.transform.parent = null;
+            newBullet.tag = "Bullet";
+            newBullet.transform.position = muzzle.position;
+            newBullet.transform.LookAt(plr.position);
+            newBullet.GetComponent<Rigidbody>().linearVelocity = newBullet.transform.forward * 1000;
             print("shoot");
         }
+    }
+
+    void GotHit()
+    {
+        health -= 13;
+        stunned = Time.time + hitStunTime;
+        if(health < 0)
+            Destroy(gameObject);
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if(other.CompareTag("Bullet"))
+            GotHit();
+    }
+
+    private void OnCollisionEnter(Collision collision)
+    {
+        if (collision.collider.CompareTag("Bullet"))
+            GotHit();
     }
 }

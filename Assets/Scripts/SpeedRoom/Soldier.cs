@@ -1,4 +1,5 @@
 using System.Collections;
+using UnityEditor.Experimental.GraphView;
 using UnityEngine;
 using UnityEngine.AI;
 
@@ -68,7 +69,11 @@ public class Soldier : ChaseAI
         }
         else
         {
-            agent.enabled = true;
+            if (!agent.enabled)
+            {
+                agent.enabled = true;
+                Chase(plr);
+            }
         }
         return false;
     }
@@ -76,9 +81,39 @@ public class Soldier : ChaseAI
     void ShootPlayer()
     {
         Vector3 relativePos = plr.position - transform.position;
-        Quaternion rotation = Quaternion.LookRotation(relativePos, Vector3.up);
-        float fov = Vector3.Dot(transform.forward, relativePos.normalized);
-        transform.rotation = Quaternion.Lerp(transform.rotation, rotation, fov+Time.deltaTime);
+        Vector3 normal = relativePos.normalized;
+
+        float forwardAccurate = Vector3.Dot(transform.forward, normal);
+        float rightSideAccurate = Vector3.Dot(transform.right, normal);
+        float leftSideAccurate = Vector3.Dot(-transform.right, normal);
+
+        //if (forwardAccurate > 0.9f)
+          //  transform.LookAt(plr);
+        //else
+        //{
+            if(rightSideAccurate < 0)
+            {
+                if(plr.GetComponent<Speed>().highSpeedMode)
+                    transform.Rotate(new Vector3(0, -Time.deltaTime, 0));
+                else
+                    transform.Rotate(new Vector3(0, -90*Time.deltaTime, 0));
+            }
+            else
+            {
+                if(plr.GetComponent<Speed>().highSpeedMode)
+                    transform.Rotate(new Vector3(0, Time.deltaTime, 0));
+                else
+                    transform.Rotate(new Vector3(0,90*Time.deltaTime, 0));
+            }
+        //}
+
+
+
+
+
+        //Quaternion rotation = Quaternion.LookRotation(relativePos, Vector3.up);
+        //float fov = Vector3.Dot(transform.forward, relativePos.normalized);
+        //transform.rotation = Quaternion.Lerp(transform.rotation, rotation, fov+Time.deltaTime);
 
         if (Time.time > timeWhenSeenPlayer + shootDelay && Time.time > stunned)
         {
@@ -88,7 +123,8 @@ public class Soldier : ChaseAI
             newBullet.tag = "Bullet";
             newBullet.transform.position = muzzle.position;
             newBullet.transform.LookAt(plr.position);
-            newBullet.GetComponent<Rigidbody>().linearVelocity = newBullet.transform.forward * 1000;
+            newBullet.GetComponent<Rigidbody>().AddForceAtPosition(newBullet.transform.forward * 10000, newBullet.transform.position);
+            //newBullet.GetComponent<Rigidbody>().linearVelocity = newBullet.transform.forward * 1000;
             print("shoot");
         }
     }

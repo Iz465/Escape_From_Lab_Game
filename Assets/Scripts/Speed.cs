@@ -2,7 +2,7 @@ using System.Collections;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class Speed : MonoBehaviour
+public class Speed : PlayerInfo
 {
     Move movement;
     PlayerInfo playerInfo;
@@ -30,6 +30,10 @@ public class Speed : MonoBehaviour
 
         staminaText = stats.Find("Stamina").GetComponent<Text>();
         healthText = stats.Find("Health").GetComponent <Text>();
+
+        meleeAttackCooldown = 0.5f;
+        meleeAttackAnimation = "Melee";
+        animator = transform.GetComponent<Animator>();
     }
 
     void Run()
@@ -79,6 +83,10 @@ public class Speed : MonoBehaviour
         //right click to (de)activate
         if (Input.GetMouseButtonDown(1))
             HighSpeedMode();
+
+        //left click to attack
+        if (Input.GetMouseButtonDown(0))
+            StartCoroutine(MeleeAttack(animator));
     }
 
     public void HighSpeedMode()

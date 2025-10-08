@@ -25,6 +25,7 @@ public class MazeSpawner : MonoBehaviour
         plr.GetComponent<CharacterController>().enabled = false;
         plr.position = spawnPos;
         plr.GetComponent<CharacterController>().enabled = true;
+        playerInfo.health = playerInfo.maxHealth;
         print("spawned player at "+ spawnPos.ToString());
     }
 

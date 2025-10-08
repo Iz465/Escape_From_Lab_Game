@@ -59,6 +59,7 @@ public class BasePower : MonoBehaviour
     {
         if (context.canceled) isHeld = false;
         if (!context.performed) return;
+
         animator.SetBool(stats.powerName, true);
     }
 
@@ -88,7 +89,7 @@ public class BasePower : MonoBehaviour
             Debug.LogWarning("Power Prefab Not Found");
             return false;
         }
-        if (!UseStamina()) return false;
+      //  if (!UseStamina()) return false;
   
 
         if (!boxAim)

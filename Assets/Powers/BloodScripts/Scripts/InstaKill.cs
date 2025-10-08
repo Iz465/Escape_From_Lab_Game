@@ -30,14 +30,16 @@ public class InstaKill : BasePower, ICollide
     {
         base.Start();
         canAttack = true;
+  
      
     }
+
 
     public override void StartAttack(InputAction.CallbackContext context)
     {
         if (!context.performed) return;
-        
-       
+  //      if (!UseStamina()) return;
+
         if (canAttack)
         {
             canAttack = false;

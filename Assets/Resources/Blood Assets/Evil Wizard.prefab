@@ -97,15 +97,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 955fa8d74deb1aa42a89eb634ed0c8f1, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 20.739456
+      value: 22.681915
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 955fa8d74deb1aa42a89eb634ed0c8f1, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.37
+      value: 0.18401623
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 955fa8d74deb1aa42a89eb634ed0c8f1, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 17.25491
+      value: 19.403187
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 955fa8d74deb1aa42a89eb634ed0c8f1, type: 3}
       propertyPath: m_LocalRotation.w
@@ -903,14 +903,20 @@ MonoBehaviour:
   roamRadius: 30
   roamDelay: 10
   attackRange: 15
-  corpse: {fileID: 1087052251036619379, guid: cb3e0be82463f534ab38112626989e7a, type: 3}
-  upperCorpse: {fileID: 79091708346402239, guid: a5d2d23b6905a6d4aaf349e31fa68c49, type: 3}
+  corpse: {fileID: 846829804671434094, guid: 6aa1f64578edcd34ea725cd30f026dad, type: 3}
   enemyPrefab: Blood Assets/Evil Wizard
+  corpseParts:
+    head: {fileID: 1604589698921734978, guid: 3dc195e4815025143aaabe1e50b2b4ad, type: 3}
+    torso: {fileID: 992527465005872472, guid: 486327f0b11f61c458b3119f0ff8a1f4, type: 3}
+    leftHand: {fileID: 846829804671434094, guid: 6aa1f64578edcd34ea725cd30f026dad, type: 3}
+    rightHand: {fileID: 1878968904969398724, guid: 62f73d6583a604943bbab85af86950d1, type: 3}
+    legs: {fileID: 992527465005872472, guid: 486327f0b11f61c458b3119f0ff8a1f4, type: 3}
   power: {fileID: 6238471719548748225, guid: 9600bd1612759c1469ae03decff32ab4, type: 3}
   speed: 300
   aimLoc: {fileID: 2405388752199314152}
   meleeBox: {fileID: 0}
   beamPrefab: {fileID: 7539040078107595411, guid: 397f6d962876b71469454d13a388b377, type: 3}
+  instantAttackPrefab: {fileID: 3976502113712986744, guid: c05eae6f272c38f4eaa2e62aa58d7a9a, type: 3}
   playerLayer:
     serializedVersion: 2
     m_Bits: 8
@@ -946,8 +952,8 @@ NavMeshAgent:
   m_Enabled: 1
   m_AgentTypeID: 0
   m_Radius: 0.2
-  m_Speed: 3.5
-  m_Acceleration: 8
+  m_Speed: 10
+  m_Acceleration: 15
   avoidancePriority: 50
   m_AngularSpeed: 120
   m_StoppingDistance: 0

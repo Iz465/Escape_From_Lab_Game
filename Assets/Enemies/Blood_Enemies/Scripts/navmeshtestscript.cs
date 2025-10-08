@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Runtime.CompilerServices;
+using UnityEditor;
 using UnityEditor.Rendering.LookDev;
 using UnityEngine;
 using UnityEngine.AI;
@@ -14,8 +15,18 @@ public class navmeshtestscript : MonoBehaviour
     [SerializeField] private float roamDelay = 5f;
     [SerializeField] protected float attackRange;
     [SerializeField] private GameObject corpse;
-    [SerializeField] private GameObject upperCorpse;
+
     [SerializeField] private string enemyPrefab;
+
+    [System.Serializable] public struct CorpseParts
+    {
+        public GameObject head;
+        public GameObject torso;
+        public GameObject leftHand;
+        public GameObject rightHand;
+        public GameObject legs;
+
+    }
 
     // Object References
     [Header("Objects")]
@@ -153,7 +164,7 @@ public class navmeshtestscript : MonoBehaviour
             EnemyDeath();
 
     }
-
+    [SerializeField] private CorpseParts corpseParts = new CorpseParts();
     virtual protected void EnemyDeath()
     {
 
@@ -165,23 +176,8 @@ public class navmeshtestscript : MonoBehaviour
         player.stats.health += 10;
         player.stats.health = Mathf.Clamp(player.stats.health, 0, 100);
 
-        if (corpse)
+   /*     if (corpse)
         {
-      
-            GameObject ragdoll = Instantiate(corpse, transform.position, Quaternion.identity);
-            Vector3 hitDirection = (ragdoll.transform.position - player.transform.position).normalized;
-            Rigidbody[] rb = ragdoll.GetComponentsInChildren<Rigidbody>();
-
-
-    
-
-            foreach (Rigidbody rigid in rb)
-            {
-                rigid.AddForce(hitDirection * 15, ForceMode.VelocityChange);
-            }
-             
-        
-
             GameObject prefab = Resources.Load<GameObject>(enemyPrefab);
             if (prefab)
                 deadEnemies.Add(prefab);
@@ -189,25 +185,42 @@ public class navmeshtestscript : MonoBehaviour
             else
                 Debug.LogWarning($"Prefab : {enemyPrefab} Not available");
         }
+   */
+        
+        if (corpseParts.head)
+            makeRagdoll(corpseParts.head,3);
+        if (corpseParts.legs)
+            makeRagdoll(corpseParts.legs,1);
+        if (corpseParts.rightHand)
+            makeRagdoll(corpseParts.rightHand, 2.5f);
+        if (corpseParts.leftHand)
+            makeRagdoll(corpseParts.leftHand,2.5f);
+        if (corpseParts.torso)
+            makeRagdoll(corpseParts.torso, 2.5f);
 
-        if (corpse)
+        Destroy(gameObject);
+    }
+
+    private void makeRagdoll(GameObject bodypart, float height)
+    {
+        if (bodypart)
         {
 
-            GameObject ragdoll = Instantiate(corpse, transform.position + new Vector3(0,1,0), Quaternion.identity);
+            GameObject ragdoll = Instantiate(bodypart, transform.position + new Vector3(0, height, 0), Quaternion.identity);
             Vector3 hitDirection = (ragdoll.transform.position - player.transform.position).normalized;
-            Rigidbody[] rb = ragdoll.GetComponentsInChildren<Rigidbody>();
+            ragdoll.transform.rotation = Quaternion.LookRotation(hitDirection) * Quaternion.Euler(90, 0, 0);
 
 
-
-
-            foreach (Rigidbody rigid in rb)
+            Rigidbody rigid = ragdoll.GetComponent<Rigidbody>();
+            if (rigid)
             {
-                rigid.AddForce(hitDirection * 5, ForceMode.VelocityChange);
+                
+                rigid.AddForce(hitDirection * 20, ForceMode.Impulse);
+                rigid.AddTorque(Random.insideUnitSphere * 1f, ForceMode.Impulse);
+                
             }
+               
         }
-
-
-            Destroy(gameObject);
     }
 
 

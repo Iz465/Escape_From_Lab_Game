@@ -3,7 +3,10 @@ using UnityEngine;
 
 public class ExplosiveBlood : MonoBehaviour
 {
-
+    private void Start()
+    {
+        BloodLevel.explosiveBloodAmount.Add(gameObject);
+    }
     private void OnTriggerEnter(Collider other)
     {
        
@@ -31,7 +34,7 @@ public class ExplosiveBlood : MonoBehaviour
           
 
 
-
+        BloodLevel.explosiveBloodAmount.Remove(gameObject);
         Destroy(gameObject);
     }
 

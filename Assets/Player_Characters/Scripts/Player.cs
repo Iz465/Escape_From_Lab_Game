@@ -1,3 +1,4 @@
+using UnityEditor.SearchService;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -43,7 +44,12 @@ public class Player : MonoBehaviour, IDamageTaken
     public void playerDeath() 
     {
         Debug.Log("You have died");
-        SceneManager.LoadScene("Blood_Room_1");
+        UnityEngine.SceneManagement.Scene scene = SceneManager.GetActiveScene();
+        Debug.Log($"Scene name : {scene.name}");
+        SceneManager.LoadScene(scene.name);
+
+       
+       
        // gameObject.SetActive(false);
     }
 

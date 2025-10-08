@@ -4420,10 +4420,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: Explosive Blood (70)
       objectReference: {fileID: 0}
-    - target: {fileID: 2730701633640099234, guid: 0fe37d3bccce71043ad09542d714748d, type: 3}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 8460055656891745982, guid: 0fe37d3bccce71043ad09542d714748d, type: 3}
       propertyPath: m_LocalPosition.x
       value: 69.44
@@ -4530,63 +4526,6 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 0fe37d3bccce71043ad09542d714748d, type: 3}
---- !u!1001 &839340927
-PrefabInstance:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    serializedVersion: 3
-    m_TransformParent: {fileID: 0}
-    m_Modifications:
-    - target: {fileID: 5182820693866792781, guid: 867c572a5be680d42a042d2349f10143, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 57.15432
-      objectReference: {fileID: 0}
-    - target: {fileID: 5182820693866792781, guid: 867c572a5be680d42a042d2349f10143, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 1.96
-      objectReference: {fileID: 0}
-    - target: {fileID: 5182820693866792781, guid: 867c572a5be680d42a042d2349f10143, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 6.2763147
-      objectReference: {fileID: 0}
-    - target: {fileID: 5182820693866792781, guid: 867c572a5be680d42a042d2349f10143, type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 5182820693866792781, guid: 867c572a5be680d42a042d2349f10143, type: 3}
-      propertyPath: m_LocalRotation.x
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5182820693866792781, guid: 867c572a5be680d42a042d2349f10143, type: 3}
-      propertyPath: m_LocalRotation.y
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5182820693866792781, guid: 867c572a5be680d42a042d2349f10143, type: 3}
-      propertyPath: m_LocalRotation.z
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5182820693866792781, guid: 867c572a5be680d42a042d2349f10143, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: -90
-      objectReference: {fileID: 0}
-    - target: {fileID: 5182820693866792781, guid: 867c572a5be680d42a042d2349f10143, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5182820693866792781, guid: 867c572a5be680d42a042d2349f10143, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8378648546881499446, guid: 867c572a5be680d42a042d2349f10143, type: 3}
-      propertyPath: m_Name
-      value: Red energy explosion
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-    m_RemovedGameObjects: []
-    m_AddedGameObjects: []
-    m_AddedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: 867c572a5be680d42a042d2349f10143, type: 3}
 --- !u!1 &877093711
 GameObject:
   m_ObjectHideFlags: 0
@@ -5133,7 +5072,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3463968663809784044, guid: 37c604bfec25b8341ba273f8b1567039, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4276640125318275670, guid: 37c604bfec25b8341ba273f8b1567039, type: 3}
       propertyPath: m_LocalPosition.x
@@ -11331,63 +11270,6 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 0fe37d3bccce71043ad09542d714748d, type: 3}
---- !u!1001 &5328582977921917109
-PrefabInstance:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    serializedVersion: 3
-    m_TransformParent: {fileID: 0}
-    m_Modifications:
-    - target: {fileID: 3976502113712986744, guid: c05eae6f272c38f4eaa2e62aa58d7a9a, type: 3}
-      propertyPath: m_Name
-      value: BloodMageAttack
-      objectReference: {fileID: 0}
-    - target: {fileID: 9128900381426415340, guid: c05eae6f272c38f4eaa2e62aa58d7a9a, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 50.85676
-      objectReference: {fileID: 0}
-    - target: {fileID: 9128900381426415340, guid: c05eae6f272c38f4eaa2e62aa58d7a9a, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 4.18
-      objectReference: {fileID: 0}
-    - target: {fileID: 9128900381426415340, guid: c05eae6f272c38f4eaa2e62aa58d7a9a, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: -9.176592
-      objectReference: {fileID: 0}
-    - target: {fileID: 9128900381426415340, guid: c05eae6f272c38f4eaa2e62aa58d7a9a, type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 9128900381426415340, guid: c05eae6f272c38f4eaa2e62aa58d7a9a, type: 3}
-      propertyPath: m_LocalRotation.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 9128900381426415340, guid: c05eae6f272c38f4eaa2e62aa58d7a9a, type: 3}
-      propertyPath: m_LocalRotation.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 9128900381426415340, guid: c05eae6f272c38f4eaa2e62aa58d7a9a, type: 3}
-      propertyPath: m_LocalRotation.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 9128900381426415340, guid: c05eae6f272c38f4eaa2e62aa58d7a9a, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 9128900381426415340, guid: c05eae6f272c38f4eaa2e62aa58d7a9a, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 9128900381426415340, guid: c05eae6f272c38f4eaa2e62aa58d7a9a, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-    m_RemovedGameObjects: []
-    m_AddedGameObjects: []
-    m_AddedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: c05eae6f272c38f4eaa2e62aa58d7a9a, type: 3}
 --- !u!1001 &6375605114652075891
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -11690,5 +11572,3 @@ SceneRoots:
   - {fileID: 957146313}
   - {fileID: 737986937}
   - {fileID: 57843594}
-  - {fileID: 839340927}
-  - {fileID: 5328582977921917109}

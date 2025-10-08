@@ -55,7 +55,7 @@ public class navmeshtestscript : MonoBehaviour
         player = FindAnyObjectByType<Player>();
         rotateSpeed = 5f;
         globalEnemyManager = FindFirstObjectByType<GlobalEnemyManager>();
-
+        GlobalEnemyManager.levelComplete = false;
         if (globalEnemyManager)
             globalEnemyManager.AddEnemy(gameObject);
     }

@@ -3,6 +3,7 @@ using UnityEngine;
 
 public class ExplosiveBlood : MonoBehaviour
 {
+    [SerializeField] private ParticleSystem explosion;
     private void Start()
     {
         BloodLevel.explosiveBloodAmount.Add(gameObject);
@@ -35,6 +36,9 @@ public class ExplosiveBlood : MonoBehaviour
 
 
         BloodLevel.explosiveBloodAmount.Remove(gameObject);
+
+        
+        Instantiate(explosion, transform.position, Quaternion.identity); 
         Destroy(gameObject);
     }
 

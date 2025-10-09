@@ -6,7 +6,7 @@ using UnityEditor.Rendering.LookDev;
 using UnityEngine;
 using UnityEngine.AI;
 
-public class navmeshtestscript : MonoBehaviour
+public class navmeshtestscript : MonoBehaviour // Readd this to to the chase ai script.
 {
     // Stats
     [Header("Stats")]

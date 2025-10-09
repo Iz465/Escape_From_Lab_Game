@@ -348,6 +348,10 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 83852099e54a755438ff0e9d4dda9f49, type: 3}
+      propertyPath: m_TagString
+      value: Enemy
+      objectReference: {fileID: 0}
     - target: {fileID: 956760928836659473, guid: 83852099e54a755438ff0e9d4dda9f49, type: 3}
       propertyPath: m_Layer
       value: 7
@@ -748,8 +752,13 @@ MonoBehaviour:
   roamDelay: 5
   attackRange: 10
   corpse: {fileID: 8569907671077136166, guid: a6ff6eea623561b4fa112ab48b3aea5e, type: 3}
-  upperCorpse: {fileID: 0}
   enemyPrefab: Blood Assets/Brute
+  corpseParts:
+    head: {fileID: 0}
+    torso: {fileID: 0}
+    leftHand: {fileID: 0}
+    rightHand: {fileID: 0}
+    legs: {fileID: 0}
   playerLayer:
     serializedVersion: 2
     m_Bits: 8

@@ -17,7 +17,7 @@ public class CameraManager : MonoBehaviour
     {
         // Get mouse scroll wheel input for zooming the camera
         float axis = Input.GetAxis("Mouse ScrollWheel");
-        camDistance += axis;
+        camDistance -= axis;
         camDistance = Mathf.Clamp(camDistance, minCamDistance, maxCamDistance);
 
         // Get mouse movement for looking around

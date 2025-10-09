@@ -22,9 +22,9 @@ public class CharacterSelection : MonoBehaviour
         Speed speed = newPlayerModel.AddComponent<Speed>();
 
         speed.normalWalk = 7;
-        speed.normalRun = 15;
+        speed.normalRun = 150;
         speed.highSpeedWalk = 500;
-        speed.highSpeedRun = 1000;
+        speed.highSpeedRun = 3000;
         speed.dashSpeed = 30;
         speed.dashDuration = 0.02f;
 
@@ -67,7 +67,12 @@ public class CharacterSelection : MonoBehaviour
     void FinishSetup(Transform newPlayerModel)
     {
         newPlayerModel.parent = null;
-        newPlayerModel.AddComponent<PlayerInfo>();
+        PlayerInfo info = newPlayerModel.AddComponent<PlayerInfo>();
+
+        info.health = 100;
+        info.stamina = 100;
+        info.maxHealth = 100;
+
         Destroy(GameObject.Find("Camera"));
         gameObject.SetActive(false);
     }

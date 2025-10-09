@@ -8,9 +8,9 @@ public class Trash : MonoBehaviour
     [SerializeField] GameObject tile;
     private void OnEnable()
     {
-        for (int x = 0; x < 15; x++)
+        for (int x = 0; x < 15; x+=3)
         {
-            for (int z = 0; z < 200; z++)
+            for (int z = 0; z < 200; z+=3)
             {
                 GameObject newTile = Instantiate(tile);
                 newTile.transform.parent = GameObject.Find("FallingTiles").transform;

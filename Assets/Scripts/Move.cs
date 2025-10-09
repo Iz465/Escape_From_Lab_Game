@@ -26,7 +26,6 @@ public class Move : MonoBehaviour
         Debug.DrawRay(transform.position + new Vector3(0,controller.center.y-0.1f,0), Vector3.down * (height / 2));
         if(!Physics.Raycast(transform.position + new Vector3(0, controller.center.y-0.1f, 0), Vector3.down, height / 2))
         {
-         //   print("floating");
             fallSpeed -= fallAcceleration * Time.deltaTime;
             fallSpeed = Mathf.Clamp(fallSpeed, -50, 10);
         }
@@ -36,10 +35,8 @@ public class Move : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.Space))
         {
-            print("pressed space");
             if(Physics.Raycast(transform.position + new Vector3(0, controller.center.y - 0.1f, 0), Vector3.down, height / 2))
             {
-                print("standing on object");
                 fallSpeed = jumpStrength;
             }
         }

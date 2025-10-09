@@ -29,5 +29,8 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Blood_Room_Scenes/Blood_Room_4.unity
     guid: 5124a7891dd6a2e47b313a2d8533facf
+  - enabled: 1
+    path: Assets/Scenes/Blood_Room_Scenes/Blood_Room_5.unity
+    guid: 7d26dd4dd652d6f4faadd9450812af88
   m_configObjects: {}
   m_UseUCBPForAssetBundles: 0

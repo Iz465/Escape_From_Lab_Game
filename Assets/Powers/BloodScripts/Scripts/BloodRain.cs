@@ -105,6 +105,7 @@ public class BloodRain : BasePower
     {
 
         yield return new WaitForSeconds(time);
+        Debug.Log("Spawning blood drop");
         Collider target = null;
         Collider collider = test.GetComponent<Collider>();
         if (!collider) yield break;

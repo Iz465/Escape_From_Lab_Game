@@ -41,7 +41,8 @@ public class BloodMage : BloodEnemy
 
     protected override void AttackPlayer()
     {
-        agent.isStopped = true;
+        if (agent.isOnNavMesh)
+            agent.isStopped = true;
 
         int num = Random.Range(0, 10);
 
@@ -167,13 +168,13 @@ public class BloodMage : BloodEnemy
         number = 3;
 
         GameObject instant = Instantiate(instantAttackPrefab, transform.position + new Vector3(0, 8, 0), transform.rotation);
-        StartCoroutine(HitPlayer(instant,10f));
+        StartCoroutine(HitPlayer(instant,5f));
 
-        instant = Instantiate(instantAttackPrefab, transform.position + new Vector3(5, 8, 0), transform.rotation);
-        StartCoroutine(HitPlayer(instant, 10f));
+     //   instant = Instantiate(instantAttackPrefab, transform.position + new Vector3(5, 8, 0), transform.rotation);
+     //   StartCoroutine(HitPlayer(instant, 10f));
 
-        instant = Instantiate(instantAttackPrefab, transform.position + new Vector3(-5, 8, 0), transform.rotation);
-        StartCoroutine(HitPlayer(instant, 10f));
+     //   instant = Instantiate(instantAttackPrefab, transform.position + new Vector3(-5, 8, 0), transform.rotation);
+     //   StartCoroutine(HitPlayer(instant, 10f));
 
       
     }

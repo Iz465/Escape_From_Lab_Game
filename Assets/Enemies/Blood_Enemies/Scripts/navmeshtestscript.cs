@@ -41,8 +41,9 @@ public class navmeshtestscript : MonoBehaviour
     protected float distanceToPlayer;
     public static List<GameObject> deadEnemies = new List<GameObject>();
     protected GlobalEnemyManager globalEnemyManager;
+    private Brute brute;
 
-    
+
 
     protected float rotateSpeed;
 
@@ -58,6 +59,7 @@ public class navmeshtestscript : MonoBehaviour
         GlobalEnemyManager.levelComplete = false;
         if (globalEnemyManager)
             globalEnemyManager.AddEnemy(gameObject);
+        brute = GetComponent<Brute>(); // bandaid
     }
 
     virtual protected void Update()
@@ -99,6 +101,7 @@ public class navmeshtestscript : MonoBehaviour
 
         if (distanceToPlayer > attackRange && canAttack)
         {
+            if (!agent.isOnNavMesh) return;
             agent.isStopped = false;
             agent.SetDestination(player.transform.position);
             GlobalEnemyManager.enemiesInRange.Remove(gameObject);
@@ -108,7 +111,9 @@ public class navmeshtestscript : MonoBehaviour
         {
             
             GlobalEnemyManager.enemiesInRange.Add(gameObject);
-            agent.isStopped = true;
+
+            if (agent.isOnNavMesh && !brute) // bandaid
+                agent.isStopped = true;
 
             if (canAttack)
             {

@@ -13,24 +13,33 @@ public class Brute : BloodEnemy
     protected override void Start()
     {
         base.Start();
-        charge = true;
-        attackRange = 20;
-       
+        attack = true;
+        // attackRange = 20;
+        attackRange = 7;
+
+    }
+
+    protected override void Update()
+    {
+        base.Update();
+
     }
 
     // random enemy attack chosen.
     protected override void AttackPlayer()
     {
+
         agent.isStopped = true;
-        
+
+       
         if (attack)
             animator.SetBool("CanAttack", true);
-        if (charge)
-        {
+     //   if (charge)
+     //   {
            
-            animator.SetBool("CanCharge", true);
-            StartCoroutine(Charge(1));
-        }
+     //       animator.SetBool("CanCharge", true);
+    //        StartCoroutine(Charge(1));
+    //    }
           
         canAttack = false;
 
@@ -59,7 +68,6 @@ public class Brute : BloodEnemy
     private IEnumerator Charge(int time)
     {
         yield return new WaitForSeconds(time);
-
         number++;
         canChargeDamage = true;
         animator.SetBool("ChargeActivate", true);
@@ -71,13 +79,13 @@ public class Brute : BloodEnemy
 
         while (agent.remainingDistance > 0.5f || agent.pathPending)
         {
-            Debug.Log($"Distance left {chargeLocation - transform.position}");
-            yield return null;
+          Debug.Log($"Distance left {chargeLocation - transform.position}");
+          yield return null;
         }
-        
 
 
-        ResetCharge();
+
+            ResetCharge();
     }
 
     private IEnumerator ResetAnim(int time)
@@ -93,9 +101,10 @@ public class Brute : BloodEnemy
 
     private void ResetCharge()
     {
- 
+
         agent.speed = 3.5f;
         agent.acceleration = 8;
+   
         animator.SetBool("CanCharge", false);
         animator.SetBool("ChargeActivate", false);
         if (number >= 3)

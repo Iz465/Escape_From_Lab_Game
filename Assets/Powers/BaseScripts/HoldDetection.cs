@@ -14,8 +14,8 @@ public class HoldDetection : Power_Hit_Detection
         iCollide = GetComponent<ICollide>();
         if (iCollide != null)
             iCollide.CollideResult(collision.collider, gameObject);
-        takeDamage = collision.gameObject.GetComponent<IDamageTaken>();
-        if (takeDamage != null)
-            takeDamage.TakeDamage(powerData.damage);
+        enemy = collision.gameObject.GetComponent<navmeshtestscript>();
+        if (enemy)
+            enemy.TakeDamage(power.stats.damage);
     }
 }

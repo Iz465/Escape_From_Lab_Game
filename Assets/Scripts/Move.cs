@@ -5,7 +5,7 @@ using UnityEngine.InputSystem;
 
 public class Move : MonoBehaviour
 {
-    CharacterController controller;
+    public CharacterController controller;
     public Vector3 direction;
     public float acceleration;
     public Vector3 velocity;

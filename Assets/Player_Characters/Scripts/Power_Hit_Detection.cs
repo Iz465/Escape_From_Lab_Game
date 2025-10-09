@@ -3,52 +3,50 @@ using UnityEngine;
 
 public class Power_Hit_Detection : MonoBehaviour
 {
-    protected IDamageTaken takeDamage;
+    
     [SerializeField]
-    protected PowerData powerData;
+    protected BasePower power;
     protected ICollide iCollide;
     private ObjectPoolManager poolManager;
-
+    protected navmeshtestscript enemy;
+    
 
     private void Awake()
     {
         poolManager = FindFirstObjectByType<ObjectPoolManager>();
+   
     }
-
 
 
     virtual protected void OnCollisionEnter(Collision collision)
     {
-       
-        Debug.Log("Detected");
-        takeDamage = collision.gameObject.GetComponent<IDamageTaken>();
-  
-        
-        if (takeDamage == null)
+        enemy = collision.gameObject.GetComponent<navmeshtestscript>();
+        iCollide = GetComponent<ICollide>();
+
+        Debug.Log("Hit something");
+            
+        if (!enemy)
         {
-            poolManager.ReleaseToPool(powerData.prefab, gameObject);
+            poolManager.ReleaseToPool(gameObject);
             return;
         }
 
-        else
-            takeDamage.TakeDamage(powerData.damage);
-
-            iCollide = GetComponent<ICollide>();
-        if (iCollide != null)     
+        if (iCollide != null)
+        {
+            Debug.Log("Hit Enemy");
+            enemy.TakeDamage(power.stats.damage);
             iCollide.CollideResult(collision.collider, gameObject);
-        else
-            poolManager.ReleaseToPool(powerData.prefab, gameObject); 
+        }
+          
 
+        if (iCollide == null)
+        {
+            Debug.Log("Hit Enemy");
+            enemy.TakeDamage(power.stats.damage);
+            poolManager.ReleaseToPool(gameObject);
+        }
+     
     }
-
-
-   
-    
-
-
-
-
-
 
 }
 

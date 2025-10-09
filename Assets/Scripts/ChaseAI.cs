@@ -4,6 +4,8 @@ using UnityEngine.AI;
 public class ChaseAI : MonoBehaviour
 {
     protected NavMeshAgent agent;
+    [SerializeField] protected float attackRange;
+    protected bool canAttack;
     protected void Chase(Transform obj)
     {
         bool set = agent.SetDestination(obj.position);
@@ -30,5 +32,15 @@ public class ChaseAI : MonoBehaviour
         float fov = Vector3.Dot(transform.forward, direction.normalized);
         
         return fov > 0.5f;
+    }
+
+    protected bool CanAttack(Transform player)
+    {
+        if((transform.position - player.position).magnitude < attackRange && canAttack)
+        {
+            canAttack = false;
+            return true;
+        }
+        return false;
     }
 }

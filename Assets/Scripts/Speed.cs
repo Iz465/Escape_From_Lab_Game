@@ -39,6 +39,9 @@ public class Speed : PlayerInfo
 
     void Run()
     {
+        if(stamina <= 0)
+            highSpeedMode = false;
+
         movement.velocity = movement.direction * Time.deltaTime;
         Vector3 vel = movement.velocity;
 
@@ -92,6 +95,7 @@ public class Speed : PlayerInfo
 
     public void HighSpeedMode()
     {
+        if (stamina < 0) return;
         highSpeedMode = !highSpeedMode;
         Time.timeScale = highSpeedMode ? highSpeedModeScale : 1;
         Time.fixedDeltaTime = 0.02f * Time.timeScale;
@@ -176,7 +180,13 @@ public class Speed : PlayerInfo
         Run();
         Dash();
         Phaze();
-        //Heal();
-        //Regen();
+        Heal();
+        Regen();
+
+        if (animator.GetBool(meleeAttackAnimation))
+        {
+
+            DamageEnemy();
+        }
     }
 }

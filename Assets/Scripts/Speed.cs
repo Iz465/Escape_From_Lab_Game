@@ -31,9 +31,10 @@ public class Speed : PlayerInfo
         staminaText = stats.Find("Stamina").GetComponent<Text>();
         healthText = stats.Find("Health").GetComponent <Text>();
 
-        meleeAttackCooldown = 0.5f;
+        meleeAttackCooldown = 0.1f;
         meleeAttackAnimation = "Melee";
         animator = transform.GetComponent<Animator>();
+        attackDuration = 0.33f;
     }
 
     void Run()

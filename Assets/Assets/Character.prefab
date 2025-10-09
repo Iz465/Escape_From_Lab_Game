@@ -492,7 +492,7 @@ MonoBehaviour:
   useOtherScript: 0
   walkSpeed: 0
   fallAcceleration: 5
-  jumpStrength: 1.5
+  jumpStrength: 4
 --- !u!143 &8542792657036889860
 CharacterController:
   m_ObjectHideFlags: 0

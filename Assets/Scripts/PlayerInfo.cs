@@ -1,4 +1,6 @@
 using System.Collections;
+using System.Collections.Generic;
+using NUnit.Framework;
 using UnityEngine;
 
 public class PlayerInfo : MonoBehaviour
@@ -23,6 +25,7 @@ public class PlayerInfo : MonoBehaviour
 
     protected IEnumerator MeleeAttack(Animator animator)
     {
+        print("punching");
         animator.speed = 1 / Time.timeScale;
         animator.SetBool("Idle", false);
         attacked = Time.time + meleeAttackCooldown * Time.timeScale;
@@ -34,7 +37,24 @@ public class PlayerInfo : MonoBehaviour
         canPunch = true;
     }
 
+    protected void DamageEnemy()
+    {
+        print(transform.name);
+        GameObject[] enemies = GameObject.FindGameObjectsWithTag("Enemy");
+
+        foreach (GameObject enemy in enemies)
+        {
+            Transform enemyTransform = enemy.transform;
+            if ((enemyTransform.position - transform.position).magnitude > 4) continue;
+            Vector3 enemyDirection = (enemyTransform.position - transform.position).normalized;
+
+            if (Vector3.Dot(enemyDirection, transform.forward) < 0.5f) continue;
+            enemy.GetComponent<Soldier>().GotHit();
+        }
+    }
+
     private void Update()
     {
+        
     }
 }

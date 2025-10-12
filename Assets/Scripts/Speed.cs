@@ -25,13 +25,16 @@ public class Speed : PlayerInfo
         movement = transform.GetComponent<Move>();
         playerInfo = transform.GetComponent<PlayerInfo>();
         cam = transform.Find("Main Camera").transform;
-
+        /*
         Transform stats = GameObject.Find("Canvas").transform.Find("Stats");
 
-        staminaText = stats.Find("Stamina").GetComponent<Text>();
-        healthText = stats.Find("Health").GetComponent <Text>();
+        if (stats.Find("Stamina"){
+            staminaText = stats.Find("Stamina").GetComponent<Text>();
 
-        meleeAttackCooldown = 0.1f;
+        }
+        healthText = stats.Find("Health").GetComponent <Text>();
+        */
+        //meleeAttackCooldown = 0.1f;
         meleeAttackAnimation = "Melee";
         animator = transform.GetComponent<Animator>();
         attackDuration = 0.33f;
@@ -39,6 +42,9 @@ public class Speed : PlayerInfo
 
     void Run()
     {
+        if(stamina <= 0)
+            highSpeedMode = false;
+
         movement.velocity = movement.direction * Time.deltaTime;
         Vector3 vel = movement.velocity;
 
@@ -87,11 +93,15 @@ public class Speed : PlayerInfo
 
         //left click to attack
         if (Input.GetMouseButtonDown(0))
+        {
+            DamageEnemy();
             StartCoroutine(MeleeAttack(animator));
+        }
     }
 
     public void HighSpeedMode()
     {
+        if (stamina < 0) return;
         highSpeedMode = !highSpeedMode;
         Time.timeScale = highSpeedMode ? highSpeedModeScale : 1;
         Time.fixedDeltaTime = 0.02f * Time.timeScale;
@@ -159,7 +169,11 @@ public class Speed : PlayerInfo
             if (playerInfo.lastDamageTime < Time.time - 5)
                 playerInfo.health += regenRate * Time.deltaTime;
 
-
+        if(healthText == null)
+        {
+            Debug.LogWarning("Player health text not set");
+            return;
+        }
         healthText.text = playerInfo.health.ToString() + " health";
     }
 
@@ -176,7 +190,13 @@ public class Speed : PlayerInfo
         Run();
         Dash();
         Phaze();
-        //Heal();
-        //Regen();
+        Heal();
+        Regen();
+
+        if (animator.GetBool(meleeAttackAnimation))
+        {
+
+            
+        }
     }
 }

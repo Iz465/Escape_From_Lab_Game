@@ -1,18 +1,16 @@
 using System.Collections;
-using UnityEditor.Experimental.GraphView;
 using UnityEngine;
 using UnityEngine.AI;
 
 public class Soldier : ChaseAI
 {
-    public Transform plr;
+    
     Vector3 startChasingPlayer;
     public Transform muzzle;
     public GameObject bullet;
-    PlayerInfo playerInfo;
+    
 
     [SerializeField] float shootDelay, shootSpeed, timeBetweenBullet;
-    [SerializeField] float health;
     [SerializeField] float stunned, hitStunTime;
 
     float timeWhenSeenPlayer = 0;
@@ -20,8 +18,8 @@ public class Soldier : ChaseAI
 
     void Start()
     {
-        agent = transform.GetComponent<NavMeshAgent>();
-        StartCoroutine(WaitForPlayer());
+        //agent = transform.GetComponent<NavMeshAgent>();
+        //StartCoroutine(WaitForPlayer());
     }
 
     IEnumerator WaitForPlayer()
@@ -45,17 +43,21 @@ public class Soldier : ChaseAI
 
     private void OnEnable()
     {
-        agent = transform.GetComponent<NavMeshAgent>();
-        StartCoroutine(WaitForPlayer());
+        //agent = transform.GetComponent<NavMeshAgent>();
+        //StartCoroutine(WaitForPlayer());
     }
     // Update is called once per frame
     void Update()
     {
+        ShowHealth();
+        Heal();
+        
         if (plr == null) return;
         if (DetectPlayer())
         {
             ShootPlayer();
         }
+
     }
 
     bool DetectPlayer()
@@ -126,6 +128,7 @@ public class Soldier : ChaseAI
     public void GotHit()
     {
         health -= 13;
+        gotHit = Time.time;
         stunned = Time.time + hitStunTime;
         if(health < 0)
             Destroy(gameObject);

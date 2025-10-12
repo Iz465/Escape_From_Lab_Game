@@ -4,8 +4,22 @@ using UnityEngine.AI;
 public class ChaseAI : MonoBehaviour
 {
     protected NavMeshAgent agent;
+    protected PlayerInfo playerInfo;
+    public Transform plr;
+
     [SerializeField] protected float attackRange;
     protected bool canAttack;
+
+    [SerializeField] protected GameObject greenHealthImage;
+
+    [SerializeField] protected float maxHealth;
+    [SerializeField] protected float health;
+
+    [SerializeField] protected bool canHeal;
+    [SerializeField] protected float healSpeed;
+    protected float gotHit;
+    [SerializeField] protected float healDelay;
+
     protected void Chase(Transform obj)
     {
         bool set = agent.SetDestination(obj.position);
@@ -42,5 +56,24 @@ public class ChaseAI : MonoBehaviour
             return true;
         }
         return false;
+    }
+
+    protected void ShowHealth()
+    {
+        greenHealthImage.GetComponent<RectTransform>().localScale = new Vector3(health / maxHealth, 1, 1);
+
+    }
+
+    protected void Heal()
+    {
+        if (!canHeal) return;
+        if (health >= maxHealth) return;
+
+        if(Time.time > gotHit + healDelay)
+        {
+            health += healSpeed * Time.deltaTime * Time.timeScale;
+            if(health > maxHealth)
+                health = maxHealth;
+        }
     }
 }

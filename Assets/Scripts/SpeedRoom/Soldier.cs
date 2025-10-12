@@ -18,8 +18,8 @@ public class Soldier : ChaseAI
 
     void Start()
     {
-        //agent = transform.GetComponent<NavMeshAgent>();
-        //StartCoroutine(WaitForPlayer());
+        agent = transform.GetComponent<NavMeshAgent>();
+        StartCoroutine(WaitForPlayer());
     }
 
     IEnumerator WaitForPlayer()
@@ -36,15 +36,16 @@ public class Soldier : ChaseAI
         yield return new WaitForSeconds(1);
         plr = GameObject.FindGameObjectWithTag("Player").transform;
         playerInfo = plr.GetComponent<PlayerInfo>();
-        print("starting to chase player");
+
         startChasingPlayer = plr.position;
+        transform.Find("Canvas").GetComponent<Canvas>().worldCamera = plr.Find("Main Camera").GetComponent<Camera>();
         Chase(plr);
     }
 
     private void OnEnable()
     {
-        //agent = transform.GetComponent<NavMeshAgent>();
-        //StartCoroutine(WaitForPlayer());
+        agent = transform.GetComponent<NavMeshAgent>();
+        StartCoroutine(WaitForPlayer());
     }
     // Update is called once per frame
     void Update()

@@ -17,6 +17,9 @@ public class BasePower : MonoBehaviour
     protected Transform boxAim;
     [SerializeField]
     protected Camera cam;
+    protected Animator animator;
+
+    
 
     protected Rigidbody rb;
     protected static bool isHeld;
@@ -26,6 +29,7 @@ public class BasePower : MonoBehaviour
 
     public struct PowerStats
     {
+        public string powerName;
         public GameObject prefab;
         public float damage;
         public float speed;
@@ -44,24 +48,34 @@ public class BasePower : MonoBehaviour
     }
     public PowerType powerType;
 
-    private void Start()
+    virtual protected void Start()
     {
-   //     poolManager = FindFirstObjectByType<ObjectPoolManager>();
-    
+        //     poolManager = FindFirstObjectByType<ObjectPoolManager>();
+        animator = GetComponent<Animator>();
+
     }
 
-    virtual public void Attack(InputAction.CallbackContext context)
+
+    virtual public void StartAttack(InputAction.CallbackContext context)
     {
         if (context.canceled) isHeld = false;
         if (!context.performed) return;
+
+        animator.SetTrigger(stats.powerName);
+    }
+
+
+    virtual public void Attack()
+    {
+      
         if (!PowerChecks()) return;
         if (!powerInstance) return;
 
         switch (powerType)
         {
             case PowerType.Shoot: ShootPower(); break;
-            case PowerType.Hold:  HoldPower(context); break;
-            case PowerType.Spawn: spawnPower(); break;
+            case PowerType.Hold:  HoldPower(); break;
+            case PowerType.Spawn: SpawnPower(); break;
             case PowerType.Melee: MeleePower(); break;
             default: break;
         }
@@ -76,7 +90,8 @@ public class BasePower : MonoBehaviour
             Debug.LogWarning("Power Prefab Not Found");
             return false;
         }
-        if (!UseStamina()) return false;
+      //  if (!UseStamina()) return false;
+  
 
         if (!boxAim)
         {
@@ -91,6 +106,7 @@ public class BasePower : MonoBehaviour
         }
         poolManager = FindFirstObjectByType<ObjectPoolManager>(); // temporary
         if (!poolManager) Debug.LogWarning("no pool");
+        Debug.Log($"Spawning power :{stats.prefab}");
         powerInstance = poolManager.SpawnFromPool(stats.prefab, boxAim.position, Quaternion.LookRotation(cam.transform.forward));
 
         if (!powerInstance)
@@ -131,7 +147,7 @@ public class BasePower : MonoBehaviour
         poolManager.ReleaseToPool(power);
     }
 
-    virtual protected void HoldPower(InputAction.CallbackContext context)
+    virtual protected void HoldPower()
     {
         isHeld = true;
         rb.sleepThreshold = 0;
@@ -142,7 +158,7 @@ public class BasePower : MonoBehaviour
 
     }
 
-    virtual protected void spawnPower()
+    virtual protected void SpawnPower()
     {
         float yLoc = 15;
         float zLoc = 15;

@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.Collections;
 using System.Linq;
 using UnityEngine;
 using UnityEngine.InputSystem;
@@ -12,43 +13,61 @@ public class InstaKill : BasePower, ICollide
     private LayerMask enemyLayer;
     private Collider[] enemyDetected;
     private Collider powerCollider;
-    Animator animator;
+    private bool canAttack;
+
 
     private List<GameObject> enemyHit = new List<GameObject>();
+    CameraShake cameraShake;
 
     private void Awake()
     {
    
         powerCollider = GetComponent<Collider>();
+      
     }
 
-    private void Start()
+    protected override void Start()
     {
-        animator = GetComponentInChildren<Animator>();
-    }
-
-    public override void Attack(InputAction.CallbackContext context)
-    {
-        base.Attack(context);
-        if (animator)
-            animator.SetBool("InstaKill", true);
+        base.Start();
+        canAttack = true;
+  
+     
     }
 
 
-
-    protected override bool UseStamina()
+    public override void StartAttack(InputAction.CallbackContext context)
     {
+        if (!context.performed) return;
+  //      if (!UseStamina()) return;
 
-     //   player.stats.health -= bloodData.loseHealth;
-        player.stats.health = Mathf.Clamp(player.stats.health, 10, player.maxHealth);
 
+        if (canAttack)
+        {
+            canAttack = false;
+            Debug.Log($"starting attack!!!");
+            base.StartAttack(context);
+        }
 
-        return base.UseStamina();
+        else if (!canAttack) 
+        {
+            Debug.Log($"Unable to attack!");
+        }
+           
+    }
+
+    private void StartInstaKill()
+    {
+        if (!cam) return;
+        cameraShake = cam.GetComponent<CameraShake>();
+        if (!cameraShake) return;
+        StartCoroutine(cameraShake.Shake(0.1f));
+        Attack();
     }
 
     public void CollideResult(Collider objectHit, GameObject power)
     {
         Debug.Log("Activating insta kill");
+        Debug.Log($"Object hit : {objectHit}");
         if (!powerCollider) return;
         rb = power.GetComponent<Rigidbody>();
         if (!rb) return;
@@ -68,6 +87,7 @@ public class InstaKill : BasePower, ICollide
             }
             
         }
+        Debug.Log($"Target: {target}");
 
         if (!target)
         {
@@ -90,4 +110,22 @@ public class InstaKill : BasePower, ICollide
       
     }
 
+    private void StartShake()
+    {
+        if (!cam) return;
+        cameraShake = cam.GetComponent<CameraShake>();
+        if (!cameraShake) return;
+        StartCoroutine(cameraShake.Shake(0.1f));
+    }
+
+    private void ResetAnim()
+    {
+        canAttack = true;
+    }
+
+    private IEnumerator ResetAttack(float time)
+    {
+        yield return new WaitForSeconds(time);
+        canAttack = true;
+    }
 }

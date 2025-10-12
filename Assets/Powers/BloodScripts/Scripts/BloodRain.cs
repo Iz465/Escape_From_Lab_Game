@@ -14,21 +14,48 @@ public class BloodRain : BasePower
     private LayerMask enemyLayer;
     [SerializeField]
     private GameObject rainPrefab;
-
+    private bool canAttack;
     List<Collider> enemyList = new List<Collider>();
 
-
-
-    //  protected override bool UseStamina()
-    //    { 
-    //    player.stats.health -= bloodData.loseHealth;
-    //      player.stats.health = Mathf.Clamp(player.stats.health, 10, player.maxHealth);
-    //    return base.UseStamina();
-    //   }
-
-    protected override void spawnPower()
+    protected override void Start()
     {
-        base.spawnPower();
+        base.Start();
+        canAttack = true;
+    }
+    public override void StartAttack(InputAction.CallbackContext context) 
+    {
+        if (!context.performed) return;
+
+
+        if (canAttack)
+        {
+            canAttack = false;
+            Debug.Log($"starting attack!!!");
+            base.StartAttack(context);
+        }
+        else if (!canAttack)
+        {
+            Debug.Log($"Unable to attack!");
+        }
+
+    }
+
+
+    private IEnumerator ResetAttack(int time)
+    {
+        yield return new WaitForSeconds(time);
+        Debug.Log("Blood Rain active!");
+        canAttack = true;
+    }
+
+    private void StartBloodRain()
+    {
+        Attack();
+    }
+
+    protected override void SpawnPower()
+    {
+        base.SpawnPower();
         RainBlood();
         StartCoroutine(DestroyPower(5, powerInstance));
     }
@@ -78,6 +105,7 @@ public class BloodRain : BasePower
     {
 
         yield return new WaitForSeconds(time);
+        Debug.Log("Spawning blood drop");
         Collider target = null;
         Collider collider = test.GetComponent<Collider>();
         if (!collider) yield break;
@@ -102,6 +130,11 @@ public class BloodRain : BasePower
         rainBody.AddForce(direction * stats.speed, ForceMode.Impulse);
         enemyList.Add(target);
       
+    }
+
+    private void ResetAnim()
+    {
+        StartCoroutine(ResetAttack(15));
     }
 
 

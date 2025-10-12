@@ -17,11 +17,17 @@ public class Kael_Draven : Player
             Debug.Log("No Animator");
             return;
         }
-      
+
+        if (Input.GetKeyDown(KeyCode.P))
+        {
+            Debug.Log("Pausing for debug!");
+            Debug.Break();
+        }
+
 
         Vector3 movement = move.controller.velocity;
 
-        // Ignore jumping or falling
+        // Ignores jumping/falling
         Vector3 horizontalVelocity = new Vector3(movement.x, 0, movement.z);
 
      
@@ -32,5 +38,8 @@ public class Kael_Draven : Player
             animator.SetBool("Moving", false);
         
     }
+
+  
+
 
 }

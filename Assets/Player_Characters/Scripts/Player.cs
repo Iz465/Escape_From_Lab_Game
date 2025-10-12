@@ -1,4 +1,6 @@
+using UnityEditor.SearchService;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class Player : MonoBehaviour, IDamageTaken
 {
@@ -25,6 +27,9 @@ public class Player : MonoBehaviour, IDamageTaken
     {
         stats.stamina += 5f * Time.deltaTime;
         stats.stamina = Mathf.Clamp(stats.stamina, 0, maxStamina);
+
+        if (stats.health <= 0)
+            playerDeath();
     }
 
 
@@ -39,11 +44,18 @@ public class Player : MonoBehaviour, IDamageTaken
     public void playerDeath() 
     {
         Debug.Log("You have died");
+        UnityEngine.SceneManagement.Scene scene = SceneManager.GetActiveScene();
+        Debug.Log($"Scene name : {scene.name}");
+        SceneManager.LoadScene(scene.name);
+
+       
+       
+       // gameObject.SetActive(false);
     }
 
     private void OnControllerColliderHit(ControllerColliderHit hit)
     {
-        Debug.Log($"Controller hit something : {hit.gameObject}");
+     //   Debug.Log($"Controller hit something : {hit.gameObject}");
     }
 
 

@@ -7,7 +7,8 @@ public class linescript : MonoBehaviour
     public float radius;
     public int segments;
 
-    Brute enemy;
+
+    public bool toggleCircle;
 
     private void Start()
     {
@@ -21,15 +22,15 @@ public class linescript : MonoBehaviour
         line.endColor = Color.red;
 
         radius += 1;
-        
-        enemy = GetComponent<Brute>();
-        enemy.toggleCircle = false;
+            
+        toggleCircle = false;
     }
 
     private void Update()
     {
-
-        if (!enemy.toggleCircle)
+      
+        
+        if (!toggleCircle)
         {
             line.enabled = false;
             return;

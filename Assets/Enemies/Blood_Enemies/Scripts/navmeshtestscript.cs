@@ -193,20 +193,20 @@ public class navmeshtestscript : MonoBehaviour // Readd this to to the chase ai 
    */
         
         if (corpseParts.head)
-            makeRagdoll(corpseParts.head,3);
+            MakeRagdoll(corpseParts.head,3);
         if (corpseParts.legs)
-            makeRagdoll(corpseParts.legs,1);
+            MakeRagdoll(corpseParts.legs,1);
         if (corpseParts.rightHand)
-            makeRagdoll(corpseParts.rightHand, 2.5f);
+            MakeRagdoll(corpseParts.rightHand, 2.5f);
         if (corpseParts.leftHand)
-            makeRagdoll(corpseParts.leftHand,2.5f);
+            MakeRagdoll(corpseParts.leftHand,2.5f);
         if (corpseParts.torso)
-            makeRagdoll(corpseParts.torso, 2.5f);
+            MakeRagdoll(corpseParts.torso, 2.5f);
 
         Destroy(gameObject);
     }
 
-    private void makeRagdoll(GameObject bodypart, float height)
+    private void MakeRagdoll(GameObject bodypart, float height)
     {
         if (bodypart)
         {

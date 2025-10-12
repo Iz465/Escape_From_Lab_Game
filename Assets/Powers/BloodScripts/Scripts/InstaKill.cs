@@ -40,6 +40,7 @@ public class InstaKill : BasePower, ICollide
         if (!context.performed) return;
   //      if (!UseStamina()) return;
 
+
         if (canAttack)
         {
             canAttack = false;
@@ -61,23 +62,6 @@ public class InstaKill : BasePower, ICollide
         if (!cameraShake) return;
         StartCoroutine(cameraShake.Shake(0.1f));
         Attack();
-    }
-
- 
-
-    private IEnumerator ResetAttack(float time)
-    {
-        yield return new WaitForSeconds(time);
-        canAttack = true;
-    }
-
-    protected override bool UseStamina()
-    {
-
-        //   player.stats.health -= bloodData.loseHealth;
-        //   player.stats.health = Mathf.Clamp(player.stats.health, 10, player.maxHealth);
-   //     StartCoroutine(ResetAttack(1));
-        return base.UseStamina();
     }
 
     public void CollideResult(Collider objectHit, GameObject power)
@@ -136,7 +120,12 @@ public class InstaKill : BasePower, ICollide
 
     private void ResetAnim()
     {
-        animator.SetBool("InstaKill", false);
-        StartCoroutine(ResetAttack(0.5f));
+        canAttack = true;
+    }
+
+    private IEnumerator ResetAttack(float time)
+    {
+        yield return new WaitForSeconds(time);
+        canAttack = true;
     }
 }

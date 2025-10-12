@@ -17,7 +17,7 @@ public class Dodge : MonoBehaviour
     {
         if (!context.performed) return;
         if (!canDodge) return;
-        animator.SetBool("DodgeLeft", true);
+        animator.SetTrigger("DodgeLeft");
         StartCoroutine(DodgeLeftTimer(0.3f));
         canDodge = false;
         StartCoroutine(ResetDodge(cooldown));
@@ -29,7 +29,7 @@ public class Dodge : MonoBehaviour
     {
         if (!context.performed) return;
         if (!canDodge) return;
-        animator.SetBool("DodgeRight", true);
+        animator.SetTrigger("DodgeRight");
         StartCoroutine(DodgeRightTimer(0.3f));
         canDodge = false;
         StartCoroutine(ResetDodge(cooldown));
@@ -39,7 +39,7 @@ public class Dodge : MonoBehaviour
     {
         if (!context.performed) return;
         if (!canDodge) return;
-        animator.SetBool("DodgeBack", true);
+        animator.SetTrigger("DodgeBack");
         StartCoroutine(DodgeBackTimer(0.3f));
         canDodge = false;
         StartCoroutine(ResetDodge(cooldown));

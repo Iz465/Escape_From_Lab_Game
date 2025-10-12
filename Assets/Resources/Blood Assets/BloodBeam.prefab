@@ -11,7 +11,6 @@ GameObject:
   - component: {fileID: 6146468791754704223}
   - component: {fileID: 4303247459178488216}
   - component: {fileID: 627434721008553593}
-  - component: {fileID: 8884663498921486380}
   - component: {fileID: 761248251467512825}
   m_Layer: 0
   m_Name: BloodBeam
@@ -88,19 +87,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!114 &8884663498921486380
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4206158539693164282}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9739c1f3edc21fa42a408a7ecad48438, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  damage: 2
 --- !u!65 &761248251467512825
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -118,7 +104,7 @@ BoxCollider:
   m_LayerOverridePriority: 0
   m_IsTrigger: 1
   m_ProvidesContacts: 0
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 3
   m_Size: {x: 0.99999994, y: 0.99999994, z: 0.99999994}
   m_Center: {x: 0, y: 0, z: -0.00000023841858}

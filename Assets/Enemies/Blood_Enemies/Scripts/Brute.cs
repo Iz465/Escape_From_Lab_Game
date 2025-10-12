@@ -4,10 +4,10 @@ using UnityEngine;
 public class Brute : BloodEnemy
 {
     [SerializeField] LayerMask playerLayer;
-    public bool toggleCircle;
     private bool attack;
     private bool charge;
     private bool canChargeDamage;
+    private linescript line;
 
 
     protected override void Start()
@@ -16,6 +16,7 @@ public class Brute : BloodEnemy
         attack = true;
         // attackRange = 20;
         attackRange = 7;
+        line = GetComponent<linescript>();
 
     }
 
@@ -91,7 +92,7 @@ public class Brute : BloodEnemy
     private IEnumerator ResetAnim(int time)
     {
         yield return new WaitForSeconds(time);
-        toggleCircle = false;
+        line.toggleCircle = false;
         animator.SetBool("CanAttack", false);
         if (number >= 3)
             StartCoroutine(ResetAttack(2));
@@ -152,7 +153,7 @@ public class Brute : BloodEnemy
 
     private void ShowCircle()
     {
-        toggleCircle = true;
+        line.toggleCircle = true;
     }
 
     private void OnTriggerEnter(Collider other)

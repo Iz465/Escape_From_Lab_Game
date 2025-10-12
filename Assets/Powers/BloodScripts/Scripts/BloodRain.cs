@@ -134,7 +134,6 @@ public class BloodRain : BasePower
 
     private void ResetAnim()
     {
-        animator.SetBool("BloodRain", false);
         StartCoroutine(ResetAttack(15));
     }
 

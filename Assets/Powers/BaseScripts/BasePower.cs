@@ -55,12 +55,13 @@ public class BasePower : MonoBehaviour
 
     }
 
+
     virtual public void StartAttack(InputAction.CallbackContext context)
     {
         if (context.canceled) isHeld = false;
         if (!context.performed) return;
 
-        animator.SetBool(stats.powerName, true);
+        animator.SetTrigger(stats.powerName);
     }
 
 

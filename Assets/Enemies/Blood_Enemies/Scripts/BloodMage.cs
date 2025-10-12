@@ -139,6 +139,8 @@ public class BloodMage : BloodEnemy
         {
             Debug.DrawRay(beamInstance.transform.parent.position, beamInstance.transform.parent.forward * beamLength, Color.cyan);
             beamLength = hit.distance;
+            player.TakeDamage(30 * Time.deltaTime);
+
         }
     
 

@@ -300,7 +300,7 @@ GameObject:
   - component: {fileID: 3660432078360493144}
   - component: {fileID: 6675827311531915186}
   - component: {fileID: 7589849063462699184}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Hammer_Double
   m_TagString: Untagged
   m_Icon: {fileID: 0}

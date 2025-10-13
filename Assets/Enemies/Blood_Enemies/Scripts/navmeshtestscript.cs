@@ -42,7 +42,7 @@ public class navmeshtestscript : MonoBehaviour // Readd this to to the chase ai 
     public static List<GameObject> deadEnemies = new List<GameObject>();
     protected GlobalEnemyManager globalEnemyManager;
     private Brute brute;
-
+    protected bool canRotate;
 
 
     protected float rotateSpeed;
@@ -60,6 +60,7 @@ public class navmeshtestscript : MonoBehaviour // Readd this to to the chase ai 
         if (globalEnemyManager)
             globalEnemyManager.AddEnemy(gameObject);
         brute = GetComponent<Brute>(); // bandaid
+        canRotate = true;
     }
 
     virtual protected void Update()
@@ -96,7 +97,8 @@ public class navmeshtestscript : MonoBehaviour // Readd this to to the chase ai 
     {
         Vector3 lookDirection = player.transform.position - transform.position;
         lookDirection.y = 0; // keeps horizontal rotation only
-    //    transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(lookDirection), Time.deltaTime * rotateSpeed);
+        if (canRotate)
+            transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(lookDirection), Time.deltaTime * rotateSpeed);
 
 
         if (distanceToPlayer > attackRange && canAttack)

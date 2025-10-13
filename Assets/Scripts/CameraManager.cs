@@ -1,3 +1,4 @@
+using System.Linq;
 using UnityEngine;
 
 public class CameraManager : MonoBehaviour
@@ -12,7 +13,10 @@ public class CameraManager : MonoBehaviour
     {
         camTarget = transform.Find("CameraTarget");
         cam = transform.Find("Main Camera");
-        
+
+        if (!cam)
+            cam = GetComponentsInChildren<Transform>(true).FirstOrDefault(t => t.name == "CameraTarget");
+
     }
     void LookAround()
     {

@@ -96,7 +96,7 @@ public class navmeshtestscript : MonoBehaviour // Readd this to to the chase ai 
     {
         Vector3 lookDirection = player.transform.position - transform.position;
         lookDirection.y = 0; // keeps horizontal rotation only
-        transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(lookDirection), Time.deltaTime * rotateSpeed);
+    //    transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(lookDirection), Time.deltaTime * rotateSpeed);
 
 
         if (distanceToPlayer > attackRange && canAttack)
@@ -163,8 +163,8 @@ public class navmeshtestscript : MonoBehaviour // Readd this to to the chase ai 
 
     public void TakeDamage(float damageTaken)
     {
-        Debug.Log($"Taking damage! Health Left : {health}");
         health -= damageTaken;
+        Debug.Log($"Taking damage! Health Left : {health}");
         if (health <= 0)
             EnemyDeath();
 

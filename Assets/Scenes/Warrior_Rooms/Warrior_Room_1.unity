@@ -1007,7 +1007,7 @@ MonoBehaviour:
   m_OverrideTileSize: 0
   m_TileSize: 256
   m_OverrideVoxelSize: 0
-  m_VoxelSize: 1
+  m_VoxelSize: 0.033333335
   m_MinRegionArea: 2
   m_NavMeshData: {fileID: 23800000, guid: 92f123694f90b32419099b305217878c, type: 2}
   m_BuildHeightMesh: 0
@@ -2406,11 +2406,6 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2b858a9626f2d5348b8128fb0cff0223, type: 3}
---- !u!20 &753927477 stripped
-Camera:
-  m_CorrespondingSourceObject: {fileID: 2654833756252058466, guid: 7752c019e5860b6429fc9ebffb9eebc2, type: 3}
-  m_PrefabInstance: {fileID: 939331201559837618}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &813153728
 GameObject:
   m_ObjectHideFlags: 0
@@ -2584,17 +2579,6 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f163449d80f88af47bf9802bc30832df, type: 3}
---- !u!114 &833284627 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 6817666453106957175, guid: 7752c019e5860b6429fc9ebffb9eebc2, type: 3}
-  m_PrefabInstance: {fileID: 939331201559837618}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9f0778082d7ec9743a06c5ee9363c378, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &834604413
 GameObject:
   m_ObjectHideFlags: 0
@@ -2826,7 +2810,7 @@ PrefabInstance:
     - target: {fileID: -707220764679766152, guid: 1a1ce240431addd4686600324c2cfe8b, type: 3}
       propertyPath: player
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 1502115181}
     - target: {fileID: -707220764679766152, guid: 1a1ce240431addd4686600324c2cfe8b, type: 3}
       propertyPath: healthText
       value: 
@@ -4055,44 +4039,17 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 93845a2d991732a428efe32d2f8ee716, type: 3}
---- !u!1 &1451621787 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 2160069707036575417, guid: 7752c019e5860b6429fc9ebffb9eebc2, type: 3}
+--- !u!114 &1502115181 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 6817666453106957175, guid: 7752c019e5860b6429fc9ebffb9eebc2, type: 3}
   m_PrefabInstance: {fileID: 939331201559837618}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &1451621792 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 7529306921989572188, guid: 7752c019e5860b6429fc9ebffb9eebc2, type: 3}
-  m_PrefabInstance: {fileID: 939331201559837618}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1451621787}
+  m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0b618c71167d1244ca64939c846c0f12, type: 3}
+  m_Script: {fileID: 11500000, guid: 9f0778082d7ec9743a06c5ee9363c378, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &1451621793
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1451621787}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e6265f4073e65ef4e9f31f95268c3224, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  player: {fileID: 833284627}
-  boxAim: {fileID: 0}
-  cam: {fileID: 753927477}
-  stats:
-    powerName: Double Melee
-    prefab: {fileID: 0}
-    damage: 20
-    speed: 0
-    stamina: 20
-  powerType: 3
 --- !u!1 &1504807653
 GameObject:
   m_ObjectHideFlags: 0
@@ -5627,6 +5584,75 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 90, z: 0}
+--- !u!1001 &1892701995
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 73166765741752574, guid: c80a1a985c585174f9ee811b214403d8, type: 3}
+      propertyPath: m_Speed
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 73166765741752574, guid: c80a1a985c585174f9ee811b214403d8, type: 3}
+      propertyPath: m_Acceleration
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 3192787870802313977, guid: c80a1a985c585174f9ee811b214403d8, type: 3}
+      propertyPath: attackRange
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 3488772552613344499, guid: c80a1a985c585174f9ee811b214403d8, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 50.29583
+      objectReference: {fileID: 0}
+    - target: {fileID: 3488772552613344499, guid: c80a1a985c585174f9ee811b214403d8, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.18401814
+      objectReference: {fileID: 0}
+    - target: {fileID: 3488772552613344499, guid: c80a1a985c585174f9ee811b214403d8, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 16.74
+      objectReference: {fileID: 0}
+    - target: {fileID: 3488772552613344499, guid: c80a1a985c585174f9ee811b214403d8, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3488772552613344499, guid: c80a1a985c585174f9ee811b214403d8, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3488772552613344499, guid: c80a1a985c585174f9ee811b214403d8, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3488772552613344499, guid: c80a1a985c585174f9ee811b214403d8, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3488772552613344499, guid: c80a1a985c585174f9ee811b214403d8, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3488772552613344499, guid: c80a1a985c585174f9ee811b214403d8, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3488772552613344499, guid: c80a1a985c585174f9ee811b214403d8, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4260770879771176521, guid: c80a1a985c585174f9ee811b214403d8, type: 3}
+      propertyPath: m_Name
+      value: Melee Zombie
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: c80a1a985c585174f9ee811b214403d8, type: 3}
 --- !u!1001 &1974364885
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -6101,7 +6127,7 @@ MonoBehaviour:
   m_OverrideTileSize: 0
   m_TileSize: 256
   m_OverrideVoxelSize: 0
-  m_VoxelSize: 1
+  m_VoxelSize: 0.033333335
   m_MinRegionArea: 2
   m_NavMeshData: {fileID: 23800000, guid: 8bce42a9c4d6a204fad3b900429a10ee, type: 2}
   m_BuildHeightMesh: 0
@@ -6400,10 +6426,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: Warrior Player
       objectReference: {fileID: 0}
-    - target: {fileID: 4634740080663250553, guid: 7752c019e5860b6429fc9ebffb9eebc2, type: 3}
-      propertyPath: m_ApplyRootMotion
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 4739983413517698786, guid: 7752c019e5860b6429fc9ebffb9eebc2, type: 3}
       propertyPath: m_LocalPosition.x
       value: 49.11811
@@ -6444,89 +6466,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 6817666453106957175, guid: 7752c019e5860b6429fc9ebffb9eebc2, type: 3}
-      propertyPath: stats.health
-      value: 10000
-      objectReference: {fileID: 0}
-    - target: {fileID: 7134653348747933982, guid: 7752c019e5860b6429fc9ebffb9eebc2, type: 3}
-      propertyPath: m_ActionEvents.Array.size
-      value: 9
-      objectReference: {fileID: 0}
-    - target: {fileID: 7134653348747933982, guid: 7752c019e5860b6429fc9ebffb9eebc2, type: 3}
-      propertyPath: m_ActionEvents.Array.data[8].m_ActionId
-      value: 67116731-ae2b-4c95-bc10-a21621ad8f06
-      objectReference: {fileID: 0}
-    - target: {fileID: 7134653348747933982, guid: 7752c019e5860b6429fc9ebffb9eebc2, type: 3}
-      propertyPath: m_ActionEvents.Array.data[8].m_ActionName
-      value: 'Warrior_Player/Double_Melee[/Mouse/rightButton]'
-      objectReference: {fileID: 0}
-    - target: {fileID: 7134653348747933982, guid: 7752c019e5860b6429fc9ebffb9eebc2, type: 3}
-      propertyPath: m_ActionEvents.Array.data[4].m_PersistentCalls.m_Calls.Array.size
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 7134653348747933982, guid: 7752c019e5860b6429fc9ebffb9eebc2, type: 3}
-      propertyPath: m_ActionEvents.Array.data[8].m_PersistentCalls.m_Calls.Array.size
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 7134653348747933982, guid: 7752c019e5860b6429fc9ebffb9eebc2, type: 3}
-      propertyPath: m_ActionEvents.Array.data[4].m_PersistentCalls.m_Calls.Array.data[0].m_Mode
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7134653348747933982, guid: 7752c019e5860b6429fc9ebffb9eebc2, type: 3}
-      propertyPath: m_ActionEvents.Array.data[8].m_PersistentCalls.m_Calls.Array.data[0].m_Mode
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7134653348747933982, guid: 7752c019e5860b6429fc9ebffb9eebc2, type: 3}
-      propertyPath: m_ActionEvents.Array.data[4].m_PersistentCalls.m_Calls.Array.data[0].m_Target
-      value: 
-      objectReference: {fileID: 1451621792}
-    - target: {fileID: 7134653348747933982, guid: 7752c019e5860b6429fc9ebffb9eebc2, type: 3}
-      propertyPath: m_ActionEvents.Array.data[8].m_PersistentCalls.m_Calls.Array.data[0].m_Target
-      value: 
-      objectReference: {fileID: 1451621793}
-    - target: {fileID: 7134653348747933982, guid: 7752c019e5860b6429fc9ebffb9eebc2, type: 3}
-      propertyPath: m_ActionEvents.Array.data[4].m_PersistentCalls.m_Calls.Array.data[0].m_CallState
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 7134653348747933982, guid: 7752c019e5860b6429fc9ebffb9eebc2, type: 3}
-      propertyPath: m_ActionEvents.Array.data[8].m_PersistentCalls.m_Calls.Array.data[0].m_CallState
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 7134653348747933982, guid: 7752c019e5860b6429fc9ebffb9eebc2, type: 3}
-      propertyPath: m_ActionEvents.Array.data[4].m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: StartAttack
-      objectReference: {fileID: 0}
-    - target: {fileID: 7134653348747933982, guid: 7752c019e5860b6429fc9ebffb9eebc2, type: 3}
-      propertyPath: m_ActionEvents.Array.data[8].m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: StartAttack
-      objectReference: {fileID: 0}
-    - target: {fileID: 7134653348747933982, guid: 7752c019e5860b6429fc9ebffb9eebc2, type: 3}
-      propertyPath: m_ActionEvents.Array.data[4].m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
-      value: ArcSwing, Assembly-CSharp
-      objectReference: {fileID: 0}
-    - target: {fileID: 7134653348747933982, guid: 7752c019e5860b6429fc9ebffb9eebc2, type: 3}
-      propertyPath: m_ActionEvents.Array.data[8].m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
-      value: DoubleMelee, Assembly-CSharp
-      objectReference: {fileID: 0}
-    - target: {fileID: 7134653348747933982, guid: 7752c019e5860b6429fc9ebffb9eebc2, type: 3}
-      propertyPath: m_ActionEvents.Array.data[4].m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
-      value: UnityEngine.Object, UnityEngine
-      objectReference: {fileID: 0}
-    - target: {fileID: 7134653348747933982, guid: 7752c019e5860b6429fc9ebffb9eebc2, type: 3}
-      propertyPath: m_ActionEvents.Array.data[8].m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
-      value: UnityEngine.Object, UnityEngine
-      objectReference: {fileID: 0}
-    - target: {fileID: 7529306921989572188, guid: 7752c019e5860b6429fc9ebffb9eebc2, type: 3}
-      propertyPath: stats.powerName
-      value: Arc Swing
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 2160069707036575417, guid: 7752c019e5860b6429fc9ebffb9eebc2, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 1451621793}
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7752c019e5860b6429fc9ebffb9eebc2, type: 3}
 --- !u!1 &1497664669115773837
 GameObject:
@@ -7355,3 +7298,4 @@ SceneRoots:
   - {fileID: 939331201559837618}
   - {fileID: 707855460}
   - {fileID: 1146017278}
+  - {fileID: 1892701995}

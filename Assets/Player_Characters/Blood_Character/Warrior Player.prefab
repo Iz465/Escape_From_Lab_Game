@@ -29,7 +29,7 @@ Transform:
   m_GameObject: {fileID: 185639885670892544}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 2.69, z: -3.39}
+  m_LocalPosition: {x: 0, y: 2.69, z: -3.3899994}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -161,9 +161,9 @@ GameObject:
   - component: {fileID: 4739983413517698786}
   - component: {fileID: 1650092743180225908}
   - component: {fileID: 316112250178541650}
-  - component: {fileID: 665558572619397888}
   - component: {fileID: 5949953888318550816}
   - component: {fileID: 6817666453106957175}
+  - component: {fileID: 552879810519210887}
   m_Layer: 3
   m_Name: Warrior Player
   m_TagString: Untagged
@@ -234,20 +234,6 @@ MonoBehaviour:
   walkSpeed: 4
   fallAcceleration: 5
   jumpStrength: 1.5
---- !u!114 &665558572619397888
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 513505576639008732}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ef046a8c367cc004786b0ea343d07e77, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  minCamDistance: 5
-  maxCamDistance: 15
 --- !u!65 &5949953888318550816
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -283,10 +269,149 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   stats:
     name: Talon Rhyke
-    health: 100
+    health: 10000
     stamina: 100
   maxHealth: 0
   maxStamina: 0
+--- !u!114 &552879810519210887
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 513505576639008732}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ef046a8c367cc004786b0ea343d07e77, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  minCamDistance: 5
+  maxCamDistance: 15
+--- !u!1 &3011936066160598413
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2488057685937801015}
+  - component: {fileID: 1524610161364158610}
+  - component: {fileID: 3660432078360493144}
+  - component: {fileID: 6675827311531915186}
+  - component: {fileID: 7589849063462699184}
+  m_Layer: 0
+  m_Name: Hammer_Double
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2488057685937801015
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3011936066160598413}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0.09300282, y: -0.2400045, z: 0.11362484, w: 0.9596029}
+  m_LocalPosition: {x: -0.22, y: -0.091, z: 0.277}
+  m_LocalScale: {x: 100, y: 100, z: 100}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 199809842402434054}
+  m_LocalEulerAnglesHint: {x: 13.476, y: -26.867, z: 10.273}
+--- !u!33 &1524610161364158610
+MeshFilter:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3011936066160598413}
+  m_Mesh: {fileID: -7158073589228813478, guid: 6c5fc54991f3d0248833489a5a013138, type: 3}
+--- !u!23 &3660432078360493144
+MeshRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3011936066160598413}
+  m_Enabled: 1
+  m_CastShadows: 1
+  m_ReceiveShadows: 1
+  m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
+  m_MotionVectors: 1
+  m_LightProbeUsage: 1
+  m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 2
+  m_RayTraceProcedural: 0
+  m_RayTracingAccelStructBuildFlagsOverride: 0
+  m_RayTracingAccelStructBuildFlags: 1
+  m_SmallMeshCulling: 1
+  m_RenderingLayerMask: 1
+  m_RendererPriority: 0
+  m_Materials:
+  - {fileID: -3155047780354543793, guid: 6c5fc54991f3d0248833489a5a013138, type: 3}
+  - {fileID: 763599606711622024, guid: 6c5fc54991f3d0248833489a5a013138, type: 3}
+  - {fileID: -6477940958727351939, guid: 6c5fc54991f3d0248833489a5a013138, type: 3}
+  - {fileID: -8367705006879899164, guid: 6c5fc54991f3d0248833489a5a013138, type: 3}
+  m_StaticBatchInfo:
+    firstSubMesh: 0
+    subMeshCount: 0
+  m_StaticBatchRoot: {fileID: 0}
+  m_ProbeAnchor: {fileID: 0}
+  m_LightProbeVolumeOverride: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
+  m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
+  m_ImportantGI: 0
+  m_StitchLightmapSeams: 1
+  m_SelectedEditorRenderState: 3
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 0
+  m_AdditionalVertexStreams: {fileID: 0}
+--- !u!64 &6675827311531915186
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3011936066160598413}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 5
+  m_Convex: 1
+  m_CookingOptions: 30
+  m_Mesh: {fileID: -7158073589228813478, guid: 6c5fc54991f3d0248833489a5a013138, type: 3}
+--- !u!114 &7589849063462699184
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3011936066160598413}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 072fbf43a133fe740a24e4973957e7db, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &4161779212747365616
 GameObject:
   m_ObjectHideFlags: 0
@@ -315,7 +440,8 @@ Transform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 0.007750209, y: 0.00775021, z: 0.00775021}
   m_ConstrainProportionsScale: 0
-  m_Children: []
+  m_Children:
+  - {fileID: 2488057685937801015}
   m_Father: {fileID: 6306742672159174826}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &8351247273450421876
@@ -563,7 +689,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5866666021909216657, guid: 88917694e0f7ea249a5b6490a97a932a, type: 3}
       propertyPath: m_ApplyRootMotion
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8817898888258712963, guid: 88917694e0f7ea249a5b6490a97a932a, type: 3}
       propertyPath: m_Layer
@@ -585,6 +711,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 88917694e0f7ea249a5b6490a97a932a, type: 3}
       insertIndex: -1
       addedObject: {fileID: 7529306921989572188}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 88917694e0f7ea249a5b6490a97a932a, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 4221800035857945319}
   m_SourcePrefab: {fileID: 100100000, guid: 88917694e0f7ea249a5b6490a97a932a, type: 3}
 --- !u!4 &1635311721269632003 stripped
 Transform:
@@ -662,7 +791,19 @@ MonoBehaviour:
     m_ActionId: 9b40b8d2-6da5-4421-922b-0fedcc48df7a
     m_ActionName: 'Blood_Player/Rage_Mode[/Keyboard/4]'
   - m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 7529306921989572188}
+        m_TargetAssemblyTypeName: ArcSwing, Assembly-CSharp
+        m_MethodName: StartAttack
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
     m_ActionId: 2b22194e-8d37-49da-8a5a-e92e39e7cd22
     m_ActionName: Warrior_Player/New action
   - m_PersistentCalls:
@@ -714,7 +855,19 @@ MonoBehaviour:
     m_ActionId: ed5e7060-33d0-4fcd-a776-94f403a9a712
     m_ActionName: 'Blood_Player/Dodge Backwards[/Keyboard/shift,/Keyboard/s]'
   - m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 4221800035857945319}
+        m_TargetAssemblyTypeName: DoubleMelee, Assembly-CSharp
+        m_MethodName: StartAttack
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
     m_ActionId: 67116731-ae2b-4c95-bc10-a21621ad8f06
     m_ActionName: 'Warrior_Player/Double_Melee[/Mouse/rightButton]'
   m_NeverAutoSwitchControlSchemes: 0
@@ -751,7 +904,29 @@ MonoBehaviour:
   boxAim: {fileID: 0}
   cam: {fileID: 2654833756252058466}
   stats:
-    powerName: Arc Swipe
+    powerName: Arc Swing
+    prefab: {fileID: 0}
+    damage: 20
+    speed: 0
+    stamina: 20
+  powerType: 3
+--- !u!114 &4221800035857945319
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2160069707036575417}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e6265f4073e65ef4e9f31f95268c3224, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  player: {fileID: 6817666453106957175}
+  boxAim: {fileID: 0}
+  cam: {fileID: 2654833756252058466}
+  stats:
+    powerName: Double Melee
     prefab: {fileID: 0}
     damage: 20
     speed: 0

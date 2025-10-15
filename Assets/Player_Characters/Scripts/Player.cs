@@ -16,7 +16,7 @@ public class Player : MonoBehaviour, IDamageTaken
     public float maxHealth;
     [HideInInspector]
     public float maxStamina;
-
+    public static bool canDamage;
     private void Awake()
     {
         maxHealth = stats.health;

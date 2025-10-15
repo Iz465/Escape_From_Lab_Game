@@ -112,9 +112,5 @@ public class MeleeZombie : navmeshtestscript
         rotateSpeed = 5f;
     }
 
-  
-
-   
-
 
 }

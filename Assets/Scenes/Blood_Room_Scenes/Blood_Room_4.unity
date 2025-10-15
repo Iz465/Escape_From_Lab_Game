@@ -1133,7 +1133,7 @@ MonoBehaviour:
   m_OverrideTileSize: 0
   m_TileSize: 256
   m_OverrideVoxelSize: 0
-  m_VoxelSize: 1
+  m_VoxelSize: 0.033333335
   m_MinRegionArea: 2
   m_NavMeshData: {fileID: 23800000, guid: b358ae0eb67446548b0d77255f48bbf9, type: 2}
   m_BuildHeightMesh: 0
@@ -7016,67 +7016,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1001 &2025442599
-PrefabInstance:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    serializedVersion: 3
-    m_TransformParent: {fileID: 0}
-    m_Modifications:
-    - target: {fileID: 3488772552613344499, guid: fc797f6d812989740a570c66a639d8eb, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 61.167915
-      objectReference: {fileID: 0}
-    - target: {fileID: 3488772552613344499, guid: fc797f6d812989740a570c66a639d8eb, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 0.7
-      objectReference: {fileID: 0}
-    - target: {fileID: 3488772552613344499, guid: fc797f6d812989740a570c66a639d8eb, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: -1.9883907
-      objectReference: {fileID: 0}
-    - target: {fileID: 3488772552613344499, guid: fc797f6d812989740a570c66a639d8eb, type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 3488772552613344499, guid: fc797f6d812989740a570c66a639d8eb, type: 3}
-      propertyPath: m_LocalRotation.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3488772552613344499, guid: fc797f6d812989740a570c66a639d8eb, type: 3}
-      propertyPath: m_LocalRotation.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3488772552613344499, guid: fc797f6d812989740a570c66a639d8eb, type: 3}
-      propertyPath: m_LocalRotation.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3488772552613344499, guid: fc797f6d812989740a570c66a639d8eb, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3488772552613344499, guid: fc797f6d812989740a570c66a639d8eb, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3488772552613344499, guid: fc797f6d812989740a570c66a639d8eb, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4260770879771176521, guid: fc797f6d812989740a570c66a639d8eb, type: 3}
-      propertyPath: m_Name
-      value: Alien 1 (1)
-      objectReference: {fileID: 0}
-    - target: {fileID: 4260770879771176521, guid: fc797f6d812989740a570c66a639d8eb, type: 3}
-      propertyPath: m_TagString
-      value: Enemy
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-    m_RemovedGameObjects: []
-    m_AddedGameObjects: []
-    m_AddedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: fc797f6d812989740a570c66a639d8eb, type: 3}
 --- !u!1001 &2035078492
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -8519,4 +8458,3 @@ SceneRoots:
   - {fileID: 212980597}
   - {fileID: 1222112596}
   - {fileID: 809838893}
-  - {fileID: 2025442599}

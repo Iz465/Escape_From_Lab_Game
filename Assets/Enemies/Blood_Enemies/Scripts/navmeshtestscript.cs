@@ -84,7 +84,7 @@ public class navmeshtestscript : MonoBehaviour // Readd this to to the chase ai 
             timer = 0;
         }
 
-
+  
         if (agent.velocity.magnitude == 0)
             animator.SetBool("Roam", false);
         else
@@ -140,6 +140,7 @@ public class navmeshtestscript : MonoBehaviour // Readd this to to the chase ai 
     virtual protected void AttackPlayer()
     {
         animator.SetBool("CanAttack", true);
+       
         canAttack = false;
            
     }

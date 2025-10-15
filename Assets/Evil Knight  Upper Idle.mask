@@ -1,0 +1,97 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!319 &31900000
+AvatarMask:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: Evil Knight  Upper Idle
+  m_Mask: 00000000010000000100000000000000000000000100000001000000010000000100000001000000010000000100000001000000
+  m_Elements:
+  - m_Path: 
+    m_Weight: 1
+  - m_Path: Armature
+    m_Weight: 1
+  - m_Path: Armature/IKLegPole.L
+    m_Weight: 1
+  - m_Path: Armature/IKLegPole.L/IKLegPole.L_end
+    m_Weight: 1
+  - m_Path: Armature/IKLegPole.L/IKLegPole.L_end/IKLegPole.L_end_end
+    m_Weight: 1
+  - m_Path: Armature/IKLegPole.R
+    m_Weight: 1
+  - m_Path: Armature/IKLegPole.R/IKLegPole.R_end
+    m_Weight: 1
+  - m_Path: Armature/IKLegPole.R/IKLegPole.R_end/IKLegPole.R_end_end
+    m_Weight: 1
+  - m_Path: Armature/IKTarget.L
+    m_Weight: 1
+  - m_Path: Armature/IKTarget.L/IKTarget.L_end
+    m_Weight: 1
+  - m_Path: Armature/IKTarget.L/IKTarget.L_end/IKTarget.L_end_end
+    m_Weight: 1
+  - m_Path: Armature/IKTarget.R
+    m_Weight: 1
+  - m_Path: Armature/IKTarget.R/IKTarget.R_end
+    m_Weight: 1
+  - m_Path: Armature/IKTarget.R/IKTarget.R_end/IKTarget.R_end_end
+    m_Weight: 1
+  - m_Path: Armature/Root
+    m_Weight: 1
+  - m_Path: Armature/Root/Spine1
+    m_Weight: 1
+  - m_Path: Armature/Root/Spine1/Spine2
+    m_Weight: 1
+  - m_Path: Armature/Root/Spine1/Spine2/Head
+    m_Weight: 1
+  - m_Path: Armature/Root/Spine1/Spine2/Head/Head_end
+    m_Weight: 1
+  - m_Path: Armature/Root/Spine1/Spine2/Head/Head_end/Head_end_end
+    m_Weight: 1
+  - m_Path: Armature/Root/Spine1/Spine2/Shoulder.L
+    m_Weight: 1
+  - m_Path: Armature/Root/Spine1/Spine2/Shoulder.L/UpperArm.L
+    m_Weight: 1
+  - m_Path: Armature/Root/Spine1/Spine2/Shoulder.L/UpperArm.L/LowerArm.L
+    m_Weight: 1
+  - m_Path: Armature/Root/Spine1/Spine2/Shoulder.L/UpperArm.L/LowerArm.L/Hand.L
+    m_Weight: 1
+  - m_Path: Armature/Root/Spine1/Spine2/Shoulder.L/UpperArm.L/LowerArm.L/Hand.L/Hand.L_end
+    m_Weight: 1
+  - m_Path: Armature/Root/Spine1/Spine2/Shoulder.L/UpperArm.L/LowerArm.L/Hand.L/Hand.L_end/Hand.L_end_end
+    m_Weight: 1
+  - m_Path: Armature/Root/Spine1/Spine2/Shoulder.R
+    m_Weight: 1
+  - m_Path: Armature/Root/Spine1/Spine2/Shoulder.R/UpperArm.R
+    m_Weight: 1
+  - m_Path: Armature/Root/Spine1/Spine2/Shoulder.R/UpperArm.R/LowerArm.R
+    m_Weight: 1
+  - m_Path: Armature/Root/Spine1/Spine2/Shoulder.R/UpperArm.R/LowerArm.R/Hand.R
+    m_Weight: 1
+  - m_Path: Armature/Root/Spine1/Spine2/Shoulder.R/UpperArm.R/LowerArm.R/Hand.R/Hand.R_end
+    m_Weight: 1
+  - m_Path: Armature/Root/Spine1/Spine2/Shoulder.R/UpperArm.R/LowerArm.R/Hand.R/Hand.R_end/Hand.R_end_end
+    m_Weight: 1
+  - m_Path: Armature/Root/UpperLeg.L
+    m_Weight: 1
+  - m_Path: Armature/Root/UpperLeg.L/LowerLeg.L
+    m_Weight: 1
+  - m_Path: Armature/Root/UpperLeg.L/LowerLeg.L/Fot.L
+    m_Weight: 1
+  - m_Path: Armature/Root/UpperLeg.L/LowerLeg.L/Fot.L/Fot.L_end
+    m_Weight: 1
+  - m_Path: Armature/Root/UpperLeg.L/LowerLeg.L/Fot.L/Fot.L_end/Fot.L_end_end
+    m_Weight: 1
+  - m_Path: Armature/Root/UpperLeg.R
+    m_Weight: 1
+  - m_Path: Armature/Root/UpperLeg.R/LowerLeg.R
+    m_Weight: 1
+  - m_Path: Armature/Root/UpperLeg.R/LowerLeg.R/Fot.R
+    m_Weight: 1
+  - m_Path: Armature/Root/UpperLeg.R/LowerLeg.R/Fot.R/Fot.R_end
+    m_Weight: 1
+  - m_Path: Armature/Root/UpperLeg.R/LowerLeg.R/Fot.R/Fot.R_end/Fot.R_end_end
+    m_Weight: 1
+  - m_Path: Knight
+    m_Weight: 1

@@ -6,18 +6,22 @@ public class MeleeZombie : navmeshtestscript
 {
     [SerializeField] private Transform point1;
     [SerializeField] private Transform point2;
+    [SerializeField] private Transform point1Second;
+    [SerializeField] private Transform point2Second;
+    [SerializeField] private Transform point1Third;
+    [SerializeField] private Transform point2Third;
     [SerializeField] private LayerMask playerLayer;
-    private int number;
     private bool checkHitbox;
     private bool canHit;
-    
+    private int randomNumber;
 
     protected override void Start()
     {
         base.Start();
-        number = 0;
+  
         checkHitbox = false;
         canHit = false;
+        rotateSpeed = 100;
 
     }
 
@@ -25,11 +29,15 @@ public class MeleeZombie : navmeshtestscript
     {
         base.Update();
 
+       
+
         if (checkHitbox && canHit)
         {
+         
             bool checkPlayer = Physics.Linecast(point1.transform.position, point2.transform.position, playerLayer);
-            
-            if (checkPlayer)
+            bool checkPlayer1 = Physics.Linecast(point1Second.transform.position, point2Second.transform.position, playerLayer);
+            bool checkPlayer2 = Physics.Linecast(point1Third.transform.position, point2Third.transform.position, playerLayer);
+            if (checkPlayer || checkPlayer1 || checkPlayer2)
             {
                 player.TakeDamage(20);
                 canHit = false;
@@ -44,7 +52,9 @@ public class MeleeZombie : navmeshtestscript
     {
         Gizmos.color = Color.yellow;
         Gizmos.DrawLine(point1.position, point2.position);
-        
+        Gizmos.DrawLine(point1Second.position, point2Second.position);
+        Gizmos.DrawLine(point1Third.position, point2Third.position);
+
     }
     
 
@@ -52,18 +62,30 @@ public class MeleeZombie : navmeshtestscript
 
     protected override void AttackPlayer()
     {
-        base.AttackPlayer();
-     //   canRotate = false;
+
+        randomNumber = Random.Range(0, 2);
+        canAttack = false;
+        canRotate = true;
+     
+        if (randomNumber == 0)
+        {
+            animator.SetTrigger("MeleeCombo");
+        }
+    
+        else if (randomNumber == 1)
+        {
+            rotateSpeed = 100;
+            animator.SetTrigger("DownAttack");
+        }
+            
+       
     }
 
 
     private void ResetAttack()
     {
-        number++;
-
-        if (number < 3) return;
-        StartCoroutine(CanChase(1.5f));
-        number = 0;
+        StartCoroutine(CanChase(2f));
+        Debug.Log("Resetting");
         canRotate = true;
     }
 
@@ -71,18 +93,23 @@ public class MeleeZombie : navmeshtestscript
     {
         yield return new WaitForSeconds(time);
         canAttack = true;
+        Debug.Log("Reset");
     }
 
     private void EnableHit()
     {
         canHit = true;
         checkHitbox = true;
+        if (randomNumber == 1) 
+            canRotate = false;
+
     }
 
     private void DisableHit()
     {
         canHit = false;
         checkHitbox = false;
+        rotateSpeed = 5f;
     }
 
   

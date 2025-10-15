@@ -113,7 +113,10 @@ public class Speed : PlayerInfo
         {
             playerInfo.stamina -= dashCost;
             lastPowerUsage = Time.time;
-            staminaText.text = playerInfo.stamina.ToString() + " stamina";
+            if(staminaText != null)
+            {
+                staminaText.text = playerInfo.stamina.ToString() + " stamina";
+            }
             dashStart = Time.time;
         }
 

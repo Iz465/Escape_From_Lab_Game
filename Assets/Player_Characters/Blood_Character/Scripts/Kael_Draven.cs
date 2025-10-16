@@ -18,7 +18,11 @@ public class Kael_Draven : Player
             return;
         }
 
-      
+        if (Input.GetKeyDown(KeyCode.P))
+        {
+            Debug.Log("Pausing for debug!");
+            Debug.Break();
+        }
 
 
         Vector3 movement = move.controller.velocity;

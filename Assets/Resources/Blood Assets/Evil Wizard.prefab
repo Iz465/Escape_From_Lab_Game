@@ -85,27 +85,27 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 955fa8d74deb1aa42a89eb634ed0c8f1, type: 3}
       propertyPath: m_LocalScale.x
-      value: 24.446808
+      value: 24.787193
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 955fa8d74deb1aa42a89eb634ed0c8f1, type: 3}
       propertyPath: m_LocalScale.y
-      value: 24.446808
+      value: 24.787193
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 955fa8d74deb1aa42a89eb634ed0c8f1, type: 3}
       propertyPath: m_LocalScale.z
-      value: 24.446808
+      value: 24.787193
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 955fa8d74deb1aa42a89eb634ed0c8f1, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 51.539997
+      value: 54.615
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 955fa8d74deb1aa42a89eb634ed0c8f1, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.18401623
+      value: -0.23
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 955fa8d74deb1aa42a89eb634ed0c8f1, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 19.403187
+      value: -15.842
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 955fa8d74deb1aa42a89eb634ed0c8f1, type: 3}
       propertyPath: m_LocalRotation.w
@@ -923,8 +923,8 @@ MonoBehaviour:
   aimLoc: {fileID: 2405388752199314152}
   meleeBox: {fileID: 0}
   beamPrefab: {fileID: 7539040078107595411, guid: 397f6d962876b71469454d13a388b377, type: 3}
-  circleInstantPrefab: {fileID: 7237960637528616944, guid: 16810fbafedb8484cb7b9320858738b6, type: 3}
-  instantAttackPrefab: {fileID: 8176230078092200170, guid: 3355f6bfa6db8b24281b827de929694c, type: 3}
+  circleInstantPrefab: {fileID: 6671519891469569489, guid: 16810fbafedb8484cb7b9320858738b6, type: 3}
+  instantAttackPrefab: {fileID: 7957833072274404953, guid: 3355f6bfa6db8b24281b827de929694c, type: 3}
   playerLayer:
     serializedVersion: 2
     m_Bits: 8

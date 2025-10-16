@@ -37,7 +37,6 @@ public class SpawnEnemy : MonoBehaviour
     private IEnumerator SpawnIn(GameObject spawn, float time)
     {
         yield return new WaitForSeconds(time);
-        Debug.Log("SPAWNED");
         Instantiate(enemyPrefab, spawn.transform.position, Quaternion.identity);
 
     }

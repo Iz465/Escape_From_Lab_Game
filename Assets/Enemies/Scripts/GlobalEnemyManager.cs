@@ -17,10 +17,7 @@ public class GlobalEnemyManager : MonoBehaviour
         totalEnemies.Clear();
     }
 
-  //  private void Update()
-    //{
-      //  RandomiseAttack();
-    //}
+
 
     public void AddEnemy(GameObject enemy)
     {

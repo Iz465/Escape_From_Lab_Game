@@ -119,7 +119,7 @@ public class navmeshtestscript : MonoBehaviour // Readd this to to the chase ai 
 
             if (canAttack)
             {
-     
+             
                 random = globalEnemyManager.RandomiseAttack();
                 int num = 0;
                 foreach (GameObject enemy in GlobalEnemyManager.enemiesInRange)
@@ -129,13 +129,14 @@ public class navmeshtestscript : MonoBehaviour // Readd this to to the chase ai 
                             AttackPlayer();
                     num++;
                 }
-             
+            
             }
         
         }
             
         
     }
+
 
     virtual protected void AttackPlayer()
     {

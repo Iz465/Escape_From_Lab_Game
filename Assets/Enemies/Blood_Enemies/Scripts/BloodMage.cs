@@ -13,8 +13,8 @@ public class BloodMage : BloodEnemy
     [SerializeField] private Transform aimLoc;
     [SerializeField] private Collider meleeBox;
     [SerializeField] private GameObject beamPrefab;
-    [SerializeField] private ParticleSystem circleInstantPrefab;
-    [SerializeField] private ParticleSystem instantAttackPrefab;
+    [SerializeField] private GameObject circleInstantPrefab;
+    [SerializeField] private GameObject instantAttackPrefab;
     [SerializeField] private LayerMask playerLayer;
 
     int number;
@@ -50,16 +50,15 @@ public class BloodMage : BloodEnemy
         if (agent.isOnNavMesh)
             agent.isStopped = true;
 
-        int num = Random.Range(0, 10);
-        instantAttack = true; attack = false; beam = false;
-  /*
+        int num = Random.Range(0, 9);
+        Debug.Log(num);
         switch (num)
         {
-            case >= 0 and <= 4: attack = true; beam = false; instantAttack = false; break;
-            case >= 5 and <= 8: attack = false; beam = true; instantAttack = false; break;
-            case 9: attack = false; beam = false; instantAttack = true; break;
+            case >= 0 and <= 2: attack = true; beam = false; instantAttack = false; break;
+            case >= 3 and <= 5: attack = false; beam = true; instantAttack = false; break;
+            case >= 6 and <= 8: attack = false; beam = false; instantAttack = true; break;
         }
-  */
+  
         if (attack)
             animator.SetBool("CanAttack", true);
         else if (beam)
@@ -171,7 +170,7 @@ public class BloodMage : BloodEnemy
     }
 
     private Vector3 startingPosition;
-    private ParticleSystem circleAttackInstance;
+    private GameObject circleAttackInstance;
     private void InstantAttack()
     {
         animator.SetBool("InstantAttack", true);
@@ -179,36 +178,45 @@ public class BloodMage : BloodEnemy
 
         startingPosition = player.transform.position;
         StartCoroutine(HitPlayer(1f));
-
         circleAttackInstance = Instantiate(circleInstantPrefab, player.transform.position, Quaternion.identity);
-        var main = circleAttackInstance.main;
-        main.startSize = 30;
+
+        circleAttackInstance.transform.localScale = new Vector3(2, 2, 2);
+
     }
 
 
     private void ResetInstantAttack(float time)
     {
         animator.SetBool("InstantAttack", false);
-        StartCoroutine(ResetAttack(20f));
+        StartCoroutine(ResetAttack(2f));
     }
 
 
 
 
+    // The scale of instant attack must be three times smaller than circle attack scale so that both have same size.
 
+    // overlap sphere radius 4 = 1,1,1 of circleAttackInstance.
     private IEnumerator HitPlayer(float timer)
     {
         yield return new WaitForSeconds(timer);
-        ParticleSystem instantAttackInstance = Instantiate(instantAttackPrefab, startingPosition, Quaternion.identity);
-      //  var main = instantAttackPrefab.main;
-      //  main.startSize = 30;
+        GameObject instantAttackInstance = Instantiate(instantAttackPrefab, startingPosition, Quaternion.identity);
 
-        Collider[] playerCollider = Physics.OverlapSphere(startingPosition, line.radius, playerLayer);
+        instantAttackInstance.transform.localScale = new Vector3(0.6f, 0.6f, 0.6f);
+
+        Destroy(circleAttackInstance);
+
+        Collider[] playerCollider = Physics.OverlapSphere(startingPosition, 8, playerLayer);
 
         if (playerCollider.Length > 0)
             player.TakeDamage(35);
     }
 
+    private void OnDrawGizmos()
+    {
+        Gizmos.color = Color.yellow;
+        Gizmos.DrawWireSphere(startingPosition, 8);
+    }
 
 
     private void Melee()

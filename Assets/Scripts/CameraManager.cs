@@ -12,6 +12,7 @@ public class CameraManager : MonoBehaviour
     {
         camTarget = transform.Find("CameraTarget");
         cam = transform.Find("Main Camera");
+        
     }
     void LookAround()
     {

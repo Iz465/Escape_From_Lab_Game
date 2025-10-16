@@ -101,4 +101,11 @@ public class BloodZombie : MonoBehaviour
 
         }
     }
+
+    private void OnCollisionEnter(Collision collision)
+    {
+        BasePower power = collision.gameObject.GetComponent<BasePower>();
+        if (power)
+            Explode();
+    }
 }

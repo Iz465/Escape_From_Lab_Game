@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Threading;
+using Unity.Entities;
 using UnityEngine;
 using UnityEngine.Assertions.Must;
 using UnityEngine.InputSystem;
@@ -67,9 +68,12 @@ public class BasePower : MonoBehaviour
 
     virtual public void Attack()
     {
-      
-        if (!PowerChecks()) return;
-        if (!powerInstance) return;
+     // if (powerType != PowerType.Melee)
+     //   {
+      //      if (!PowerChecks()) return;
+     //       if (!powerInstance) return;
+     //   }
+
 
         switch (powerType)
         {
@@ -153,9 +157,15 @@ public class BasePower : MonoBehaviour
         rb.sleepThreshold = 0;
     }
 
+    // temporary bandaid
+    protected Vector3 originalPosition;
+    protected Quaternion originalRotation;
     virtual protected void MeleePower()
     {
+  
+     
 
+        Debug.Log("ACTIVATING MELEE ATTACK");
     }
 
     virtual protected void SpawnPower()

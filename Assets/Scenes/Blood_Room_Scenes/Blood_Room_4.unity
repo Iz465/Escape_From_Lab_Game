@@ -7068,10 +7068,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: Alien 1 (1)
       objectReference: {fileID: 0}
-    - target: {fileID: 4260770879771176521, guid: fc797f6d812989740a570c66a639d8eb, type: 3}
-      propertyPath: m_TagString
-      value: Enemy
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []

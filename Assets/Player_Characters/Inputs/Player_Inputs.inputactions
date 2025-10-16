@@ -220,21 +220,12 @@
             "id": "ebc6a570-3e60-4128-bd22-667d6118fb3c",
             "actions": [
                 {
-                    "name": "Arc_Swing",
+                    "name": "New action",
                     "type": "Button",
                     "id": "2b22194e-8d37-49da-8a5a-e92e39e7cd22",
                     "expectedControlType": "",
                     "processors": "",
-                    "interactions": "Tap",
-                    "initialStateCheck": false
-                },
-                {
-                    "name": "Double_Melee",
-                    "type": "Button",
-                    "id": "67116731-ae2b-4c95-bc10-a21621ad8f06",
-                    "expectedControlType": "",
-                    "processors": "",
-                    "interactions": "Tap",
+                    "interactions": "",
                     "initialStateCheck": false
                 },
                 {
@@ -269,22 +260,11 @@
                 {
                     "name": "",
                     "id": "541c127b-abab-4432-82df-26ae3f46cd1e",
-                    "path": "<Mouse>/leftButton",
+                    "path": "",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "Arc_Swing",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "70cc81a3-eb72-4f1c-ae8d-b2c63ea49b60",
-                    "path": "<Mouse>/rightButton",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "Double_Melee",
+                    "action": "New action",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },

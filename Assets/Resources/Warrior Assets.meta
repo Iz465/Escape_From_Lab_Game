@@ -1,7 +1,12 @@
 fileFormatVersion: 2
+<<<<<<<< HEAD:Assets/Resources/Warrior Assets.meta
 guid: 2c675d5c9fc92bc4693d522590bc44a3
 folderAsset: yes
 DefaultImporter:
+========
+guid: ac03fe04feb792448b456d91d1cb0b47
+PrefabImporter:
+>>>>>>>> main:Assets/Player_Characters/Blood_Character/Kael_Draven.prefab.meta
   externalObjects: {}
   userData: 
   assetBundleName: 

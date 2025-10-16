@@ -564,6 +564,7 @@ MonoBehaviour:
   meleeAttackAnimation: Melee
   meleeAttackCooldown: 0
   attackDuration: 0.33
+  spawnPosition: {fileID: 0}
   normalWalk: 7
   normalRun: 150
   highSpeedWalk: 500
@@ -575,7 +576,7 @@ MonoBehaviour:
   dashCost: 10
   phazeCost: 7.5
   regenRate: 15
-  highSpeedModeScale: 0.01
+  highSpeedModeScale: 0.001
   highSpeedModeCost: 2
   staminaText: {fileID: 0}
   healthText: {fileID: 0}

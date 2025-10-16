@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Threading.Tasks;
 using UnityEngine;
 using static UnityEngine.GraphicsBuffer;
+using static UnityEngine.ParticleSystem;
 using static UnityEngine.UI.Image;
 
 public class BloodMage : BloodEnemy
@@ -12,7 +13,8 @@ public class BloodMage : BloodEnemy
     [SerializeField] private Transform aimLoc;
     [SerializeField] private Collider meleeBox;
     [SerializeField] private GameObject beamPrefab;
-    [SerializeField] private GameObject instantAttackPrefab;
+    [SerializeField] private ParticleSystem circleInstantPrefab;
+    [SerializeField] private ParticleSystem instantAttackPrefab;
     [SerializeField] private LayerMask playerLayer;
 
     int number;
@@ -21,13 +23,17 @@ public class BloodMage : BloodEnemy
     private bool instantAttack;
     private float beamLength;
     private GameObject beamInstance;
-    
+
+
+    linescript line;
     protected override void Start()
     {
         base.Start();
         number = 0;
         beamLength = 20f;
+        line = GetComponent<linescript>();
     //    meleeBox.enabled = false;
+
     }
 
     protected override void Update()
@@ -45,21 +51,21 @@ public class BloodMage : BloodEnemy
             agent.isStopped = true;
 
         int num = Random.Range(0, 10);
-
-  
+        instantAttack = true; attack = false; beam = false;
+  /*
         switch (num)
         {
             case >= 0 and <= 4: attack = true; beam = false; instantAttack = false; break;
             case >= 5 and <= 8: attack = false; beam = true; instantAttack = false; break;
             case 9: attack = false; beam = false; instantAttack = true; break;
         }
-
+  */
         if (attack)
             animator.SetBool("CanAttack", true);
         else if (beam)
             animator.SetBool("Beam", true);
         else if (instantAttack)
-            InstantAttack();
+            animator.SetBool("InstantAttack", true);
 
         canAttack = false;
     }
@@ -164,43 +170,43 @@ public class BloodMage : BloodEnemy
 
     }
 
+    private Vector3 startingPosition;
+    private ParticleSystem circleAttackInstance;
     private void InstantAttack()
     {
         animator.SetBool("InstantAttack", true);
         number = 3;
 
-        GameObject instant = Instantiate(instantAttackPrefab, transform.position + new Vector3(0, 8, 0), transform.rotation);
-        StartCoroutine(HitPlayer(instant,5f));
+        startingPosition = player.transform.position;
+        StartCoroutine(HitPlayer(1f));
 
-     //   instant = Instantiate(instantAttackPrefab, transform.position + new Vector3(5, 8, 0), transform.rotation);
-     //   StartCoroutine(HitPlayer(instant, 10f));
-
-     //   instant = Instantiate(instantAttackPrefab, transform.position + new Vector3(-5, 8, 0), transform.rotation);
-     //   StartCoroutine(HitPlayer(instant, 10f));
-
-      
+        circleAttackInstance = Instantiate(circleInstantPrefab, player.transform.position, Quaternion.identity);
+        var main = circleAttackInstance.main;
+        main.startSize = 30;
     }
+
 
     private void ResetInstantAttack(float time)
     {
         animator.SetBool("InstantAttack", false);
-        StartCoroutine(ResetAttack(1f));
+        StartCoroutine(ResetAttack(20f));
     }
 
 
 
 
 
-    private IEnumerator HitPlayer(GameObject instant,float timer)
+    private IEnumerator HitPlayer(float timer)
     {
         yield return new WaitForSeconds(timer);
-        if (!instant) yield break;
-        Rigidbody rb = instant.GetComponent<Rigidbody>();
-        if (!rb) yield break;
-        Collider collider = player.GetComponent<Collider>();
-        Vector3 aimDir = (collider.bounds.center - instant.transform.position).normalized;
-        rb.collisionDetectionMode = CollisionDetectionMode.Continuous;
-        rb.AddForce(aimDir * 300, ForceMode.Impulse);
+        ParticleSystem instantAttackInstance = Instantiate(instantAttackPrefab, startingPosition, Quaternion.identity);
+      //  var main = instantAttackPrefab.main;
+      //  main.startSize = 30;
+
+        Collider[] playerCollider = Physics.OverlapSphere(startingPosition, line.radius, playerLayer);
+
+        if (playerCollider.Length > 0)
+            player.TakeDamage(35);
     }
 
 

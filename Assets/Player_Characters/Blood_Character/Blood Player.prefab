@@ -823,7 +823,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1c1a2c317ac30a44eac4beeb926cf53c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  powerLength: 5
+  powerLength: 3
   immortalParticle: {fileID: -1459289359527204663, guid: 39562848b3640a74cab3b7b3e2b25e70, type: 3}
 --- !u!4 &2074786304704603083 stripped
 Transform:

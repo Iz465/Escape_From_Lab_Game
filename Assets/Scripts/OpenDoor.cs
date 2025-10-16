@@ -9,18 +9,22 @@ public class OpenDoor : MonoBehaviour
     Transform doorAngle;
     Transform door;
     Transform handle;
-    float angle;
+    public float angle;
     float handleDistance;
 
     bool isOpen, startMove;
     float process;
     void Start()
     {
-        //get local euler angles as shown in inspector (360 degrees)
+        //handle = transform.Find("Handle");
+        //door = transform.Find("Door");
         doorAngle = transform.Find("doorAngle");
-        angle = doorAngle.localEulerAngles.y;
+        //angle = doorAngle.localRotation.y;
+        //angle = doorAngle.rotation.y;
+        print(transform.name+" "+angle.ToString());
         interact = transform.Find("Canvas");
 
+        //handleDistance = (handle.position - doorAngle.position).magnitude;
         StartCoroutine(WaitForPlayer());
     }
 
@@ -89,18 +93,21 @@ public class OpenDoor : MonoBehaviour
             }
         }
 
+        print(angle);
         process += Time.deltaTime;
-        //set rotation as shown in inspector (360 degrees)
-        doorAngle.localRotation = Quaternion.Euler(0, angle, 0);
+        doorAngle.rotation = Quaternion.Euler(0, angle, 0);
+        print("angle: "+doorAngle.rotation.y.ToString());
+        //door.rotation = doorAngle.rotation;
+        //door.position = doorAngle.position + doorAngle.forward * door.lossyScale.z;
+        //handle.position = doorAngle.position + doorAngle.forward * handleDistance;
+        //handle.LookAt(doorAngle);
     }
 
     // Update is called once per frame
     void Update()
     {
         if (plr == null) return;
-
-        if(interact != null)
-            DisplayInteraction();
+        DisplayInteraction();
 
         if(Input.GetKeyDown(KeyCode.E) && IsAtDoor())
         {

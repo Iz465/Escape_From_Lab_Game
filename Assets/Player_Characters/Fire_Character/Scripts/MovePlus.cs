@@ -1,4 +1,5 @@
 using System;
+using Unity.VisualScripting;
 using UnityEditor;
 using UnityEngine;
 using UnityEngine.InputSystem;
@@ -10,18 +11,20 @@ public class MovePlus : MonoBehaviour
     public float acceleration;
     public Vector3 velocity;
     public bool useOtherScript;
+    private Animator animator;
 
     [Header("Edit if character dont have powers that influence speed")]
     private float MoveSpeed;
     public float SprintSpeed = 8f;
     public float NormalSpeed = 5f;
     //fall/just parameters
-    float fallSpeed = 0;
-    public float fallAcceleration = 5;
+    float fallSpeed = 0.0f;
+    public float fallAcceleration = 0.1f;
     public float jumpStrength = 1.5f;
-
+    private Vector3 Last_position;
     float height;
-
+    bool walking;
+    bool Sprinting;
     void Fall()
     {
         Debug.DrawRay(transform.position + new Vector3(0, controller.center.y - 0.1f, 0), Vector3.down * (height / 2));
@@ -34,8 +37,10 @@ public class MovePlus : MonoBehaviour
 
     void Jump()
     {
+
         if (Input.GetKeyDown(KeyCode.Space))
         {
+
             if (Physics.Raycast(transform.position + new Vector3(0, controller.center.y - 0.1f, 0), Vector3.down, height / 2))
             {
                 fallSpeed = jumpStrength;
@@ -47,20 +52,22 @@ public class MovePlus : MonoBehaviour
         Jump();
         Fall();
         sprint();
-
+        Last_position = controller.transform.position;
         direction = new Vector3();
         if (Input.GetKey(KeyCode.W))
             direction += transform.forward;
         if (Input.GetKey(KeyCode.S))
             direction -= transform.forward;
-
         if (Input.GetKey(KeyCode.D))
             direction += transform.right;
         if (Input.GetKey(KeyCode.A))
             direction -= transform.right;
 
+        
+        
+        
+        
         direction.y += fallSpeed;
-
         if (useOtherScript)
         {
             velocity.y += fallSpeed * Time.deltaTime;
@@ -70,6 +77,12 @@ public class MovePlus : MonoBehaviour
         {
             controller.Move(direction * MoveSpeed * Time.deltaTime);
         }
+        var displacement = controller.transform.position - Last_position;
+        Debug.Log(displacement.magnitude);
+        walking = displacement.magnitude > 0.01 && !Sprinting ? true : false;
+        Sprinting = displacement.magnitude > 0.02  ? true : false;
+        animator.SetBool("Walking", walking);
+        animator.SetBool("Sprinting", Sprinting);
     }
     public void sprint() 
     {
@@ -95,8 +108,9 @@ public class MovePlus : MonoBehaviour
         else
             Debug.LogWarning("No controller found in player");
         Cursor.lockState = CursorLockMode.Locked;
-
-        height = transform.GetComponent<CharacterController>().height;
+        animator = GetComponent<Animator>();
+        height = transform.root.GetComponent<CharacterController>().height;
+        Debug.Log( animator.parameters.ToString());
     }
 
     void Update()

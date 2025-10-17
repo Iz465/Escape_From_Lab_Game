@@ -1281,8 +1281,8 @@ MonoBehaviour:
   acceleration: 0
   velocity: {x: 0, y: 0, z: 0}
   useOtherScript: 0
-  SprintSpeed: 8
-  NormalSpeed: 5
+  SprintSpeed: 10
+  NormalSpeed: 4
   fallAcceleration: 5
   jumpStrength: 1.5
 --- !u!43 &694150935

@@ -16,10 +16,7 @@ public class FirePlayerInputs : MonoBehaviour
 
     }
 
-    private void OnAnimatorMove()
-    {
-        animator.ApplyBuiltinRootMotion();
-    }
+   
     public void Sprint(InputAction.CallbackContext context)
     {
 

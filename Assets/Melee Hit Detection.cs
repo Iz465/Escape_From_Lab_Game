@@ -14,16 +14,17 @@ public class MeleeHitDetection : MonoBehaviour
     }
     private void OnTriggerEnter(Collider other)
     {
-      
+    /*
         enemy = other.GetComponentInParent<navmeshtestscript>();
         if (!enemy)
             enemy = other.GetComponent<navmeshtestscript>();
         if (!enemy) return;
         if (!canTrigger) return;
-        Debug.Log($"Trigger : {other.name}");
+        Debug.Log($"Trigger: {other.name}");
         canTrigger = false;
-        enemy.TakeDamage(damage);
+        enemy.TakeDamage(damage); */
     }
 
- 
+
+
 }

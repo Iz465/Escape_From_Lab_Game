@@ -17,6 +17,7 @@ public class navmeshtestscript : MonoBehaviour // Readd this to to the chase ai 
     [SerializeField] private GameObject corpse;
 
     [SerializeField] private string enemyPrefab;
+    private static GameObject currentEnemyAttacking;
 
     [System.Serializable] public struct CorpseParts
     {
@@ -37,7 +38,7 @@ public class navmeshtestscript : MonoBehaviour // Readd this to to the chase ai 
     protected Animator animator;
     protected CharacterController controller;
     private float timer = 0f;
-    public static bool canAttack = true;
+    public bool canAttack = true;
     protected float distanceToPlayer;
     public static List<GameObject> deadEnemies = new List<GameObject>();
     protected GlobalEnemyManager globalEnemyManager;
@@ -119,16 +120,24 @@ public class navmeshtestscript : MonoBehaviour // Readd this to to the chase ai 
 
             if (canAttack)
             {
+                AttackPlayer();
              
-                random = globalEnemyManager.RandomiseAttack();
+            /*    random = globalEnemyManager.RandomiseAttack();
                 int num = 0;
                 foreach (GameObject enemy in GlobalEnemyManager.enemiesInRange)
                 {
                     if (num == random)
                         if (gameObject == enemy)
-                            AttackPlayer();
-                    num++;
-                }
+                            if (enemy != currentEnemyAttacking && GlobalEnemyManager.enemiesInRange.Count > 1)
+                            {
+                                currentEnemyAttacking = enemy;
+                                AttackPlayer();
+                            }
+                          
+                            else if (GlobalEnemyManager.enemiesInRange.Count == 1)
+                                AttackPlayer();
+                    num++; 
+                } */
             
             }
         

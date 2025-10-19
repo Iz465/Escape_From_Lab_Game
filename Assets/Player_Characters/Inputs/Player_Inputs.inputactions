@@ -220,7 +220,7 @@
             "id": "ebc6a570-3e60-4128-bd22-667d6118fb3c",
             "actions": [
                 {
-                    "name": "New action",
+                    "name": "Arc Swipe",
                     "type": "Button",
                     "id": "2b22194e-8d37-49da-8a5a-e92e39e7cd22",
                     "expectedControlType": "",
@@ -260,11 +260,11 @@
                 {
                     "name": "",
                     "id": "541c127b-abab-4432-82df-26ae3f46cd1e",
-                    "path": "",
+                    "path": "<Mouse>/leftButton",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "New action",
+                    "action": "Arc Swipe",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },

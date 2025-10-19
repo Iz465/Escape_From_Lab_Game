@@ -16,7 +16,7 @@ public class PlayerHitDetection : MonoBehaviour
 
     private void OnCollisionEnter(Collision collision)
     {
-      //  Debug.Log($"Something has been hit : {collision.gameObject}");
+   
         Player player = collision.gameObject.GetComponent<Player>();
         if (player)
             player.TakeDamage(damage);
@@ -26,6 +26,7 @@ public class PlayerHitDetection : MonoBehaviour
     
     private void OnTriggerStay(Collider other)
     {
+   
         Player player = other.gameObject.GetComponent<Player>();
         if (player && canDamage)
         {
@@ -38,7 +39,17 @@ public class PlayerHitDetection : MonoBehaviour
 
     }
 
- 
+    private void OnTriggerEnter(Collider other)
+    {
+
+        Player player = other.gameObject.GetComponent<Player>();
+        if (player && canDamage)
+        {
+            canDamage = false;
+            Invoke(nameof(DamageCooldown), 0.1f);
+        }
+    }
+
 
     private void DamageCooldown()
     {

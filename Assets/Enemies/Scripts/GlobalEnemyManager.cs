@@ -12,7 +12,7 @@ public class GlobalEnemyManager : MonoBehaviour
         private void Start()
     {
         levelComplete = false;
-        navmeshtestscript.canAttack = true;
+        //navmeshtestscript.canAttack = true;
         enemiesInRange.Clear();
         totalEnemies.Clear();
     }

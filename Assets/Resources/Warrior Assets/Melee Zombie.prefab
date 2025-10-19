@@ -200,15 +200,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 51303f13f67fa8c40987a27960035c53, type: 3}
       propertyPath: m_LocalScale.x
-      value: 0.26898393
+      value: 0.23914838
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 51303f13f67fa8c40987a27960035c53, type: 3}
       propertyPath: m_LocalScale.y
-      value: 0.26898393
+      value: 0.23914838
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 51303f13f67fa8c40987a27960035c53, type: 3}
       propertyPath: m_LocalScale.z
-      value: 0.26898393
+      value: 0.23914838
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 51303f13f67fa8c40987a27960035c53, type: 3}
       propertyPath: m_LocalPosition.x
@@ -472,8 +472,8 @@ NavMeshAgent:
   m_Enabled: 1
   m_AgentTypeID: 0
   m_Radius: 8
-  m_Speed: 4
-  m_Acceleration: 8
+  m_Speed: 3
+  m_Acceleration: 3
   avoidancePriority: 99
   m_AngularSpeed: 120
   m_StoppingDistance: 0
@@ -630,6 +630,7 @@ MonoBehaviour:
   attackRange: 5
   corpse: {fileID: 0}
   enemyPrefab: 
+  canAttack: 1
   corpseParts:
     head: {fileID: 1604589698921734978, guid: 3dc195e4815025143aaabe1e50b2b4ad, type: 3}
     torso: {fileID: 992527465005872472, guid: 486327f0b11f61c458b3119f0ff8a1f4, type: 3}

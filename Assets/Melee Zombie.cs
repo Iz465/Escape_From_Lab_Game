@@ -62,39 +62,24 @@ public class MeleeZombie : navmeshtestscript
 
     protected override void AttackPlayer()
     {
-
-        randomNumber = Random.Range(0, 2);
         canAttack = false;
         canRotate = true;
-     
-        if (randomNumber == 0)
-        {
-            animator.SetTrigger("MeleeCombo");
-        }
-    
-        else if (randomNumber == 1)
-        {
-            rotateSpeed = 100;
-            animator.SetTrigger("DownAttack");
-        }
-            
-       
+
+        animator.SetTrigger("MeleeCombo");
+
+
     }
 
 
     private void ResetAttack()
     {
-        StartCoroutine(CanChase(2f));
+     
         Debug.Log("Resetting");
+
         canRotate = true;
+        canAttack = true;
     }
 
-    private IEnumerator CanChase(float time)
-    {
-        yield return new WaitForSeconds(time);
-        canAttack = true;
-        Debug.Log("Reset");
-    }
 
     private void EnableHit()
     {

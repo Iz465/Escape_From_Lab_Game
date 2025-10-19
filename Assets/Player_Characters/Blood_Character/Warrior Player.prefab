@@ -269,10 +269,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   stats:
     name: Talon Rhyke
-    health: 10000
+    health: 100
     stamina: 100
   maxHealth: 0
   maxStamina: 0
+  point1: {fileID: 3308629413195358164}
+  point2: {fileID: 1409140858831371839}
+  enemyLayer:
+    serializedVersion: 2
+    m_Bits: 128
 --- !u!114 &552879810519210887
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -319,7 +324,9 @@ Transform:
   m_LocalPosition: {x: -0.22, y: -0.091, z: 0.277}
   m_LocalScale: {x: 100, y: 100, z: 100}
   m_ConstrainProportionsScale: 0
-  m_Children: []
+  m_Children:
+  - {fileID: 3308629413195358164}
+  - {fileID: 1409140858831371839}
   m_Father: {fileID: 199809842402434054}
   m_LocalEulerAnglesHint: {x: 13.476, y: -26.867, z: 10.273}
 --- !u!33 &1524610161364158610
@@ -443,6 +450,68 @@ Transform:
   m_Children:
   - {fileID: 2488057685937801015}
   m_Father: {fileID: 6306742672159174826}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &4805301273311740485
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1409140858831371839}
+  m_Layer: 8
+  m_Name: Point 2
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1409140858831371839
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4805301273311740485}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -0, y: 0, z: 0.0194}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 2488057685937801015}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &5349514664334328615
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 3308629413195358164}
+  m_Layer: 8
+  m_Name: Point 1
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &3308629413195358164
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5349514664334328615}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: -0, z: -0.00326}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 2488057685937801015}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &8351247273450421876
 GameObject:
@@ -856,9 +925,9 @@ MonoBehaviour:
     m_ActionName: 'Blood_Player/Dodge Backwards[/Keyboard/shift,/Keyboard/s]'
   - m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 4221800035857945319}
-        m_TargetAssemblyTypeName: DoubleMelee, Assembly-CSharp
-        m_MethodName: StartAttack
+      - m_Target: {fileID: 8637760082685987307}
+        m_TargetAssemblyTypeName: Dodge, Assembly-CSharp
+        m_MethodName: DodgeLeft
         m_Mode: 0
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -868,8 +937,40 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-    m_ActionId: 67116731-ae2b-4c95-bc10-a21621ad8f06
-    m_ActionName: 'Warrior_Player/Double_Melee[/Mouse/rightButton]'
+    m_ActionId: 65b64fcd-feba-4e15-b9d6-96ed9cace544
+    m_ActionName: 'Warrior_Player/Dodge Left[/Keyboard/shift,/Keyboard/a]'
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 8637760082685987307}
+        m_TargetAssemblyTypeName: Dodge, Assembly-CSharp
+        m_MethodName: DodgeRight
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: 117381f8-0129-42c2-9a40-e8c306d35faf
+    m_ActionName: 'Warrior_Player/Dodge Right[/Keyboard/shift,/Keyboard/d]'
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 8637760082685987307}
+        m_TargetAssemblyTypeName: Dodge, Assembly-CSharp
+        m_MethodName: DodgeBackwards
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: 96e51970-3128-4ec0-8634-8d6d479b324a
+    m_ActionName: 'Warrior_Player/Dodge Back[/Keyboard/shift,/Keyboard/s]'
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: 
   m_DefaultActionMap: Warrior_Player
@@ -888,6 +989,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   cooldown: 1.5
+  dodgeDistance: 0
 --- !u!114 &7529306921989572188
 MonoBehaviour:
   m_ObjectHideFlags: 0

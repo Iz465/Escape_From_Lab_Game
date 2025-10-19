@@ -30,7 +30,7 @@ public class SpawnEnemy : MonoBehaviour
 
         Collider box = gameObject.GetComponent<Collider>();
      
-
+        box.enabled = false;
         Destroy(gameObject, 2f);
     }
 

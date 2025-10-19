@@ -912,6 +912,7 @@ MonoBehaviour:
   attackRange: 15
   corpse: {fileID: 846829804671434094, guid: 6aa1f64578edcd34ea725cd30f026dad, type: 3}
   enemyPrefab: Blood Assets/Evil Wizard
+  canAttack: 1
   corpseParts:
     head: {fileID: 1604589698921734978, guid: 3dc195e4815025143aaabe1e50b2b4ad, type: 3}
     torso: {fileID: 992527465005872472, guid: 486327f0b11f61c458b3119f0ff8a1f4, type: 3}
@@ -921,7 +922,6 @@ MonoBehaviour:
   power: {fileID: 6238471719548748225, guid: 9600bd1612759c1469ae03decff32ab4, type: 3}
   speed: 300
   aimLoc: {fileID: 2405388752199314152}
-  meleeBox: {fileID: 0}
   beamPrefab: {fileID: 7539040078107595411, guid: 397f6d962876b71469454d13a388b377, type: 3}
   circleInstantPrefab: {fileID: 6671519891469569489, guid: 16810fbafedb8484cb7b9320858738b6, type: 3}
   instantAttackPrefab: {fileID: 7957833072274404953, guid: 3355f6bfa6db8b24281b827de929694c, type: 3}

@@ -38,23 +38,25 @@ public class CharacterSelection : MonoBehaviour
         speed.highSpeedModeCost = 2;
         */
         newPlayerModel.GetComponent<Move>().useOtherScript = true;
+        Destroy(newPlayerModel.GetComponent<Ice>());
         FinishSetup(newPlayerModel);
     }
 
     void Ice()
     {
         Transform newPlayerModel = Instantiate(playerCharModel);
-        Ice ice = newPlayerModel.AddComponent<Ice>();
+        newPlayerModel.GetComponent <Move>().useOtherScript = true;
+        /*Ice ice = newPlayerModel.AddComponent<Ice>();
 
         ice.iceSpeed = 15;
-        ice.walkSpeed = 3;
+        ice.walkSpeed = 10;
         ice.characterHeight = 5;
 
         ice.iceWall = Resources.Load<Transform>("Ice wall");
         ice.iceFloor = Resources.Load<Transform>("iceFloor");
         ice.iceSpike = Resources.Load<Transform>("spike");
-
-        newPlayerModel.GetComponent<Move>().useOtherScript = true;
+        */
+        Destroy(newPlayerModel.GetComponent<Speed>());
         FinishSetup(newPlayerModel);
     }
 
@@ -71,6 +73,8 @@ public class CharacterSelection : MonoBehaviour
         info.health = 100;
         info.stamina = 100;
         info.maxHealth = 100;
+
+        newPlayerModel.position = GameObject.FindGameObjectWithTag("Spawn").transform.position;
 
         Destroy(GameObject.Find("Camera"));
         gameObject.SetActive(false);

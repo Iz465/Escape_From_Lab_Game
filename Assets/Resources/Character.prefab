@@ -420,9 +420,6 @@ PrefabInstance:
     m_AddedComponents:
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 061208e5e13dafb4aaa26f86d9e71634, type: 3}
       insertIndex: -1
-      addedObject: {fileID: 3958817584942751770}
-    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 061208e5e13dafb4aaa26f86d9e71634, type: 3}
-      insertIndex: -1
       addedObject: {fileID: 576274144564960273}
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 061208e5e13dafb4aaa26f86d9e71634, type: 3}
       insertIndex: -1
@@ -436,33 +433,15 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 061208e5e13dafb4aaa26f86d9e71634, type: 3}
       insertIndex: -1
       addedObject: {fileID: 2491241708640332430}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 061208e5e13dafb4aaa26f86d9e71634, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: -238731208992300324}
   m_SourcePrefab: {fileID: 100100000, guid: 061208e5e13dafb4aaa26f86d9e71634, type: 3}
 --- !u!1 &4803134837077762547 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: 061208e5e13dafb4aaa26f86d9e71634, type: 3}
   m_PrefabInstance: {fileID: 5650118118637296802}
   m_PrefabAsset: {fileID: 0}
---- !u!65 &3958817584942751770
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4803134837077762547}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 1
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Size: {x: 1.6160355, y: 5.08, z: 1}
-  m_Center: {x: -0.0019874573, y: -0.3722508, z: 0}
 --- !u!114 &576274144564960273
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -582,6 +561,24 @@ MonoBehaviour:
   healthText: {fileID: 0}
   highSpeedMode: 0
   phazeMode: 0
+--- !u!114 &-238731208992300324
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4803134837077762547}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 247ea39453ec53b4b963cd7bf0896d0e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  iceSpeed: 10
+  walkSpeed: 15
+  characterHeight: 5
+  iceWall: {fileID: 1515962237511660743, guid: 458a814f093045044bfea6dc9f0ccc2f, type: 3}
+  iceSpike: {fileID: -8679921383154817045, guid: e52666887afbd09498ea4c0c0072e2e5, type: 3}
+  iceFloor: {fileID: 8398008969312000312, guid: 59b37e067d3bdb84f979c0df28336291, type: 3}
 --- !u!4 &5324372976683105097 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 061208e5e13dafb4aaa26f86d9e71634, type: 3}

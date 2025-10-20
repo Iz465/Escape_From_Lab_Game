@@ -112,7 +112,12 @@ public class Ice : MonoBehaviour
         {
             Dictionary<string, object> spikeData = items[i];
             Transform spike = (Transform)spikeData["item"];
-            
+            if (spike == null)
+            {
+                items.RemoveAt(i);
+                continue;
+            }
+
             if (spike.name != "spike(Clone)") continue;
 
             float height = float.Parse(spikeData["height"].ToString());

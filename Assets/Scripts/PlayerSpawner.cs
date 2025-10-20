@@ -43,7 +43,10 @@ public class PlayerSpawner : MonoBehaviour
 
         if(plr.position.y < -200)
         {
+            print("player too low");
+            plr.GetComponent<Move>().enabled = false;
             plr.position = transform.position;
+            plr.GetComponent<Move>().enabled = true;
         }
     }
 }

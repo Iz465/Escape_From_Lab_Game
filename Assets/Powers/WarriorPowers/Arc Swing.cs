@@ -1,4 +1,5 @@
 using System.Collections;
+using UnityEditor.Rendering.LookDev;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using static Unity.Physics.Math;
@@ -7,6 +8,7 @@ public class ArcSwing : BasePower
 {
     [SerializeField] private LayerMask enemyLayer;
     [SerializeField] private Collider playerCollider;
+    [SerializeField] private ParticleSystem hitParticle;
   
     public override void StartAttack(InputAction.CallbackContext context)
     {
@@ -22,6 +24,9 @@ public class ArcSwing : BasePower
         MeleeHitDetection.damage = stats.damage;
         base.StartAttack(context);
         Attack();
+
+        player.playerHitParticle = hitParticle;
+
     }
 
 
@@ -55,12 +60,20 @@ public class ArcSwing : BasePower
             time += Time.deltaTime;
             yield return null;
         }
+        
 
     }
 
+    private CameraShake cameraShake;
     private void CanArcSwipe()
     {
         MeleeHitDetection.canTrigger = true;
+    }
+
+    private void StartCameraShake()
+    {
+        cameraShake = cam.GetComponent<CameraShake>();
+        StartCoroutine(cameraShake.Shake(0.1f));
     }
 
 

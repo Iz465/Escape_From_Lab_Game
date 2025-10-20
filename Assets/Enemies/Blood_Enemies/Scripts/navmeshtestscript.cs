@@ -20,6 +20,7 @@ public class navmeshtestscript : MonoBehaviour // Readd this to to the chase ai 
     [SerializeField] protected GameObject blood;
     [SerializeField] protected List<Transform> bloodHits;
 
+
     [SerializeField] private string enemyPrefab;
     private static GameObject currentEnemyAttacking;
 
@@ -41,6 +42,7 @@ public class navmeshtestscript : MonoBehaviour // Readd this to to the chase ai 
     protected NavMeshAgent agent;
     protected Animator animator;
     protected CharacterController controller;
+    private Collider enemyCollider;
     private float timer = 0f;
     public bool canAttack = true;
     protected float distanceToPlayer;
@@ -66,6 +68,7 @@ public class navmeshtestscript : MonoBehaviour // Readd this to to the chase ai 
             globalEnemyManager.AddEnemy(gameObject);
         brute = GetComponent<Brute>(); // bandaid
         canRotate = true;
+        enemyCollider = GetComponent<Collider>();
     }
 
     virtual protected void Update()
@@ -180,6 +183,8 @@ public class navmeshtestscript : MonoBehaviour // Readd this to to the chase ai 
 
     virtual public void TakeDamage(float damageTaken)
     {
+        Debug.Log(enemyCollider);
+        if (player.playerHitParticle) Instantiate(player.playerHitParticle, enemyCollider.bounds.center + new Vector3(0, 2, 0), transform.rotation); // bandaid solution
         if (blood) ShowBlood();
         health -= damageTaken;
         Debug.Log($"Taking damage! Health Left : {health}");
@@ -190,6 +195,7 @@ public class navmeshtestscript : MonoBehaviour // Readd this to to the chase ai 
 
     private void ShowBlood()
     {
+        
         foreach (Transform bloodLocation in bloodHits)
         {
            GameObject bloodInstance = Instantiate(blood, bloodLocation);

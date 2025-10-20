@@ -1567,7 +1567,7 @@ MonoBehaviour:
   roamDelay: 2
   attackRange: 4
   corpse: {fileID: 0}
-  blood: {fileID: 1000013355911406, guid: d32aa916f50cac94db11e6f19821a58f, type: 3}
+  blood: {fileID: 767729875679334921, guid: 754caa0e01b13eb4b9186463b5f2afdd, type: 3}
   bloodHits:
   - {fileID: 7715489484732115941}
   - {fileID: 6368807161842201524}

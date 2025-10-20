@@ -60,6 +60,11 @@ public class linescript : MonoBehaviour
         }
     }
 
+    public void DisableCircle()
+    {
+        line.enabled = false;
+    }
+
     /*
     public void DrawSquare()
     {

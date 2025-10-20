@@ -269,10 +269,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   stats:
     name: Talon Rhyke
-    health: 100
+    health: 1e+9
     stamina: 100
   maxHealth: 0
   maxStamina: 0
+  playerHitParticle: {fileID: 0}
   point1: {fileID: 3308629413195358164}
   point2: {fileID: 1409140858831371839}
   enemyLayer:
@@ -782,10 +783,10 @@ PrefabInstance:
       addedObject: {fileID: 7529306921989572188}
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 88917694e0f7ea249a5b6490a97a932a, type: 3}
       insertIndex: -1
-      addedObject: {fileID: 4221800035857945319}
+      addedObject: {fileID: 813192465320472466}
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 88917694e0f7ea249a5b6490a97a932a, type: 3}
       insertIndex: -1
-      addedObject: {fileID: 813192465320472466}
+      addedObject: {fileID: 5300025903511938184}
   m_SourcePrefab: {fileID: 100100000, guid: 88917694e0f7ea249a5b6490a97a932a, type: 3}
 --- !u!4 &1635311721269632003 stripped
 Transform:
@@ -974,6 +975,22 @@ MonoBehaviour:
         m_CallState: 2
     m_ActionId: 7614fbf9-07e4-47d2-a013-f8a2f308a031
     m_ActionName: 'Warrior_Player/Block Blue[/Keyboard/3]'
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 5300025903511938184}
+        m_TargetAssemblyTypeName: SlamMelee, Assembly-CSharp
+        m_MethodName: StartAttack
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: 416a6dd0-a5ee-46fd-a926-b0ccc0f88410
+    m_ActionName: 'Warrior_Player/Slam[/Mouse/rightButton]'
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: 
   m_DefaultActionMap: Warrior_Player
@@ -1019,28 +1036,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 128
   playerCollider: {fileID: 1650092743180225908}
---- !u!114 &4221800035857945319
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2160069707036575417}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e6265f4073e65ef4e9f31f95268c3224, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  player: {fileID: 6817666453106957175}
-  boxAim: {fileID: 0}
-  cam: {fileID: 2654833756252058466}
-  stats:
-    powerName: Double Melee
-    prefab: {fileID: 0}
-    damage: 20
-    speed: 0
-    stamina: 20
-  powerType: 3
+  hitParticle: {fileID: 4596544553357837919, guid: 8eb503696b886e04faff8fc0f480d473, type: 3}
 --- !u!114 &813192465320472466
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1057,6 +1053,28 @@ MonoBehaviour:
     redParticle: {fileID: 7155335147208632822, guid: 2f21cb80f0201c243996683d1cbc631d, type: 3}
     greenParticle: {fileID: 7155335147208632822, guid: 3769878f55c849a4295e6e682525cb59, type: 3}
     blueParticle: {fileID: 7155335147208632822, guid: ede806db08b006b49bbd26e286a45bfe, type: 3}
+--- !u!114 &5300025903511938184
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2160069707036575417}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7a935b1d604d224438d8a500c6fc0579, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  player: {fileID: 6817666453106957175}
+  boxAim: {fileID: 0}
+  cam: {fileID: 2654833756252058466}
+  stats:
+    powerName: Slam
+    prefab: {fileID: 0}
+    damage: 30
+    speed: 0
+    stamina: 20
+  powerType: 3
 --- !u!4 &6306742672159174826 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 5097370190579632962, guid: 88917694e0f7ea249a5b6490a97a932a, type: 3}

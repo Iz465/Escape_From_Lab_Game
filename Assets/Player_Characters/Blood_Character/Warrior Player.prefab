@@ -231,7 +231,7 @@ MonoBehaviour:
   acceleration: 0
   velocity: {x: 0, y: 0, z: 0}
   useOtherScript: 0
-  walkSpeed: 4
+  walkSpeed: 7
   fallAcceleration: 5
   jumpStrength: 1.5
 --- !u!65 &5949953888318550816
@@ -783,6 +783,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 88917694e0f7ea249a5b6490a97a932a, type: 3}
       insertIndex: -1
       addedObject: {fileID: 4221800035857945319}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 88917694e0f7ea249a5b6490a97a932a, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 813192465320472466}
   m_SourcePrefab: {fileID: 100100000, guid: 88917694e0f7ea249a5b6490a97a932a, type: 3}
 --- !u!4 &1635311721269632003 stripped
 Transform:
@@ -925,9 +928,9 @@ MonoBehaviour:
     m_ActionName: 'Blood_Player/Dodge Backwards[/Keyboard/shift,/Keyboard/s]'
   - m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 8637760082685987307}
-        m_TargetAssemblyTypeName: Dodge, Assembly-CSharp
-        m_MethodName: DodgeLeft
+      - m_Target: {fileID: 813192465320472466}
+        m_TargetAssemblyTypeName: BlockAttacks, Assembly-CSharp
+        m_MethodName: BlockRed
         m_Mode: 0
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -937,13 +940,13 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-    m_ActionId: 65b64fcd-feba-4e15-b9d6-96ed9cace544
-    m_ActionName: 'Warrior_Player/Dodge Left[/Keyboard/shift,/Keyboard/a]'
+    m_ActionId: ed5e2575-bd12-4358-b447-ba6ed48bcd14
+    m_ActionName: 'Warrior_Player/Block Red[/Keyboard/1]'
   - m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 8637760082685987307}
-        m_TargetAssemblyTypeName: Dodge, Assembly-CSharp
-        m_MethodName: DodgeRight
+      - m_Target: {fileID: 813192465320472466}
+        m_TargetAssemblyTypeName: BlockAttacks, Assembly-CSharp
+        m_MethodName: BlockGreen
         m_Mode: 0
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -953,13 +956,13 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-    m_ActionId: 117381f8-0129-42c2-9a40-e8c306d35faf
-    m_ActionName: 'Warrior_Player/Dodge Right[/Keyboard/shift,/Keyboard/d]'
+    m_ActionId: b26b4353-2e3c-4009-b8dc-02aead66b4f5
+    m_ActionName: 'Warrior_Player/Block Green[/Keyboard/2]'
   - m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 8637760082685987307}
-        m_TargetAssemblyTypeName: Dodge, Assembly-CSharp
-        m_MethodName: DodgeBackwards
+      - m_Target: {fileID: 813192465320472466}
+        m_TargetAssemblyTypeName: BlockAttacks, Assembly-CSharp
+        m_MethodName: BlockBlue
         m_Mode: 0
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -969,8 +972,8 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-    m_ActionId: 96e51970-3128-4ec0-8634-8d6d479b324a
-    m_ActionName: 'Warrior_Player/Dodge Back[/Keyboard/shift,/Keyboard/s]'
+    m_ActionId: 7614fbf9-07e4-47d2-a013-f8a2f308a031
+    m_ActionName: 'Warrior_Player/Block Blue[/Keyboard/3]'
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: 
   m_DefaultActionMap: Warrior_Player
@@ -1012,6 +1015,10 @@ MonoBehaviour:
     speed: 0
     stamina: 20
   powerType: 3
+  enemyLayer:
+    serializedVersion: 2
+    m_Bits: 128
+  playerCollider: {fileID: 1650092743180225908}
 --- !u!114 &4221800035857945319
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1034,6 +1041,22 @@ MonoBehaviour:
     speed: 0
     stamina: 20
   powerType: 3
+--- !u!114 &813192465320472466
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2160069707036575417}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b8b38c505e5a24746a8dc514652c95a8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  particleTypes:
+    redParticle: {fileID: 7155335147208632822, guid: 2f21cb80f0201c243996683d1cbc631d, type: 3}
+    greenParticle: {fileID: 7155335147208632822, guid: 3769878f55c849a4295e6e682525cb59, type: 3}
+    blueParticle: {fileID: 7155335147208632822, guid: ede806db08b006b49bbd26e286a45bfe, type: 3}
 --- !u!4 &6306742672159174826 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 5097370190579632962, guid: 88917694e0f7ea249a5b6490a97a932a, type: 3}

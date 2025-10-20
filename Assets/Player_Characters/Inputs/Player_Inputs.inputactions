@@ -229,27 +229,27 @@
                     "initialStateCheck": false
                 },
                 {
-                    "name": "Dodge Left",
+                    "name": "Block Red",
                     "type": "Button",
-                    "id": "65b64fcd-feba-4e15-b9d6-96ed9cace544",
+                    "id": "ed5e2575-bd12-4358-b447-ba6ed48bcd14",
                     "expectedControlType": "",
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": false
                 },
                 {
-                    "name": "Dodge Right",
+                    "name": "Block Green",
                     "type": "Button",
-                    "id": "117381f8-0129-42c2-9a40-e8c306d35faf",
+                    "id": "b26b4353-2e3c-4009-b8dc-02aead66b4f5",
                     "expectedControlType": "",
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": false
                 },
                 {
-                    "name": "Dodge Back",
+                    "name": "Block Blue",
                     "type": "Button",
-                    "id": "96e51970-3128-4ec0-8634-8d6d479b324a",
+                    "id": "7614fbf9-07e4-47d2-a013-f8a2f308a031",
                     "expectedControlType": "",
                     "processors": "",
                     "interactions": "",
@@ -269,103 +269,37 @@
                     "isPartOfComposite": false
                 },
                 {
-                    "name": "One Modifier",
-                    "id": "54d3a998-6466-4fd3-8a0f-a99a6b0513aa",
-                    "path": "OneModifier",
+                    "name": "",
+                    "id": "de5ed988-c957-4d80-a04e-6511dd30ea35",
+                    "path": "<Keyboard>/1",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "Dodge Left",
-                    "isComposite": true,
+                    "action": "Block Red",
+                    "isComposite": false,
                     "isPartOfComposite": false
                 },
                 {
-                    "name": "modifier",
-                    "id": "8668973e-5815-4835-a754-2242f16c35de",
-                    "path": "<Keyboard>/shift",
+                    "name": "",
+                    "id": "680aa8f2-ee81-4af0-95a2-121d1c317315",
+                    "path": "<Keyboard>/2",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "Dodge Left",
+                    "action": "Block Green",
                     "isComposite": false,
-                    "isPartOfComposite": true
-                },
-                {
-                    "name": "binding",
-                    "id": "31a86686-e231-4585-b51b-de5a58480a85",
-                    "path": "<Keyboard>/a",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "Dodge Left",
-                    "isComposite": false,
-                    "isPartOfComposite": true
-                },
-                {
-                    "name": "One Modifier",
-                    "id": "04046522-9e9d-40b5-a746-34ceaa6a6c1e",
-                    "path": "OneModifier",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "Dodge Right",
-                    "isComposite": true,
                     "isPartOfComposite": false
                 },
                 {
-                    "name": "modifier",
-                    "id": "b72869b3-0954-4f39-b4ff-5b9635774344",
-                    "path": "<Keyboard>/shift",
+                    "name": "",
+                    "id": "a212911e-e048-4815-b455-e68a8f1378c9",
+                    "path": "<Keyboard>/3",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "Dodge Right",
+                    "action": "Block Blue",
                     "isComposite": false,
-                    "isPartOfComposite": true
-                },
-                {
-                    "name": "binding",
-                    "id": "7553e76c-5bfe-41f8-971a-8a1bfe4ded76",
-                    "path": "<Keyboard>/d",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "Dodge Right",
-                    "isComposite": false,
-                    "isPartOfComposite": true
-                },
-                {
-                    "name": "One Modifier",
-                    "id": "72b503ad-9fab-438d-8e73-aab723a0a634",
-                    "path": "OneModifier",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "Dodge Back",
-                    "isComposite": true,
                     "isPartOfComposite": false
-                },
-                {
-                    "name": "modifier",
-                    "id": "a3c3bd76-33ef-49c3-8ff2-0242a8d1a00f",
-                    "path": "<Keyboard>/shift",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "Dodge Back",
-                    "isComposite": false,
-                    "isPartOfComposite": true
-                },
-                {
-                    "name": "binding",
-                    "id": "37774778-5123-4f82-8997-2da502944c3f",
-                    "path": "<Keyboard>/s",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "Dodge Back",
-                    "isComposite": false,
-                    "isPartOfComposite": true
                 }
             ]
         }

@@ -212,15 +212,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 51303f13f67fa8c40987a27960035c53, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 50.29583
+      value: 74.90417
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 51303f13f67fa8c40987a27960035c53, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.18401814
+      value: 0.18402123
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 51303f13f67fa8c40987a27960035c53, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 16.74
+      value: 9.525649
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 51303f13f67fa8c40987a27960035c53, type: 3}
       propertyPath: m_LocalRotation.w
@@ -624,19 +624,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f28621dbdda0afc48a7807a5fe13128f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  health: 100
+  health: 20
   roamRadius: 10
   roamDelay: 5
   attackRange: 5
   corpse: {fileID: 0}
+  blood: {fileID: 0}
+  bloodHits: []
   enemyPrefab: 
   canAttack: 1
   corpseParts:
-    head: {fileID: 1604589698921734978, guid: 3dc195e4815025143aaabe1e50b2b4ad, type: 3}
-    torso: {fileID: 992527465005872472, guid: 486327f0b11f61c458b3119f0ff8a1f4, type: 3}
-    leftHand: {fileID: 846829804671434094, guid: 6aa1f64578edcd34ea725cd30f026dad, type: 3}
-    rightHand: {fileID: 1878968904969398724, guid: 62f73d6583a604943bbab85af86950d1, type: 3}
-    legs: {fileID: 992527465005872472, guid: 486327f0b11f61c458b3119f0ff8a1f4, type: 3}
+    head: {fileID: 1604589698921734978, guid: b492f241b69311041b5ab9ac2ea2818f, type: 3}
+    torso: {fileID: 992527465005872472, guid: 66dad26443b539d40accb808d89c101a, type: 3}
+    leftHand: {fileID: 846829804671434094, guid: 06e53a7e84caf5349908a21826c87aaf, type: 3}
+    rightHand: {fileID: 1878968904969398724, guid: 2329cb49b7c1ba648b9deab8fd32c32b, type: 3}
+    legs: {fileID: 992527465005872472, guid: 66dad26443b539d40accb808d89c101a, type: 3}
   point1: {fileID: 5603095691259623973}
   point2: {fileID: 7409744098692784146}
   point1Second: {fileID: 1116646949256148331}

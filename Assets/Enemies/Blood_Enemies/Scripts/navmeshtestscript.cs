@@ -16,6 +16,10 @@ public class navmeshtestscript : MonoBehaviour // Readd this to to the chase ai 
     [SerializeField] protected float attackRange;
     [SerializeField] private GameObject corpse;
 
+    [Header("Blood Stuff")]
+    [SerializeField] protected GameObject blood;
+    [SerializeField] protected List<Transform> bloodHits;
+
     [SerializeField] private string enemyPrefab;
     private static GameObject currentEnemyAttacking;
 
@@ -174,14 +178,25 @@ public class navmeshtestscript : MonoBehaviour // Readd this to to the chase ai 
         Debug.Log("Attack!");
     }
 
-    public void TakeDamage(float damageTaken)
+    virtual public void TakeDamage(float damageTaken)
     {
+        if (blood) ShowBlood();
         health -= damageTaken;
         Debug.Log($"Taking damage! Health Left : {health}");
         if (health <= 0)
             EnemyDeath();
 
     }
+
+    private void ShowBlood()
+    {
+        foreach (Transform bloodLocation in bloodHits)
+        {
+           GameObject bloodInstance = Instantiate(blood, bloodLocation);
+           Destroy(bloodInstance, 0.5f); 
+        }
+    }
+
     [SerializeField] private CorpseParts corpseParts = new CorpseParts();
     virtual protected void EnemyDeath()
     {

@@ -1,5 +1,4 @@
 using Unity.VisualScripting;
-using UnityEditor.SearchService;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
@@ -19,7 +18,7 @@ public class CharacterSelection : MonoBehaviour
     void Speed()
     {
         Transform newPlayerModel = Instantiate(playerCharModel);
-        Speed speed = newPlayerModel.AddComponent<Speed>();
+        /*Speed speed = newPlayerModel.AddComponent<Speed>();
 
         speed.normalWalk = 7;
         speed.normalRun = 150;
@@ -37,7 +36,7 @@ public class CharacterSelection : MonoBehaviour
 
         speed.highSpeedModeScale = 0.01f;
         speed.highSpeedModeCost = 2;
-
+        */
         newPlayerModel.GetComponent<Move>().useOtherScript = true;
         FinishSetup(newPlayerModel);
     }

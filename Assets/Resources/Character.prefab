@@ -433,6 +433,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 061208e5e13dafb4aaa26f86d9e71634, type: 3}
       insertIndex: -1
       addedObject: {fileID: -3667131896898282410}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 061208e5e13dafb4aaa26f86d9e71634, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 2491241708640332430}
   m_SourcePrefab: {fileID: 100100000, guid: 061208e5e13dafb4aaa26f86d9e71634, type: 3}
 --- !u!1 &4803134837077762547 stripped
 GameObject:
@@ -486,6 +489,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 338627cb511bd414f9675695c7861e06, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  controller: {fileID: 8542792657036889860}
   direction: {x: 0, y: 0, z: 0}
   acceleration: 1
   velocity: {x: 0, y: 0, z: 0}
@@ -540,6 +544,43 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &2491241708640332430
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4803134837077762547}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4678fd7da72d37f4cb3cd3c136e6f9d8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  health: 100
+  stamina: 100
+  lastDamageTime: 0
+  maxHealth: 100
+  animator: {fileID: -3667131896898282410}
+  meleeAttackAnimation: Melee
+  meleeAttackCooldown: 0
+  attackDuration: 0.33
+  normalWalk: 7
+  normalRun: 150
+  highSpeedWalk: 500
+  highSpeedRun: 3000
+  dashSpeed: 30
+  dashDuration: 0.02
+  normalRunCost: 2.5
+  highSpeedRunCost: 5
+  dashCost: 10
+  phazeCost: 7.5
+  regenRate: 15
+  highSpeedModeScale: 0.01
+  highSpeedModeCost: 2
+  staminaText: {fileID: 0}
+  healthText: {fileID: 0}
+  highSpeedMode: 0
+  phazeMode: 0
 --- !u!4 &5324372976683105097 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 061208e5e13dafb4aaa26f86d9e71634, type: 3}

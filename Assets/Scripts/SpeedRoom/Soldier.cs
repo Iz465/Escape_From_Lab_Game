@@ -1,17 +1,16 @@
 using System.Collections;
-using UnityEditor.Experimental.GraphView;
 using UnityEngine;
 using UnityEngine.AI;
 
 public class Soldier : ChaseAI
 {
-    public Transform plr;
+    
+    Vector3 startChasingPlayer;
     public Transform muzzle;
     public GameObject bullet;
-    PlayerInfo playerInfo;
+    
 
     [SerializeField] float shootDelay, shootSpeed, timeBetweenBullet;
-    [SerializeField] float health;
     [SerializeField] float stunned, hitStunTime;
 
     float timeWhenSeenPlayer = 0;
@@ -37,7 +36,9 @@ public class Soldier : ChaseAI
         yield return new WaitForSeconds(1);
         plr = GameObject.FindGameObjectWithTag("Player").transform;
         playerInfo = plr.GetComponent<PlayerInfo>();
-        print("starting to chase player");
+
+        startChasingPlayer = plr.position;
+        transform.Find("Canvas").GetComponent<Canvas>().worldCamera = plr.Find("Main Camera").GetComponent<Camera>();
         Chase(plr);
     }
 
@@ -49,11 +50,15 @@ public class Soldier : ChaseAI
     // Update is called once per frame
     void Update()
     {
+        ShowHealth();
+        Heal();
+        
         if (plr == null) return;
         if (DetectPlayer())
         {
             ShootPlayer();
         }
+
     }
 
     bool DetectPlayer()
@@ -74,6 +79,11 @@ public class Soldier : ChaseAI
                 agent.enabled = true;
                 Chase(plr);
             }
+            if((plr.position - startChasingPlayer).magnitude > 10)
+            {
+                startChasingPlayer = plr.position;
+                Chase(plr);
+            }
         }
         return false;
     }
@@ -87,34 +97,23 @@ public class Soldier : ChaseAI
         float rightSideAccurate = Vector3.Dot(transform.right, normal);
         float leftSideAccurate = Vector3.Dot(-transform.right, normal);
 
-        //if (forwardAccurate > 0.9f)
-          //  transform.LookAt(plr);
-        //else
-        //{
-            if(rightSideAccurate < 0)
-            {
-                if(plr.GetComponent<Speed>().highSpeedMode)
-                    transform.Rotate(new Vector3(0, -Time.deltaTime, 0));
-                else
-                    transform.Rotate(new Vector3(0, -90*Time.deltaTime, 0));
-            }
+        //rotate soldier towards the player at a constant pace
+        if(rightSideAccurate < 0)
+        {
+            if(plr.GetComponent<Speed>().highSpeedMode)
+                transform.Rotate(new Vector3(0, -Time.deltaTime, 0));
             else
-            {
-                if(plr.GetComponent<Speed>().highSpeedMode)
-                    transform.Rotate(new Vector3(0, Time.deltaTime, 0));
-                else
-                    transform.Rotate(new Vector3(0,90*Time.deltaTime, 0));
-            }
-        //}
+                transform.Rotate(new Vector3(0, -90*Time.deltaTime, 0));
+        }
+        else
+        {
+            if(plr.GetComponent<Speed>().highSpeedMode)
+                transform.Rotate(new Vector3(0, Time.deltaTime, 0));
+            else
+                transform.Rotate(new Vector3(0,90*Time.deltaTime, 0));
+        }
 
-
-
-
-
-        //Quaternion rotation = Quaternion.LookRotation(relativePos, Vector3.up);
-        //float fov = Vector3.Dot(transform.forward, relativePos.normalized);
-        //transform.rotation = Quaternion.Lerp(transform.rotation, rotation, fov+Time.deltaTime);
-
+        //spawn bullet after enough time have passed
         if (Time.time > timeWhenSeenPlayer + shootDelay && Time.time > stunned)
         {
             timeWhenSeenPlayer += timeBetweenBullet;
@@ -124,14 +123,13 @@ public class Soldier : ChaseAI
             newBullet.transform.position = muzzle.position;
             newBullet.transform.LookAt(plr.position);
             newBullet.GetComponent<Rigidbody>().AddForceAtPosition(newBullet.transform.forward * 10000, newBullet.transform.position);
-            //newBullet.GetComponent<Rigidbody>().linearVelocity = newBullet.transform.forward * 1000;
-            print("shoot");
         }
     }
 
-    void GotHit()
+    public void GotHit()
     {
         health -= 13;
+        gotHit = Time.time;
         stunned = Time.time + hitStunTime;
         if(health < 0)
             Destroy(gameObject);

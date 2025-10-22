@@ -23,6 +23,12 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/UI_Scenes/HUD.unity
     guid: 80f750c76af5a424e817f16076d50495
+  - enabled: 1
+    path: Assets/Scenes/SpeedRooms/Room3.unity
+    guid: e6f51eb31d6c7a34cbda83d0c1df788d
+  - enabled: 1
+    path: Assets/Scenes/IceRooms/Room1.unity
+    guid: 9f91cb6dd9920a2428796c54975232cc
   m_configObjects:
     com.unity.input.settings.actions: {fileID: -944628639613478452, guid: 052faaac586de48259a63d0c4782560b, type: 3}
   m_UseUCBPForAssetBundles: 0

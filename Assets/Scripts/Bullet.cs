@@ -3,19 +3,37 @@ using UnityEngine;
 public class Bullet : MonoBehaviour
 {
     Rigidbody rb;
+    float lifeSpan = 0;
 
     private void Start()
     {
         rb = GetComponent<Rigidbody>();
     }
-    private void Update()
+
+    private void OnCollisionEnter(Collision collision)
     {
-        Vector3 targetPlace = transform.position + (rb.linearVelocity*Time.timeScale);
+        if (collision.transform.CompareTag("Enemy") || collision.transform.CompareTag("Bullet")) return;
+
+        if (collision.transform.CompareTag("Player"))
+        {
+            PlayerInfo playerInfo = collision.transform.GetComponent<PlayerInfo>();
+            playerInfo.health -= 15;
+        }
+        Destroy(gameObject);
+
+    }
+
+    //private void Update()
+    //{
+        /*Vector3 targetPlace = rb.linearVelocity * Time.timeScale * Time.deltaTime;
 
         RaycastHit hit;
 
+
+        Debug.DrawRay(transform.position, targetPlace);
         if(Physics.Raycast(transform.position, targetPlace, out hit))
         {
+            print(hit.transform);
             if (hit.collider == null) return;
 
             if (hit.collider.CompareTag("Player"))
@@ -23,8 +41,17 @@ public class Bullet : MonoBehaviour
                 PlayerInfo playerInfo = hit.transform.GetComponent<PlayerInfo>();
                 playerInfo.health -= 15;
             }
+            Destroy(gameObject);
         }
 
+        lifeSpan += Time.deltaTime;
+        print(lifeSpan);
+
+        if(lifeSpan > 5)
+        {
+            print("bullet old");
+            Destroy(gameObject);
+        }
     }
     /*private void OnCollisionEnter(Collision collision)
     {

@@ -196,6 +196,12 @@ public class Speed : PlayerInfo
         Heal();
         Regen();
 
+        if (health <= 0 && spawnPosition != null)
+        {
+            transform.position = spawnPosition.position;
+            health = maxHealth;
+        }
+
         if (animator.GetBool(meleeAttackAnimation))
         {
 

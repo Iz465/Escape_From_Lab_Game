@@ -16,7 +16,13 @@ public class navmeshtestscript : MonoBehaviour // Readd this to to the chase ai 
     [SerializeField] protected float attackRange;
     [SerializeField] private GameObject corpse;
 
+    [Header("Blood Stuff")]
+    [SerializeField] protected GameObject blood;
+    [SerializeField] protected List<Transform> bloodHits;
+
+
     [SerializeField] private string enemyPrefab;
+    private static GameObject currentEnemyAttacking;
 
     [System.Serializable] public struct CorpseParts
     {
@@ -36,13 +42,14 @@ public class navmeshtestscript : MonoBehaviour // Readd this to to the chase ai 
     protected NavMeshAgent agent;
     protected Animator animator;
     protected CharacterController controller;
+    private Collider enemyCollider;
     private float timer = 0f;
-    public static bool canAttack = true;
+    public bool canAttack = true;
     protected float distanceToPlayer;
     public static List<GameObject> deadEnemies = new List<GameObject>();
     protected GlobalEnemyManager globalEnemyManager;
     private Brute brute;
-
+    protected bool canRotate;
 
 
     protected float rotateSpeed;
@@ -60,6 +67,8 @@ public class navmeshtestscript : MonoBehaviour // Readd this to to the chase ai 
         if (globalEnemyManager)
             globalEnemyManager.AddEnemy(gameObject);
         brute = GetComponent<Brute>(); // bandaid
+        canRotate = true;
+        enemyCollider = GetComponent<Collider>();
     }
 
     virtual protected void Update()
@@ -72,7 +81,7 @@ public class navmeshtestscript : MonoBehaviour // Readd this to to the chase ai 
 
         distanceToPlayer = Vector3.Distance(transform.position, player.transform.position);
 
-        if (distanceToPlayer <= 40)  
+        if (distanceToPlayer <= roamRadius)  
             ChasePlayer();
             
         
@@ -83,7 +92,7 @@ public class navmeshtestscript : MonoBehaviour // Readd this to to the chase ai 
             timer = 0;
         }
 
-
+  
         if (agent.velocity.magnitude == 0)
             animator.SetBool("Roam", false);
         else
@@ -96,7 +105,8 @@ public class navmeshtestscript : MonoBehaviour // Readd this to to the chase ai 
     {
         Vector3 lookDirection = player.transform.position - transform.position;
         lookDirection.y = 0; // keeps horizontal rotation only
-        transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(lookDirection), Time.deltaTime * rotateSpeed);
+        if (canRotate)
+            transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(lookDirection), Time.deltaTime * rotateSpeed);
 
 
         if (distanceToPlayer > attackRange && canAttack)
@@ -117,17 +127,25 @@ public class navmeshtestscript : MonoBehaviour // Readd this to to the chase ai 
 
             if (canAttack)
             {
-     
-                random = globalEnemyManager.RandomiseAttack();
+                AttackPlayer();
+             
+            /*    random = globalEnemyManager.RandomiseAttack();
                 int num = 0;
                 foreach (GameObject enemy in GlobalEnemyManager.enemiesInRange)
                 {
                     if (num == random)
                         if (gameObject == enemy)
-                            AttackPlayer();
-                    num++;
-                }
-             
+                            if (enemy != currentEnemyAttacking && GlobalEnemyManager.enemiesInRange.Count > 1)
+                            {
+                                currentEnemyAttacking = enemy;
+                                AttackPlayer();
+                            }
+                          
+                            else if (GlobalEnemyManager.enemiesInRange.Count == 1)
+                                AttackPlayer();
+                    num++; 
+                } */
+            
             }
         
         }
@@ -135,9 +153,11 @@ public class navmeshtestscript : MonoBehaviour // Readd this to to the chase ai 
         
     }
 
+
     virtual protected void AttackPlayer()
     {
         animator.SetBool("CanAttack", true);
+       
         canAttack = false;
            
     }
@@ -161,15 +181,30 @@ public class navmeshtestscript : MonoBehaviour // Readd this to to the chase ai 
         Debug.Log("Attack!");
     }
 
-    public void TakeDamage(float damageTaken)
+    virtual public void TakeDamage(float damageTaken)
     {
-        Debug.Log($"Taking damage! Health Left : {health}");
+        Debug.Log(enemyCollider);
+        if (player.playerHitParticle) Instantiate(player.playerHitParticle, enemyCollider.bounds.center + new Vector3(0, 2, 0), transform.rotation); // bandaid solution
+        if (blood) ShowBlood();
         health -= damageTaken;
+        Debug.Log($"Taking damage! Health Left : {health}");
         if (health <= 0)
             EnemyDeath();
 
     }
+
+    private void ShowBlood()
+    {
+        
+        foreach (Transform bloodLocation in bloodHits)
+        {
+           GameObject bloodInstance = Instantiate(blood, bloodLocation);
+           Destroy(bloodInstance, 0.5f); 
+        }
+    }
+
     [SerializeField] private CorpseParts corpseParts = new CorpseParts();
+    [SerializeField] private float healthGain;
     virtual protected void EnemyDeath()
     {
 
@@ -178,8 +213,11 @@ public class navmeshtestscript : MonoBehaviour // Readd this to to the chase ai 
         GlobalEnemyManager.enemiesInRange.Remove(gameObject);
         globalEnemyManager.EmptyEnemies(gameObject);
 
-        player.stats.health += 10;
+     
+        player.stats.health += healthGain;
         player.stats.health = Mathf.Clamp(player.stats.health, 0, 100);
+        
+ 
 
    /*     if (corpse)
         {
@@ -224,6 +262,8 @@ public class navmeshtestscript : MonoBehaviour // Readd this to to the chase ai 
                 rigid.AddTorque(Random.insideUnitSphere * 1f, ForceMode.Impulse);
                 
             }
+
+            Destroy(ragdoll, 10);
                
         }
     }

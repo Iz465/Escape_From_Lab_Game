@@ -11,7 +11,7 @@
                     "id": "fcc914e3-a976-4b98-8a7b-767a8a0cf13f",
                     "expectedControlType": "",
                     "processors": "",
-                    "interactions": "Hold",
+                    "interactions": "Tap",
                     "initialStateCheck": false
                 },
                 {
@@ -220,9 +220,45 @@
             "id": "ebc6a570-3e60-4128-bd22-667d6118fb3c",
             "actions": [
                 {
-                    "name": "New action",
+                    "name": "Arc Swipe",
                     "type": "Button",
                     "id": "2b22194e-8d37-49da-8a5a-e92e39e7cd22",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "Block Red",
+                    "type": "Button",
+                    "id": "ed5e2575-bd12-4358-b447-ba6ed48bcd14",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "Block Green",
+                    "type": "Button",
+                    "id": "b26b4353-2e3c-4009-b8dc-02aead66b4f5",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "Block Blue",
+                    "type": "Button",
+                    "id": "7614fbf9-07e4-47d2-a013-f8a2f308a031",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "Slam",
+                    "type": "Button",
+                    "id": "416a6dd0-a5ee-46fd-a926-b0ccc0f88410",
                     "expectedControlType": "",
                     "processors": "",
                     "interactions": "",
@@ -233,11 +269,55 @@
                 {
                     "name": "",
                     "id": "541c127b-abab-4432-82df-26ae3f46cd1e",
-                    "path": "",
+                    "path": "<Mouse>/leftButton",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "New action",
+                    "action": "Arc Swipe",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "de5ed988-c957-4d80-a04e-6511dd30ea35",
+                    "path": "<Keyboard>/1",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Block Red",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "680aa8f2-ee81-4af0-95a2-121d1c317315",
+                    "path": "<Keyboard>/2",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Block Green",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "a212911e-e048-4815-b455-e68a8f1378c9",
+                    "path": "<Keyboard>/3",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Block Blue",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "7380d29d-259a-4995-98ed-f94c0b0d16b4",
+                    "path": "<Mouse>/rightButton",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Slam",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

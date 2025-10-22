@@ -6,8 +6,10 @@ using UnityEngine.InputSystem;
 public class Dodge : MonoBehaviour
 {
     private Animator animator;
-    [SerializeField] float cooldown;
+    [SerializeField] private float cooldown;
+    [SerializeField] private float dodgeDistance;
     private bool canDodge;
+    
     private void Start()
     {
         animator = GetComponent<Animator>();
@@ -50,7 +52,7 @@ public class Dodge : MonoBehaviour
         float timer = 0; 
         Vector3 startLoc = transform.root.localPosition;
         Vector3 left = -transform.root.right;
-        Vector3 endLoc = startLoc + left * 6f;  // Always moves to left no matter player rotation.
+        Vector3 endLoc = startLoc + left * 6f;  // Always moves to left no matter player rotation. dodgeDistance
 
         while (timer < time)
         {
@@ -82,7 +84,7 @@ public class Dodge : MonoBehaviour
         float timer = 0;
         Vector3 startLoc = transform.root.localPosition;
         Vector3 back = -transform.root.forward;
-        Vector3 endLoc = startLoc + back * 6f;  // Always moves to left no matter player rotation.
+        Vector3 endLoc = startLoc + back * 4f;  // Always moves to left no matter player rotation. 
 
         while (timer < time)
         {

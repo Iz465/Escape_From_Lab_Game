@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Threading.Tasks;
 using UnityEngine;
 using static UnityEngine.GraphicsBuffer;
+using static UnityEngine.ParticleSystem;
 using static UnityEngine.UI.Image;
 
 public class BloodMage : BloodEnemy
@@ -10,24 +11,30 @@ public class BloodMage : BloodEnemy
     [SerializeField] private GameObject power;
     [SerializeField] private float speed;
     [SerializeField] private Transform aimLoc;
-    [SerializeField] private Collider meleeBox;
     [SerializeField] private GameObject beamPrefab;
+    [SerializeField] private GameObject circleInstantPrefab;
     [SerializeField] private GameObject instantAttackPrefab;
     [SerializeField] private LayerMask playerLayer;
 
     int number;
-    private bool attack;
+    private static bool attack;
     private bool beam;
-    private bool instantAttack;
+    private static bool instantAttack;
     private float beamLength;
     private GameObject beamInstance;
-    
+
+    private static List<BloodMage> bloodMages = new List<BloodMage>();
+    private static BloodMage[] mageInUse = new BloodMage[1];
+
+
     protected override void Start()
     {
         base.Start();
         number = 0;
         beamLength = 20f;
-    //    meleeBox.enabled = false;
+        bloodMages.Add(this);
+
+
     }
 
     protected override void Update()
@@ -44,31 +51,55 @@ public class BloodMage : BloodEnemy
         if (agent.isOnNavMesh)
             agent.isStopped = true;
 
-        int num = Random.Range(0, 10);
+        canAttack = false;
+     
 
-  
-        switch (num)
+
+
+        if (mageInUse[0] != null && mageInUse[0] != this)
         {
-            case >= 0 and <= 4: attack = true; beam = false; instantAttack = false; break;
-            case >= 5 and <= 8: attack = false; beam = true; instantAttack = false; break;
-            case 9: attack = false; beam = false; instantAttack = true; break;
+            animator.SetBool("Beam", true);
+            beam = true;
+            return;
         }
 
-        if (attack)
-            animator.SetBool("CanAttack", true);
-        else if (beam)
+        if (mageInUse[0] == null)
+        {
+            int num = Random.Range(0, 2);
+            switch (num)
+            {
+                case 0: attack = true; break;
+                case 1: instantAttack = true; break;
+            }
+            mageInUse[0] = this;
+        }
+
+        if (mageInUse[0] == this)
+        {
+
+            if (attack)
+                animator.SetBool("CanAttack", true);
+
+            else if (instantAttack)
+                animator.SetBool("InstantAttack", true);
+        }
+
+
+        else
+        {
+            beam = true;
             animator.SetBool("Beam", true);
-        else if (instantAttack)
-            InstantAttack();
+        }
+        
 
-        canAttack = false;
+
+
     }
-
 
 
     protected override void Attack()
     {
-      
+     
         number++;
         if (distanceToPlayer >= 10) speed = 80;
         if (distanceToPlayer < 10) speed = 50;
@@ -86,18 +117,17 @@ public class BloodMage : BloodEnemy
     }
 
 
-
-
     private IEnumerator ResetAnim(int time)
     {
         yield return new WaitForSeconds(time);
         animator.SetBool("CanAttack", false);
         if (number >= 3)
-            StartCoroutine(ResetAttack(1f));
+            StartCoroutine(ResetAttack(1));
+
         else
             StartCoroutine(ResetAttack(.1f));
                 
-        //     meleeBox.enabled=false;
+
     }
 
 
@@ -107,6 +137,13 @@ public class BloodMage : BloodEnemy
        
         if (number >= 3)
         {
+            if (mageInUse[0] == this)
+            {
+                instantAttack = false;
+                attack = false;
+                mageInUse[0] = null;
+            }
+        
             number = 0;
             canAttack = true;
         }
@@ -159,72 +196,70 @@ public class BloodMage : BloodEnemy
         yield return new WaitForSeconds(time);
         animator.SetBool("Beam", false);
         Destroy(beamInstance);
-        StartCoroutine(ResetAttack(1f));
+        beam = false;
+        StartCoroutine(ResetAttack(1));
         rotateSpeed = 5f;
 
     }
 
+    private Vector3 startingPosition;
+    private GameObject circleAttackInstance;
     private void InstantAttack()
     {
         animator.SetBool("InstantAttack", true);
         number = 3;
 
-        GameObject instant = Instantiate(instantAttackPrefab, transform.position + new Vector3(0, 8, 0), transform.rotation);
-        StartCoroutine(HitPlayer(instant,5f));
+        startingPosition = player.transform.position;
+        StartCoroutine(HitPlayer(1f));
+        circleAttackInstance = Instantiate(circleInstantPrefab, player.transform.position, Quaternion.identity);
 
-     //   instant = Instantiate(instantAttackPrefab, transform.position + new Vector3(5, 8, 0), transform.rotation);
-     //   StartCoroutine(HitPlayer(instant, 10f));
+        circleAttackInstance.transform.localScale = new Vector3(2, 2, 2);
 
-     //   instant = Instantiate(instantAttackPrefab, transform.position + new Vector3(-5, 8, 0), transform.rotation);
-     //   StartCoroutine(HitPlayer(instant, 10f));
-
-      
     }
+
 
     private void ResetInstantAttack(float time)
     {
         animator.SetBool("InstantAttack", false);
-        StartCoroutine(ResetAttack(1f));
+        StartCoroutine(ResetAttack(2));
     }
 
 
 
 
+    // The scale of instant attack must be three times smaller than circle attack scale so that both have same size.
 
-    private IEnumerator HitPlayer(GameObject instant,float timer)
+    // overlap sphere radius 4 = 1,1,1 of circleAttackInstance.
+    private IEnumerator HitPlayer(float timer)
     {
         yield return new WaitForSeconds(timer);
-        if (!instant) yield break;
-        Rigidbody rb = instant.GetComponent<Rigidbody>();
-        if (!rb) yield break;
-        Collider collider = player.GetComponent<Collider>();
-        Vector3 aimDir = (collider.bounds.center - instant.transform.position).normalized;
-        rb.collisionDetectionMode = CollisionDetectionMode.Continuous;
-        rb.AddForce(aimDir * 300, ForceMode.Impulse);
+        GameObject instantAttackInstance = Instantiate(instantAttackPrefab, startingPosition, Quaternion.identity);
+
+        instantAttackInstance.transform.localScale = new Vector3(0.6f, 0.6f, 0.6f);
+
+        Destroy(circleAttackInstance);
+
+        Collider[] playerCollider = Physics.OverlapSphere(startingPosition, 8, playerLayer);
+
+        if (playerCollider.Length > 0)
+            player.TakeDamage(35);
     }
 
-
-
-    private void Melee()
-
+    private void OnDrawGizmos()
     {
-        Debug.Log("Melee");
- //       meleeBox.enabled=true;
-        
+        Gizmos.color = Color.yellow;
+        Gizmos.DrawWireSphere(startingPosition, 8);
     }
 
-    private void OnTriggerEnter(Collider other)
+    protected override void EnemyDeath()
     {
-        Player playerHit = other.GetComponent<Player>();
-        Debug.Log($"Other : {other}");
-        if (meleeBox.enabled == true && playerHit)
-        {
-            Debug.Log("Melee Has overlapped!");
-            player.TakeDamage(20);
-        }
-    
-    }
+        bloodMages.Remove(this);
 
+
+        if (mageInUse[0] == this) mageInUse[0] = null;
+        base.EnemyDeath();
+
+    }
 
 }
 

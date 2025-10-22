@@ -1,5 +1,9 @@
 fileFormatVersion: 2
+<<<<<<<< HEAD:Assets/Scenes/Warrior_Rooms/Warrior_Room_2/NavMesh-R.asset.meta
+guid: 8aeae01b2502b584f9bd92de6dc715d6
+========
 guid: 63b985f9071b95b47aa69dfcf1f3cbb0
+>>>>>>>> main:Assets/Scenes/Blood_Room_Scenes/Blood_Room_1/NavMesh-R.asset.meta
 NativeFormatImporter:
   externalObjects: {}
   mainObjectFileID: 23800000

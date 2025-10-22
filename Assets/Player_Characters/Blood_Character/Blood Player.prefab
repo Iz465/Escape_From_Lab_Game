@@ -588,6 +588,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 88917694e0f7ea249a5b6490a97a932a, type: 3}
       insertIndex: -1
       addedObject: {fileID: 6855898415280742524}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 88917694e0f7ea249a5b6490a97a932a, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 5300485575251470231}
   m_SourcePrefab: {fileID: 100100000, guid: 88917694e0f7ea249a5b6490a97a932a, type: 3}
 --- !u!1 &1693581653088352625 stripped
 GameObject:
@@ -645,7 +648,19 @@ MonoBehaviour:
       m_Calls: []
   m_ActionEvents:
   - m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 5300485575251470231}
+        m_TargetAssemblyTypeName: Immortal, Assembly-CSharp
+        m_MethodName: ActiveImmortality
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
     m_ActionId: fcc914e3-a976-4b98-8a7b-767a8a0cf13f
     m_ActionName: 'Blood_Player/Blood_Leech[/Keyboard/1]'
   - m_PersistentCalls:
@@ -736,6 +751,22 @@ MonoBehaviour:
         m_CallState: 2
     m_ActionId: ed5e7060-33d0-4fcd-a776-94f403a9a712
     m_ActionName: 'Blood_Player/Dodge Backwards[/Keyboard/shift,/Keyboard/s]'
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 67116731-ae2b-4c95-bc10-a21621ad8f06
+    m_ActionName: 'Warrior_Player/Double_Melee[/Mouse/rightButton]'
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 65b64fcd-feba-4e15-b9d6-96ed9cace544
+    m_ActionName: 'Warrior_Player/Dodge Left[/Keyboard/shift,/Keyboard/a]'
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 117381f8-0129-42c2-9a40-e8c306d35faf
+    m_ActionName: 'Warrior_Player/Dodge Right[/Keyboard/shift,/Keyboard/d]'
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 96e51970-3128-4ec0-8634-8d6d479b324a
+    m_ActionName: 'Warrior_Player/Dodge Back[/Keyboard/shift,/Keyboard/s]'
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: 
   m_DefaultActionMap: Blood_Player
@@ -780,6 +811,20 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   cooldown: 1.5
+--- !u!114 &5300485575251470231
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1693581653088352625}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1c1a2c317ac30a44eac4beeb926cf53c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  powerLength: 3
+  immortalParticle: {fileID: -1459289359527204663, guid: 39562848b3640a74cab3b7b3e2b25e70, type: 3}
 --- !u!4 &2074786304704603083 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 88917694e0f7ea249a5b6490a97a932a, type: 3}

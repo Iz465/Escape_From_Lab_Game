@@ -19,15 +19,29 @@ public class Move : MonoBehaviour
     public float fallAcceleration = 5;
     public float jumpStrength = 1.5f;
 
+    [SerializeField] Transform torso;
     float height;
 
     void Fall()
     {
         Debug.DrawRay(transform.position + new Vector3(0,controller.center.y-0.1f,0), Vector3.down * (height / 2));
-        if(!Physics.Raycast(transform.position + new Vector3(0, controller.center.y-0.1f, 0), Vector3.down, height / 2))
+        RaycastHit hit;
+        if(!Physics.Raycast(torso.position + new Vector3(0, controller.center.y-0.1f, 0), Vector3.down, out hit, height / 2))
         {
+            //print("falling");
             fallSpeed -= fallAcceleration * Time.deltaTime;
             fallSpeed = Mathf.Clamp(fallSpeed, -50, 10);
+        }
+        //print(hit.transform);
+
+        //head bumps
+        //Debug.DrawRay(torso.position + new Vector3(0, controller.center.y + 0.2f, 0), Vector3.up * controller.height / 2, Color.blue, 0.1f, false);
+        //print("drew ray");
+        if (Physics.Raycast(torso.position + new Vector3(0,controller.center.y+0.2f,0), Vector3.up, out hit, controller.height/2))
+        {
+            //print(hit.point);
+            if (fallSpeed > 0)
+                fallSpeed = 0;
         }
     }
 

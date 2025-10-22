@@ -128,4 +128,15 @@ public class InstaKill : BasePower, ICollide
         yield return new WaitForSeconds(time);
         canAttack = true;
     }
+
+
+    private void CombatStateEntered()
+    {
+
+    }
+
+    private void NonCombatStateEntered()
+    {
+
+    }
 }

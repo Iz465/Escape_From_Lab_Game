@@ -6,12 +6,15 @@ using UnityEngine.UI;
 public class CharacterSelection : MonoBehaviour
 {
     public Transform playerCharModel;
+    [SerializeField] Transform bloodCharacterModel;
+    [SerializeField] Transform warriorCharacterModel;
 
     private void Start()
     {
         transform.Find("Speed").GetComponent<Button>().onClick.AddListener(Speed);
         transform.Find("Ice").GetComponent<Button>().onClick.AddListener(Ice);
         transform.Find("Blood").GetComponent<Button>().onClick.AddListener(Blood);
+        transform.Find("Warrior").GetComponent<Button>().onClick.AddListener(Warrior);
     }
 
 
@@ -62,7 +65,16 @@ public class CharacterSelection : MonoBehaviour
 
     void Blood()
     {
-        SceneManager.LoadScene(1); 
+        Transform newPlayerModel = Instantiate(bloodCharacterModel);
+        newPlayerModel.GetComponent<Move>().useOtherScript = true;
+        FinishSetup(newPlayerModel);
+    }
+
+    void Warrior()
+    {
+        Transform newPlayerModel = Instantiate(warriorCharacterModel);
+        newPlayerModel.GetComponent<Move>().useOtherScript = true;
+        FinishSetup(newPlayerModel);
     }
 
     void FinishSetup(Transform newPlayerModel)

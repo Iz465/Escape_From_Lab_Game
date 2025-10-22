@@ -14,9 +14,9 @@ public class PlayerHitDetection : MonoBehaviour
         player = FindAnyObjectByType<Player>();
     }
 
-    private void OnCollisionEnter(Collision collision)
+    virtual protected void OnCollisionEnter(Collision collision)
     {
-   
+        
         Player player = collision.gameObject.GetComponent<Player>();
         if (player)
             player.TakeDamage(damage);

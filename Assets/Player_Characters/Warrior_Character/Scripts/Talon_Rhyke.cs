@@ -45,15 +45,19 @@ public class Talon_Rhyke : Player
         if (MeleeHitDetection.canTrigger)
             CheckEnemyHit();
 
+    
+
 
     }
 
-   private void CheckEnemyHit()
+
+
+    private void CheckEnemyHit()
     {
         RaycastHit hit; 
-        bool checkPlayer1 = Physics.Linecast(point1.position, point2.position, out hit,enemyLayer);
-         
-        if (checkPlayer1)
+        bool checkPlayer = Physics.Linecast(point1.position, point2.position, out hit,enemyLayer);
+
+        if (checkPlayer)
         {
             navmeshtestscript enemy = hit.collider.gameObject.GetComponent<navmeshtestscript>();
             if (!enemy)
@@ -67,6 +71,7 @@ public class Talon_Rhyke : Player
     {
         Gizmos.color = Color.yellow;
         Gizmos.DrawLine(point1.position, point2.position);
+ 
     }
 
     }

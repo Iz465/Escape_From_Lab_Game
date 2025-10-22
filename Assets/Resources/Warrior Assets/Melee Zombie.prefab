@@ -472,8 +472,8 @@ NavMeshAgent:
   m_Enabled: 1
   m_AgentTypeID: 0
   m_Radius: 8
-  m_Speed: 3
-  m_Acceleration: 3
+  m_Speed: 6
+  m_Acceleration: 6
   avoidancePriority: 99
   m_AngularSpeed: 120
   m_StoppingDistance: 0
@@ -624,8 +624,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f28621dbdda0afc48a7807a5fe13128f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  health: 20
-  roamRadius: 10
+  health: 40
+  roamRadius: 100
   roamDelay: 5
   attackRange: 5
   corpse: {fileID: 0}
@@ -639,6 +639,7 @@ MonoBehaviour:
     leftHand: {fileID: 846829804671434094, guid: 06e53a7e84caf5349908a21826c87aaf, type: 3}
     rightHand: {fileID: 1878968904969398724, guid: 2329cb49b7c1ba648b9deab8fd32c32b, type: 3}
     legs: {fileID: 992527465005872472, guid: 66dad26443b539d40accb808d89c101a, type: 3}
+  healthGain: 2
   point1: {fileID: 5603095691259623973}
   point2: {fileID: 7409744098692784146}
   point1Second: {fileID: 1116646949256148331}

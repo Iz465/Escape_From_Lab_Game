@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 7237960637528616944}
   - component: {fileID: 4544378474682801644}
   m_Layer: 0
-  m_Name: Circle
+  m_Name: BloodMageCircle
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

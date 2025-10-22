@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: f6ea0b7922cdf6b4abe89ece67a06d20
+guid: 70f214be216430643865098af65ffff1
 ModelImporter:
   serializedVersion: 22200
   internalIDToNameTable: []
@@ -35,9 +35,9 @@ ModelImporter:
       takeName: mixamo.com
       internalID: -203655887218126122
       firstFrame: 0
-      lastFrame: 76
+      lastFrame: 84
       wrapMode: 0
-      orientationOffsetY: -100
+      orientationOffsetY: 0
       level: 0
       cycleOffset: 0
       loop: 0
@@ -55,8 +55,15 @@ ModelImporter:
       bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
       curves: []
       events:
-      - time: 0.6029138
-        functionName: HitGround
+      - time: 0.59999996
+        functionName: CanArcSwipe
+        data: 
+        objectReferenceParameter: {instanceID: 0}
+        floatParameter: 0
+        intParameter: 0
+        messageOptions: 0
+      - time: 0
+        functionName: CombatStateEntered
         data: 
         objectReferenceParameter: {instanceID: 0}
         floatParameter: 0

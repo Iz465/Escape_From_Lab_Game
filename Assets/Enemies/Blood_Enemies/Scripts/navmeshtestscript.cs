@@ -81,7 +81,7 @@ public class navmeshtestscript : MonoBehaviour // Readd this to to the chase ai 
 
         distanceToPlayer = Vector3.Distance(transform.position, player.transform.position);
 
-        if (distanceToPlayer <= 40)  
+        if (distanceToPlayer <= roamRadius)  
             ChasePlayer();
             
         
@@ -204,6 +204,7 @@ public class navmeshtestscript : MonoBehaviour // Readd this to to the chase ai 
     }
 
     [SerializeField] private CorpseParts corpseParts = new CorpseParts();
+    [SerializeField] private float healthGain;
     virtual protected void EnemyDeath()
     {
 
@@ -212,8 +213,11 @@ public class navmeshtestscript : MonoBehaviour // Readd this to to the chase ai 
         GlobalEnemyManager.enemiesInRange.Remove(gameObject);
         globalEnemyManager.EmptyEnemies(gameObject);
 
-        player.stats.health += 10;
+     
+        player.stats.health += healthGain;
         player.stats.health = Mathf.Clamp(player.stats.health, 0, 100);
+        
+ 
 
    /*     if (corpse)
         {
@@ -258,6 +262,8 @@ public class navmeshtestscript : MonoBehaviour // Readd this to to the chase ai 
                 rigid.AddTorque(Random.insideUnitSphere * 1f, ForceMode.Impulse);
                 
             }
+
+            Destroy(ragdoll, 10);
                
         }
     }

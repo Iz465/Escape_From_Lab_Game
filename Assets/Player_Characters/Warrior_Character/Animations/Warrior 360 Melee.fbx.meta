@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 9990992ddb9c6354e8d6029432f7fd42
+guid: 2fcddf9dc1a96dc4c9c3df26abac8f87
 ModelImporter:
   serializedVersion: 22200
   internalIDToNameTable: []
@@ -34,19 +34,19 @@ ModelImporter:
       name: mixamo.com
       takeName: mixamo.com
       internalID: -203655887218126122
-      firstFrame: 0
-      lastFrame: 254
+      firstFrame: 12
+      lastFrame: 89
       wrapMode: 0
       orientationOffsetY: 0
       level: 0
       cycleOffset: 0
       loop: 0
       hasAdditiveReferencePose: 0
-      loopTime: 1
+      loopTime: 0
       loopBlend: 0
-      loopBlendOrientation: 0
-      loopBlendPositionY: 0
-      loopBlendPositionXZ: 0
+      loopBlendOrientation: 1
+      loopBlendPositionY: 1
+      loopBlendPositionXZ: 1
       keepOriginalOrientation: 0
       keepOriginalPositionY: 1
       keepOriginalPositionXZ: 0
@@ -56,7 +56,28 @@ ModelImporter:
       curves: []
       events:
       - time: 0
-        functionName: NonCombatStateEntered
+        functionName: CombatStateEntered
+        data: 
+        objectReferenceParameter: {instanceID: 0}
+        floatParameter: 0
+        intParameter: 0
+        messageOptions: 0
+      - time: 0
+        functionName: TravelToEnemy
+        data: 
+        objectReferenceParameter: {instanceID: 0}
+        floatParameter: 0.5
+        intParameter: 0
+        messageOptions: 0
+      - time: 0.43551955
+        functionName: CanArcSwipe
+        data: 
+        objectReferenceParameter: {instanceID: 0}
+        floatParameter: 0
+        intParameter: 0
+        messageOptions: 0
+      - time: 0.67451876
+        functionName: StartCameraShake
         data: 
         objectReferenceParameter: {instanceID: 0}
         floatParameter: 0

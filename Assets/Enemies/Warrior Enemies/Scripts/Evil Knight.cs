@@ -60,7 +60,7 @@ public class EvilKnight : navmeshtestscript
     private void ResetAnim()
     {
         rotateSpeed = 5;
-        StartCoroutine(CanAttack(0.5f));
+        StartCoroutine(CanAttack(0f));
     }
 
     private IEnumerator CanAttack(float time)

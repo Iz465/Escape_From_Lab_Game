@@ -1,11 +1,15 @@
+using System.Collections;
 using System.Collections.Generic;
+using UnityEditor.Rendering.LookDev;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
 public class SlamMelee : BasePower
 {
     private linescript line;
-    private LayerMask enemyLayer;
+    [SerializeField] private LayerMask enemyLayer;
+    [SerializeField] private float cooldown;
+    bool canAttack = true; 
     protected override void Start()
     {
         base.Start();
@@ -13,22 +17,35 @@ public class SlamMelee : BasePower
     }
     public override void StartAttack(InputAction.CallbackContext context)
     {
-      
+        if (!context.performed) return;
+        if (!canAttack) return;
         base.StartAttack(context);
         Attack();
         line.toggleCircle = true;
+
+        canAttack = false;
+        StartCoroutine(ResetSlam(cooldown));
+
     }
 
     public void HitGround()
     {
 
-        Debug.Log("HAMMER SLAMMED");
+     
         line.toggleCircle = false;
         line.DisableCircle();
 
-        Collider[] enemyColliders = Physics.OverlapSphere(transform.position, (5), enemyLayer);
+        CameraShake cameraShake = cam.GetComponent<CameraShake>();
+        StartCoroutine(cameraShake.Shake(0.1f));
 
-        if (enemyColliders.Length == 0) return;
+        Collider[] enemyColliders = Physics.OverlapSphere(transform.position, (15), enemyLayer);
+
+        if (enemyColliders.Length == 0)
+        {
+            Debug.Log("No Enemies in hammer radius");
+            return;
+        }
+      
         HashSet<navmeshtestscript> enemiesHit = new HashSet<navmeshtestscript>();
         foreach (Collider collider in enemyColliders)
         {
@@ -40,15 +57,22 @@ public class SlamMelee : BasePower
         }
 
         foreach (navmeshtestscript enemy in enemiesHit)
-            enemy.TakeDamage(30);
+            enemy.TakeDamage(stats.damage);
         enemiesHit.Clear();
         
+    }
+
+    private IEnumerator ResetSlam(float time)
+    {
+        yield return new WaitForSeconds(time);
+        Debug.Log("HAMMER RESET");
+        canAttack = true;
     }
 
     private void OnDrawGizmos()
     {
         Gizmos.color = Color.purple;
-        Gizmos.DrawSphere(transform.position, 5);
+   //     Gizmos.DrawSphere(transform.position, 15);
     }
 
 

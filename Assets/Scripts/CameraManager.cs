@@ -18,6 +18,8 @@ public class CameraManager : MonoBehaviour
             cam = GetComponentsInChildren<Transform>(true).FirstOrDefault(t => t.name == "CameraTarget");
 
     }
+
+    [SerializeField] private Transform rayLocation;
     void LookAround()
     {
         // Get mouse scroll wheel input for zooming the camera
@@ -40,7 +42,12 @@ public class CameraManager : MonoBehaviour
         // Adjust camera position based on raycast to avoid clipping through objects
         
         RaycastHit hit;
-        if (Physics.Raycast(transform.position, -camTarget.forward, out hit, camDistance))
+        // Visualize the raycast in the Scene view (red line)
+
+
+        Transform rayTransform = rayLocation != null ? rayLocation : transform;
+
+        if (Physics.Raycast(rayTransform.position, -camTarget.forward, out hit, camDistance))
         {
             if (hit.transform.gameObject.layer != LayerMask.NameToLayer("Player"))
             {
@@ -59,4 +66,7 @@ public class CameraManager : MonoBehaviour
         if (camTarget != null)
             LookAround();
     }
+
+   
+
 }

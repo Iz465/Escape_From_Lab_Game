@@ -6,11 +6,13 @@ public class MeleeHitDetection : MonoBehaviour
     private navmeshtestscript enemy;
     public static bool canTrigger;
     public static float damage;
+    [SerializeField] private Animator animator;
 
+  
 
     private void Start()
     {
-        canTrigger = false;
+    //    canTrigger = false;
     }
     private void OnTriggerEnter(Collider other)
     {

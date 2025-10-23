@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using NUnit.Framework;
 using UnityEngine;
+using UnityEngine.InputSystem;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
@@ -27,10 +28,41 @@ public class MainMenu : MonoBehaviour
         Hard
     }
 
+    public void Back()
+    {
+        settingsPage.SetActive(false);
+        mainMenu.SetActive(true);
+    }
+
     #region main region
     [SerializeField] GameObject mainMenu;
     [SerializeField] GameObject settingsPage;
-    public void Play() => SceneManager.LoadScene(1);
+    [SerializeField] List<GameObject> uisToEnableOnPlay = new();
+
+    public void Play()
+    {
+        if(uisToEnableOnPlay.Count > 0)
+        {
+            for(int i = 0; i < uisToEnableOnPlay.Count; i++)
+            {
+                uisToEnableOnPlay[i].SetActive(true);
+            }
+        }
+
+        if(SceneManager.GetActiveScene() == SceneManager.GetSceneByBuildIndex(0))
+        {
+            SceneManager.LoadScene(1);
+        }
+        else
+        {
+            GetComponent<Canvas>().enabled = false;
+            mainMenu.SetActive(false);
+            settingsPage.SetActive(false);
+            Cursor.lockState = CursorLockMode.Locked;
+        }
+
+        Time.timeScale = 1;
+    }
 
     public void Settings()
     {
@@ -106,11 +138,11 @@ public class MainMenu : MonoBehaviour
     }
     #endregion
 
-    #region difficultu
+    #region difficulty
 
+    public static Difficulty difficulty;
     Dictionary<string, Difficulty> difficulties = new Dictionary<string, Difficulty>();
-
-    public Difficulty difficulty;
+    public Text difficultyText;
     public void NextDifficulty()
     {
         bool goNext = false;
@@ -119,10 +151,10 @@ public class MainMenu : MonoBehaviour
             if (goNext)
             {
                 difficulty = value;
-                screenMode.text = key;
+                difficultyText.text = key;
                 return;
             }
-            if (key == screenMode.text && !goNext)
+            if (key == difficultyText.text && !goNext)
             {
                 if (key != "Hard")
                 {
@@ -130,7 +162,7 @@ public class MainMenu : MonoBehaviour
                 }
                 else
                 {
-                    screenMode.text = "Easy";
+                    difficultyText.text = "Easy";
                     difficulty = Difficulty.Easy;
                     return;
                 }
@@ -141,8 +173,52 @@ public class MainMenu : MonoBehaviour
 
     public void PreviousDifficulty()
     {
-        
+        string prevKey = "";
+        Difficulty prevValue = Difficulty.Easy;
+
+        string currentKey = "";
+        Difficulty currentValue = Difficulty.Easy;
+
+        foreach (var (key, value) in difficulties)
+        {
+            prevKey = currentKey;
+            prevValue = currentValue;
+
+            currentValue = value;
+            currentKey = key;
+
+            if (key == difficultyText.text)
+            {
+                if (key != "Easy")
+                {
+                    difficultyText.text = prevKey;
+                    difficulty = prevValue;
+                }
+                else
+                {
+                    difficultyText.text = "Hard";
+                    difficulty = Difficulty.Hard;
+                    return;
+                }
+            }
+        }
     }
 
     #endregion
+
+    void Pause()
+    {
+        Time.timeScale = 0;
+        mainMenu.SetActive(true);
+        GetComponent<Canvas>().enabled = true;
+        Cursor.lockState = CursorLockMode.None;
+    }
+
+    private void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            Pause();
+        }
+    }
 }

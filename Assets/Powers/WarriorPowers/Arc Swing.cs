@@ -114,6 +114,7 @@ public class ArcSwing : BasePower
         axeTransform.localPosition = axePositions.idlePosition;
         axeTransform.localRotation = axePositions.idleRotation;
         animator.SetBool("NotAttacking", true);
+        animator.ResetTrigger(stats.powerName);
     }
 
     private void OnDrawGizmos()

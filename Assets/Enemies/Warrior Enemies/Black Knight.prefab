@@ -589,15 +589,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: d0ded03e6a7e0084d92ee10ebb8c119d, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 73.05877
+      value: 51.739697
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: d0ded03e6a7e0084d92ee10ebb8c119d, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 2.88
+      value: 3.07
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: d0ded03e6a7e0084d92ee10ebb8c119d, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -2.0981479
+      value: 12.273775
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: d0ded03e6a7e0084d92ee10ebb8c119d, type: 3}
       propertyPath: m_LocalRotation.w
@@ -737,7 +737,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: d0ded03e6a7e0084d92ee10ebb8c119d, type: 3}
       propertyPath: m_Name
-      value: Strong Knight
+      value: Black Knight
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: d0ded03e6a7e0084d92ee10ebb8c119d, type: 3}
       propertyPath: m_Layer
@@ -802,7 +802,7 @@ PrefabInstance:
     - target: {fileID: 5866666021909216657, guid: d0ded03e6a7e0084d92ee10ebb8c119d, type: 3}
       propertyPath: m_Controller
       value: 
-      objectReference: {fileID: 9100000, guid: 23cd255b3f532504c9b529ef6b8b965f, type: 2}
+      objectReference: {fileID: 9100000, guid: 1c253b3854619e34fba8d6a51a40a6ab, type: 2}
     - target: {fileID: 5866666021909216657, guid: d0ded03e6a7e0084d92ee10ebb8c119d, type: 3}
       propertyPath: m_ApplyRootMotion
       value: 0
@@ -903,7 +903,7 @@ PrefabInstance:
       addedObject: {fileID: 4801555813580178913}
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: d0ded03e6a7e0084d92ee10ebb8c119d, type: 3}
       insertIndex: -1
-      addedObject: {fileID: -9178047656331491102}
+      addedObject: {fileID: -6551113508009339221}
     - targetCorrespondingSourceObject: {fileID: 5528860797864257434, guid: d0ded03e6a7e0084d92ee10ebb8c119d, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1183103624585125151}
@@ -1628,7 +1628,7 @@ CapsuleCollider:
   m_Height: 8
   m_Direction: 1
   m_Center: {x: 0.0043112636, y: 0.1906848, z: -0.023188949}
---- !u!114 &-9178047656331491102
+--- !u!114 &-6551113508009339221
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -1637,10 +1637,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 4463108774348179054}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 34e826fb8d69c344f8c5febce746bc9d, type: 3}
+  m_Script: {fileID: 11500000, guid: 590a09decbada7549a1a990ea7e7358a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  health: 200
+  health: 400
   roamRadius: 100
   roamDelay: 2
   attackRange: 4
@@ -1655,7 +1655,9 @@ MonoBehaviour:
     leftHand: {fileID: 0}
     rightHand: {fileID: 0}
     legs: {fileID: 0}
-  healthGain: 0
+  healthGain: 10
+  swordParticle: {fileID: 2879452947444175344, guid: ce08d9904c4049440be9fc3de8b462c6, type: 3}
+  swordLocation: {fileID: 1773943180945175834}
 --- !u!1 &4801243675105371163 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 8327223564818308900, guid: d0ded03e6a7e0084d92ee10ebb8c119d, type: 3}

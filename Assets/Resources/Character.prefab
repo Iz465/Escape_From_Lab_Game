@@ -298,6 +298,18 @@ PrefabInstance:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: -8679921383154817045, guid: 061208e5e13dafb4aaa26f86d9e71634, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 061208e5e13dafb4aaa26f86d9e71634, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 061208e5e13dafb4aaa26f86d9e71634, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 061208e5e13dafb4aaa26f86d9e71634, type: 3}
       propertyPath: m_LocalPosition.x
       value: 16.865772
       objectReference: {fileID: 0}
@@ -437,6 +449,11 @@ PrefabInstance:
       insertIndex: -1
       addedObject: {fileID: -238731208992300324}
   m_SourcePrefab: {fileID: 100100000, guid: 061208e5e13dafb4aaa26f86d9e71634, type: 3}
+--- !u!4 &1654209235274449601 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: -2837919815553016221, guid: 061208e5e13dafb4aaa26f86d9e71634, type: 3}
+  m_PrefabInstance: {fileID: 5650118118637296802}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &4803134837077762547 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: 061208e5e13dafb4aaa26f86d9e71634, type: 3}
@@ -456,6 +473,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   minCamDistance: 3
   maxCamDistance: 5
+  rayLocation: {fileID: 0}
 --- !u!114 &5670341083627988225
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -473,9 +491,11 @@ MonoBehaviour:
   acceleration: 1
   velocity: {x: 0, y: 0, z: 0}
   useOtherScript: 0
-  walkSpeed: 0
+  walkSpeed: 7
+  runSpeed: 2.5
   fallAcceleration: 5
   jumpStrength: 4
+  torso: {fileID: 1654209235274449601}
 --- !u!143 &8542792657036889860
 CharacterController:
   m_ObjectHideFlags: 0
@@ -573,8 +593,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 247ea39453ec53b4b963cd7bf0896d0e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  iceSpeed: 10
-  walkSpeed: 15
+  iceSpeed: 15
+  walkSpeed: 7
   characterHeight: 5
   iceWall: {fileID: 1515962237511660743, guid: 458a814f093045044bfea6dc9f0ccc2f, type: 3}
   iceSpike: {fileID: -8679921383154817045, guid: e52666887afbd09498ea4c0c0072e2e5, type: 3}

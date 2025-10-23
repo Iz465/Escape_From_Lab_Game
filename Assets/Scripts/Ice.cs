@@ -46,7 +46,7 @@ public class Ice : MonoBehaviour
         Vector3 direction = movement.direction;
         RaycastHit hitObj;
 
-        Debug.DrawRay(transform.position, Vector3.down * (characterHeight / 2 + 1), Color.blue,.1f,false);
+        //Debug.DrawRay(transform.position, Vector3.down * (characterHeight / 2 + 1), Color.blue,.1f,false);
         if (Physics.Raycast(transform.position, Vector3.down, out hitObj, characterHeight / 2 + 1))
         {
             if (hitObj.transform.CompareTag("Ice"))

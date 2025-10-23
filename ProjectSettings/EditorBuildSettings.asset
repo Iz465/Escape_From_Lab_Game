@@ -6,6 +6,9 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
+    path: Assets/Scenes/Nico Main menu.unity
+    guid: 37d4a28b44997af4e92233b152cc6783
+  - enabled: 1
     path: Assets/Scenes/MainScene.unity
     guid: 99c9720ab356a0642a771bea13969a05
   - enabled: 1
@@ -13,7 +16,7 @@ EditorBuildSettings:
     guid: 57b45c5859331544c9c4103464731b12
   - enabled: 1
     path: Assets/Scenes/Blood_Room_Scenes/Blood_Room_1.unity
-    guid: 6fdf1726dea5d8a4496c00caf2955764
+    guid: cc6118d9eaa9fd14395294ecf2df489a
   - enabled: 1
     path: Assets/Scenes/SpeedRooms/Room2.unity
     guid: 06a49bd378e71a4468f77bf084c10104

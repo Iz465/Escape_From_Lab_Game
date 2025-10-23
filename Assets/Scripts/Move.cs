@@ -16,18 +16,34 @@ public class Move : MonoBehaviour
 
     //fall/just parameters
     float fallSpeed = 0;
+    [Header("Multiplies based on walk speed")]
+    public float runSpeed;
     public float fallAcceleration = 5;
     public float jumpStrength = 1.5f;
 
+    [SerializeField] Transform torso;
     float height;
 
     void Fall()
     {
-        Debug.DrawRay(transform.position + new Vector3(0,controller.center.y-0.1f,0), Vector3.down * (height / 2));
-        if(!Physics.Raycast(transform.position + new Vector3(0, controller.center.y-0.1f, 0), Vector3.down, height / 2))
+        Debug.DrawRay(transform.position + new Vector3(0,controller.center.y-0.1f,0), Vector3.down * (controller.height / 2));
+        RaycastHit hit;
+        if(!Physics.Raycast(torso.position + new Vector3(0, controller.center.y-0.1f, 0), Vector3.down, out hit, controller.height / 2))
         {
+            //print("falling");
             fallSpeed -= fallAcceleration * Time.deltaTime;
             fallSpeed = Mathf.Clamp(fallSpeed, -50, 10);
+        }
+        //print(hit.transform);
+
+        //head bumps
+        //Debug.DrawRay(torso.position + new Vector3(0, controller.center.y + 0.2f, 0), Vector3.up * controller.height / 2, Color.blue, 0.1f, false);
+        //print("drew ray");
+        if (Physics.Raycast(torso.position + new Vector3(0,controller.center.y+0.2f,0), Vector3.up, out hit, controller.height/2))
+        {
+            //print(hit.point);
+            if (fallSpeed > 0)
+                fallSpeed = 0;
         }
     }
 
@@ -58,6 +74,15 @@ public class Move : MonoBehaviour
             direction -= transform.right;
 
         direction.y += fallSpeed;
+
+        if (!TryGetComponent(out Speed c))
+        {
+            if (Input.GetKey(KeyCode.LeftShift))
+            {
+                direction.x *= runSpeed;
+                direction.z *= runSpeed;
+            }
+        }
 
         if (useOtherScript)
         {

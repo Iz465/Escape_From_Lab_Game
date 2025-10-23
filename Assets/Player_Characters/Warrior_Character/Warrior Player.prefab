@@ -233,8 +233,10 @@ MonoBehaviour:
   velocity: {x: 0, y: 0, z: 0}
   useOtherScript: 0
   walkSpeed: 7
-  fallAcceleration: 5
-  jumpStrength: 1.5
+  runSpeed: 0
+  fallAcceleration: 2
+  jumpStrength: 1
+  torso: {fileID: 0}
 --- !u!65 &5949953888318550816
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -573,7 +575,7 @@ Transform:
   m_GameObject: {fileID: 8351247273450421876}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 2.58, z: -0.89}
+  m_LocalPosition: {x: 0, y: 2.806, z: -0.463}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []

@@ -27,7 +27,7 @@ public class Move : MonoBehaviour
     public LayerMask checkLayer;
     void Fall()
     {
-        Debug.DrawRay(transform.position + new Vector3(0,controller.center.y-0.1f,0), Vector3.down * (controller.height / 2));
+        //Debug.DrawRay(transform.position + new Vector3(0,controller.center.y-0.1f,0), Vector3.down * (controller.height / 2));
         RaycastHit hit;
         if(!Physics.Raycast(torso.position + new Vector3(0, controller.center.y-0.1f, 0), Vector3.down, out hit, controller.height / 2, checkLayer))
         {
@@ -35,7 +35,7 @@ public class Move : MonoBehaviour
             fallSpeed -= fallAcceleration * Time.deltaTime;
             fallSpeed = Mathf.Clamp(fallSpeed, -50, 10);
         }
-        print(hit.transform);
+        //print(hit.transform);
 
         //head bumps
         //Debug.DrawRay(torso.position + new Vector3(0, controller.center.y + 0.2f, 0), Vector3.up * controller.height / 2, Color.blue, 0.1f, false);

@@ -496,6 +496,9 @@ MonoBehaviour:
   fallAcceleration: 5
   jumpStrength: 4
   torso: {fileID: 1654209235274449601}
+  checkLayer:
+    serializedVersion: 2
+    m_Bits: 961
 --- !u!143 &8542792657036889860
 CharacterController:
   m_ObjectHideFlags: 0

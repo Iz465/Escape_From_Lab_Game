@@ -24,22 +24,23 @@ public class Move : MonoBehaviour
     [SerializeField] Transform torso;
     float height;
 
+    public LayerMask checkLayer;
     void Fall()
     {
         Debug.DrawRay(transform.position + new Vector3(0,controller.center.y-0.1f,0), Vector3.down * (controller.height / 2));
         RaycastHit hit;
-        if(!Physics.Raycast(torso.position + new Vector3(0, controller.center.y-0.1f, 0), Vector3.down, out hit, controller.height / 2))
+        if(!Physics.Raycast(torso.position + new Vector3(0, controller.center.y-0.1f, 0), Vector3.down, out hit, controller.height / 2, checkLayer))
         {
             //print("falling");
             fallSpeed -= fallAcceleration * Time.deltaTime;
             fallSpeed = Mathf.Clamp(fallSpeed, -50, 10);
         }
-        //print(hit.transform);
+        print(hit.transform);
 
         //head bumps
         //Debug.DrawRay(torso.position + new Vector3(0, controller.center.y + 0.2f, 0), Vector3.up * controller.height / 2, Color.blue, 0.1f, false);
         //print("drew ray");
-        if (Physics.Raycast(torso.position + new Vector3(0,controller.center.y+0.2f,0), Vector3.up, out hit, controller.height/2))
+        if (Physics.Raycast(torso.position + new Vector3(0,controller.center.y+0.2f,0), Vector3.up, out hit, controller.height/2, checkLayer))
         {
             //print(hit.point);
             if (fallSpeed > 0)
@@ -51,7 +52,7 @@ public class Move : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.Space))
         {
-            if(Physics.Raycast(transform.position + new Vector3(0, controller.center.y - 0.1f, 0), Vector3.down, height / 2))
+            if(Physics.Raycast(transform.position + new Vector3(0, controller.center.y - 0.1f, 0), Vector3.down, height / 2, checkLayer))
             {
                 fallSpeed = jumpStrength;
             }

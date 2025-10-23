@@ -4,6 +4,7 @@ using UnityEditor.Rendering.LookDev;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using static Unity.Physics.Math;
+using static UnityEditor.Timeline.TimelinePlaybackControls;
 
 public class ArcSwing : BasePower
 {
@@ -24,15 +25,32 @@ public class ArcSwing : BasePower
     private int number;
     private bool canCombo = false;
     private GameObject enemy;
-  
+    private bool heldDown;
+
+   
     public override void StartAttack(InputAction.CallbackContext context)
     {
-        if (!context.performed) return;
+        if (context.performed)
+        {
+            heldDown = true;
+            StartCombo();
+        
+        }
+
+        if (context.canceled)
+            heldDown = false;
+
+
+
+    }
+
+    private void StartCombo()
+    {
         RaycastHit hit;
 
         if (canCombo)
             number++;
-        
+
 
         bool hitEnemy = Physics.Linecast(cam.transform.position, cam.transform.position + cam.transform.forward * 25, out hit, enemyLayer);
         if (!hitEnemy) return; //{ animator.SetBool("CanCombo", false);  return; }
@@ -40,12 +58,12 @@ public class ArcSwing : BasePower
         enemy = hit.collider.gameObject;
 
         MeleeHitDetection.damage = stats.damage;
-        base.StartAttack(context);
+        animator.SetTrigger("Arc Swing");
         Attack();
         canCombo = true;
         player.playerHitParticle = hitParticle;
-
     }
+
 
 
     private IEnumerator TravelToEnemy(float timer)
@@ -117,12 +135,20 @@ public class ArcSwing : BasePower
         animator.ResetTrigger(stats.powerName);
     }
 
+    private void EndOfAttack()
+    {
+        if (heldDown)
+            StartCombo();
+    }
+
     private void OnDrawGizmos()
     {
         Gizmos.color = Color.yellow;
 //        Gizmos.DrawLine(cam.transform.position, cam.transform.position + cam.transform.forward * 25);
   
     }
+
+
 
 
 

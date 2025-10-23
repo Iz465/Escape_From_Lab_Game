@@ -9,6 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1768305541261431842}
+  - component: {fileID: 235613031972593595}
   m_Layer: 0
   m_Name: Lab Wall
   m_TagString: Untagged
@@ -26,12 +27,20 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 33.58, y: 0, z: 38.16}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 0.19481, y: 0.26846, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 7143555818889512297}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!33 &235613031972593595
+MeshFilter:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 159461550947155888}
+  m_Mesh: {fileID: 804490230832469053, guid: a178c376d72c1e04e9af55041ac73df0, type: 3}
 --- !u!1 &8040613734435498474
 GameObject:
   m_ObjectHideFlags: 0
@@ -60,7 +69,7 @@ Transform:
   m_GameObject: {fileID: 8040613734435498474}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 13.84, y: 9.37, z: 0.492}
+  m_LocalPosition: {x: 42, y: 28.009, z: -0.37}
   m_LocalScale: {x: 27.733364, y: 18.678331, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []

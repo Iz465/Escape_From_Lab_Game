@@ -6,8 +6,13 @@ using UnityEngine.InputSystem;
 public class FirePlayerInputs : MonoBehaviour
 {
     private Animator animator;
+    private CharacterController controller;
+    private float ySpeed;
+   
     [SerializeField]
     float jumpHeight = 0.1f;
+
+       
     
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -15,8 +20,16 @@ public class FirePlayerInputs : MonoBehaviour
         animator = GetComponent<Animator>();
 
     }
-
-   
+    public void Attack_1_Fireball(InputAction.CallbackContext context)
+    {
+        if (!context.performed) return;
+        animator.SetTrigger("Attack_1");
+    }
+    public void Attack_2_AreaBlast(InputAction.CallbackContext context)
+    {
+        if (!context.performed) return;
+        animator.SetTrigger("Attack_2");
+    }
     public void Sprint(InputAction.CallbackContext context)
     {
 

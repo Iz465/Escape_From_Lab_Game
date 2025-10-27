@@ -48,11 +48,8 @@ public class FirePlayerInputs : MonoBehaviour
 
         
         GameObject fireball = Instantiate(FireballPrefab, FiringPoint.position, Quaternion.identity);
-        Vector3 movementDirection = controller.transform.position += FiringPoint.position;
         
-        movementDirection.y = FiringPoint.position.y;
-        Vector3 force = new(movementDirection.x * 10f, movementDirection.y, movementDirection.z * 10f);
-        fireball.GetComponent<Rigidbody>().AddRelativeForce(force);
+        fireball.GetComponent<Rigidbody>().AddRelativeForce(FiringPoint.forward* FireBall_Speed, ForceMode.Impulse);
         GameObject.Destroy(fireball,7F);
     }
     public void AnimationAttackFindFrame( )//Make corfute ot count frames 

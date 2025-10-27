@@ -66,7 +66,7 @@ public class FirePlayerMovement : MonoBehaviour
         {
             InputMagnitude /= 3;
         }
-        else if (Input.GetKey(KeyCode.LeftControl)|| Input.GetKey(KeyCode.RightControl))
+        else if (Input.GetButton("Sprint"))
         {
             lyraVeyne.ReduceStamina(StaminaDrain_Sprint * Time.deltaTime);
             if (lyraVeyne.Stamina <= 0) 

@@ -99,6 +99,8 @@ public class navmeshtestscript : MonoBehaviour // Readd this to to the chase ai 
             animator.SetBool("Roam", false);
         else
             animator.SetBool("Roam", true);
+
+
     }
 
     private static int random;

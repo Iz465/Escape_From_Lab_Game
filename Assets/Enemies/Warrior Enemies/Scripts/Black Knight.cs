@@ -6,6 +6,7 @@ public class BlackKnight : navmeshtestscript
     [SerializeField] private ParticleSystem swordParticle;
     [SerializeField] private Transform swordLocation;
     private int[] storedNumber = new int[1];
+    int oldNumber;
 
   
 
@@ -21,7 +22,9 @@ public class BlackKnight : navmeshtestscript
 
        
 
-        int oldNumber = storedNumber[0];
+        oldNumber = storedNumber[0];
+
+
 
         while (oldNumber == storedNumber[0])
         {
@@ -37,7 +40,7 @@ public class BlackKnight : navmeshtestscript
             case 2: LoopChildren(Color.blue); break;
         }
 
-
+      //  Debug.Log($"Before : {oldNumber}");
     }
 
     private void LoopChildren(Color colour)
@@ -49,5 +52,36 @@ public class BlackKnight : navmeshtestscript
         }
     }
 
+    private void DamagePlayer()
+    {
+      //  Debug.Log($"After : {oldNumber}");
+        switch (oldNumber)
+        {
+            case 0: if (BlockAttacks.particleInUse != BlockAttacks.ParticleInUse.red) player.TakeDamage(25); break;
+
+
+            case 1: if (BlockAttacks.particleInUse != BlockAttacks.ParticleInUse.green) player.TakeDamage(25); break;
+
+            case 2: if (BlockAttacks.particleInUse != BlockAttacks.ParticleInUse.blue) player.TakeDamage(25); break;
+
+        }
+    }
+
+
+
+
+
+
+
+
+
+
+    private void CheckPlayerRange()
+    {
+        Debug.Log($"Distance: {distanceToPlayer}");
+        animator.SetFloat("PlayerDistance", distanceToPlayer);
+        canAttack = true;
+
+    }
 
 }

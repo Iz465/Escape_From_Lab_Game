@@ -9,6 +9,8 @@ public class FirePlayerMovement : MonoBehaviour
 {
     public CharacterController controller;
     private Animator animator;
+    [SerializeField]
+    private Transform camTransform;
     [Header("Character Stats Scriptable Object")]
     public LyraVeyne lyraVeyne;
     public float GracePeriod = 0.2f;
@@ -64,9 +66,10 @@ public class FirePlayerMovement : MonoBehaviour
         {
             InputMagnitude = (InputMagnitude /= 3)*2;
         }
+        
         animator.SetFloat("InputMagnitude", InputMagnitude, 0.05f, Time.deltaTime);
         
-       // movementDirection = Quaternion.AngleAxis(Camera.main.transform.eulerAngles.y, Vector3.up) * movementDirection;
+        movementDirection = Quaternion.AngleAxis(camTransform.rotation.eulerAngles.y, Vector3.up) * movementDirection;
         movementDirection.Normalize();
 
         ySpeed += Physics.gravity.y * Time.deltaTime;
@@ -147,19 +150,19 @@ public class FirePlayerMovement : MonoBehaviour
 
        
     }
-    //private void OnApplicationFocus(bool focus)
-    //{
-    //    if (focus)
-    //    {
-    //        Cursor.lockState = CursorLockMode.Locked;
-    //        Cursor.visible = false;
-    //    }
-    //    else
-    //    {
-    //        Cursor.lockState = CursorLockMode.None;
-    //        Cursor.visible = true;
-    //    }
-    //}
+    private void OnApplicationFocus(bool focus)
+    {
+        if (focus)
+        {
+            Cursor.lockState = CursorLockMode.Locked;
+           // Cursor.visible = false;
+        }
+        else
+        {
+            Cursor.lockState = CursorLockMode.None;
+           // Cursor.visible = true;
+        }
+    }
 
 
 

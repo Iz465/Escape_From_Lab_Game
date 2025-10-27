@@ -1,62 +1,47 @@
 using System.Collections;
+using System.ComponentModel;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.InputSystem.XR;
 
 public class FirePlayerInputs : MonoBehaviour
 {
     private Animator animator;
-    private CharacterController controller;
-    private float ySpeed;
-   
     [SerializeField]
-    float jumpHeight = 0.1f;
+    private CharacterController controller;
+    [SerializeField]
+    private Transform FiringPoint;
+    [SerializeField]
+    private GameObject FireballPrefab;
+    [SerializeField]
+    [DefaultValue(175f)]
+    [Range(0f,350f)]
+    private float FireBall_Speed;
 
-       
-    
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
         animator = GetComponent<Animator>();
-
+        Instantiate(FireballPrefab, FiringPoint.position, Quaternion.identity);
     }
     public void Attack_1_Fireball(InputAction.CallbackContext context)
     {
+        Debug.Log("Attack 1 Input Received");
         if (!context.performed) return;
         animator.SetTrigger("Attack_1");
+        GameObject fireball = Instantiate(FireballPrefab, FiringPoint.position, Quaternion.identity);
+        Vector3 movementDirection = controller.transform.position += FiringPoint.position;
+        movementDirection.y = FiringPoint.position.y;
+        Vector3 force = new(movementDirection.x * 10f, movementDirection.y, movementDirection.z * 10f);
+        fireball.GetComponent<Rigidbody>().AddRelativeForce(force);
     }
     public void Attack_2_AreaBlast(InputAction.CallbackContext context)
     {
         if (!context.performed) return;
         animator.SetTrigger("Attack_2");
     }
-    public void Sprint(InputAction.CallbackContext context)
-    {
-
-        if (!context.started) return;
-        animator.SetTrigger("Sprinting");
-    }
-
-
-    public void Jump(InputAction.CallbackContext context)
-    {
-        if (!context.performed) return;
-        animator.SetTrigger("Jump");
-        StartCoroutine(jumpTimer(jumpHeight));
-    }
-    private IEnumerator jumpTimer(float time)
-    {
-        float timer = 0;
-        Vector3 StartLoc = transform.root.localPosition;
-        Vector3 up = transform.root.up;
-        Vector3 EndLoc = StartLoc + up * 3f;
-        while (timer < time)
-        {
-            transform.root.localPosition = Vector3.Lerp(StartLoc, EndLoc, timer / time);
-            timer += Time.deltaTime;
-            yield return null;
-        }
-    }
+    
 
     // Update is called once per frame
     void Update()

@@ -7,27 +7,39 @@ using System.Collections;
 
 public class FirePlayerMovement : MonoBehaviour
 {
-    public CharacterController controller;
-    private Animator animator;
-    [SerializeField]
-    private Transform camTransform;
-    [Header("Character Stats Scriptable Object")]
-    public LyraVeyne lyraVeyne;
-    public float GracePeriod = 0.2f;
-    /*Movement Vars*/
-    private float originalStepOffset;
-    private float ySpeed;
-    [Header("Jump Adjustments")]
-    public float jumpSpeed;
-    public float HorizontalSpeed = 3f;
-    private float? LastOnGroundTime;
-    private float? LastJumpTime;
-    [Header("Stamina Costs")]
-    public float StaminaDrain_Sprint = 10;
-    public float StaminaDrain_Jump = 10;
-    public float StaminaRegen_Moving = 1.5f;
-    public float StaminaRegen_Idle = 3f;
-    
+    [Header("\n\nReferences\n\n")]
+        [SerializeField]
+        private CharacterController controller;
+        private Animator animator;
+        [SerializeField]
+        private Transform camTransform;
+    [Header("\n\nCharacter Stats Scriptable Object \n\n")]
+        [SerializeField]
+        private LyraVeyne lyraVeyne;
+        [SerializeField]
+        private float GracePeriod = 0.2f;
+        /*Movement Vars*/
+        private float originalStepOffset;
+        private float ySpeed;
+    [Header("\n\nJump Adjustments\n\n")]
+        [SerializeField]
+        private float gravityMult;
+        [SerializeField]
+        private float jumpHeight = 2f;
+        [SerializeField]
+        private float HorizontalSpeed = 3f;
+        private float? LastOnGroundTime;
+        private float? LastJumpTime;
+    [Header("\n\nStamina Costs\n\n")]
+        [SerializeField]
+        private float StaminaDrain_Sprint = 10;
+        [SerializeField]
+        private float StaminaDrain_Jump = 10;
+        [SerializeField]
+        private float StaminaRegen_Moving = 1.5f;
+        [SerializeField]
+        private float StaminaRegen_Idle = 3f;
+
     /*Movement Animators*/
     private bool isJumping;
     private bool isGrounded;
@@ -48,7 +60,7 @@ public class FirePlayerMovement : MonoBehaviour
         Vector3 movementDirection = new Vector3(horizontal, 0, vertical);
         InputMagnitude = Mathf.Clamp01(movementDirection.magnitude);
 
-        
+
 
         if (Input.GetKey(KeyCode.LeftShift)|| Input.GetKey(KeyCode.RightShift))
         {
@@ -56,7 +68,7 @@ public class FirePlayerMovement : MonoBehaviour
         }
         else if (Input.GetKey(KeyCode.LeftControl)|| Input.GetKey(KeyCode.RightControl))
         {
-            lyraVeyne.ReduceStamina(5f * Time.deltaTime);
+            lyraVeyne.ReduceStamina(StaminaDrain_Sprint * Time.deltaTime);
             if (lyraVeyne.Stamina <= 0) 
             {
                 InputMagnitude /= 3;
@@ -72,12 +84,20 @@ public class FirePlayerMovement : MonoBehaviour
         movementDirection = Quaternion.AngleAxis(camTransform.rotation.eulerAngles.y, Vector3.up) * movementDirection;
         movementDirection.Normalize();
 
-        ySpeed += Physics.gravity.y * Time.deltaTime;
+        float Gravity = Physics.gravity.y * gravityMult;
         
+
+        if (isJumping && ySpeed >0 && Input.GetButton("Jump") == false)
+        {
+            Gravity *= 2 ;
+        }
+        ySpeed += Gravity * Time.deltaTime;
+
         if (controller.isGrounded)
         {
             LastOnGroundTime = Time.time;
         }
+
         if (Input.GetButton("Jump"))
         {
             LastJumpTime = Time.time;
@@ -95,9 +115,9 @@ public class FirePlayerMovement : MonoBehaviour
             
             if (Time.time - LastJumpTime <= GracePeriod && lyraVeyne.Stamina >= 15f)
             {
-                ySpeed = jumpSpeed;
+                ySpeed = Mathf.Sqrt(jumpHeight * -3 * Gravity);
                 animator.SetBool(name: "IsJumping", true);
-                lyraVeyne.ReduceStamina(15f);
+                lyraVeyne.ReduceStamina(StaminaDrain_Jump);
                 isJumping = true;
                 LastJumpTime = null;
                 LastOnGroundTime = null;
@@ -108,7 +128,7 @@ public class FirePlayerMovement : MonoBehaviour
             animator.SetBool(name: "IsGrounded", false);
             isGrounded = false;
             controller.stepOffset = 0;
-            if ((isJumping && ySpeed < 0 ) || ySpeed<-2)
+            if ((isJumping && ySpeed < 0 ) || ySpeed < -2)
             {
                 animator.SetBool(name: "IsFalling", true);
                 
@@ -120,13 +140,13 @@ public class FirePlayerMovement : MonoBehaviour
         if (movementDirection != Vector3.zero)
         {
             animator.SetBool("IsMoving", true);
-            lyraVeyne.IncreaseStamina(.5f * Time.deltaTime);
+            lyraVeyne.IncreaseStamina(StaminaRegen_Moving * Time.deltaTime);
             Quaternion toRotation = Quaternion.LookRotation(movementDirection, Vector3.up);
             controller.transform.rotation = Quaternion.RotateTowards(controller.transform.rotation, toRotation, lyraVeyne.rotationSpeed * Time.deltaTime);
         }
         else
         {
-            lyraVeyne.IncreaseStamina(2f * Time.deltaTime);
+            lyraVeyne.IncreaseStamina(StaminaRegen_Idle * Time.deltaTime);
             animator.SetBool("IsMoving", false);
         }
 

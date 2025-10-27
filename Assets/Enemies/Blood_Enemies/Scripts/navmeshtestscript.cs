@@ -16,11 +16,13 @@ public class navmeshtestscript : MonoBehaviour // Readd this to to the chase ai 
     [SerializeField] protected float attackRange;
     [SerializeField] private GameObject corpse;
 
+    [HideInInspector] public bool canHitMultiple = false;
+
     [Header("Blood Stuff")]
     [SerializeField] protected GameObject blood;
     [SerializeField] protected List<Transform> bloodHits;
 
-
+  
     [SerializeField] private string enemyPrefab;
     private static GameObject currentEnemyAttacking;
 

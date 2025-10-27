@@ -1,3 +1,4 @@
+using Unity.MLAgents.Sensors;
 using UnityEngine;
 
 public class Talon_Rhyke : Player
@@ -7,6 +8,7 @@ public class Talon_Rhyke : Player
     [SerializeField] private Transform point1;
     [SerializeField] private Transform point2;
     [SerializeField] private LayerMask enemyLayer;
+    [SerializeField] private LayerMask wallLayer;
 
     private void Start()
     {
@@ -45,13 +47,23 @@ public class Talon_Rhyke : Player
         if (MeleeHitDetection.canTrigger)
             CheckEnemyHit();
 
+      
+
+        if (Input.GetMouseButton(0))
+        {
+            move.walkSpeed = 3;
+          
+        }
+           
+        if (!Input.GetMouseButtonUp(0))
+            move.walkSpeed = 9;
     
 
 
     }
 
 
-
+ 
     private void CheckEnemyHit()
     {
         RaycastHit hit; 
@@ -63,7 +75,23 @@ public class Talon_Rhyke : Player
             if (!enemy)
                 enemy = hit.collider.gameObject.GetComponentInParent<navmeshtestscript>();
             enemy.TakeDamage(20);
-            MeleeHitDetection.canTrigger = false;
+            
+            if (!enemy.canHitMultiple)
+                MeleeHitDetection.canTrigger = false;
+        }
+
+        bool checkWall = Physics.Linecast(point1.position, point2.position, out hit, wallLayer);
+
+        if (checkWall && BreakableWall.canHitWall)
+        {
+
+      
+            BreakableWall wall = hit.collider.gameObject.GetComponent<BreakableWall>();
+            if (!wall) return;
+
+            Instantiate(playerHitParticle, hit.point, Quaternion.identity);
+            wall.WallDamage(20);
+            BreakableWall.canHitWall = false;
         }
     }
 

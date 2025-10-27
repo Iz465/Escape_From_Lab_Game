@@ -62,7 +62,7 @@ ModelImporter:
         floatParameter: 0
         intParameter: 0
         messageOptions: 0
-      - time: 0.99707687
+      - time: 1
         functionName: ResetAnim
         data: 
         objectReferenceParameter: {instanceID: 0}

@@ -153,6 +153,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   power: {fileID: 9001348356109490781}
+  hitParticle: {fileID: 0}
 --- !u!114 &9001348356109490781
 MonoBehaviour:
   m_ObjectHideFlags: 0

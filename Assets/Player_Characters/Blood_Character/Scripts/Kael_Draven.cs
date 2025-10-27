@@ -5,10 +5,12 @@ public class Kael_Draven : Player
 {
     Move move;
     Animator animator;
+    [SerializeField] ParticleSystem particleHit;
     private void Start()
     {
         move = GetComponent<Move>();
         animator = GetComponentInChildren<Animator>();
+        playerHitParticle = particleHit;
     }
     protected override void Update()
     {

@@ -1,4 +1,5 @@
-using System.Linq;
+﻿using System.Linq;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class CameraManager : MonoBehaviour
@@ -21,6 +22,7 @@ public class CameraManager : MonoBehaviour
 
     [SerializeField] private Transform rayLocation;
 
+    float currentCamDistance;
     void LookAround()
     {
         // Get mouse scroll wheel input for zooming the camera
@@ -34,42 +36,46 @@ public class CameraManager : MonoBehaviour
         lookY -= mouseDir.y;
 
         // Clamp vertical look angle to prevent flipping
-        lookY = Mathf.Clamp(lookY, -30, 45);
+        lookY = Mathf.Clamp(lookY, -45, 45);
 
         // Rotate the player and camera based on mouse movement
         transform.Rotate(0, lookX, 0f);
         camTarget.localRotation = Quaternion.Euler(lookY, 0, 0f);
 
         // Adjust camera position based on raycast to avoid clipping through objects
-        
         RaycastHit hit;
-        // Visualize the raycast in the Scene view (red line)
-
-
         Transform rayTransform = rayLocation != null ? rayLocation : transform;
 
+     
         if (Physics.Raycast(rayTransform.position, -camTarget.forward, out hit, camDistance))
         {
-            if (hit.transform.gameObject.layer != LayerMask.NameToLayer("Player") && hit.transform.gameObject.layer != LayerMask.NameToLayer("Enemy"))
+            if (hit.transform.gameObject.layer != LayerMask.NameToLayer("Player") &&
+                hit.transform.gameObject.layer != LayerMask.NameToLayer("Enemy"))
             {
-                
-                cam.position = camTarget.position - camTarget.forward * hit.distance;
-                cam.LookAt(camTarget);
-                return; // Ignore raycast layer objects
+                camDistance = hit.distance - 0.1f;
             }
         }
-        cam.position = camTarget.position - camTarget.forward * camDistance;
-        
+
+        // stops constant camera glitching
+        currentCamDistance = Mathf.Lerp(currentCamDistance, camDistance, Time.deltaTime * 10f);
+
+
+        cam.position = camTarget.position - camTarget.forward * currentCamDistance;
+
         cam.LookAt(camTarget);
     }
+
     // Update is called once per frame
-    void Update()
+
+    private void Update()
     {
         if (camTarget != null)
             LookAround();
     }
+    
+        
+    
 
-  
 
 
 }

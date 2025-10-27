@@ -10,6 +10,7 @@ public class BloodMage : BloodEnemy
 {
     [SerializeField] private GameObject power;
     [SerializeField] private float speed;
+    [SerializeField] private float instantAttackSpeed;
     [SerializeField] private Transform aimLoc;
     [SerializeField] private GameObject beamPrefab;
     [SerializeField] private GameObject circleInstantPrefab;
@@ -66,6 +67,7 @@ public class BloodMage : BloodEnemy
         if (mageInUse[0] == null)
         {
             int num = Random.Range(0, 2);
+        
             switch (num)
             {
                 case 0: attack = true; break;
@@ -99,11 +101,12 @@ public class BloodMage : BloodEnemy
 
     protected override void Attack()
     {
-     
+
+        if (distanceToPlayer >= 10) speed = 100;
+        if (distanceToPlayer < 10) speed = 70;
         number++;
-        if (distanceToPlayer >= 10) speed = 80;
-        if (distanceToPlayer < 10) speed = 50;
-  
+
+        
         GameObject powerInstance = Instantiate(power, aimLoc.position, transform.rotation);
 
         if (!powerInstance) return;
@@ -115,6 +118,7 @@ public class BloodMage : BloodEnemy
         rb.AddForce(aimDir * speed, ForceMode.Impulse); 
          
     }
+
 
 
     private IEnumerator ResetAnim(int time)
@@ -204,13 +208,14 @@ public class BloodMage : BloodEnemy
 
     private Vector3 startingPosition;
     private GameObject circleAttackInstance;
+    
     private void InstantAttack()
     {
         animator.SetBool("InstantAttack", true);
         number = 3;
 
         startingPosition = player.transform.position;
-        StartCoroutine(HitPlayer(1f));
+        StartCoroutine(HitPlayer(instantAttackSpeed));
         circleAttackInstance = Instantiate(circleInstantPrefab, player.transform.position, Quaternion.identity);
 
         circleAttackInstance.transform.localScale = new Vector3(2, 2, 2);

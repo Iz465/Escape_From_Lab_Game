@@ -110,7 +110,7 @@ public class BasePower : MonoBehaviour
         }
         poolManager = FindFirstObjectByType<ObjectPoolManager>(); // temporary
         if (!poolManager) Debug.LogWarning("no pool");
-        Debug.Log($"Spawning power :{stats.prefab}");
+      //  Debug.Log($"Spawning power :{stats.prefab}");
         powerInstance = poolManager.SpawnFromPool(stats.prefab, boxAim.position, Quaternion.LookRotation(cam.transform.forward));
 
         if (!powerInstance)

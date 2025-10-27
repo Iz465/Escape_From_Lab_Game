@@ -232,11 +232,14 @@ MonoBehaviour:
   acceleration: 0
   velocity: {x: 0, y: 0, z: 0}
   useOtherScript: 0
-  walkSpeed: 7
+  walkSpeed: 9
   runSpeed: 0
   fallAcceleration: 2
   jumpStrength: 1
-  torso: {fileID: 0}
+  torso: {fileID: 113957992320637932}
+  checkLayer:
+    serializedVersion: 2
+    m_Bits: 3512
 --- !u!65 &5949953888318550816
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -272,7 +275,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   stats:
     name: Talon Rhyke
-    health: 100
+    health: 1e+9
     stamina: 100
   maxHealth: 0
   maxStamina: 0
@@ -282,6 +285,9 @@ MonoBehaviour:
   enemyLayer:
     serializedVersion: 2
     m_Bits: 128
+  wallLayer:
+    serializedVersion: 2
+    m_Bits: 4096
 --- !u!114 &552879810519210887
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -830,6 +836,11 @@ PrefabInstance:
       insertIndex: -1
       addedObject: {fileID: 4038217537166762830}
   m_SourcePrefab: {fileID: 100100000, guid: 88917694e0f7ea249a5b6490a97a932a, type: 3}
+--- !u!4 &113957992320637932 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: -8021001004253913084, guid: 88917694e0f7ea249a5b6490a97a932a, type: 3}
+  m_PrefabInstance: {fileID: 1241711629233716200}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &1635311721269632003 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 88917694e0f7ea249a5b6490a97a932a, type: 3}
@@ -1077,6 +1088,9 @@ MonoBehaviour:
   enemyLayer:
     serializedVersion: 2
     m_Bits: 128
+  wallLayer:
+    serializedVersion: 2
+    m_Bits: 4096
   playerCollider: {fileID: 1650092743180225908}
   hitParticle: {fileID: 4596544553357837919, guid: 8eb503696b886e04faff8fc0f480d473, type: 3}
   axeTransform: {fileID: 2488057685937801015}

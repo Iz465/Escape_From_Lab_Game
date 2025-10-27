@@ -1640,7 +1640,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 590a09decbada7549a1a990ea7e7358a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  health: 400
+  health: 300
   roamRadius: 100
   roamDelay: 2
   attackRange: 4

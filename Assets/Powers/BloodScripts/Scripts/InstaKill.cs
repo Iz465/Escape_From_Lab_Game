@@ -13,7 +13,8 @@ public class InstaKill : BasePower, ICollide
     private LayerMask enemyLayer;
     private Collider[] enemyDetected;
     private Collider powerCollider;
-    private bool canAttack;
+    private bool isHeldDown;
+
 
 
     private List<GameObject> enemyHit = new List<GameObject>();
@@ -26,34 +27,35 @@ public class InstaKill : BasePower, ICollide
       
     }
 
-    protected override void Start()
+    private void Update()
     {
-        base.Start();
-        canAttack = true;
-  
-     
+        if (animator)
+            animator.SetBool("Continued", isHeldDown);
+        if (Input.GetMouseButton(0))
+        {
+        
+            isHeldDown = true;
+        }
+         
+        if (Input.GetMouseButtonUp(0))
+        {
+    
+            isHeldDown = false;
+        }
+        
     }
 
 
     public override void StartAttack(InputAction.CallbackContext context)
     {
-        if (!context.performed) return;
-  //      if (!UseStamina()) return;
+       
+        if (!context.started) return;
+        animator.SetTrigger(stats.powerName);
 
 
-        if (canAttack)
-        {
-            canAttack = false;
-            Debug.Log($"starting attack!!!");
-            base.StartAttack(context);
-        }
-
-        else if (!canAttack) 
-        {
-            Debug.Log($"Unable to attack!");
-        }
-           
     }
+
+
 
     private void StartInstaKill()
     {
@@ -115,18 +117,21 @@ public class InstaKill : BasePower, ICollide
         if (!cam) return;
         cameraShake = cam.GetComponent<CameraShake>();
         if (!cameraShake) return;
-        StartCoroutine(cameraShake.Shake(0.1f));
+        StartCoroutine(cameraShake.Shake(1f));
     }
 
     private void ResetAnim()
     {
-        canAttack = true;
+       
+        
+        
+      
     }
 
     private IEnumerator ResetAttack(float time)
     {
         yield return new WaitForSeconds(time);
-        canAttack = true;
+  
     }
 
 

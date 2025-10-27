@@ -21,6 +21,7 @@ public class MeleeZombie : navmeshtestscript
   
         checkHitbox = false;
         canHit = false;
+        canHitMultiple = true;
         rotateSpeed = 100;
 
     }

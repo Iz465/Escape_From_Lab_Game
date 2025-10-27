@@ -32,8 +32,7 @@ public class FirePlayerInputs : MonoBehaviour
         if (!context.performed) return;
         animator.SetTrigger("Attack_1");
 
-        while (true)
-        {
+        
             AnimatorStateInfo stateInfo = animator.GetCurrentAnimatorStateInfo(0);
             
             AnimationClip clip = animator.runtimeAnimatorController.animationClips[0];
@@ -45,7 +44,7 @@ public class FirePlayerInputs : MonoBehaviour
                 Debug.Log($"Current Frame: {currentFrame}");
             }
             
-        }
+        
 
         
         GameObject fireball = Instantiate(FireballPrefab, FiringPoint.position, Quaternion.identity);
@@ -55,6 +54,10 @@ public class FirePlayerInputs : MonoBehaviour
         Vector3 force = new(movementDirection.x * 10f, movementDirection.y, movementDirection.z * 10f);
         fireball.GetComponent<Rigidbody>().AddRelativeForce(force);
         GameObject.Destroy(fireball,7F);
+    }
+    public void AnimationAttackFindFrame( )//Make corfute ot count frames 
+    {
+
     }
     public void Attack_2_AreaBlast(InputAction.CallbackContext context)
     {

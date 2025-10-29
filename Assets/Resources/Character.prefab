@@ -493,7 +493,7 @@ MonoBehaviour:
   useOtherScript: 0
   walkSpeed: 7
   runSpeed: 2.5
-  fallAcceleration: 5
+  fallAcceleration: 10
   jumpStrength: 4
   torso: {fileID: 1654209235274449601}
   checkLayer:
@@ -570,7 +570,7 @@ MonoBehaviour:
   normalWalk: 7
   normalRun: 150
   highSpeedWalk: 500
-  highSpeedRun: 3000
+  highSpeedRun: 30000
   dashSpeed: 30
   dashDuration: 0.02
   normalRunCost: 2.5

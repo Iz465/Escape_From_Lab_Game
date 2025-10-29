@@ -15,12 +15,14 @@ public class SlamMelee : BasePower
         base.Start();
         line = GetComponent<linescript>();
     }
+
+    // slam ability can only be called once its been reset.
+    // line renderer shows a visual of the hammer attack radius
     public override void StartAttack(InputAction.CallbackContext context)
     {
         if (!context.performed) return;
         if (!canAttack) return;
         base.StartAttack(context);
-        Attack();
         line.toggleCircle = true;
 
         canAttack = false;
@@ -28,6 +30,7 @@ public class SlamMelee : BasePower
 
     }
 
+    // Damages any enemies that are in the hammer radius the moment it hits the ground. 
     public void HitGround()
     {
 
@@ -36,7 +39,7 @@ public class SlamMelee : BasePower
         line.DisableCircle();
 
         CameraShake cameraShake = cam.GetComponent<CameraShake>();
-        StartCoroutine(cameraShake.Shake(0.1f));
+        StartCoroutine(cameraShake.Shake(0.5f, 0.5f, 0.1f));
 
         Collider[] enemyColliders = Physics.OverlapSphere(transform.position, (15), enemyLayer);
 
@@ -69,6 +72,8 @@ public class SlamMelee : BasePower
         canAttack = true;
     }
 
+
+    // shows in the editor how big the radius will be
     private void OnDrawGizmos()
     {
         Gizmos.color = Color.purple;

@@ -403,6 +403,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 51303f13f67fa8c40987a27960035c53, type: 3}
       insertIndex: -1
       addedObject: {fileID: -3373469410681715910}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 51303f13f67fa8c40987a27960035c53, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 6757520217774665560}
   m_SourcePrefab: {fileID: 100100000, guid: 51303f13f67fa8c40987a27960035c53, type: 3}
 --- !u!1 &4260770879771176521 stripped
 GameObject:
@@ -571,33 +574,23 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f28621dbdda0afc48a7807a5fe13128f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  agentParameters:
+    maxStep: 0
+  hasUpgradedFromAgentParameters: 1
+  MaxStep: 0
   health: 40
   roamRadius: 100
   roamDelay: 5
   attackRange: 5
-  corpse: {fileID: 0}
+  attackName: MeleeCombo
   canHitMultiple: 0
   blood: {fileID: 767729875679334921, guid: 754caa0e01b13eb4b9186463b5f2afdd, type: 3}
-  bloodHits:
-  - {fileID: 8424804657445341403}
-  - {fileID: 2336257368952218631}
-  - {fileID: 2183810033921762029}
+  bloodHitLocations: []
   particleHitLocation: {fileID: 9208320289957442858}
-  enemyPrefab: 
+  CorpseParts: []
   canAttack: 1
-  corpseParts:
-    head: {fileID: 1604589698921734978, guid: b492f241b69311041b5ab9ac2ea2818f, type: 3}
-    torso: {fileID: 992527465005872472, guid: 66dad26443b539d40accb808d89c101a, type: 3}
-    leftHand: {fileID: 846829804671434094, guid: 06e53a7e84caf5349908a21826c87aaf, type: 3}
-    rightHand: {fileID: 1878968904969398724, guid: 2329cb49b7c1ba648b9deab8fd32c32b, type: 3}
-    legs: {fileID: 992527465005872472, guid: 66dad26443b539d40accb808d89c101a, type: 3}
+  rotateSpeed: 100
   healthGain: 2
-  point1: {fileID: 0}
-  point2: {fileID: 0}
-  point1Second: {fileID: 0}
-  point2Second: {fileID: 0}
-  point1Third: {fileID: 0}
-  point2Third: {fileID: 0}
   playerLayer:
     serializedVersion: 2
     m_Bits: 8
@@ -628,6 +621,36 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!114 &6757520217774665560
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4260770879771176521}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5d1c4e0b1822b495aa52bc52839ecb30, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_BrainParameters:
+    VectorObservationSize: 1
+    NumStackedVectorObservations: 1
+    m_ActionSpec:
+      m_NumContinuousActions: 0
+      BranchSizes: 01000000
+    VectorActionSize: 01000000
+    VectorActionDescriptions: []
+    VectorActionSpaceType: 0
+    hasUpgradedBrainParametersWithActionSpec: 1
+  m_Model: {fileID: 0}
+  m_InferenceDevice: 0
+  m_BehaviorType: 0
+  m_BehaviorName: My Behavior
+  TeamId: 0
+  m_UseChildSensors: 1
+  m_UseChildActuators: 1
+  m_ObservableAttributeHandling: 0
 --- !u!4 &8670052969366071284 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -3480699329000672020, guid: 51303f13f67fa8c40987a27960035c53, type: 3}

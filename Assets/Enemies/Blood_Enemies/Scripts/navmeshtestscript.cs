@@ -16,72 +16,51 @@ public class navmeshtestscript : Agent // Readd this to to the chase ai script.
     [SerializeField] private float roamRadius = 10f;
     [SerializeField] private float roamDelay = 5f;
     [SerializeField] protected float attackRange;
-    [SerializeField] private GameObject corpse;
-
-    [HideInInspector] public bool canHitMultiple = false;
+    [SerializeField] private string attackName;
+   
+    [SerializeField] public bool canHitMultiple = false;
 
     [Header("Blood Stuff")]
     [SerializeField] protected GameObject blood;
-    [SerializeField] protected List<Transform> bloodHits;
+    [SerializeField] protected List<Transform> bloodHitLocations;
     [SerializeField] private Transform particleHitLocation;
+    [SerializeField] private List<GameObject> CorpseParts;
   
-    [SerializeField] private string enemyPrefab;
-    private static GameObject currentEnemyAttacking;
 
-    [System.Serializable] public struct CorpseParts
-    {
-        public GameObject head;
-        public GameObject torso;
-        public GameObject leftHand;
-        public GameObject rightHand;
-        public GameObject legs;
-
-    }
-
-    // Object References
+   
     [Header("Objects")]
     protected Player player;
 
     // Agent variables
     protected NavMeshAgent agent;
     protected Animator animator;
-    protected CharacterController controller;
-    private Collider enemyCollider;
     private float timer = 0f;
-    public bool canAttack = true;
+    [HideInInspector] public bool canAttack = true;
     protected float distanceToPlayer;
-    public static List<GameObject> deadEnemies = new List<GameObject>();
+
     protected GlobalEnemyManager globalEnemyManager;
-    private Brute brute;
-    protected bool canRotate;
-
-
-    protected float rotateSpeed;
+    
+    protected bool canRotate = true;
+    [SerializeField] protected float rotateSpeed = 5f;
 
     virtual protected void Start()
     {
         agent = GetComponent<NavMeshAgent>();
         timer = roamDelay;
         animator = GetComponent<Animator>();
-        controller = GetComponent<CharacterController>();
         player = FindAnyObjectByType<Player>();
-        rotateSpeed = 5f;
         globalEnemyManager = FindFirstObjectByType<GlobalEnemyManager>();
-        GlobalEnemyManager.levelComplete = false;
-        if (globalEnemyManager)
-            globalEnemyManager.AddEnemy(gameObject);
-        brute = GetComponent<Brute>(); // bandaid
-        canRotate = true;
-        enemyCollider = GetComponent<Collider>();
+        if (globalEnemyManager) globalEnemyManager.AddEnemy(gameObject);
+
     }
 
+    // Enemy constantly roaming / chasing player depending on options.
     virtual protected void Update()
     {
         timer += Time.deltaTime;
 
-        if (!agent) return;
-        if (!player) return;
-        if (!animator) return;
+        if (!agent || !player || !animator) return;
+
 
         distanceToPlayer = Vector3.Distance(transform.position, player.transform.position);
 
@@ -102,11 +81,10 @@ public class navmeshtestscript : Agent // Readd this to to the chase ai script.
         else
             animator.SetBool("Roam", true);
 
-
     }
 
-    private static int random;
-    
+  
+    // Enemy Chases player and attacks when in certain range
     virtual protected void ChasePlayer()
     {
         Vector3 lookDirection = player.transform.position - transform.position;
@@ -128,32 +106,12 @@ public class navmeshtestscript : Agent // Readd this to to the chase ai script.
             
             GlobalEnemyManager.enemiesInRange.Add(gameObject);
 
-            if (agent.isOnNavMesh && !brute) // bandaid
+            if (agent.isOnNavMesh) 
                 agent.isStopped = true;
 
             if (canAttack)
-            {
                 AttackPlayer();
-             
-            /*    random = globalEnemyManager.RandomiseAttack();
-                int num = 0;
-                foreach (GameObject enemy in GlobalEnemyManager.enemiesInRange)
-                {
-                    if (num == random)
-                        if (gameObject == enemy)
-                            if (enemy != currentEnemyAttacking && GlobalEnemyManager.enemiesInRange.Count > 1)
-                            {
-                                currentEnemyAttacking = enemy;
-                                AttackPlayer();
-                            }
-                          
-                            else if (GlobalEnemyManager.enemiesInRange.Count == 1)
-                                AttackPlayer();
-                    num++; 
-                } */
-            
-            }
-        
+
         }
             
         
@@ -162,13 +120,13 @@ public class navmeshtestscript : Agent // Readd this to to the chase ai script.
 
     virtual protected void AttackPlayer()
     {
-        animator.SetBool("CanAttack", true);
-       
-        canAttack = false;
+       canAttack = false;
+       animator.SetTrigger(attackName);
            
     }
 
 
+    // When Enemy cant find player it roams around.
     private Vector3 RandomLocation()
     {
         float randomDir = Random.Range(5f, roamRadius);
@@ -184,33 +142,35 @@ public class navmeshtestscript : Agent // Readd this to to the chase ai script.
 
     virtual protected void Attack()
     {
-        Debug.Log("Attack!");
+        // Override in children classes
     }
 
+    // Everytime the enemy gets hit by the player
     virtual public void TakeDamage(float damageTaken)
     {
-        Debug.Log(enemyCollider);
+    
         if (player.playerHitParticle) Instantiate(player.playerHitParticle, particleHitLocation.position, Quaternion.identity); 
         if (blood) ShowBlood();
         health -= damageTaken;
         Debug.Log($"Taking damage! Health Left : {health}");
         if (health <= 0)
             EnemyDeath();
-
     }
 
+    // Blood particles spawned whenever enemy is hit
     private void ShowBlood()
     {
         
-        foreach (Transform bloodLocation in bloodHits)
+        foreach (Transform bloodLocation in bloodHitLocations)
         {
            GameObject bloodInstance = Instantiate(blood, bloodLocation);
            Destroy(bloodInstance, 0.5f); 
         }
     }
 
-    [SerializeField] private CorpseParts corpseParts = new CorpseParts();
+
     [SerializeField] private float healthGain;
+
     virtual protected void EnemyDeath()
     {
 
@@ -221,35 +181,17 @@ public class navmeshtestscript : Agent // Readd this to to the chase ai script.
 
      
         player.stats.health += healthGain;
-      // player.stats.health = Mathf.Clamp(player.stats.health, 0, 100);
-        
- 
+        // player.stats.health = Mathf.Clamp(player.stats.health, 0, player.stats.maxHealth);
 
-   /*     if (corpse)
-        {
-            GameObject prefab = Resources.Load<GameObject>(enemyPrefab);
-            if (prefab)
-                deadEnemies.Add(prefab);
 
-            else
-                Debug.LogWarning($"Prefab : {enemyPrefab} Not available");
-        }
-   */
-        
-        if (corpseParts.head)
-            MakeRagdoll(corpseParts.head,3);
-        if (corpseParts.legs)
-            MakeRagdoll(corpseParts.legs,1);
-        if (corpseParts.rightHand)
-            MakeRagdoll(corpseParts.rightHand, 2.5f);
-        if (corpseParts.leftHand)
-            MakeRagdoll(corpseParts.leftHand,2.5f);
-        if (corpseParts.torso)
-            MakeRagdoll(corpseParts.torso, 2.5f);
+        if (CorpseParts.Count > 0)
+            foreach (GameObject corpse in CorpseParts)
+                MakeRagdoll(corpse, 2);
 
         Destroy(gameObject);
     }
 
+    // dismemberment for when enemy dies
     private void MakeRagdoll(GameObject bodypart, float height)
     {
         if (bodypart)
@@ -274,6 +216,7 @@ public class navmeshtestscript : Agent // Readd this to to the chase ai script.
         }
     }
 
+    // Reinforcement Learning function
     public override void OnActionReceived(ActionBuffers actions)
     {
         base.OnActionReceived(actions);

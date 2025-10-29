@@ -85,7 +85,6 @@ public class ArcSwing : BasePower
         BreakableWall.canHitWall = true;
         animator.SetTrigger("Arc Swing");
         canCombo = true;
-        player.playerHitParticle = hitParticle;
  
     }
 
@@ -145,7 +144,7 @@ public class ArcSwing : BasePower
     private void StartCameraShake()
     {
         cameraShake = cam.GetComponent<CameraShake>();
-        StartCoroutine(cameraShake.Shake(0.1f));
+        StartCoroutine(cameraShake.Shake(0.3f, 0.3f, 0.1f));
     }
 
     private void CombatStateEntered()

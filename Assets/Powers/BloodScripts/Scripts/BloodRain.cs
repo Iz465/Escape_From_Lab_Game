@@ -14,14 +14,12 @@ public class BloodRain : BasePower
     private LayerMask enemyLayer;
     [SerializeField]
     private GameObject rainPrefab;
-    private bool canAttack;
-    List<Collider> enemyList = new List<Collider>();
+    private bool canAttack = true;
+    private List<Collider> enemyList = new List<Collider>();
 
-    protected override void Start()
-    {
-        base.Start();
-        canAttack = true;
-    }
+
+
+    // This function has a bool used to make sure this attack cant be spammed
     public override void StartAttack(InputAction.CallbackContext context) 
     {
         if (!context.performed) return;
@@ -40,7 +38,7 @@ public class BloodRain : BasePower
 
     }
 
-
+    // Attack can only be used again once this is called
     private IEnumerator ResetAttack(int time)
     {
         yield return new WaitForSeconds(time);
@@ -48,11 +46,13 @@ public class BloodRain : BasePower
         canAttack = true;
     }
 
+    // Animation event 
     private void StartBloodRain()
     {
         Attack();
     }
-
+    
+    // power lasts for five seconds
     protected override void SpawnPower()
     {
         base.SpawnPower();
@@ -60,6 +60,7 @@ public class BloodRain : BasePower
         StartCoroutine(DestroyPower(5, powerInstance));
     }
 
+    // blood power rains down on random enemies caught in the radius 
     private void RainBlood() 
     {
         enemyColliders = Physics.OverlapSphere(transform.position, 100f, enemyLayer);
@@ -85,7 +86,7 @@ public class BloodRain : BasePower
         }
     }
 
-    
+    // power spawns from a random position
     private Vector3 SpawnPos(Renderer renderer)
     {
         Bounds bounds = renderer.bounds;
@@ -101,18 +102,19 @@ public class BloodRain : BasePower
         return new Vector3(x, y, z);
     }
 
-    private IEnumerator ShootRain(float time, GameObject test)
+    
+    private IEnumerator ShootRain(float time, GameObject rain)
     {
 
         yield return new WaitForSeconds(time);
         Debug.Log("Spawning blood drop");
         Collider target = null;
-        Collider collider = test.GetComponent<Collider>();
+        Collider collider = rain.GetComponent<Collider>();
         if (!collider) yield break;
         if (enemyList.Count == 0)
         {
             Debug.Log("BLOOD RAIN ENEMY LIST IS EMPTY");
-            poolManager.ReleaseToPool(test);
+            poolManager.ReleaseToPool(rain);
             yield break;
         }
 
@@ -122,13 +124,13 @@ public class BloodRain : BasePower
         if (!target)
         {
             Debug.Log("BLOOD RAIN TARGET IS NULL");
-            poolManager.ReleaseToPool(test);
+            poolManager.ReleaseToPool(rain);
             yield break;
         }
 
         Vector3 direction = (target.transform.position - collider.transform.position).normalized;
-        test.SetActive(true);
-        Rigidbody rainBody = test.GetComponent<Rigidbody>();
+        rain.SetActive(true);
+        Rigidbody rainBody = rain.GetComponent<Rigidbody>();
         rainBody.AddForce(direction * stats.speed, ForceMode.Impulse);
         enemyList.Add(target);
       

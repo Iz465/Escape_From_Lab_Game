@@ -3,7 +3,11 @@ using UnityEngine;
 
 public class CameraShake : MonoBehaviour
 {
-    public IEnumerator Shake(float timer)
+ 
+    
+    // Camera shake helps add an oomph to the attacks to make the combat more satisfying
+    // The camera shakes by being moved every frame over a random max and min value the player gives in a certain time.
+    public IEnumerator Shake(float xValue, float yValue, float timer)
     {
 
         float time = 0;
@@ -12,9 +16,9 @@ public class CameraShake : MonoBehaviour
        
         while (time < timer)
         {
+            float x = Random.Range(xValue, xValue);
+            float y = Random.Range(yValue, yValue);
 
-            float x = Random.Range(-0.3f, 0.3f);  
-            float y = Random.Range(-0.3f, 0.3f);
 
             transform.position = startLoc + new Vector3(x, y, 0f);
    

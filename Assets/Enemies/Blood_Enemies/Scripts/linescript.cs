@@ -11,6 +11,9 @@ public class linescript : MonoBehaviour
     public int segments;
     public bool toggleCircle;
 
+    // This script will give a visual of different shapes made like squares and circles
+    // It is useful for when attacks that cover a certain area occur as it will show the exact radius that that attack is so the player does not have to guess.
+
 
 
     private void Start()

@@ -1,3 +1,5 @@
+using Unity.MLAgents.Integrations.Match3;
+using Unity.VisualScripting.Antlr3.Runtime.Misc;
 using UnityEditor.SearchService;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -9,50 +11,66 @@ public class Player : MonoBehaviour, IDamageTaken
     {
         public string name;
         public float health;
+        public float maxHealth;
         public float stamina;
-    }
-    public PlayerStats stats;
-    [HideInInspector]
-    public float maxHealth;
-    [HideInInspector]
-    public float maxStamina;
-    public static bool canDamage = true;
-    [HideInInspector] public ParticleSystem playerHitParticle;
-    private void Awake()
-    {
-        maxHealth = stats.health;
-        maxStamina = stats.stamina;
+        public float maxStamina;
     }
 
+    [Header("Basic Player Info")]
+    public PlayerStats stats;
+    [HideInInspector] public static bool canDamage = true;
+    [SerializeField] public ParticleSystem playerHitParticle;
+
+  
+    // Player stamina regenerates over every frame.
+    // Horizontal velocity of player is checked to see whether player animation state should run or be idle. 
     virtual protected void Update()
     {
         stats.stamina += 5f * Time.deltaTime;
-        stats.stamina = Mathf.Clamp(stats.stamina, 0, maxStamina);
+        stats.stamina = Mathf.Clamp(stats.stamina, 0, stats.maxStamina);
 
         if (stats.health <= 0)
-            playerDeath();
+            PlayerDeath();
+
+
+        Animator animator = GetComponentInChildren<Animator>();
+        Move move = GetComponent<Move>();
+
+        Vector3 movement = move.controller.velocity;  // Ignores jumping/falling
+        Vector3 horizontalVelocity = new Vector3(movement.x, 0, movement.z);
+
+        if (horizontalVelocity.magnitude > 0.1f)
+            animator.SetBool("Moving", true);
+
+        else
+            animator.SetBool("Moving", false);
+
+
+        if (Input.GetKeyDown(KeyCode.P))
+        {
+            Debug.Log("Pausing for debug!");
+            Debug.Break();
+        }
     }
 
-
+    // called whenever player takes damage
     public void TakeDamage(float damageTaken) 
     {
         if (!canDamage) return;
         stats.health -= damageTaken;
         if (stats.health <= 0)
-            playerDeath();
+            PlayerDeath();
     }
 
 
-    public void playerDeath() 
+    // when the player dies the active scene / level restarts for the player to try again
+    private void PlayerDeath() 
     {
         Debug.Log("You have died");
         UnityEngine.SceneManagement.Scene scene = SceneManager.GetActiveScene();
         Debug.Log($"Scene name : {scene.name}");
         SceneManager.LoadScene(scene.name);
 
-       
-       
-       // gameObject.SetActive(false);
     }
 
     private void OnControllerColliderHit(ControllerColliderHit hit)

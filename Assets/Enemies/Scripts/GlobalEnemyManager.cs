@@ -14,6 +14,9 @@ public class GlobalEnemyManager : MonoBehaviour
 
     public static bool levelComplete;
 
+    // Handles all enemy code instead of requiring every enemy in the game to have to handle this script. Only one will be in the game world. 
+    //
+
         private void Start()
     {
         levelComplete = false;

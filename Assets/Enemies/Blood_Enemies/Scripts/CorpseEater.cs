@@ -31,7 +31,7 @@ public class CorpseEater : navmeshtestscript
         endScale.x *= 2f;
         endScale.y *= 2f;
         endScale.z *= 2f;
-        controller.enabled = false;
+      
       
 
         while (timer < time)
@@ -43,7 +43,7 @@ public class CorpseEater : navmeshtestscript
             yield return null;
         }
         Destroy(corpseCount[0].gameObject);
-        controller.enabled = true;
+     
     }
 
     private void OnDrawGizmosSelected()

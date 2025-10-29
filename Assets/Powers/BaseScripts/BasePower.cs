@@ -49,6 +49,8 @@ public class BasePower : MonoBehaviour
     }
     public PowerType powerType;
 
+
+
     virtual protected void Start()
     {
         //     poolManager = FindFirstObjectByType<ObjectPoolManager>();
@@ -56,7 +58,7 @@ public class BasePower : MonoBehaviour
 
     }
 
-
+    // Called with input system. Activates animation that goes with attack keybind.
     virtual public void StartAttack(InputAction.CallbackContext context)
     {
         if (context.canceled) isHeld = false;
@@ -66,6 +68,7 @@ public class BasePower : MonoBehaviour
     }
 
 
+    // Calls a specific power function depending on what type of attack it is
     virtual public void Attack()
     {
       if (powerType != PowerType.Melee)
@@ -86,7 +89,7 @@ public class BasePower : MonoBehaviour
 
     }
 
-
+    // Checking nothing required for power is null 
     protected bool PowerChecks()
     {
         if (!stats.prefab)
@@ -110,7 +113,7 @@ public class BasePower : MonoBehaviour
         }
         poolManager = FindFirstObjectByType<ObjectPoolManager>(); // temporary
         if (!poolManager) Debug.LogWarning("no pool");
-      //  Debug.Log($"Spawning power :{stats.prefab}");
+
         powerInstance = poolManager.SpawnFromPool(stats.prefab, boxAim.position, Quaternion.LookRotation(cam.transform.forward));
 
         if (!powerInstance)
@@ -131,7 +134,7 @@ public class BasePower : MonoBehaviour
 
 
 
-
+    // power can only be used if there is enough stamina
    virtual protected bool UseStamina()
     {
         if (player.stats.stamina < stats.stamina)
@@ -141,10 +144,11 @@ public class BasePower : MonoBehaviour
         } 
 
         player.stats.stamina -= stats.stamina;
-        player.stats.stamina = Mathf.Clamp(player.stats.stamina, 0, player.maxStamina);
+        player.stats.stamina = Mathf.Clamp(player.stats.stamina, 0, player.stats.maxStamina);
         return true;
     }
 
+    // Power sent back to pool whenever it hits something or runs out of time
     protected IEnumerator DestroyPower(int time, GameObject power)
     {
         yield return new WaitForSeconds(time);
@@ -160,10 +164,7 @@ public class BasePower : MonoBehaviour
 
     virtual protected void MeleePower()
     {
-  
-     
-
-      
+        // Let children override
     }
 
     virtual protected void SpawnPower()

@@ -213,11 +213,10 @@ MonoBehaviour:
   stats:
     name: Kael Draven
     health: 100
+    maxHealth: 100
     stamina: 100
-  maxHealth: 0
-  maxStamina: 0
-  playerHitParticle: {fileID: 0}
-  particleHit: {fileID: 4596544553357837919, guid: a8701d6069fe3cb43944a3ef5cfbeeab, type: 3}
+    maxStamina: 100
+  playerHitParticle: {fileID: 4596544553357837919, guid: a8701d6069fe3cb43944a3ef5cfbeeab, type: 3}
 --- !u!65 &6184887894105021891
 BoxCollider:
   m_ObjectHideFlags: 0

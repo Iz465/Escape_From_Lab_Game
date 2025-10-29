@@ -11,20 +11,11 @@ public class BlackKnight : navmeshtestscript
   
 
 
-    protected override void AttackPlayer()
-    {
-        canAttack = false;
-        animator.SetTrigger("Combo");
-    }
-
+    // The same attack never repeats
     private void SwitchAttackType()
     {
         
-
-
         oldNumber = storedNumber[0];
-
-
 
         while (oldNumber == storedNumber[0])
         {
@@ -32,33 +23,34 @@ public class BlackKnight : navmeshtestscript
             storedNumber[0] = randomNumber;
         }
 
-
+        // Added this as it doesnt work on the first time.
         if (doOnce)
         {
-            Instantiate(swordParticle, swordLocation);
-            switch (storedNumber[0])
-            {
-                case 0: LoopChildren(Color.red); break;
-                case 1: LoopChildren(Color.green); break;
-                case 2: LoopChildren(Color.blue); break;
-            }
+            SelectColour();
 
             oldNumber = storedNumber[0];
             doOnce = false;
         }
 
+        SelectColour();
+
+
+
+
+    }
+
+    // Particle colour will change to show the player which attack is coming
+    private void SelectColour()
+    {
         Instantiate(swordParticle, swordLocation);
-        switch(storedNumber[0])
+        switch (storedNumber[0])
         {
             case 0: LoopChildren(Color.red); break;
             case 1: LoopChildren(Color.green); break;
             case 2: LoopChildren(Color.blue); break;
         }
-      
-      
-      //  Debug.Log($"Before : {oldNumber}");
+       
     }
-
     
 
     private void LoopChildren(Color colour)
@@ -70,20 +62,16 @@ public class BlackKnight : navmeshtestscript
         }
     }
 
+
+    // Player must block correctly to avoid damage
     private void DamagePlayer()
     {
-      //  Debug.Log($"After : {oldNumber}");
-      
-        
+    
         switch (oldNumber)
         {
             case 0: if (BlockAttacks.particleInUse != BlockAttacks.ParticleInUse.red) player.TakeDamage(25); break;
-
-
             case 1: if (BlockAttacks.particleInUse != BlockAttacks.ParticleInUse.green) player.TakeDamage(25); break;
-
             case 2: if (BlockAttacks.particleInUse != BlockAttacks.ParticleInUse.blue) player.TakeDamage(25); break;
-
         }
     }
 
@@ -95,7 +83,7 @@ public class BlackKnight : navmeshtestscript
 
 
 
-
+    // Decides whether to attack or chase depending on where player is
     private void CheckPlayerRange()
     {
         Debug.Log($"Distance: {distanceToPlayer}");

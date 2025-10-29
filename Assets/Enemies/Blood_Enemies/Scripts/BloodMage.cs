@@ -6,7 +6,7 @@ using static UnityEngine.GraphicsBuffer;
 using static UnityEngine.ParticleSystem;
 using static UnityEngine.UI.Image;
 
-public class BloodMage : BloodEnemy
+public class BloodMage : navmeshtestscript
 {
     [SerializeField] private GameObject power;
     [SerializeField] private float speed;
@@ -17,11 +17,11 @@ public class BloodMage : BloodEnemy
     [SerializeField] private GameObject instantAttackPrefab;
     [SerializeField] private LayerMask playerLayer;
 
-    int number;
+    int number = 0;
     private static bool attack;
     private bool beam;
     private static bool instantAttack;
-    private float beamLength;
+    private float beamLength = 20f;
     private GameObject beamInstance;
 
     private static List<BloodMage> bloodMages = new List<BloodMage>();
@@ -31,11 +31,7 @@ public class BloodMage : BloodEnemy
     protected override void Start()
     {
         base.Start();
-        number = 0;
-        beamLength = 20f;
         bloodMages.Add(this);
-
-
     }
 
     protected override void Update()

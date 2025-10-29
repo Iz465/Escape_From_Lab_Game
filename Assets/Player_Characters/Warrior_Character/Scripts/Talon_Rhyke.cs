@@ -4,71 +4,28 @@ using UnityEngine;
 
 public class Talon_Rhyke : Player
 {
-    private Move move;
-    private Animator animator;
+
     [SerializeField] private Transform point1;
     [SerializeField] private Transform point2;
     [SerializeField] private LayerMask enemyLayer;
     [SerializeField] private LayerMask wallLayer;
 
-    private void Start()
-    {
-        move = GetComponent<Move>();
-        animator = GetComponentInChildren<Animator>();
-    }
+
     protected override void Update()
     {
         base.Update();
-        if (!animator)
-        {
-            Debug.Log("No Animator");
-            return;
-        }
-
-        if (Input.GetKeyDown(KeyCode.P))
-        {
-            Debug.Log("Pausing for debug!");
-            Debug.Break();
-        }
-
-
-        Vector3 movement = move.controller.velocity;
-
-        // Ignores jumping/falling
-        Vector3 horizontalVelocity = new Vector3(movement.x, 0, movement.z);
-
-
-        if (horizontalVelocity.magnitude > 0.1f)
-            animator.SetBool("Moving", true);
-
-        else
-            animator.SetBool("Moving", false);
-
 
         if (MeleeHitDetection.canTrigger)
             CheckEnemyHit();
 
-      
-
-        if (Input.GetMouseButton(0))
-        {
-            move.walkSpeed = 3;
-          
-        }
-           
-        if (!Input.GetMouseButtonUp(0))
-            move.walkSpeed = 9;
-    
-
-
     }
 
 
-  
+
     private void CheckEnemyHit()
     {
-        RaycastHit hit; 
-        bool checkPlayer = Physics.Linecast(point1.position, point2.position, out hit,enemyLayer);
+        RaycastHit hit;
+        bool checkPlayer = Physics.Linecast(point1.position, point2.position, out hit, enemyLayer);
 
         if (checkPlayer)
         {
@@ -78,7 +35,7 @@ public class Talon_Rhyke : Player
             enemy.TakeDamage(20);
 
 
-            if (!enemy.canHitMultiple || MeleeHitDetection.enemiesHit.Contains(enemy)) 
+            if (!enemy.canHitMultiple || MeleeHitDetection.enemiesHit.Contains(enemy))
             {
                 MeleeHitDetection.canTrigger = false;
                 return;
@@ -97,7 +54,7 @@ public class Talon_Rhyke : Player
         if (checkWall && BreakableWall.canHitWall)
         {
 
-      
+
             BreakableWall wall = hit.collider.gameObject.GetComponent<BreakableWall>();
             if (!wall) return;
 
@@ -111,7 +68,7 @@ public class Talon_Rhyke : Player
     {
         Gizmos.color = Color.yellow;
         Gizmos.DrawLine(point1.position, point2.position);
- 
-    }
 
     }
+
+}

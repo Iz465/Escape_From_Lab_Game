@@ -93,6 +93,37 @@ Transform:
   m_Children: []
   m_Father: {fileID: 3640417612249224314}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1757794076362472645
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 5762534182723256147}
+  m_Layer: 7
+  m_Name: particle hit location
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &5762534182723256147
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1757794076362472645}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0.00163, z: -0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 652845376615096337}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1852886250167398511
 GameObject:
   m_ObjectHideFlags: 0
@@ -873,6 +904,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: -5170673948360647890, guid: d0ded03e6a7e0084d92ee10ebb8c119d, type: 3}
       insertIndex: -1
       addedObject: {fileID: 8428269785789527559}
+    - targetCorrespondingSourceObject: {fileID: -5170673948360647890, guid: d0ded03e6a7e0084d92ee10ebb8c119d, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 5762534182723256147}
     - targetCorrespondingSourceObject: {fileID: -8956515485712765115, guid: d0ded03e6a7e0084d92ee10ebb8c119d, type: 3}
       insertIndex: -1
       addedObject: {fileID: 741693424685514780}
@@ -1646,16 +1680,22 @@ MonoBehaviour:
   attackRange: 4
   corpse: {fileID: 0}
   canHitMultiple: 0
-  blood: {fileID: 0}
-  bloodHits: []
+  blood: {fileID: 767729875679334921, guid: 754caa0e01b13eb4b9186463b5f2afdd, type: 3}
+  bloodHits:
+  - {fileID: 7715489484732115941}
+  - {fileID: 6368807161842201524}
+  - {fileID: 5380978059386471739}
+  - {fileID: 1447147007367027757}
+  - {fileID: 168976935395505970}
+  particleHitLocation: {fileID: 5762534182723256147}
   enemyPrefab: 
   canAttack: 1
   corpseParts:
-    head: {fileID: 0}
-    torso: {fileID: 0}
-    leftHand: {fileID: 0}
-    rightHand: {fileID: 0}
-    legs: {fileID: 0}
+    head: {fileID: 1604589698921734978, guid: 1422ffee39ce39a47b06e8835f629dd2, type: 3}
+    torso: {fileID: 992527465005872472, guid: ac1d22ed94cb7004a8a17517c065fb8c, type: 3}
+    leftHand: {fileID: 1878968904969398724, guid: 5d0b035ce53c12a4893382928200ce27, type: 3}
+    rightHand: {fileID: 1878968904969398724, guid: 5d0b035ce53c12a4893382928200ce27, type: 3}
+    legs: {fileID: 992527465005872472, guid: ac1d22ed94cb7004a8a17517c065fb8c, type: 3}
   healthGain: 10
   swordParticle: {fileID: 2879452947444175344, guid: ce08d9904c4049440be9fc3de8b462c6, type: 3}
   swordLocation: {fileID: 1773943180945175834}

@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using Unity.MLAgents.Sensors;
 using UnityEngine;
 
@@ -63,7 +64,7 @@ public class Talon_Rhyke : Player
     }
 
 
- 
+  
     private void CheckEnemyHit()
     {
         RaycastHit hit; 
@@ -75,9 +76,20 @@ public class Talon_Rhyke : Player
             if (!enemy)
                 enemy = hit.collider.gameObject.GetComponentInParent<navmeshtestscript>();
             enemy.TakeDamage(20);
-            
-            if (!enemy.canHitMultiple)
+
+
+            if (!enemy.canHitMultiple || MeleeHitDetection.enemiesHit.Contains(enemy)) 
+            {
                 MeleeHitDetection.canTrigger = false;
+                return;
+            }
+
+            MeleeHitDetection.enemiesHit.Add(enemy);
+
+
+
+
+
         }
 
         bool checkWall = Physics.Linecast(point1.position, point2.position, out hit, wallLayer);

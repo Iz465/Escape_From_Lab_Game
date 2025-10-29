@@ -23,6 +23,7 @@ public class MeleeZombie : navmeshtestscript
         canHit = false;
         canHitMultiple = true;
         rotateSpeed = 100;
+        GlobalEnemyManager.totalMeleeZombies.Add(gameObject);
 
     }
 
@@ -66,5 +67,13 @@ public class MeleeZombie : navmeshtestscript
         rotateSpeed = 5f;
     }
 
+
+    protected override void EnemyDeath()
+    {
+     
+        base.EnemyDeath();
+        globalEnemyManager.EmptyMeleeZombies(gameObject);
+       
+    }
 
 }

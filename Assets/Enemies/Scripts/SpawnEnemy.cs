@@ -9,13 +9,29 @@ using System;
 public class SpawnEnemy : MonoBehaviour
 {
     public List<GameObject> enemySpawns = new List<GameObject>();
+
     public GameObject enemyPrefab;
     public ParticleSystem spawnParticle;
+    public bool spawnAfter;
+    public int waveAmount = 0;
     private void OnTriggerEnter(Collider other)
     {
+        
         Player player = other.GetComponent<Player>();
     
         if (!player) return;
+
+        Collider box = gameObject.GetComponent<Collider>();
+        box.enabled = false;
+
+
+        if (spawnAfter)
+        {
+            GlobalEnemyManager.delayedSpawns.Add(gameObject);
+            return;
+        }
+        
+
 
         foreach (GameObject spawn in enemySpawns)
         {
@@ -28,13 +44,11 @@ public class SpawnEnemy : MonoBehaviour
         
         Debug.Log("Player Entered!");
 
-        Collider box = gameObject.GetComponent<Collider>();
-     
-        box.enabled = false;
+      
         Destroy(gameObject, 2f);
     }
 
-    private IEnumerator SpawnIn(GameObject spawn, float time)
+    public IEnumerator SpawnIn(GameObject spawn, float time)
     {
         yield return new WaitForSeconds(time);
         Instantiate(enemyPrefab, spawn.transform.position, Quaternion.identity);

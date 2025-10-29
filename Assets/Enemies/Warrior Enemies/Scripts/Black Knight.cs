@@ -7,7 +7,7 @@ public class BlackKnight : navmeshtestscript
     [SerializeField] private Transform swordLocation;
     private int[] storedNumber = new int[1];
     int oldNumber;
-
+    bool doOnce = true;
   
 
 
@@ -19,8 +19,8 @@ public class BlackKnight : navmeshtestscript
 
     private void SwitchAttackType()
     {
+        
 
-       
 
         oldNumber = storedNumber[0];
 
@@ -32,6 +32,21 @@ public class BlackKnight : navmeshtestscript
             storedNumber[0] = randomNumber;
         }
 
+
+        if (doOnce)
+        {
+            Instantiate(swordParticle, swordLocation);
+            switch (storedNumber[0])
+            {
+                case 0: LoopChildren(Color.red); break;
+                case 1: LoopChildren(Color.green); break;
+                case 2: LoopChildren(Color.blue); break;
+            }
+
+            oldNumber = storedNumber[0];
+            doOnce = false;
+        }
+
         Instantiate(swordParticle, swordLocation);
         switch(storedNumber[0])
         {
@@ -39,9 +54,12 @@ public class BlackKnight : navmeshtestscript
             case 1: LoopChildren(Color.green); break;
             case 2: LoopChildren(Color.blue); break;
         }
-
+      
+      
       //  Debug.Log($"Before : {oldNumber}");
     }
+
+    
 
     private void LoopChildren(Color colour)
     {
@@ -55,6 +73,8 @@ public class BlackKnight : navmeshtestscript
     private void DamagePlayer()
     {
       //  Debug.Log($"After : {oldNumber}");
+      
+        
         switch (oldNumber)
         {
             case 0: if (BlockAttacks.particleInUse != BlockAttacks.ParticleInUse.red) player.TakeDamage(25); break;

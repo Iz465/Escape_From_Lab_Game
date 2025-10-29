@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using UnityEngine;
 
 public class MeleeHitDetection : MonoBehaviour
@@ -7,8 +8,8 @@ public class MeleeHitDetection : MonoBehaviour
     public static bool canTrigger;
     public static float damage;
     [SerializeField] private Animator animator;
+    [HideInInspector] public static HashSet<navmeshtestscript> enemiesHit = new HashSet<navmeshtestscript>();
 
-  
 
     private void Start()
     {

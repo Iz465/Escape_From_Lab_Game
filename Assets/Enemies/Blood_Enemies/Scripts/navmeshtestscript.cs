@@ -4,9 +4,11 @@ using System.Runtime.CompilerServices;
 using UnityEditor;
 using UnityEditor.Rendering.LookDev;
 using UnityEngine;
+using Unity.MLAgents;
 using UnityEngine.AI;
+using Unity.MLAgents.Actuators;
 
-public class navmeshtestscript : MonoBehaviour // Readd this to to the chase ai script.
+public class navmeshtestscript : Agent // Readd this to to the chase ai script.
 {
     // Stats
     [Header("Stats")]
@@ -21,7 +23,7 @@ public class navmeshtestscript : MonoBehaviour // Readd this to to the chase ai 
     [Header("Blood Stuff")]
     [SerializeField] protected GameObject blood;
     [SerializeField] protected List<Transform> bloodHits;
-
+    [SerializeField] private Transform particleHitLocation;
   
     [SerializeField] private string enemyPrefab;
     private static GameObject currentEnemyAttacking;
@@ -188,7 +190,7 @@ public class navmeshtestscript : MonoBehaviour // Readd this to to the chase ai 
     virtual public void TakeDamage(float damageTaken)
     {
         Debug.Log(enemyCollider);
-        if (player.playerHitParticle) Instantiate(player.playerHitParticle, enemyCollider.bounds.center + new Vector3(0, 2, 0), transform.rotation); // bandaid solution
+        if (player.playerHitParticle) Instantiate(player.playerHitParticle, particleHitLocation.position, Quaternion.identity); 
         if (blood) ShowBlood();
         health -= damageTaken;
         Debug.Log($"Taking damage! Health Left : {health}");
@@ -219,7 +221,7 @@ public class navmeshtestscript : MonoBehaviour // Readd this to to the chase ai 
 
      
         player.stats.health += healthGain;
-        player.stats.health = Mathf.Clamp(player.stats.health, 0, 100);
+      // player.stats.health = Mathf.Clamp(player.stats.health, 0, 100);
         
  
 
@@ -272,7 +274,10 @@ public class navmeshtestscript : MonoBehaviour // Readd this to to the chase ai 
         }
     }
 
-
+    public override void OnActionReceived(ActionBuffers actions)
+    {
+        base.OnActionReceived(actions);
+    }
 
 }
 

@@ -195,6 +195,37 @@ Transform:
   m_Children: []
   m_Father: {fileID: 8313933614182248785}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &7612656036009458064
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 3221717348355595643}
+  m_Layer: 7
+  m_Name: Particle hit location
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &3221717348355595643
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7612656036009458064}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -0.0004, y: -0, z: -0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 8313933614182248785}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &4382869902503593405
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -489,6 +520,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: -3480699329000672020, guid: 955fa8d74deb1aa42a89eb634ed0c8f1, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1099032301679575699}
+    - targetCorrespondingSourceObject: {fileID: -3480699329000672020, guid: 955fa8d74deb1aa42a89eb634ed0c8f1, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 3221717348355595643}
     - targetCorrespondingSourceObject: {fileID: -3480699329000672020, guid: 955fa8d74deb1aa42a89eb634ed0c8f1, type: 3}
       insertIndex: -1
       addedObject: {fileID: 2575791086746097223}
@@ -1109,12 +1143,14 @@ MonoBehaviour:
   roamDelay: 5
   attackRange: 100
   corpse: {fileID: 0}
+  canHitMultiple: 0
   blood: {fileID: 767729875679334921, guid: 754caa0e01b13eb4b9186463b5f2afdd, type: 3}
   bloodHits:
   - {fileID: 1099032301679575699}
   - {fileID: 7874847121397989753}
   - {fileID: 3947785200608197505}
   - {fileID: 2575791086746097223}
+  particleHitLocation: {fileID: 3221717348355595643}
   enemyPrefab: 
   canAttack: 1
   corpseParts:

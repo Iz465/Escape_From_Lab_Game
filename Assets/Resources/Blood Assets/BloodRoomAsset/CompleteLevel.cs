@@ -7,6 +7,7 @@ public class CompleteLevel : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
+        if (GlobalEnemyManager.totalEnemies.Count == 0) GlobalEnemyManager.levelComplete = true; 
         Player player = other.GetComponent<Player>();
         if (!player) return;
         if (GlobalEnemyManager.levelComplete)

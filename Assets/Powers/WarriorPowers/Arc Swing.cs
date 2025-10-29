@@ -129,6 +129,7 @@ public class ArcSwing : BasePower
     private CameraShake cameraShake;
     private void CanArcSwipe()
     {
+        MeleeHitDetection.enemiesHit.Clear();
         MeleeHitDetection.canTrigger = true;
 
         if (number > 0)

@@ -1,5 +1,6 @@
 using System.Collections;
 using UnityEngine;
+using UnityEngine.ProBuilder.MeshOperations;
 
 public class EvilKnight : navmeshtestscript
 {
@@ -17,17 +18,23 @@ public class EvilKnight : navmeshtestscript
 
 
     private bool canHit = false;
+
+
     protected override void AttackPlayer()
     {
+     //   if (!GlobalEnemyManager.globalCanAttack) return;
+
         canAttack = false;
         rotateSpeed = 20;
+
         int randomNumber = Random.Range(0, 2);
-    
+
         if (randomNumber == 0)
         {
             Instantiate(redAttack, castLocation);
             animator.SetTrigger("Swipe");
         }
+
         if (randomNumber == 1)
         {
             Instantiate(greenAttack, castLocation); ;
@@ -36,8 +43,9 @@ public class EvilKnight : navmeshtestscript
         }
 
 
-
     }
+
+ 
 
  
 
@@ -67,6 +75,7 @@ public class EvilKnight : navmeshtestscript
     {
         yield return new WaitForSeconds(time);
         canAttack = true;
+    
     }
 
     private ParticleSystem summonMagic;
@@ -76,30 +85,20 @@ public class EvilKnight : navmeshtestscript
 
     }
 
-    private void CastMagic()
-    {
-        summonMagic.Stop();
-        GameObject magicCastInstance = Instantiate(magicCast, castLocation.position + new Vector3(0, 0.5f, 0), transform.rotation);
-        Rigidbody body = magicCastInstance.GetComponent<Rigidbody>();
-        if (!body) return;
-        Collider collider = player.GetComponent<Collider>();
-        Vector3 aimDirection = (collider.bounds.center - castLocation.position).normalized;
-        body.collisionDetectionMode = CollisionDetectionMode.Continuous;
-        body.AddForce(aimDirection * 100, ForceMode.Impulse);
-      
-    }
+ 
+    
 
     private void EnableHit()
     {
         AnimatorStateInfo state = animator.GetCurrentAnimatorStateInfo(0);
         if (state.IsName("Swipe"))
         {
-            if (BlockAttacks.particleInUse != BlockAttacks.ParticleInUse.red) player.TakeDamage(35);
+            if (BlockAttacks.particleInUse != BlockAttacks.ParticleInUse.red) player.TakeDamage(15);
         }
            
         else if (state.IsName("Down Attack"))
         {
-            if (BlockAttacks.particleInUse != BlockAttacks.ParticleInUse.green) player.TakeDamage(35);
+            if (BlockAttacks.particleInUse != BlockAttacks.ParticleInUse.green) player.TakeDamage(15);
         }
          
 
@@ -109,6 +108,8 @@ public class EvilKnight : navmeshtestscript
     private void DisableHit()
     {
         canHit = false;
+
+
     }
 
 

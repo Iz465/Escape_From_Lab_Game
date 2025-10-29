@@ -93,6 +93,37 @@ Transform:
   m_Children: []
   m_Father: {fileID: 3640417612249224314}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1202722196456065593
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 416327965323180568}
+  m_Layer: 7
+  m_Name: particle hit location
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &416327965323180568
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1202722196456065593}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -0.00019, y: 0.00114, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 652845376615096337}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1852886250167398511
 GameObject:
   m_ObjectHideFlags: 0
@@ -589,15 +620,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: d0ded03e6a7e0084d92ee10ebb8c119d, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 73.05877
+      value: 51.20827
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: d0ded03e6a7e0084d92ee10ebb8c119d, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 2.88
+      value: 0.18401814
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: d0ded03e6a7e0084d92ee10ebb8c119d, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -2.0981479
+      value: 23.040455
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: d0ded03e6a7e0084d92ee10ebb8c119d, type: 3}
       propertyPath: m_LocalRotation.w
@@ -873,6 +904,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: -5170673948360647890, guid: d0ded03e6a7e0084d92ee10ebb8c119d, type: 3}
       insertIndex: -1
       addedObject: {fileID: 8428269785789527559}
+    - targetCorrespondingSourceObject: {fileID: -5170673948360647890, guid: d0ded03e6a7e0084d92ee10ebb8c119d, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 416327965323180568}
     - targetCorrespondingSourceObject: {fileID: -8956515485712765115, guid: d0ded03e6a7e0084d92ee10ebb8c119d, type: 3}
       insertIndex: -1
       addedObject: {fileID: 741693424685514780}
@@ -901,6 +935,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: d0ded03e6a7e0084d92ee10ebb8c119d, type: 3}
       insertIndex: -1
       addedObject: {fileID: 4801555813580178913}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: d0ded03e6a7e0084d92ee10ebb8c119d, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 7979763514396763758}
     - targetCorrespondingSourceObject: {fileID: 5528860797864257434, guid: d0ded03e6a7e0084d92ee10ebb8c119d, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1183103624585125151}
@@ -1573,8 +1610,8 @@ NavMeshAgent:
   m_GameObject: {fileID: 4463108774348179054}
   m_Enabled: 1
   m_AgentTypeID: 0
-  m_Radius: 3
-  m_Speed: 4
+  m_Radius: 2
+  m_Speed: 15
   m_Acceleration: 100
   avoidancePriority: 50
   m_AngularSpeed: 1000
@@ -1582,10 +1619,10 @@ NavMeshAgent:
   m_AutoTraverseOffMeshLink: 1
   m_AutoBraking: 1
   m_AutoRepath: 1
-  m_Height: 2
+  m_Height: 3
   m_BaseOffset: 0
   m_WalkableMask: 4294967295
-  m_ObstacleAvoidanceType: 4
+  m_ObstacleAvoidanceType: 1
 --- !u!114 &6247569792779905682
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1598,10 +1635,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 88b00ef25b5ca3143bf389321f52849d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  agentParameters:
+    maxStep: 0
+  hasUpgradedFromAgentParameters: 1
+  MaxStep: 0
   health: 100
   roamRadius: 100
   roamDelay: 2
-  attackRange: 4
+  attackRange: 5
   corpse: {fileID: 0}
   canHitMultiple: 0
   blood: {fileID: 767729875679334921, guid: 754caa0e01b13eb4b9186463b5f2afdd, type: 3}
@@ -1611,6 +1652,7 @@ MonoBehaviour:
   - {fileID: 5380978059386471739}
   - {fileID: 1447147007367027757}
   - {fileID: 168976935395505970}
+  particleHitLocation: {fileID: 416327965323180568}
   enemyPrefab: 
   canAttack: 1
   corpseParts:
@@ -1668,6 +1710,36 @@ CapsuleCollider:
   m_Height: 8
   m_Direction: 1
   m_Center: {x: 0.0043112636, y: 0.1906848, z: -0.023188949}
+--- !u!114 &7979763514396763758
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4463108774348179054}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5d1c4e0b1822b495aa52bc52839ecb30, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_BrainParameters:
+    VectorObservationSize: 1
+    NumStackedVectorObservations: 1
+    m_ActionSpec:
+      m_NumContinuousActions: 0
+      BranchSizes: 01000000
+    VectorActionSize: 01000000
+    VectorActionDescriptions: []
+    VectorActionSpaceType: 0
+    hasUpgradedBrainParametersWithActionSpec: 1
+  m_Model: {fileID: 0}
+  m_InferenceDevice: 0
+  m_BehaviorType: 0
+  m_BehaviorName: Enemy DDA
+  TeamId: 0
+  m_UseChildSensors: 1
+  m_UseChildActuators: 1
+  m_ObservableAttributeHandling: 0
 --- !u!1 &4801243675105371163 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 8327223564818308900, guid: d0ded03e6a7e0084d92ee10ebb8c119d, type: 3}

@@ -1,0 +1,29 @@
+{
+    "Soldier": {
+        "checkpoints": [
+            {
+                "steps": 320,
+                "file_path": "results\\ppo\\Soldier\\Soldier-320.onnx",
+                "reward": null,
+                "creation_time": 1761653423.6702726,
+                "auxillary_file_paths": [
+                    "results\\ppo\\Soldier\\Soldier-320.pt"
+                ]
+            }
+        ],
+        "final_checkpoint": {
+            "steps": 320,
+            "file_path": "results\\ppo\\Soldier.onnx",
+            "reward": null,
+            "creation_time": 1761653423.6702726,
+            "auxillary_file_paths": [
+                "results\\ppo\\Soldier\\Soldier-320.pt"
+            ]
+        }
+    },
+    "metadata": {
+        "stats_format_version": "0.3.0",
+        "mlagents_version": "1.1.0",
+        "torch_version": "2.5.1+cu121"
+    }
+}

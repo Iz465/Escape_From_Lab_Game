@@ -1,22 +1,37 @@
 using System.Collections;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.AI;
 
-[ExecuteInEditMode]
 public class Trash : MonoBehaviour
 {
-    [SerializeField] GameObject tile;
-    private void OnEnable()
+    public Transform enemy;
+    public float health;
+    float lastDamage;
+
+    private void Start()
     {
-        for (int x = 0; x < 15; x+=3)
+        //StartCoroutine(Chase());
+    }
+
+    IEnumerator Chase()
+    {
+        while (true)
         {
-            for (int z = 0; z < 200; z+=3)
-            {
-                GameObject newTile = Instantiate(tile);
-                newTile.transform.parent = GameObject.Find("FallingTiles").transform;
-                newTile.transform.position = transform.position + transform.right * x;
-                newTile.transform.position += transform.forward * z;
-            }
+            GetComponent<NavMeshAgent>().SetDestination(enemy.position);
+            yield return new WaitForSeconds(1);
+
         }
+    }
+
+    public bool TakeDamage()
+    {
+        if(Time.time > lastDamage)
+        {
+            lastDamage = Time.time + 1;
+            health -= 5;
+            return true;
+        }
+        return false;
     }
 }

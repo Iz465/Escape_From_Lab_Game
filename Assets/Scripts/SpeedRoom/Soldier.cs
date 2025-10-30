@@ -1,19 +1,20 @@
 using System.Collections;
 using UnityEngine;
 using UnityEngine.AI;
+using Unity.MLAgents;
 
 public class Soldier : ChaseAI
 {
     
-    Vector3 startChasingPlayer;
+    public Vector3 startChasingPlayer;
     public Transform muzzle;
     public GameObject bullet;
     
 
-    [SerializeField] float shootDelay, shootSpeed, timeBetweenBullet;
-    [SerializeField] float stunned, hitStunTime;
+    public float shootDelay, shootSpeed, timeBetweenBullet;
+    public float stunned, hitStunTime;
 
-    float timeWhenSeenPlayer = 0;
+    public float timeWhenSeenPlayer = 0;
     float lastBullet;
 
     void Start()
@@ -61,7 +62,7 @@ public class Soldier : ChaseAI
 
     }
 
-    bool DetectPlayer()
+    public bool DetectPlayer()
     {
         if (DetectObj(plr))
         {
@@ -88,7 +89,7 @@ public class Soldier : ChaseAI
         return false;
     }
     
-    void ShootPlayer()
+    public void ShootPlayer()
     {
         Vector3 relativePos = plr.position - transform.position;
         Vector3 normal = relativePos.normalized;

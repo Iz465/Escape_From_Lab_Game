@@ -338,6 +338,30 @@ PrefabInstance:
       propertyPath: m_Layer
       value: 7
       objectReference: {fileID: 0}
+    - target: {fileID: -3980780951373865430, guid: 955fa8d74deb1aa42a89eb634ed0c8f1, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: 36753fd6035552542b46673dfd5c6515, type: 2}
+    - target: {fileID: -3980780951373865430, guid: 955fa8d74deb1aa42a89eb634ed0c8f1, type: 3}
+      propertyPath: 'm_Materials.Array.data[1]'
+      value: 
+      objectReference: {fileID: 2100000, guid: 36753fd6035552542b46673dfd5c6515, type: 2}
+    - target: {fileID: -3980780951373865430, guid: 955fa8d74deb1aa42a89eb634ed0c8f1, type: 3}
+      propertyPath: 'm_Materials.Array.data[2]'
+      value: 
+      objectReference: {fileID: 2100000, guid: a8e6fa71d74b319418bc7d2e67c9cd57, type: 2}
+    - target: {fileID: -3980780951373865430, guid: 955fa8d74deb1aa42a89eb634ed0c8f1, type: 3}
+      propertyPath: 'm_Materials.Array.data[3]'
+      value: 
+      objectReference: {fileID: 2100000, guid: 36753fd6035552542b46673dfd5c6515, type: 2}
+    - target: {fileID: -3980780951373865430, guid: 955fa8d74deb1aa42a89eb634ed0c8f1, type: 3}
+      propertyPath: 'm_Materials.Array.data[4]'
+      value: 
+      objectReference: {fileID: 2100000, guid: a8e6fa71d74b319418bc7d2e67c9cd57, type: 2}
+    - target: {fileID: -3980780951373865430, guid: 955fa8d74deb1aa42a89eb634ed0c8f1, type: 3}
+      propertyPath: 'm_Materials.Array.data[5]'
+      value: 
+      objectReference: {fileID: 2100000, guid: a8e6fa71d74b319418bc7d2e67c9cd57, type: 2}
     - target: {fileID: -3799395697873186154, guid: 955fa8d74deb1aa42a89eb634ed0c8f1, type: 3}
       propertyPath: m_Layer
       value: 7
@@ -396,7 +420,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 955fa8d74deb1aa42a89eb634ed0c8f1, type: 3}
       propertyPath: m_Name
-      value: Evil Wizard
+      value: Agent Wizard
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 955fa8d74deb1aa42a89eb634ed0c8f1, type: 3}
       propertyPath: m_Layer
@@ -520,9 +544,6 @@ PrefabInstance:
       addedObject: {fileID: 4320608544420388736}
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 955fa8d74deb1aa42a89eb634ed0c8f1, type: 3}
       insertIndex: -1
-      addedObject: {fileID: 5615487812961025621}
-    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 955fa8d74deb1aa42a89eb634ed0c8f1, type: 3}
-      insertIndex: -1
       addedObject: {fileID: -353530974294157111}
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 955fa8d74deb1aa42a89eb634ed0c8f1, type: 3}
       insertIndex: -1
@@ -535,7 +556,10 @@ PrefabInstance:
       addedObject: {fileID: 1417701695281645010}
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 955fa8d74deb1aa42a89eb634ed0c8f1, type: 3}
       insertIndex: -1
-      addedObject: {fileID: 8459855430430507372}
+      addedObject: {fileID: 5658254635342082642}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 955fa8d74deb1aa42a89eb634ed0c8f1, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 448124037800705935}
     - targetCorrespondingSourceObject: {fileID: 1082271958561512970, guid: 955fa8d74deb1aa42a89eb634ed0c8f1, type: 3}
       insertIndex: -1
       addedObject: {fileID: 7598273955065257397}
@@ -1067,45 +1091,6 @@ CharacterController:
   m_SkinWidth: 0.08
   m_MinMoveDistance: 0.001
   m_Center: {x: 0, y: 0.085, z: 0}
---- !u!114 &5615487812961025621
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3463968663809784044}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8dee01f764c90404c969807c1da06d6f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  agentParameters:
-    maxStep: 0
-  hasUpgradedFromAgentParameters: 1
-  MaxStep: 0
-  health: 100
-  roamRadius: 200
-  roamDelay: 10
-  attackRange: 15
-  attackName: 
-  canHitMultiple: 0
-  blood: {fileID: 767729875679334921, guid: 754caa0e01b13eb4b9186463b5f2afdd, type: 3}
-  bloodHitLocations: []
-  particleHitLocation: {fileID: 3800991417023825528}
-  CorpseParts: []
-  canAttack: 1
-  rotateSpeed: 5
-  healthGain: 0
-  power: {fileID: 6238471719548748225, guid: 9600bd1612759c1469ae03decff32ab4, type: 3}
-  speed: 150
-  instantAttackSpeed: 0.5
-  aimLoc: {fileID: 2405388752199314152}
-  beamPrefab: {fileID: 7539040078107595411, guid: 397f6d962876b71469454d13a388b377, type: 3}
-  circleInstantPrefab: {fileID: 6671519891469569489, guid: 16810fbafedb8484cb7b9320858738b6, type: 3}
-  instantAttackPrefab: {fileID: 7957833072274404953, guid: 3355f6bfa6db8b24281b827de929694c, type: 3}
-  playerLayer:
-    serializedVersion: 2
-    m_Bits: 8
 --- !u!64 &-353530974294157111
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -1272,7 +1257,7 @@ MonoBehaviour:
   radius: 13
   segments: 13
   toggleCircle: 0
---- !u!114 &8459855430430507372
+--- !u!114 &5658254635342082642
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -1302,6 +1287,48 @@ MonoBehaviour:
   m_UseChildSensors: 1
   m_UseChildActuators: 1
   m_ObservableAttributeHandling: 0
+--- !u!114 &448124037800705935
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3463968663809784044}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ed7aa45bc86d47940b64ede76475873f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  agentParameters:
+    maxStep: 0
+  hasUpgradedFromAgentParameters: 1
+  MaxStep: 0
+  health: 100
+  roamRadius: 50
+  roamDelay: 5
+  attackRange: 10
+  attackName: 
+  canHitMultiple: 0
+  blood: {fileID: 767729875679334921, guid: 754caa0e01b13eb4b9186463b5f2afdd, type: 3}
+  bloodHitLocations:
+  - {fileID: 397648718572592514}
+  - {fileID: 3118272327640504350}
+  - {fileID: 6231229195607476379}
+  - {fileID: 6346017711739067016}
+  particleHitLocation: {fileID: 3800991417023825528}
+  CorpseParts: []
+  canAttack: 1
+  rotateSpeed: 5
+  healthGain: 5
+  power: {fileID: 0}
+  speed: 0
+  instantAttackSpeed: 0
+  aimLoc: {fileID: 0}
+  circleInstantPrefab: {fileID: 0}
+  instantAttackPrefab: {fileID: 0}
+  playerLayer:
+    serializedVersion: 2
+    m_Bits: 8
 --- !u!1 &3735195381266815927 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 1082271958561512970, guid: 955fa8d74deb1aa42a89eb634ed0c8f1, type: 3}

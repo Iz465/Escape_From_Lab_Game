@@ -87,11 +87,8 @@ public class navmeshtestscript : Agent // Readd this to to the chase ai script.
     // Enemy Chases player and attacks when in certain range
     virtual protected void ChasePlayer()
     {
-        Vector3 lookDirection = player.transform.position - transform.position;
-        lookDirection.y = 0; // keeps horizontal rotation only
-        if (canRotate)
-            transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(lookDirection), Time.deltaTime * rotateSpeed);
-
+      
+        FacePlayer();
 
         if (distanceToPlayer > attackRange && canAttack)
         {
@@ -117,6 +114,13 @@ public class navmeshtestscript : Agent // Readd this to to the chase ai script.
         
     }
 
+    protected void FacePlayer()
+    {
+        Vector3 lookDirection = player.transform.position - transform.position;
+        lookDirection.y = 0; // keeps horizontal rotation only
+        if (canRotate)
+            transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(lookDirection), Time.deltaTime * rotateSpeed);
+    }
 
     virtual protected void AttackPlayer()
     {
@@ -216,11 +220,6 @@ public class navmeshtestscript : Agent // Readd this to to the chase ai script.
         }
     }
 
-    // Reinforcement Learning function
-    public override void OnActionReceived(ActionBuffers actions)
-    {
-        base.OnActionReceived(actions);
-    }
 
 }
 

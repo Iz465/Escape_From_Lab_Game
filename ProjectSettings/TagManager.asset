@@ -9,6 +9,8 @@ TagManager:
   - Enemy
   - Bullet
   - Spawn
+  - Wall
+  - Obstacle
   layers:
   - Default
   - TransparentFX
@@ -22,7 +24,7 @@ TagManager:
   - Corpse
   - EnemyAttack
   - Bullet
-  - 
+  - Wall
   - 
   - 
   - 

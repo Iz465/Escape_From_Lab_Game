@@ -163,10 +163,17 @@ public class AgentMage : navmeshtestscript
     public override void OnActionReceived(ActionBuffers actions)
     {
         int chosenAttack = actions.DiscreteActions[0]; 
-        //    int attackChoice = actions.DiscreteActions[0];
+
+        switch (chosenAttack)
+        {
+            case 0: Debug.Log("NOTHING"); break;
+            case 1: animator.SetBool("CanAttack", true); break;
+            case 2: InstantAttack(); break;
+        }
+
     }
 
-
+   
 
 }
 
@@ -188,11 +195,3 @@ public class AgentMage : navmeshtestscript
 
 
 
-
-/*
-   if (attack)
-        animator.SetBool("CanAttack", true);
-
-    else if (instantAttack)
-        animator.SetBool("InstantAttack", true);
-*/

@@ -24,10 +24,22 @@ public class navmeshtestscript : Agent // Readd this to to the chase ai script.
     [SerializeField] protected GameObject blood;
     [SerializeField] protected List<Transform> bloodHitLocations;
     [SerializeField] private Transform particleHitLocation;
-    [SerializeField] private List<GameObject> CorpseParts;
-  
 
-   
+    [System.Serializable]
+    public struct CorpseParts
+    {
+        public GameObject head;
+        public GameObject torso;
+        public GameObject leftHand;
+        public GameObject rightHand;
+        public GameObject legs;
+
+    }
+
+    [SerializeField] private CorpseParts corpseParts;
+
+
+
     [Header("Objects")]
     protected Player player;
 
@@ -188,20 +200,28 @@ public class navmeshtestscript : Agent // Readd this to to the chase ai script.
         // player.stats.health = Mathf.Clamp(player.stats.health, 0, player.stats.maxHealth);
 
 
-        if (CorpseParts.Count > 0)
-            foreach (GameObject corpse in CorpseParts)
-                MakeRagdoll(corpse, 2);
+        if (corpseParts.head)
+            MakeRagdoll(corpseParts.head, 3);
+        if (corpseParts.legs)
+            MakeRagdoll(corpseParts.legs, 1);
+        if (corpseParts.rightHand)
+            MakeRagdoll(corpseParts.rightHand, 2.5f);
+        if (corpseParts.leftHand)
+            MakeRagdoll(corpseParts.leftHand, 2.5f);
+        if (corpseParts.torso)
+            MakeRagdoll(corpseParts.torso, 2.5f);
 
         Destroy(gameObject);
     }
 
     // dismemberment for when enemy dies
-    private void MakeRagdoll(GameObject bodypart, float height)
+    private void MakeRagdoll(GameObject bodypart, float heightSpawn)
     {
         if (bodypart)
         {
+           
 
-            GameObject ragdoll = Instantiate(bodypart, transform.position + new Vector3(0, height, 0), Quaternion.identity);
+            GameObject ragdoll = Instantiate(bodypart, transform.position + new Vector3(0, heightSpawn, 0), Quaternion.identity);
             Vector3 hitDirection = (ragdoll.transform.position - player.transform.position).normalized;
             ragdoll.transform.rotation = Quaternion.LookRotation(hitDirection) * Quaternion.Euler(90, 0, 0);
 

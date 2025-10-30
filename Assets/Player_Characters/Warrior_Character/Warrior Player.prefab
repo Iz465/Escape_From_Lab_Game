@@ -233,7 +233,7 @@ MonoBehaviour:
   velocity: {x: 0, y: 0, z: 0}
   useOtherScript: 0
   walkSpeed: 9
-  runSpeed: 9
+  runSpeed: 0
   fallAcceleration: 5
   jumpStrength: 1
   torso: {fileID: 2445496611538726915}

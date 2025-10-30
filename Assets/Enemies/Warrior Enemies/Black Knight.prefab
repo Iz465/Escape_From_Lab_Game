@@ -1688,10 +1688,21 @@ MonoBehaviour:
   attackName: Combo
   canHitMultiple: 0
   blood: {fileID: 767729875679334921, guid: 754caa0e01b13eb4b9186463b5f2afdd, type: 3}
-  bloodHitLocations: []
+  bloodHitLocations:
+  - {fileID: 7715489484732115941}
+  - {fileID: 6368807161842201524}
+  - {fileID: 5380978059386471739}
+  - {fileID: 1447147007367027757}
+  - {fileID: 168976935395505970}
   particleHitLocation: {fileID: 5762534182723256147}
-  CorpseParts: []
+  CorpseParts:
+  - {fileID: 1604589698921734978, guid: 1422ffee39ce39a47b06e8835f629dd2, type: 3}
+  - {fileID: 1878968904969398724, guid: 2329cb49b7c1ba648b9deab8fd32c32b, type: 3}
+  - {fileID: 1878968904969398724, guid: 2329cb49b7c1ba648b9deab8fd32c32b, type: 3}
+  - {fileID: 992527465005872472, guid: ac1d22ed94cb7004a8a17517c065fb8c, type: 3}
+  - {fileID: 992527465005872472, guid: ac1d22ed94cb7004a8a17517c065fb8c, type: 3}
   canAttack: 1
+  rotateSpeed: 5
   healthGain: 10
   swordParticle: {fileID: 2879452947444175344, guid: ce08d9904c4049440be9fc3de8b462c6, type: 3}
   swordLocation: {fileID: 1773943180945175834}

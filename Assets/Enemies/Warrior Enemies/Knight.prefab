@@ -1643,31 +1643,26 @@ MonoBehaviour:
   roamRadius: 100
   roamDelay: 2
   attackRange: 5
-  corpse: {fileID: 0}
+  attackName: 
   canHitMultiple: 0
   blood: {fileID: 767729875679334921, guid: 754caa0e01b13eb4b9186463b5f2afdd, type: 3}
-  bloodHits:
+  bloodHitLocations:
   - {fileID: 7715489484732115941}
   - {fileID: 6368807161842201524}
   - {fileID: 5380978059386471739}
   - {fileID: 1447147007367027757}
   - {fileID: 168976935395505970}
   particleHitLocation: {fileID: 416327965323180568}
-  enemyPrefab: 
+  CorpseParts:
+  - {fileID: 5849806002785049450, guid: e2fa783723ed3544ab472c458a2073db, type: 3}
+  - {fileID: 225219796637203980, guid: f9819212a3097fd4292a3d4fa6d868ca, type: 3}
+  - {fileID: 5567144750261314305, guid: 0a4af13a8fb0ea34295595a10fe0841a, type: 3}
+  - {fileID: 6302059327597822620, guid: ec342f1dbb1572b45a84a04d9daf5caa, type: 3}
+  - {fileID: 6302059327597822620, guid: ec342f1dbb1572b45a84a04d9daf5caa, type: 3}
   canAttack: 1
-  corpseParts:
-    head: {fileID: 1604589698921734978, guid: b492f241b69311041b5ab9ac2ea2818f, type: 3}
-    torso: {fileID: 992527465005872472, guid: 66dad26443b539d40accb808d89c101a, type: 3}
-    leftHand: {fileID: 1878968904969398724, guid: 2329cb49b7c1ba648b9deab8fd32c32b, type: 3}
-    rightHand: {fileID: 1878968904969398724, guid: 2329cb49b7c1ba648b9deab8fd32c32b, type: 3}
-    legs: {fileID: 992527465005872472, guid: 66dad26443b539d40accb808d89c101a, type: 3}
+  rotateSpeed: 5
   healthGain: 5
-  magicAttack: {fileID: 2879452947444175344, guid: 8c49b35febea4514b87b37f643064ed4, type: 3}
-  magicCast: {fileID: 6238471719548748225, guid: 9600bd1612759c1469ae03decff32ab4, type: 3}
   castLocation: {fileID: 1773943180945175834}
-  playerLayer:
-    serializedVersion: 2
-    m_Bits: 8
   redAttack: {fileID: 2879452947444175344, guid: b1d0180c491663b4495930ea2aad7b17, type: 3}
   greenAttack: {fileID: 2879452947444175344, guid: 996b13cf095985e4698af08ffb6adac9, type: 3}
   blueAttack: {fileID: 2879452947444175344, guid: d5ed8372b80f8d24ca18df92d4631f2e, type: 3}

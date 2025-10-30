@@ -585,9 +585,17 @@ MonoBehaviour:
   attackName: MeleeCombo
   canHitMultiple: 0
   blood: {fileID: 767729875679334921, guid: 754caa0e01b13eb4b9186463b5f2afdd, type: 3}
-  bloodHitLocations: []
+  bloodHitLocations:
+  - {fileID: 8424804657445341403}
+  - {fileID: 2336257368952218631}
+  - {fileID: 2183810033921762029}
   particleHitLocation: {fileID: 9208320289957442858}
-  CorpseParts: []
+  CorpseParts:
+  - {fileID: 1604589698921734978, guid: b492f241b69311041b5ab9ac2ea2818f, type: 3}
+  - {fileID: 1878968904969398724, guid: 2329cb49b7c1ba648b9deab8fd32c32b, type: 3}
+  - {fileID: 1878968904969398724, guid: 2329cb49b7c1ba648b9deab8fd32c32b, type: 3}
+  - {fileID: 992527465005872472, guid: 66dad26443b539d40accb808d89c101a, type: 3}
+  - {fileID: 992527465005872472, guid: 66dad26443b539d40accb808d89c101a, type: 3}
   canAttack: 1
   rotateSpeed: 100
   healthGain: 2

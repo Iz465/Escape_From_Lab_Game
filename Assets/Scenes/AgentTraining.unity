@@ -143,7 +143,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4522772}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 7a5ac11cc976e418e8d13136b07e1f52, type: 3}
   m_Name: 
@@ -217,7 +217,7 @@ BoxCollider:
     serializedVersion: 2
     m_Bits: 0
   m_LayerOverridePriority: 0
-  m_IsTrigger: 1
+  m_IsTrigger: 0
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
@@ -598,7 +598,7 @@ PrefabInstance:
     - target: {fileID: 4604555960342556399, guid: 5c10accc304513b46bb7365ed7758847, type: 3}
       propertyPath: m_Model
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 5022602860645237092, guid: f357a877de77bb34ea39aa61273d09a3, type: 3}
     - target: {fileID: 4604555960342556399, guid: 5c10accc304513b46bb7365ed7758847, type: 3}
       propertyPath: m_Enabled
       value: 1
@@ -617,7 +617,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4604555960342556399, guid: 5c10accc304513b46bb7365ed7758847, type: 3}
       propertyPath: m_BrainParameters.VectorActionSpaceType
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4604555960342556399, guid: 5c10accc304513b46bb7365ed7758847, type: 3}
       propertyPath: m_BrainParameters.VectorObservationSize
@@ -629,15 +629,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4604555960342556399, guid: 5c10accc304513b46bb7365ed7758847, type: 3}
       propertyPath: 'm_BrainParameters.VectorActionSize.Array.data[0]'
-      value: 6
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 4604555960342556399, guid: 5c10accc304513b46bb7365ed7758847, type: 3}
       propertyPath: m_BrainParameters.m_ActionSpec.BranchSizes.Array.size
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4604555960342556399, guid: 5c10accc304513b46bb7365ed7758847, type: 3}
       propertyPath: m_BrainParameters.m_ActionSpec.m_NumContinuousActions
-      value: 0
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 4604555960342556399, guid: 5c10accc304513b46bb7365ed7758847, type: 3}
       propertyPath: 'm_BrainParameters.m_ActionSpec.BranchSizes.Array.data[0]'
@@ -676,9 +676,25 @@ PrefabInstance:
       value: 100
       objectReference: {fileID: 0}
     - target: {fileID: 5302654274822150268, guid: 5c10accc304513b46bb7365ed7758847, type: 3}
+      propertyPath: lowerX
+      value: 307.6
+      objectReference: {fileID: 0}
+    - target: {fileID: 5302654274822150268, guid: 5c10accc304513b46bb7365ed7758847, type: 3}
+      propertyPath: lowerZ
+      value: 12.2
+      objectReference: {fileID: 0}
+    - target: {fileID: 5302654274822150268, guid: 5c10accc304513b46bb7365ed7758847, type: 3}
       propertyPath: target
       value: 
       objectReference: {fileID: 1789164027}
+    - target: {fileID: 5302654274822150268, guid: 5c10accc304513b46bb7365ed7758847, type: 3}
+      propertyPath: upperX
+      value: 325.3
+      objectReference: {fileID: 0}
+    - target: {fileID: 5302654274822150268, guid: 5c10accc304513b46bb7365ed7758847, type: 3}
+      propertyPath: upperZ
+      value: 33.6
+      objectReference: {fileID: 0}
     - target: {fileID: 5302654274822150268, guid: 5c10accc304513b46bb7365ed7758847, type: 3}
       propertyPath: MaxStep
       value: 5000
@@ -939,7 +955,7 @@ BoxCollider:
     serializedVersion: 2
     m_Bits: 0
   m_LayerOverridePriority: 0
-  m_IsTrigger: 1
+  m_IsTrigger: 0
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
@@ -1066,8 +1082,8 @@ Rigidbody:
     m_Bits: 0
   m_ImplicitCom: 1
   m_ImplicitTensor: 1
-  m_UseGravity: 1
-  m_IsKinematic: 0
+  m_UseGravity: 0
+  m_IsKinematic: 1
   m_Interpolate: 0
   m_Constraints: 116
   m_CollisionDetection: 1
@@ -1105,7 +1121,7 @@ BoxCollider:
     serializedVersion: 2
     m_Bits: 0
   m_LayerOverridePriority: 0
-  m_IsTrigger: 1
+  m_IsTrigger: 0
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
@@ -1213,7 +1229,7 @@ BoxCollider:
     serializedVersion: 2
     m_Bits: 0
   m_LayerOverridePriority: 0
-  m_IsTrigger: 1
+  m_IsTrigger: 0
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
@@ -1658,8 +1674,8 @@ Transform:
   m_GameObject: {fileID: 1789164022}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 315.59, y: 1.093, z: 14.56}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalPosition: {x: 315.59, y: 2.74, z: 14.56}
+  m_LocalScale: {x: 1, y: 5.0208, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}

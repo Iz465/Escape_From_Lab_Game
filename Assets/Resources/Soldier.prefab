@@ -368,6 +368,15 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 1859e53522c1ee741b9aaf23ed539aa5, type: 3}
       insertIndex: -1
       addedObject: {fileID: 2808745101407878188}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 1859e53522c1ee741b9aaf23ed539aa5, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 5302654274822150268}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 1859e53522c1ee741b9aaf23ed539aa5, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 4604555960342556399}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 1859e53522c1ee741b9aaf23ed539aa5, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 3953977015386693576}
   m_SourcePrefab: {fileID: 100100000, guid: 1859e53522c1ee741b9aaf23ed539aa5, type: 3}
 --- !u!4 &8530387768052934501 stripped
 Transform:
@@ -386,7 +395,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 9018975944430435807}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: c15ce818f4bcf5b46ab5f5fb3a35b2fe, type: 3}
   m_Name: 
@@ -399,6 +408,7 @@ MonoBehaviour:
   canHeal: 0
   healSpeed: 0
   healDelay: 0
+  startChasingPlayer: {x: 0, y: 0, z: 0}
   muzzle: {fileID: 4504587496865288004}
   bullet: {fileID: 7758289806434492142, guid: 98b5be0a374d62f4a8c6588accede7b2, type: 3}
   shootDelay: 0
@@ -406,6 +416,7 @@ MonoBehaviour:
   timeBetweenBullet: 0
   stunned: 0
   hitStunTime: 0
+  timeWhenSeenPlayer: 0
 --- !u!195 &2808745101407878188
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -428,3 +439,63 @@ NavMeshAgent:
   m_BaseOffset: 0
   m_WalkableMask: 4294967295
   m_ObstacleAvoidanceType: 4
+--- !u!114 &5302654274822150268
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9018975944430435807}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4c6efdd7f55359a4499e40464e822403, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  agentParameters:
+    maxStep: 0
+  hasUpgradedFromAgentParameters: 1
+  MaxStep: 0
+--- !u!114 &4604555960342556399
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9018975944430435807}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5d1c4e0b1822b495aa52bc52839ecb30, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_BrainParameters:
+    VectorObservationSize: 1
+    NumStackedVectorObservations: 1
+    m_ActionSpec:
+      m_NumContinuousActions: 0
+      BranchSizes: 05000000
+    VectorActionSize: 05000000
+    VectorActionDescriptions: []
+    VectorActionSpaceType: 0
+    hasUpgradedBrainParametersWithActionSpec: 1
+  m_Model: {fileID: 0}
+  m_InferenceDevice: 0
+  m_BehaviorType: 0
+  m_BehaviorName: My Behavior
+  TeamId: 0
+  m_UseChildSensors: 1
+  m_UseChildActuators: 1
+  m_ObservableAttributeHandling: 0
+--- !u!114 &3953977015386693576
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9018975944430435807}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3a5c9d521e5ef4759a8246a07d52221e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  DecisionPeriod: 5
+  TakeActionsBetweenDecisions: 1

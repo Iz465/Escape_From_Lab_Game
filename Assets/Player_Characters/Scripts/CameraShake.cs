@@ -12,22 +12,23 @@ public class CameraShake : MonoBehaviour
 
         float time = 0;
         Vector3 startLoc = transform.position;
-     
+
        
         while (time < timer)
         {
-            float x = Random.Range(xValue, xValue);
-            float y = Random.Range(yValue, yValue);
+            float x = Random.Range(.2f, .3f);
+            float y = Random.Range(.2f, .3f);
 
+            transform.position = startLoc + new Vector3(x, y, 0.08f);
 
-            transform.position = startLoc + new Vector3(x, y, 0f);
-   
+            //    transform.position = startLoc + new Vector3(x, y, 0f);
+
 
             time += Time.deltaTime;
             yield return null;
         }
 
-        transform.position = startLoc;
+        transform.position = startLoc; 
 
     }
 }

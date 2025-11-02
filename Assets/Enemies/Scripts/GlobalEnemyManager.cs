@@ -10,6 +10,8 @@ public class GlobalEnemyManager : MonoBehaviour
     public static HashSet<GameObject> enemiesInRange = new HashSet<GameObject>();
     public static HashSet<GameObject> totalEnemies = new HashSet<GameObject>();
     public static HashSet<GameObject> totalMeleeZombies = new HashSet<GameObject>();
+    public static HashSet<GameObject> totalEvilKnights = new HashSet<GameObject>();
+
 
 
     public static bool levelComplete;
@@ -55,10 +57,10 @@ public class GlobalEnemyManager : MonoBehaviour
     }
 
     // Activates enemy spawns that only happen when no enemies of a certain type are left.
-    public void EmptyMeleeZombies(GameObject zombie)
+    public void RespawnEnemyWave(HashSet<GameObject> enemyType, GameObject enemy)
     {
-        totalMeleeZombies.Remove(zombie);
-        if (totalMeleeZombies.Count > 0) return;
+        enemyType.Remove(enemy);
+        if (enemyType.Count > 0) return;
 
 
         if (delayedSpawns.Count == 0) return;
@@ -66,7 +68,7 @@ public class GlobalEnemyManager : MonoBehaviour
         foreach (GameObject oldSpawn in delayedSpawns)
         {
             SpawnEnemy enemySpawn = oldSpawn.GetComponent<SpawnEnemy>();
-
+            StartCoroutine(enemySpawn.StartSound(1));
             foreach (GameObject spawn in enemySpawn.enemySpawns)
             {
                 Instantiate(enemySpawn.spawnParticle, spawn.transform.position, Quaternion.identity);
@@ -97,7 +99,53 @@ public class GlobalEnemyManager : MonoBehaviour
     }
 
 
+    public static bool canMakeSound = true;
+    public IEnumerator ResetSound(float time)
+    {
+        yield return new WaitForSeconds(time);
+        Debug.Log("SOUND RESET");
+        canMakeSound = true;
+    }
 
+  
 
+    int deathSounds = 3, attackSounds = 2, fleshSounds = 5, footstepSounds = 1;
 
+    
+
+    int deathAmount = 0, attackAmount = 0, fleshAmount = 0, footstepAmount = 0;
+    public void CheckEnemySound(AudioClip sound,  string soundType, AudioSource audioSouceInstance)
+    {
+        switch (soundType)
+        {
+            case "death":  if (deathAmount < deathSounds) StartCoroutine(PlayEnemySound(sound, "death", audioSouceInstance)); break;
+            case "attack": if (attackAmount < attackSounds) StartCoroutine(PlayEnemySound(sound, "attack", audioSouceInstance)); break;
+            case "flesh": if (fleshAmount < fleshSounds) StartCoroutine(PlayEnemySound(sound, "flesh", audioSouceInstance)); break;
+            case "footsteps": if (footstepAmount < footstepSounds) StartCoroutine(PlayEnemySound(sound, "footsteps", audioSouceInstance)); break;
+        }
+    }
+
+    public IEnumerator PlayEnemySound(AudioClip sound, string soundType, AudioSource audioSouceInstance)
+    {
+        audioSouceInstance.PlayOneShot(sound);
+        
+        switch (soundType)
+        {
+            case "death":  deathAmount++; break;
+            case "attack": attackAmount++; break;
+            case "flesh": fleshAmount++; break;
+            case "footsteps": footstepAmount++; break;
+        }
+
+        yield return new WaitForSeconds(sound.length);
+
+        switch (soundType)
+        {
+            case "death": deathAmount--; break;
+            case "attack": attackAmount--; break;
+            case "flesh": fleshAmount--; break;
+            case "footsteps": footstepAmount--; break;
+        }
+
+    }
 }

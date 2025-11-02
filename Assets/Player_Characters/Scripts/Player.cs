@@ -2,6 +2,7 @@ using Unity.MLAgents.Integrations.Match3;
 using Unity.VisualScripting.Antlr3.Runtime.Misc;
 using UnityEditor.SearchService;
 using UnityEngine;
+using UnityEngine.Audio;
 using UnityEngine.SceneManagement;
 
 public class Player : MonoBehaviour, IDamageTaken
@@ -21,7 +22,13 @@ public class Player : MonoBehaviour, IDamageTaken
     [HideInInspector] public static bool canDamage = true;
     [SerializeField] public ParticleSystem playerHitParticle;
 
-  
+    
+    public AudioSource audioSource;
+    private void Start()
+    {
+        audioSource = GetComponent<AudioSource>();
+    }
+
     // Player stamina regenerates over every frame.
     // Horizontal velocity of player is checked to see whether player animation state should run or be idle. 
     virtual protected void Update()

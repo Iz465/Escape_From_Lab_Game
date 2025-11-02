@@ -8,6 +8,8 @@ public class BreakableWall : MonoBehaviour
 {
     [SerializeField] private float health;
     [SerializeField] private List<GameObject> wallChunk = new List<GameObject>();
+    [SerializeField] public AudioClip hitSound;
+    public AudioSource audioSource;
 
     public static bool canHitWall;
     private static float staticHealth;
@@ -16,10 +18,12 @@ public class BreakableWall : MonoBehaviour
     private void Start()
     {
         staticHealth = 60;
+        audioSource = GetComponent<AudioSource>();
     }
 
     public void WallDamage(float damage)
     {
+        audioSource.PlayOneShot(hitSound);
         Debug.Log($"Health before: {staticHealth}");
         staticHealth -= damage;
         Debug.Log($"Health after: {staticHealth}");
@@ -30,7 +34,7 @@ public class BreakableWall : MonoBehaviour
     private void BreakWall()
     {
         staticHealth = 60;
-        
+        AudioSource.PlayClipAtPoint(hitSound, transform.position);
         Collider collider = GetComponent<Collider>();
         Bounds bounds = collider.bounds;
 

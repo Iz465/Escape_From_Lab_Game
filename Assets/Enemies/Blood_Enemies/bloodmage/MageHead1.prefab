@@ -129,7 +129,7 @@ Rigidbody:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1604589698921734978}
   serializedVersion: 5
-  m_Mass: 2
+  m_Mass: 1
   m_LinearDamping: 0
   m_AngularDamping: 0.05
   m_CenterOfMass: {x: 0, y: 0, z: 0}
@@ -240,6 +240,14 @@ PrefabInstance:
     - target: {fileID: 4000011382548710, guid: d32aa916f50cac94db11e6f19821a58f, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 198000010219076908, guid: d32aa916f50cac94db11e6f19821a58f, type: 3}
+      propertyPath: InitialModule.maxNumParticles
+      value: 100
+      objectReference: {fileID: 0}
+    - target: {fileID: 198000010219076908, guid: d32aa916f50cac94db11e6f19821a58f, type: 3}
+      propertyPath: InitialModule.startSize.scalar
+      value: 0.04
       objectReference: {fileID: 0}
     - target: {fileID: 199000011344805796, guid: d32aa916f50cac94db11e6f19821a58f, type: 3}
       propertyPath: 'm_Materials.Array.data[0]'

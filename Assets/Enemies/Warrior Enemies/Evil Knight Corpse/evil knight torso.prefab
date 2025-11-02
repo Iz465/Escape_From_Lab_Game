@@ -12,6 +12,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: BloodSprayFX (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 4000010117412796, guid: d32aa916f50cac94db11e6f19821a58f, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0.0027
+      objectReference: {fileID: 0}
     - target: {fileID: 4000011382548710, guid: d32aa916f50cac94db11e6f19821a58f, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0.0001
@@ -22,7 +26,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4000011382548710, guid: d32aa916f50cac94db11e6f19821a58f, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0.0827
+      value: 0.0746
       objectReference: {fileID: 0}
     - target: {fileID: 4000011382548710, guid: d32aa916f50cac94db11e6f19821a58f, type: 3}
       propertyPath: m_LocalRotation.w
@@ -74,6 +78,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: BloodSprayFX
       objectReference: {fileID: 0}
+    - target: {fileID: 4000010117412796, guid: d32aa916f50cac94db11e6f19821a58f, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0.00192
+      objectReference: {fileID: 0}
     - target: {fileID: 4000011382548710, guid: d32aa916f50cac94db11e6f19821a58f, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0.0003
@@ -84,7 +92,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4000011382548710, guid: d32aa916f50cac94db11e6f19821a58f, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0.10268
+      value: 0.106
       objectReference: {fileID: 0}
     - target: {fileID: 4000011382548710, guid: d32aa916f50cac94db11e6f19821a58f, type: 3}
       propertyPath: m_LocalRotation.w

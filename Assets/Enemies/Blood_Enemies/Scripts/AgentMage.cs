@@ -9,7 +9,7 @@ using static UnityEngine.GraphicsBuffer;
 using static UnityEngine.ParticleSystem;
 using static UnityEngine.UI.Image;
 
-public class AgentMage : navmeshtestscript
+public class AgentMage : Agent
 {
     [SerializeField] private GameObject power;
     [SerializeField] private float speed;
@@ -19,7 +19,7 @@ public class AgentMage : navmeshtestscript
     [SerializeField] private GameObject instantAttackPrefab;
     [SerializeField] private LayerMask playerLayer;
 
-
+    /*
 
     protected override void ChasePlayer()
     {
@@ -174,7 +174,7 @@ public class AgentMage : navmeshtestscript
     }
 
    
-
+    */
 }
 
 

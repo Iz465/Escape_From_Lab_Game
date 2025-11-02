@@ -14,6 +14,7 @@ public class SpawnEnemy : MonoBehaviour
     public ParticleSystem spawnParticle;
     public bool spawnAfter;
     public int waveAmount = 0;
+    [SerializeField] public AudioClip spawnSound;
     private void OnTriggerEnter(Collider other)
     {
         
@@ -41,9 +42,10 @@ public class SpawnEnemy : MonoBehaviour
             StartCoroutine(SpawnIn(spawn, 1));
         }
             
+
         
         Debug.Log("Player Entered!");
-
+        StartCoroutine(StartSound(1));
       
         Destroy(gameObject, 2f);
     }
@@ -53,6 +55,13 @@ public class SpawnEnemy : MonoBehaviour
         yield return new WaitForSeconds(time);
         Instantiate(enemyPrefab, spawn.transform.position, Quaternion.identity);
 
+    }
+
+    public IEnumerator StartSound(float time)
+    {
+        yield return new WaitForSeconds(time);
+        AudioSource audioSource = GetComponent<AudioSource>();
+        audioSource.PlayOneShot(spawnSound);
     }
 
 }

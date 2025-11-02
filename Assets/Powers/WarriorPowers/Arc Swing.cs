@@ -14,7 +14,7 @@ public class ArcSwing : BasePower
     [SerializeField] private Collider playerCollider;
     [SerializeField] private ParticleSystem hitParticle;
     [SerializeField] private Transform axeTransform;
-
+    [SerializeField] private AudioClip hammerSwingSound;
     [System.Serializable] public struct AxePositions 
     {
         [SerializeField] public Vector3 idlePosition;
@@ -57,6 +57,7 @@ public class ArcSwing : BasePower
         int combinedMask = enemyLayer | wallLayer;
 
 
+
         bool hitEnemy = Physics.Linecast(playerCollider.bounds.center, cam.transform.position + cam.transform.forward * 25, out hit, combinedMask);
 
         if (!hitEnemy)
@@ -85,7 +86,8 @@ public class ArcSwing : BasePower
         BreakableWall.canHitWall = true;
         animator.SetTrigger("Arc Swing");
         canCombo = true;
- 
+
+       
     }
 
 
@@ -152,6 +154,8 @@ public class ArcSwing : BasePower
         axeTransform.localPosition = axePositions.combatPosition;
         axeTransform.localRotation = axePositions.combatRotation;
         animator.SetBool("NotAttacking", false);
+
+        if (player.audioSource) player.audioSource.PlayOneShot(hammerSwingSound);
     }
 
     private void NonCombatStateEntered()
@@ -166,7 +170,7 @@ public class ArcSwing : BasePower
     {
         if (heldDown)
             StartCombo();
-      
+        MeleeHitDetection.canTrigger = false;
     }
 
     private void OnDrawGizmos()

@@ -8,7 +8,7 @@ using Unity.MLAgents;
 using UnityEngine.AI;
 using Unity.MLAgents.Actuators;
 
-public class navmeshtestscript : Agent // Readd this to to the chase ai script.
+public class navmeshtestscript : MonoBehaviour // Readd this to to the chase ai script.
 {
     // Stats
     [Header("Stats")]
@@ -20,10 +20,17 @@ public class navmeshtestscript : Agent // Readd this to to the chase ai script.
    
     [SerializeField] public bool canHitMultiple = false;
 
+
     [Header("Blood Stuff")]
     [SerializeField] protected GameObject blood;
     [SerializeField] protected List<Transform> bloodHitLocations;
     [SerializeField] private Transform particleHitLocation;
+    [SerializeField] private List<AudioClip> fleshSounds;
+    [SerializeField] private AudioClip deathSound;
+    [SerializeField] protected List<AudioClip> attackSounds;
+    [SerializeField] protected AudioClip attackSound;
+   
+    protected AudioSource audioSource;
 
     [System.Serializable]
     public struct CorpseParts
@@ -36,7 +43,20 @@ public class navmeshtestscript : Agent // Readd this to to the chase ai script.
 
     }
 
+    [System.Serializable]
+    public struct CorpseLocations
+    {
+        public Transform head;
+        public Transform torso;
+        public Transform leftHand;
+        public Transform rightHand;
+        public Transform legs;
+
+    }
+
+
     [SerializeField] private CorpseParts corpseParts;
+    [SerializeField] private CorpseLocations corpseLocations;
 
 
 
@@ -63,6 +83,7 @@ public class navmeshtestscript : Agent // Readd this to to the chase ai script.
         player = FindAnyObjectByType<Player>();
         globalEnemyManager = FindFirstObjectByType<GlobalEnemyManager>();
         if (globalEnemyManager) globalEnemyManager.AddEnemy(gameObject);
+        audioSource = GetComponent<AudioSource>();
 
     }
 
@@ -164,7 +185,14 @@ public class navmeshtestscript : Agent // Readd this to to the chase ai script.
     // Everytime the enemy gets hit by the player
     virtual public void TakeDamage(float damageTaken)
     {
-    
+        
+        if (fleshSounds.Count > 0)
+        {
+            int randomSound = Random.Range(0, fleshSounds.Count);
+            globalEnemyManager.CheckEnemySound(fleshSounds[randomSound], "flesh", audioSource);
+        }
+       
+
         if (player.playerHitParticle) Instantiate(player.playerHitParticle, particleHitLocation.position, Quaternion.identity); 
         if (blood) ShowBlood();
         health -= damageTaken;
@@ -189,6 +217,10 @@ public class navmeshtestscript : Agent // Readd this to to the chase ai script.
 
     virtual protected void EnemyDeath()
     {
+     
+        if (fleshSounds.Count > 0) globalEnemyManager.CheckEnemySound(fleshSounds[0], "flesh", player.audioSource);
+        if (deathSound) globalEnemyManager.CheckEnemySound(deathSound, "death", player.audioSource);
+
 
         canAttack = true;
 
@@ -197,31 +229,37 @@ public class navmeshtestscript : Agent // Readd this to to the chase ai script.
 
      
         player.stats.health += healthGain;
-        // player.stats.health = Mathf.Clamp(player.stats.health, 0, player.stats.maxHealth);
+        player.stats.health = Mathf.Clamp(player.stats.health, 0, player.stats.maxHealth);
 
+        for (int i = 0; i < 4;  i++)
+        {
+            if (corpseParts.head)
+                MakeRagdoll(corpseParts.head, corpseLocations.head, 0);
+        }
 
-        if (corpseParts.head)
-            MakeRagdoll(corpseParts.head, 3);
         if (corpseParts.legs)
-            MakeRagdoll(corpseParts.legs, 1);
+            MakeRagdoll(corpseParts.legs, corpseLocations.legs, 0.05f);
         if (corpseParts.rightHand)
-            MakeRagdoll(corpseParts.rightHand, 2.5f);
+            MakeRagdoll(corpseParts.rightHand, corpseLocations.rightHand, 0.05f);
         if (corpseParts.leftHand)
-            MakeRagdoll(corpseParts.leftHand, 2.5f);
+            MakeRagdoll(corpseParts.leftHand, corpseLocations.leftHand, -0.05f);
         if (corpseParts.torso)
-            MakeRagdoll(corpseParts.torso, 2.5f);
+            MakeRagdoll(corpseParts.torso, corpseLocations.torso, 0);
 
         Destroy(gameObject);
     }
 
+
+
+
     // dismemberment for when enemy dies
-    private void MakeRagdoll(GameObject bodypart, float heightSpawn)
+    private void MakeRagdoll(GameObject bodypart, Transform spawnLocation, float xValue)
     {
         if (bodypart)
         {
            
 
-            GameObject ragdoll = Instantiate(bodypart, transform.position + new Vector3(0, heightSpawn, 0), Quaternion.identity);
+            GameObject ragdoll = Instantiate(bodypart, spawnLocation.transform.position, Quaternion.identity);
             Vector3 hitDirection = (ragdoll.transform.position - player.transform.position).normalized;
             ragdoll.transform.rotation = Quaternion.LookRotation(hitDirection) * Quaternion.Euler(90, 0, 0);
 
@@ -229,8 +267,9 @@ public class navmeshtestscript : Agent // Readd this to to the chase ai script.
             Rigidbody rigid = ragdoll.GetComponent<Rigidbody>();
             if (rigid)
             {
-                
-                rigid.AddForce(hitDirection * 20, ForceMode.Impulse);
+          
+              //  hitDirection.y = 0.1f;
+                rigid.AddForce(hitDirection.normalized * 15, ForceMode.Impulse);
                 rigid.AddTorque(Random.insideUnitSphere * 1f, ForceMode.Impulse);
                 
             }
@@ -239,6 +278,8 @@ public class navmeshtestscript : Agent // Readd this to to the chase ai script.
                
         }
     }
+
+
 
 
 }

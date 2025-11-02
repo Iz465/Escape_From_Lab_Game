@@ -30,7 +30,7 @@ public class MeleeMage : navmeshtestscript
      
   
         number++;
-        
+        audioSource.PlayOneShot(attackSound, 0.1f);
         GameObject powerInstance = Instantiate(power, aimLoc.position, transform.rotation);
 
         if (!powerInstance) return;

@@ -9,10 +9,12 @@ public class Dodge : MonoBehaviour
     [SerializeField] private float cooldown;
     [SerializeField] private float dodgeDistance;
     private bool canDodge = true;
-    
+    private Player player;
+    [SerializeField] private AudioClip footstepSound;
     private void Start()
     {
         animator = GetComponent<Animator>();
+        player = GetComponentInParent<Player>();
        
     }
     public void DodgeLeft(InputAction.CallbackContext context)
@@ -114,4 +116,8 @@ public class Dodge : MonoBehaviour
         canDodge = true;
     }
 
+    private void PlayFootstepSound()
+    {
+        player.audioSource.PlayOneShot(footstepSound);
+    }
 }

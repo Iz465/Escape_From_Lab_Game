@@ -8,9 +8,14 @@ public class BlackKnight : navmeshtestscript
     private int[] storedNumber = new int[1];
     int oldNumber;
     bool doOnce = true;
-  
-
-
+    /*
+    protected override void AttackPlayer()
+    {
+        storedNumber[0] = 0;
+        SelectColour();
+        animator.SetTrigger("Combo");
+    }
+    */
     // The same attack never repeats
     private void SwitchAttackType()
     {
@@ -45,10 +50,10 @@ public class BlackKnight : navmeshtestscript
         Instantiate(swordParticle, swordLocation);
         switch (storedNumber[0])
         {
-            case 0: LoopChildren(Color.red); break;
+            case 0: LoopChildren(Color.black); break;
             case 1: LoopChildren(Color.green); break;
             case 2: LoopChildren(Color.blue); break;
-        }
+        } 
        
     }
     

@@ -31,6 +31,8 @@ public class EvilKnight : navmeshtestscript
         randomNumber = Random.Range(0, 3);
 
     }
+
+    private bool firstTime = true;
     protected override void AttackPlayer()
     {
   
@@ -45,6 +47,12 @@ public class EvilKnight : navmeshtestscript
             randomNumber = Random.Range(0, 3);
         }
 
+        if (firstTime)
+        {
+            randomNumber = 0;
+            firstTime = false;
+        } 
+
         if (randomNumber == 0)
         {
             Instantiate(redAttack, castLocation);
@@ -57,6 +65,7 @@ public class EvilKnight : navmeshtestscript
             StartCoroutine(StepDistance(0.5f, 1f));
             animator.SetTrigger("Down Attack");
         }
+        
 
         if (randomNumber == 2)
         {

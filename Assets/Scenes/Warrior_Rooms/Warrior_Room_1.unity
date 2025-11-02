@@ -601,6 +601,18 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6817666453106957175, guid: 7752c019e5860b6429fc9ebffb9eebc2, type: 3}
+      propertyPath: stats.health
+      value: 100
+      objectReference: {fileID: 0}
+    - target: {fileID: 6817666453106957175, guid: 7752c019e5860b6429fc9ebffb9eebc2, type: 3}
+      propertyPath: stats.maxHealth
+      value: 100
+      objectReference: {fileID: 0}
+    - target: {fileID: 6817666453106957175, guid: 7752c019e5860b6429fc9ebffb9eebc2, type: 3}
+      propertyPath: stats.maxStamina
+      value: 100
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -1260,6 +1272,8 @@ MonoBehaviour:
   - {fileID: 3519672220154667433, guid: 4869dd7e75129f242ac52c6c83def9a5, type: 3}
   - {fileID: 3519672220154667433, guid: 4869dd7e75129f242ac52c6c83def9a5, type: 3}
   - {fileID: 3519672220154667433, guid: 4869dd7e75129f242ac52c6c83def9a5, type: 3}
+  hitSound: {fileID: 0}
+  audioSource: {fileID: 0}
 --- !u!23 &119424331
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -1881,7 +1895,7 @@ MonoBehaviour:
   m_OverrideTileSize: 0
   m_TileSize: 256
   m_OverrideVoxelSize: 0
-  m_VoxelSize: 0.033333335
+  m_VoxelSize: 0.33333334
   m_MinRegionArea: 2
   m_NavMeshData: {fileID: 23800000, guid: a72f8cc22a3b0db4f87a0435f1f13ef7, type: 2}
   m_BuildHeightMesh: 0
@@ -3387,6 +3401,8 @@ MonoBehaviour:
   - {fileID: 3519672220154667433, guid: 4869dd7e75129f242ac52c6c83def9a5, type: 3}
   - {fileID: 3519672220154667433, guid: 4869dd7e75129f242ac52c6c83def9a5, type: 3}
   - {fileID: 3519672220154667433, guid: 4869dd7e75129f242ac52c6c83def9a5, type: 3}
+  hitSound: {fileID: 0}
+  audioSource: {fileID: 0}
 --- !u!23 &499088862
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -3634,6 +3650,8 @@ MonoBehaviour:
   - {fileID: 3519672220154667433, guid: 4869dd7e75129f242ac52c6c83def9a5, type: 3}
   - {fileID: 3519672220154667433, guid: 4869dd7e75129f242ac52c6c83def9a5, type: 3}
   - {fileID: 3519672220154667433, guid: 4869dd7e75129f242ac52c6c83def9a5, type: 3}
+  hitSound: {fileID: 0}
+  audioSource: {fileID: 0}
 --- !u!23 &507341168
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -4614,6 +4632,8 @@ MonoBehaviour:
   - {fileID: 3519672220154667433, guid: 4869dd7e75129f242ac52c6c83def9a5, type: 3}
   - {fileID: 3519672220154667433, guid: 4869dd7e75129f242ac52c6c83def9a5, type: 3}
   - {fileID: 3519672220154667433, guid: 4869dd7e75129f242ac52c6c83def9a5, type: 3}
+  hitSound: {fileID: 0}
+  audioSource: {fileID: 0}
 --- !u!23 &641849676
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -5207,6 +5227,8 @@ MonoBehaviour:
   - {fileID: 3519672220154667433, guid: 4869dd7e75129f242ac52c6c83def9a5, type: 3}
   - {fileID: 3519672220154667433, guid: 4869dd7e75129f242ac52c6c83def9a5, type: 3}
   - {fileID: 3519672220154667433, guid: 4869dd7e75129f242ac52c6c83def9a5, type: 3}
+  hitSound: {fileID: 0}
+  audioSource: {fileID: 0}
 --- !u!23 &677546267
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -5850,6 +5872,8 @@ MonoBehaviour:
   - {fileID: 3519672220154667433, guid: 4869dd7e75129f242ac52c6c83def9a5, type: 3}
   - {fileID: 3519672220154667433, guid: 4869dd7e75129f242ac52c6c83def9a5, type: 3}
   - {fileID: 3519672220154667433, guid: 4869dd7e75129f242ac52c6c83def9a5, type: 3}
+  hitSound: {fileID: 0}
+  audioSource: {fileID: 0}
 --- !u!23 &747647392
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -7042,6 +7066,8 @@ MonoBehaviour:
   - {fileID: 3519672220154667433, guid: 4869dd7e75129f242ac52c6c83def9a5, type: 3}
   - {fileID: 3519672220154667433, guid: 4869dd7e75129f242ac52c6c83def9a5, type: 3}
   - {fileID: 3519672220154667433, guid: 4869dd7e75129f242ac52c6c83def9a5, type: 3}
+  hitSound: {fileID: 0}
+  audioSource: {fileID: 0}
 --- !u!23 &900018066
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -7157,6 +7183,8 @@ MonoBehaviour:
   - {fileID: 3519672220154667433, guid: 4869dd7e75129f242ac52c6c83def9a5, type: 3}
   - {fileID: 3519672220154667433, guid: 4869dd7e75129f242ac52c6c83def9a5, type: 3}
   - {fileID: 3519672220154667433, guid: 4869dd7e75129f242ac52c6c83def9a5, type: 3}
+  hitSound: {fileID: 0}
+  audioSource: {fileID: 0}
 --- !u!23 &907627345
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -7531,6 +7559,8 @@ MonoBehaviour:
   - {fileID: 3519672220154667433, guid: 4869dd7e75129f242ac52c6c83def9a5, type: 3}
   - {fileID: 3519672220154667433, guid: 4869dd7e75129f242ac52c6c83def9a5, type: 3}
   - {fileID: 3519672220154667433, guid: 4869dd7e75129f242ac52c6c83def9a5, type: 3}
+  hitSound: {fileID: 0}
+  audioSource: {fileID: 0}
 --- !u!23 &976292520
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -9328,6 +9358,8 @@ MonoBehaviour:
   - {fileID: 3519672220154667433, guid: 4869dd7e75129f242ac52c6c83def9a5, type: 3}
   - {fileID: 3519672220154667433, guid: 4869dd7e75129f242ac52c6c83def9a5, type: 3}
   - {fileID: 3519672220154667433, guid: 4869dd7e75129f242ac52c6c83def9a5, type: 3}
+  hitSound: {fileID: 0}
+  audioSource: {fileID: 0}
 --- !u!23 &1222261438
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -9443,6 +9475,8 @@ MonoBehaviour:
   - {fileID: 3519672220154667433, guid: 4869dd7e75129f242ac52c6c83def9a5, type: 3}
   - {fileID: 3519672220154667433, guid: 4869dd7e75129f242ac52c6c83def9a5, type: 3}
   - {fileID: 3519672220154667433, guid: 4869dd7e75129f242ac52c6c83def9a5, type: 3}
+  hitSound: {fileID: 0}
+  audioSource: {fileID: 0}
 --- !u!23 &1240513521
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -9558,6 +9592,8 @@ MonoBehaviour:
   - {fileID: 3519672220154667433, guid: 4869dd7e75129f242ac52c6c83def9a5, type: 3}
   - {fileID: 3519672220154667433, guid: 4869dd7e75129f242ac52c6c83def9a5, type: 3}
   - {fileID: 3519672220154667433, guid: 4869dd7e75129f242ac52c6c83def9a5, type: 3}
+  hitSound: {fileID: 0}
+  audioSource: {fileID: 0}
 --- !u!23 &1247968518
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -9714,6 +9750,8 @@ MonoBehaviour:
   - {fileID: 3519672220154667433, guid: 4869dd7e75129f242ac52c6c83def9a5, type: 3}
   - {fileID: 3519672220154667433, guid: 4869dd7e75129f242ac52c6c83def9a5, type: 3}
   - {fileID: 3519672220154667433, guid: 4869dd7e75129f242ac52c6c83def9a5, type: 3}
+  hitSound: {fileID: 0}
+  audioSource: {fileID: 0}
 --- !u!23 &1279688530
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -10511,6 +10549,8 @@ MonoBehaviour:
   - {fileID: 3519672220154667433, guid: 4869dd7e75129f242ac52c6c83def9a5, type: 3}
   - {fileID: 3519672220154667433, guid: 4869dd7e75129f242ac52c6c83def9a5, type: 3}
   - {fileID: 3519672220154667433, guid: 4869dd7e75129f242ac52c6c83def9a5, type: 3}
+  hitSound: {fileID: 0}
+  audioSource: {fileID: 0}
 --- !u!23 &1476947212
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -11028,6 +11068,8 @@ MonoBehaviour:
   - {fileID: 3519672220154667433, guid: 4869dd7e75129f242ac52c6c83def9a5, type: 3}
   - {fileID: 3519672220154667433, guid: 4869dd7e75129f242ac52c6c83def9a5, type: 3}
   - {fileID: 3519672220154667433, guid: 4869dd7e75129f242ac52c6c83def9a5, type: 3}
+  hitSound: {fileID: 0}
+  audioSource: {fileID: 0}
 --- !u!23 &1528625627
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -11582,6 +11624,8 @@ MonoBehaviour:
   - {fileID: 3519672220154667433, guid: 4869dd7e75129f242ac52c6c83def9a5, type: 3}
   - {fileID: 3519672220154667433, guid: 4869dd7e75129f242ac52c6c83def9a5, type: 3}
   - {fileID: 3519672220154667433, guid: 4869dd7e75129f242ac52c6c83def9a5, type: 3}
+  hitSound: {fileID: 0}
+  audioSource: {fileID: 0}
 --- !u!23 &1583601659
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -11952,6 +11996,8 @@ MonoBehaviour:
   - {fileID: 3519672220154667433, guid: 4869dd7e75129f242ac52c6c83def9a5, type: 3}
   - {fileID: 3519672220154667433, guid: 4869dd7e75129f242ac52c6c83def9a5, type: 3}
   - {fileID: 3519672220154667433, guid: 4869dd7e75129f242ac52c6c83def9a5, type: 3}
+  hitSound: {fileID: 0}
+  audioSource: {fileID: 0}
 --- !u!23 &1611903647
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -12175,6 +12221,8 @@ MonoBehaviour:
   - {fileID: 3519672220154667433, guid: 4869dd7e75129f242ac52c6c83def9a5, type: 3}
   - {fileID: 3519672220154667433, guid: 4869dd7e75129f242ac52c6c83def9a5, type: 3}
   - {fileID: 3519672220154667433, guid: 4869dd7e75129f242ac52c6c83def9a5, type: 3}
+  hitSound: {fileID: 0}
+  audioSource: {fileID: 0}
 --- !u!23 &1633067441
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -12401,6 +12449,8 @@ MonoBehaviour:
   - {fileID: 3519672220154667433, guid: 4869dd7e75129f242ac52c6c83def9a5, type: 3}
   - {fileID: 3519672220154667433, guid: 4869dd7e75129f242ac52c6c83def9a5, type: 3}
   - {fileID: 3519672220154667433, guid: 4869dd7e75129f242ac52c6c83def9a5, type: 3}
+  hitSound: {fileID: 0}
+  audioSource: {fileID: 0}
 --- !u!23 &1670343700
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -13656,6 +13706,8 @@ MonoBehaviour:
   - {fileID: 3519672220154667433, guid: 4869dd7e75129f242ac52c6c83def9a5, type: 3}
   - {fileID: 3519672220154667433, guid: 4869dd7e75129f242ac52c6c83def9a5, type: 3}
   - {fileID: 3519672220154667433, guid: 4869dd7e75129f242ac52c6c83def9a5, type: 3}
+  hitSound: {fileID: 0}
+  audioSource: {fileID: 0}
 --- !u!23 &1811337173
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -13859,6 +13911,8 @@ MonoBehaviour:
   - {fileID: 3519672220154667433, guid: 4869dd7e75129f242ac52c6c83def9a5, type: 3}
   - {fileID: 3519672220154667433, guid: 4869dd7e75129f242ac52c6c83def9a5, type: 3}
   - {fileID: 3519672220154667433, guid: 4869dd7e75129f242ac52c6c83def9a5, type: 3}
+  hitSound: {fileID: 0}
+  audioSource: {fileID: 0}
 --- !u!23 &1849351656
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -14216,6 +14270,8 @@ MonoBehaviour:
   - {fileID: 3519672220154667433, guid: 4869dd7e75129f242ac52c6c83def9a5, type: 3}
   - {fileID: 3519672220154667433, guid: 4869dd7e75129f242ac52c6c83def9a5, type: 3}
   - {fileID: 3519672220154667433, guid: 4869dd7e75129f242ac52c6c83def9a5, type: 3}
+  hitSound: {fileID: 0}
+  audioSource: {fileID: 0}
 --- !u!23 &1887764665
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -14331,6 +14387,8 @@ MonoBehaviour:
   - {fileID: 3519672220154667433, guid: 4869dd7e75129f242ac52c6c83def9a5, type: 3}
   - {fileID: 3519672220154667433, guid: 4869dd7e75129f242ac52c6c83def9a5, type: 3}
   - {fileID: 3519672220154667433, guid: 4869dd7e75129f242ac52c6c83def9a5, type: 3}
+  hitSound: {fileID: 0}
+  audioSource: {fileID: 0}
 --- !u!23 &1889283982
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -14720,6 +14778,8 @@ MonoBehaviour:
   - {fileID: 3519672220154667433, guid: 4869dd7e75129f242ac52c6c83def9a5, type: 3}
   - {fileID: 3519672220154667433, guid: 4869dd7e75129f242ac52c6c83def9a5, type: 3}
   - {fileID: 3519672220154667433, guid: 4869dd7e75129f242ac52c6c83def9a5, type: 3}
+  hitSound: {fileID: 0}
+  audioSource: {fileID: 0}
 --- !u!23 &1949069111
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -15212,6 +15272,8 @@ MonoBehaviour:
   - {fileID: 3519672220154667433, guid: 4869dd7e75129f242ac52c6c83def9a5, type: 3}
   - {fileID: 3519672220154667433, guid: 4869dd7e75129f242ac52c6c83def9a5, type: 3}
   - {fileID: 3519672220154667433, guid: 4869dd7e75129f242ac52c6c83def9a5, type: 3}
+  hitSound: {fileID: 0}
+  audioSource: {fileID: 0}
 --- !u!23 &2013857333
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -15881,7 +15943,7 @@ MonoBehaviour:
   m_OverrideTileSize: 0
   m_TileSize: 256
   m_OverrideVoxelSize: 0
-  m_VoxelSize: 0.033333335
+  m_VoxelSize: 0.33333334
   m_MinRegionArea: 2
   m_NavMeshData: {fileID: 23800000, guid: 8bce42a9c4d6a204fad3b900429a10ee, type: 2}
   m_BuildHeightMesh: 0
@@ -15945,6 +16007,8 @@ MonoBehaviour:
   - {fileID: 3519672220154667433, guid: 4869dd7e75129f242ac52c6c83def9a5, type: 3}
   - {fileID: 3519672220154667433, guid: 4869dd7e75129f242ac52c6c83def9a5, type: 3}
   - {fileID: 3519672220154667433, guid: 4869dd7e75129f242ac52c6c83def9a5, type: 3}
+  hitSound: {fileID: 0}
+  audioSource: {fileID: 0}
 --- !u!23 &2086942729
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -16510,6 +16574,8 @@ MonoBehaviour:
   - {fileID: 3519672220154667433, guid: 4869dd7e75129f242ac52c6c83def9a5, type: 3}
   - {fileID: 3519672220154667433, guid: 4869dd7e75129f242ac52c6c83def9a5, type: 3}
   - {fileID: 3519672220154667433, guid: 4869dd7e75129f242ac52c6c83def9a5, type: 3}
+  hitSound: {fileID: 0}
+  audioSource: {fileID: 0}
 --- !u!23 &946759769866753549
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -17103,6 +17169,8 @@ MonoBehaviour:
   - {fileID: 3519672220154667433, guid: 4869dd7e75129f242ac52c6c83def9a5, type: 3}
   - {fileID: 3519672220154667433, guid: 4869dd7e75129f242ac52c6c83def9a5, type: 3}
   - {fileID: 3519672220154667433, guid: 4869dd7e75129f242ac52c6c83def9a5, type: 3}
+  hitSound: {fileID: 0}
+  audioSource: {fileID: 0}
 --- !u!4 &2639760240897418932
 Transform:
   m_ObjectHideFlags: 0
@@ -17312,6 +17380,8 @@ MonoBehaviour:
   - {fileID: 3519672220154667433, guid: 4869dd7e75129f242ac52c6c83def9a5, type: 3}
   - {fileID: 3519672220154667433, guid: 4869dd7e75129f242ac52c6c83def9a5, type: 3}
   - {fileID: 3519672220154667433, guid: 4869dd7e75129f242ac52c6c83def9a5, type: 3}
+  hitSound: {fileID: 0}
+  audioSource: {fileID: 0}
 --- !u!1 &3452465821343005710
 GameObject:
   m_ObjectHideFlags: 0
@@ -17801,6 +17871,8 @@ MonoBehaviour:
   - {fileID: 3519672220154667433, guid: 4869dd7e75129f242ac52c6c83def9a5, type: 3}
   - {fileID: 3519672220154667433, guid: 4869dd7e75129f242ac52c6c83def9a5, type: 3}
   - {fileID: 3519672220154667433, guid: 4869dd7e75129f242ac52c6c83def9a5, type: 3}
+  hitSound: {fileID: 0}
+  audioSource: {fileID: 0}
 --- !u!33 &5219509244520740896
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -18194,6 +18266,8 @@ MonoBehaviour:
   - {fileID: 3519672220154667433, guid: 4869dd7e75129f242ac52c6c83def9a5, type: 3}
   - {fileID: 3519672220154667433, guid: 4869dd7e75129f242ac52c6c83def9a5, type: 3}
   - {fileID: 3519672220154667433, guid: 4869dd7e75129f242ac52c6c83def9a5, type: 3}
+  hitSound: {fileID: 0}
+  audioSource: {fileID: 0}
 --- !u!114 &6766226821502663772
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -18218,6 +18292,8 @@ MonoBehaviour:
   - {fileID: 3519672220154667433, guid: 4869dd7e75129f242ac52c6c83def9a5, type: 3}
   - {fileID: 3519672220154667433, guid: 4869dd7e75129f242ac52c6c83def9a5, type: 3}
   - {fileID: 3519672220154667433, guid: 4869dd7e75129f242ac52c6c83def9a5, type: 3}
+  hitSound: {fileID: 0}
+  audioSource: {fileID: 0}
 --- !u!23 &6844557017999683882
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -18869,6 +18945,8 @@ MonoBehaviour:
   - {fileID: 3519672220154667433, guid: 4869dd7e75129f242ac52c6c83def9a5, type: 3}
   - {fileID: 3519672220154667433, guid: 4869dd7e75129f242ac52c6c83def9a5, type: 3}
   - {fileID: 3519672220154667433, guid: 4869dd7e75129f242ac52c6c83def9a5, type: 3}
+  hitSound: {fileID: 0}
+  audioSource: {fileID: 0}
 --- !u!33 &8810913723780121362
 MeshFilter:
   m_ObjectHideFlags: 0

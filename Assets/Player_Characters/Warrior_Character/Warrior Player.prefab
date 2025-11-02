@@ -1290,6 +1290,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   cooldown: 1.5
   dodgeDistance: 0
+  footstepSound: {fileID: 8300000, guid: 8e99e00bc5ddd6f4aa5f5e94e6993238, type: 3}
 --- !u!114 &7529306921989572188
 MonoBehaviour:
   m_ObjectHideFlags: 0

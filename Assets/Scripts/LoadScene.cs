@@ -5,6 +5,12 @@ using UnityEngine.SceneManagement;
 public class LoadScene : MonoBehaviour
 {
     [SerializeField] int sceneIndex;
+    public bool successDoor;
+    public bool challengeRoom;
+
+    public string roomToFinish;
+    public string roomName;
+
     private void OnTriggerEnter(Collider other)
     {
         if(other.transform.gameObject.layer == LayerMask.NameToLayer("Player"))
@@ -14,7 +20,7 @@ public class LoadScene : MonoBehaviour
         }
     }
 
-    IEnumerator Load(Collider other)
+    IEnumerator Spawn(GameObject obj)
     {
         Scene current = SceneManager.GetActiveScene();
 
@@ -26,8 +32,37 @@ public class LoadScene : MonoBehaviour
         }
 
         Scene nextScene = SceneManager.GetSceneByBuildIndex(sceneIndex);
-        SceneManager.MoveGameObjectToScene(other.transform.gameObject, nextScene);
+        SceneManager.MoveGameObjectToScene(obj, nextScene);
         yield return null;
         SceneManager.UnloadSceneAsync(current);
+    }
+
+    IEnumerator Load(Collider other)
+    {
+        if(!other.transform.CompareTag("Player")) yield return null;
+
+        SaveablePlayer save = other.transform.GetComponent<SaveablePlayer>();
+        if (successDoor)
+        {
+            if(!save.roomsFinished.Contains(roomName))
+                save.roomsFinished.Add(roomName);
+        }
+
+        if (challengeRoom)
+        {
+            if(roomToFinish == "")
+            {
+                yield return Spawn(other.transform.gameObject);
+            }else if (save.roomsFinished.Contains(roomToFinish))
+            {
+                yield return Spawn(other.transform.gameObject);
+            }
+        }
+        else
+        {
+            yield return Spawn(other.transform.gameObject);
+        }
+
+        
     }
 }

@@ -32089,7 +32089,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 02a75f9cbb6da274b8d5c9f67c3be2ac, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  sceneIndex: 0
+  sceneIndex: 1
+  successDoor: 0
+  challengeRoom: 0
+  roomToFinish: 
+  roomName: 
 --- !u!65 &378563067
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -51655,7 +51659,7 @@ GameObject:
   - component: {fileID: 641295840}
   - component: {fileID: 641295839}
   m_Layer: 0
-  m_Name: ReturnDoor (1)
+  m_Name: Finish
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -51673,7 +51677,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 02a75f9cbb6da274b8d5c9f67c3be2ac, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  sceneIndex: 0
+  sceneIndex: 1
+  successDoor: 1
+  challengeRoom: 0
+  roomToFinish: 
+  roomName: Speed1
 --- !u!65 &641295840
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -154714,7 +154722,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a761e24b34a0a33428433f87c3442658, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  tile: {fileID: 0}
+  enemy: {fileID: 0}
+  health: 0
 --- !u!1 &1945943050
 GameObject:
   m_ObjectHideFlags: 0

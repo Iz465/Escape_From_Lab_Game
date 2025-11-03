@@ -5,8 +5,10 @@ using UnityEngine.InputSystem;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
+
 public class MainMenu : MonoBehaviour
 {
+    SaveablePlayer saveFile;
     private void Start()
     {
         modes.Add("Exclusive Full Screen", FullScreenMode.ExclusiveFullScreen);
@@ -18,6 +20,13 @@ public class MainMenu : MonoBehaviour
         difficulties.Add("Normal", Difficulty.Normal);
         difficulties.Add("Challenging", Difficulty.Challenging);
         difficulties.Add("Hard", Difficulty.Hard);
+
+        saveFile = new SaveablePlayer();
+        string data = PlayerPrefs.GetString("Data","");
+
+        if (data == "") return;
+        
+        saveFile = JsonUtility.FromJson<SaveablePlayer>(data);
     }
 
     public enum Difficulty 
@@ -70,7 +79,14 @@ public class MainMenu : MonoBehaviour
         mainMenu.SetActive(false);
     }
 
-    public void Exit() => Application.Quit();
+    public void Exit()
+    {
+        //save
+        string save = JsonUtility.ToJson(saveFile);
+        PlayerPrefs.SetString("Data", save);
+        PlayerPrefs.Save();
+        Application.Quit(); 
+    }
     #endregion
 
     #region screenmode

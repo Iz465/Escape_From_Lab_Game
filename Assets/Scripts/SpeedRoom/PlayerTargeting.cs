@@ -1,5 +1,6 @@
 using System.Collections;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class PlayerTargeting : MonoBehaviour
 {
@@ -8,9 +9,13 @@ public class PlayerTargeting : MonoBehaviour
     public GameObject bullet;
     [SerializeField] float shootSpeed, timeBetweenBullet;
     float lastShot;
+    float health = 100;
+
+    [SerializeField] RectTransform healthBar;
 
     void Start()
     {
+        healthBar = transform.Find("Canvas").Find("GreenHealth").GetComponent<RectTransform>();
         StartCoroutine(WaitForPlayer());
     }
     
@@ -44,6 +49,15 @@ public class PlayerTargeting : MonoBehaviour
         bull.LookAt(plr.position);
 
         bull.GetComponent<Rigidbody>().linearVelocity = bull.forward * shootSpeed;
+    }
+
+    public void TakeDamage()
+    {
+        health -= 10;
+        healthBar.localScale = new Vector3(health / 100,1,1);
+
+        if (health <= 0)
+            Destroy(gameObject);
     }
 
     void Update()

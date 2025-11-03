@@ -31,12 +31,12 @@ public class MLSoldier : Agent
         float upperZ = 33.6f;
         float lowerZ = 12.2f;*/
         //reset agent back to standard, rotation, position, health, whatever
-        transform.position = new Vector3(lowerX, 0.5f, lowerZ);
-        //transform.position = new Vector3(Random.Range(lowerX, upperX), 0.5f, Random.Range(lowerZ, upperZ));
+        //transform.position = new Vector3(lowerX, 0.5f, lowerZ);
+        transform.position = new Vector3(Random.Range(lowerX, upperX), 0.5f, Random.Range(lowerZ, upperZ));
         health = maxHealth;
 
         //randomise target within standard values for smarter agent tracking
-        //target.position = new Vector3(Random.Range(lowerX, upperX), 0.5f, Random.Range(lowerZ, upperZ));
+        target.position = new Vector3(Random.Range(lowerX, upperX), 0.5f, Random.Range(lowerZ, upperZ));
         //target.GetComponent<Trash>().health = 100;
         //base.OnEpisodeBegin();
     }
@@ -204,35 +204,21 @@ public class MLSoldier : Agent
     private void FixedUpdate()
     {
         //Collision();
-        if(transform.position.x > upperX+5)
+        if (transform.position.x > upperX + 5 ||
+        transform.position.x < lowerX - 5 ||
+        transform.position.z > upperZ + 5 ||
+        transform.position.z < lowerZ - 5)
         {
-            AddReward(-1);
-            EndEpisode();
-        }
-        if(transform.position.x < lowerX-5)
-        {
-            AddReward(-1);
-            EndEpisode();
+            AddReward(-0.5f);
+            OnEpisodeBegin(); // reset position without ending abruptly
         }
 
-        if(transform.position.z > upperZ+5)
-        {
-            AddReward(-1);
-            EndEpisode();
-        }
+        float dist = ((transform.position - target.position).magnitude);
+        AddReward(-0.001f*dist);
 
-        if (transform.position.z < lowerZ-5)
-        {
-            AddReward(-1);
-            EndEpisode();
-        }
+        if (dist < 2f)
+            AddReward(0.01f);
 
-        if((transform.position - target.position).magnitude < 3)
-        {
-            print("player hit");
-            AddReward(1);
-            EndEpisode();
-        }
         //if(showReward)
             //print("reward: "+GetCumulativeReward().ToString());
         //IsBehindWall();

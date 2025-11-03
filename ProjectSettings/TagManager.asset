@@ -8,6 +8,7 @@ TagManager:
   - PhazeObject
   - Enemy
   - Bullet
+  - Spawn
   layers:
   - Default
   - TransparentFX
@@ -22,6 +23,8 @@ TagManager:
   - EnemyAttack
   - Object
   - Floor
+  - Bullet
+  - 
   - 
   - 
   - 

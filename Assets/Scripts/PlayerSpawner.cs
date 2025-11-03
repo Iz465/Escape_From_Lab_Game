@@ -22,9 +22,19 @@ public class PlayerSpawner : MonoBehaviour
         }
 
         plr = GameObject.FindGameObjectWithTag("Player").transform;
+        plr.GetComponent<Move>().enabled = false;
 
+        if (plr.GetComponent<Speed>())
+        {
+            plr.GetComponent<Speed>().spawnPosition = transform;
+            
+        }
+
+        yield return new WaitForSeconds(0.3f);
         plr.position = transform.position;
+        plr.GetComponent<Move>().enabled = true;
         spawned = true;
+        print("player spawned");
     }
 
     private void Update()
@@ -33,7 +43,10 @@ public class PlayerSpawner : MonoBehaviour
 
         if(plr.position.y < -200)
         {
+            print("player too low");
+            plr.GetComponent<Move>().enabled = false;
             plr.position = transform.position;
+            plr.GetComponent<Move>().enabled = true;
         }
     }
 }

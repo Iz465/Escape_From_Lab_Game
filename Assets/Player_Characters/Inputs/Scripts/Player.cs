@@ -16,7 +16,8 @@ public class Player : MonoBehaviour, IDamageTaken
     public float maxHealth;
     [HideInInspector]
     public float maxStamina;
-
+    public static bool canDamage = true;
+    [HideInInspector] public ParticleSystem playerHitParticle;
     private void Awake()
     {
         maxHealth = stats.health;
@@ -35,6 +36,7 @@ public class Player : MonoBehaviour, IDamageTaken
 
     public void TakeDamage(float damageTaken) 
     {
+        if (!canDamage) return;
         stats.health -= damageTaken;
         if (stats.health <= 0)
             playerDeath();

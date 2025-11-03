@@ -1,3 +1,4 @@
+using System.Linq;
 using UnityEngine;
 
 public class CameraManager : MonoBehaviour
@@ -12,7 +13,14 @@ public class CameraManager : MonoBehaviour
     {
         camTarget = transform.Find("CameraTarget");
         cam = transform.Find("Main Camera");
+
+        if (!cam)
+            cam = GetComponentsInChildren<Transform>(true).FirstOrDefault(t => t.name == "CameraTarget");
+
     }
+
+    [SerializeField] private Transform rayLocation;
+
     void LookAround()
     {
         // Get mouse scroll wheel input for zooming the camera
@@ -26,7 +34,7 @@ public class CameraManager : MonoBehaviour
         lookY -= mouseDir.y;
 
         // Clamp vertical look angle to prevent flipping
-        lookY = Mathf.Clamp(lookY, -45, 45);
+        lookY = Mathf.Clamp(lookY, -30, 45);
 
         // Rotate the player and camera based on mouse movement
         transform.Rotate(0, lookX, 0f);
@@ -35,10 +43,16 @@ public class CameraManager : MonoBehaviour
         // Adjust camera position based on raycast to avoid clipping through objects
         
         RaycastHit hit;
-        if (Physics.Raycast(transform.position, -camTarget.forward, out hit, camDistance))
+        // Visualize the raycast in the Scene view (red line)
+
+
+        Transform rayTransform = rayLocation != null ? rayLocation : transform;
+
+        if (Physics.Raycast(rayTransform.position, -camTarget.forward, out hit, camDistance))
         {
-            if (hit.transform.gameObject.layer != LayerMask.NameToLayer("Player"))
+            if (hit.transform.gameObject.layer != LayerMask.NameToLayer("Player") && hit.transform.gameObject.layer != LayerMask.NameToLayer("Enemy"))
             {
+                
                 cam.position = camTarget.position - camTarget.forward * hit.distance;
                 cam.LookAt(camTarget);
                 return; // Ignore raycast layer objects
@@ -54,4 +68,8 @@ public class CameraManager : MonoBehaviour
         if (camTarget != null)
             LookAround();
     }
+
+  
+
+
 }

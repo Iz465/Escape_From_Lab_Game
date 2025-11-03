@@ -46,7 +46,7 @@ public class Ice : MonoBehaviour
         Vector3 direction = movement.direction;
         RaycastHit hitObj;
 
-        Debug.DrawRay(transform.position, Vector3.down * (characterHeight / 2 + 1), Color.blue,.1f,false);
+        //Debug.DrawRay(transform.position, Vector3.down * (characterHeight / 2 + 1), Color.blue,.1f,false);
         if (Physics.Raycast(transform.position, Vector3.down, out hitObj, characterHeight / 2 + 1))
         {
             if (hitObj.transform.CompareTag("Ice"))
@@ -112,7 +112,12 @@ public class Ice : MonoBehaviour
         {
             Dictionary<string, object> spikeData = items[i];
             Transform spike = (Transform)spikeData["item"];
-            
+            if (spike == null)
+            {
+                items.RemoveAt(i);
+                continue;
+            }
+
             if (spike.name != "spike(Clone)") continue;
 
             float height = float.Parse(spikeData["height"].ToString());

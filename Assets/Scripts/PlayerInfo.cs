@@ -14,6 +14,8 @@ public class PlayerInfo : MonoBehaviour
     [SerializeField] protected float meleeAttackCooldown;
     [SerializeField] protected float attackDuration;
 
+    public Transform spawnPosition;
+
     protected bool canPunch = false;
 
     protected float attacked;
@@ -51,10 +53,5 @@ public class PlayerInfo : MonoBehaviour
             if (Vector3.Dot(enemyDirection, transform.forward) < 0.5f) continue;
             enemy.GetComponent<Soldier>().GotHit();
         }
-    }
-
-    private void Update()
-    {
-        
     }
 }

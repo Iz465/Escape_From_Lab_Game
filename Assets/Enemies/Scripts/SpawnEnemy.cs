@@ -30,14 +30,13 @@ public class SpawnEnemy : MonoBehaviour
 
         Collider box = gameObject.GetComponent<Collider>();
      
-
+        box.enabled = false;
         Destroy(gameObject, 2f);
     }
 
     private IEnumerator SpawnIn(GameObject spawn, float time)
     {
         yield return new WaitForSeconds(time);
-        Debug.Log("SPAWNED");
         Instantiate(enemyPrefab, spawn.transform.position, Quaternion.identity);
 
     }

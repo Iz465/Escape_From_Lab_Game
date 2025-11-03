@@ -66,7 +66,7 @@ public class BloodRain : BasePower
         if (enemyColliders.Length == 0) return;
         var renderer = powerInstance.GetComponent<Renderer>();
         if (!renderer) return;
-
+        enemyList.Clear();
         foreach (var enemy in enemyColliders)
             enemyList.Add(enemy);
     
@@ -111,6 +111,7 @@ public class BloodRain : BasePower
         if (!collider) yield break;
         if (enemyList.Count == 0)
         {
+            Debug.Log("BLOOD RAIN ENEMY LIST IS EMPTY");
             poolManager.ReleaseToPool(test);
             yield break;
         }
@@ -120,6 +121,7 @@ public class BloodRain : BasePower
       
         if (!target)
         {
+            Debug.Log("BLOOD RAIN TARGET IS NULL");
             poolManager.ReleaseToPool(test);
             yield break;
         }
@@ -134,7 +136,7 @@ public class BloodRain : BasePower
 
     private void ResetAnim()
     {
-        StartCoroutine(ResetAttack(15));
+        StartCoroutine(ResetAttack(35));
     }
 
 

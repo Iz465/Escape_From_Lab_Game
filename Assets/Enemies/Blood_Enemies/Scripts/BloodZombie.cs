@@ -39,7 +39,7 @@ public class BloodZombie : MonoBehaviour
     private void Update()
     {
         float distanceToPlayer = Vector3.Distance(transform.position, player.transform.position);
-        if (distanceToPlayer <= 40)
+        if (distanceToPlayer <= 80)
             agent.SetDestination(player.transform.position);
         if (distanceToPlayer < 2)
         {
@@ -100,5 +100,13 @@ public class BloodZombie : MonoBehaviour
             }
 
         }
+    }
+
+    private void OnCollisionEnter(Collision collision)
+    {
+        BasePower power = collision.gameObject.GetComponent<BasePower>();
+        if (!power) return;
+        Debug.Log("Hit Zombie!!");
+        Explode();
     }
 }

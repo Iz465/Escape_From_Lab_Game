@@ -7,31 +7,49 @@ public class PlayerHitDetection : MonoBehaviour
     [SerializeField]
     private float damage;
     private Player player;
+    private bool canDamage = true;
 
     private void Start()
     {
         player = FindAnyObjectByType<Player>();
     }
 
-    private void OnCollisionEnter(Collision collision)
+    virtual protected void OnCollisionEnter(Collision collision)
     {
-    //    Debug.Log($"Something has been hit : {collision.gameObject}");
+        
         Player player = collision.gameObject.GetComponent<Player>();
         if (player)
             player.TakeDamage(damage);
         Destroy(gameObject);
     }
 
-    private bool canDamage = true;
+    
     private void OnTriggerStay(Collider other)
     {
+   
+        Player player = other.gameObject.GetComponent<Player>();
         if (player && canDamage)
         {
             canDamage = false;
             Invoke(nameof(DamageCooldown), 0.1f);
         }
+        
+
+        
 
     }
+
+    private void OnTriggerEnter(Collider other)
+    {
+
+        Player player = other.gameObject.GetComponent<Player>();
+        if (player && canDamage)
+        {
+            canDamage = false;
+            Invoke(nameof(DamageCooldown), 0.1f);
+        }
+    }
+
 
     private void DamageCooldown()
     {

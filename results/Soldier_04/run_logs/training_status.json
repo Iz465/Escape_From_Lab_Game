@@ -1,0 +1,56 @@
+{
+    "Soldier": {
+        "checkpoints": [
+            {
+                "steps": 45768,
+                "file_path": "results\\Soldier_04\\Soldier\\Soldier-45768.onnx",
+                "reward": null,
+                "creation_time": 1762274990.6167877,
+                "auxillary_file_paths": [
+                    "results\\Soldier_04\\Soldier\\Soldier-45768.pt"
+                ]
+            },
+            {
+                "steps": 65690,
+                "file_path": "results\\Soldier_04\\Soldier\\Soldier-65690.onnx",
+                "reward": null,
+                "creation_time": 1762275541.4191694,
+                "auxillary_file_paths": [
+                    "results\\Soldier_04\\Soldier\\Soldier-65690.pt"
+                ]
+            },
+            {
+                "steps": 126573,
+                "file_path": "results\\Soldier_04\\Soldier\\Soldier-126573.onnx",
+                "reward": 7.6277486607432365,
+                "creation_time": 1762276389.1146486,
+                "auxillary_file_paths": [
+                    "results\\Soldier_04\\Soldier\\Soldier-126573.pt"
+                ]
+            },
+            {
+                "steps": 190904,
+                "file_path": "results\\Soldier_04\\Soldier\\Soldier-190904.onnx",
+                "reward": null,
+                "creation_time": 1762277375.5568302,
+                "auxillary_file_paths": [
+                    "results\\Soldier_04\\Soldier\\Soldier-190904.pt"
+                ]
+            }
+        ],
+        "final_checkpoint": {
+            "steps": 190904,
+            "file_path": "results\\Soldier_04\\Soldier.onnx",
+            "reward": null,
+            "creation_time": 1762277375.5568302,
+            "auxillary_file_paths": [
+                "results\\Soldier_04\\Soldier\\Soldier-190904.pt"
+            ]
+        }
+    },
+    "metadata": {
+        "stats_format_version": "0.3.0",
+        "mlagents_version": "1.1.0",
+        "torch_version": "2.9.0+cpu"
+    }
+}

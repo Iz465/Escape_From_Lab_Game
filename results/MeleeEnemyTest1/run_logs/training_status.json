@@ -1,0 +1,65 @@
+{
+    "MeleeAgent": {
+        "checkpoints": [
+            {
+                "steps": 1076059,
+                "file_path": "results\\MeleeEnemyTest1\\MeleeAgent\\MeleeAgent-1076059.onnx",
+                "reward": 1.2399675051371257,
+                "creation_time": 1762339791.0740135,
+                "auxillary_file_paths": [
+                    "results\\MeleeEnemyTest1\\MeleeAgent\\MeleeAgent-1076059.pt"
+                ]
+            },
+            {
+                "steps": 1499956,
+                "file_path": "results\\MeleeEnemyTest1\\MeleeAgent\\MeleeAgent-1499956.onnx",
+                "reward": 16.18701241546207,
+                "creation_time": 1762341005.4989247,
+                "auxillary_file_paths": [
+                    "results\\MeleeEnemyTest1\\MeleeAgent\\MeleeAgent-1499956.pt"
+                ]
+            },
+            {
+                "steps": 1847934,
+                "file_path": "results\\MeleeEnemyTest1\\MeleeAgent\\MeleeAgent-1847934.onnx",
+                "reward": 19.5335007806619,
+                "creation_time": 1762341886.0043256,
+                "auxillary_file_paths": [
+                    "results\\MeleeEnemyTest1\\MeleeAgent\\MeleeAgent-1847934.pt"
+                ]
+            },
+            {
+                "steps": 1999987,
+                "file_path": "results\\MeleeEnemyTest1\\MeleeAgent\\MeleeAgent-1999987.onnx",
+                "reward": 18.761273956106557,
+                "creation_time": 1762342370.0862386,
+                "auxillary_file_paths": [
+                    "results\\MeleeEnemyTest1\\MeleeAgent\\MeleeAgent-1999987.pt"
+                ]
+            },
+            {
+                "steps": 2045085,
+                "file_path": "results\\MeleeEnemyTest1\\MeleeAgent\\MeleeAgent-2045085.onnx",
+                "reward": 17.840949993474144,
+                "creation_time": 1762342552.8641968,
+                "auxillary_file_paths": [
+                    "results\\MeleeEnemyTest1\\MeleeAgent\\MeleeAgent-2045085.pt"
+                ]
+            }
+        ],
+        "final_checkpoint": {
+            "steps": 2045085,
+            "file_path": "results\\MeleeEnemyTest1\\MeleeAgent.onnx",
+            "reward": 17.840949993474144,
+            "creation_time": 1762342552.8641968,
+            "auxillary_file_paths": [
+                "results\\MeleeEnemyTest1\\MeleeAgent\\MeleeAgent-2045085.pt"
+            ]
+        }
+    },
+    "metadata": {
+        "stats_format_version": "0.3.0",
+        "mlagents_version": "1.1.0",
+        "torch_version": "2.2.0+cpu"
+    }
+}

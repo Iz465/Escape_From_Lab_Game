@@ -54,7 +54,7 @@ public class MeleeZombie : navmeshtestscript
         checkHitbox = true;
 
         if (BlockAttacks.particleInUse != BlockAttacks.ParticleInUse.red)
-            player.TakeDamage(15);
+            player.TakeDamage(5);
 
     }
 

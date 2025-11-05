@@ -20,6 +20,7 @@ public class CameraManager : MonoBehaviour
     }
 
     [SerializeField] private Transform rayLocation;
+
     void LookAround()
     {
         // Get mouse scroll wheel input for zooming the camera
@@ -33,7 +34,7 @@ public class CameraManager : MonoBehaviour
         lookY -= mouseDir.y;
 
         // Clamp vertical look angle to prevent flipping
-        lookY = Mathf.Clamp(lookY, -45, 45);
+        lookY = Mathf.Clamp(lookY, -30, 45);
 
         // Rotate the player and camera based on mouse movement
         transform.Rotate(0, lookX, 0f);
@@ -49,8 +50,9 @@ public class CameraManager : MonoBehaviour
 
         if (Physics.Raycast(rayTransform.position, -camTarget.forward, out hit, camDistance))
         {
-            if (hit.transform.gameObject.layer != LayerMask.NameToLayer("Player"))
+            if (hit.transform.gameObject.layer != LayerMask.NameToLayer("Player") && hit.transform.gameObject.layer != LayerMask.NameToLayer("Enemy"))
             {
+                
                 cam.position = camTarget.position - camTarget.forward * hit.distance;
                 cam.LookAt(camTarget);
                 return; // Ignore raycast layer objects
@@ -67,6 +69,7 @@ public class CameraManager : MonoBehaviour
             LookAround();
     }
 
-   
+  
+
 
 }

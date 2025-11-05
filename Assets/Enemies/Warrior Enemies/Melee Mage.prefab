@@ -1,5 +1,36 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!1 &443693364406793303
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1099032301679575699}
+  m_Layer: 7
+  m_Name: Blood point
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1099032301679575699
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 443693364406793303}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -0.0099, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 8313933614182248785}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &823275485032358607
 GameObject:
   m_ObjectHideFlags: 0
@@ -30,6 +61,68 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 7417270410273149054}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &2574670783863249180
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2575791086746097223}
+  m_Layer: 7
+  m_Name: Blood point (3)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2575791086746097223
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2574670783863249180}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0.006, y: -0, z: -0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 8313933614182248785}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &2610398153645791863
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 3947785200608197505}
+  m_Layer: 7
+  m_Name: Blood point (2)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &3947785200608197505
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2610398153645791863}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0.0101, y: 0.0224, z: -0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 8313933614182248785}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &6533568301510874772
 GameObject:
@@ -71,6 +164,37 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6533568301510874772}
   m_Mesh: {fileID: 3613567641014311022, guid: e52666887afbd09498ea4c0c0072e2e5, type: 3}
+--- !u!1 &7195738289234278805
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 7874847121397989753}
+  m_Layer: 7
+  m_Name: Blood point (1)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &7874847121397989753
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7195738289234278805}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -0.0111, y: 0.024, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 8313933614182248785}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &4382869902503593405
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -362,6 +486,18 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects:
+    - targetCorrespondingSourceObject: {fileID: -3480699329000672020, guid: 955fa8d74deb1aa42a89eb634ed0c8f1, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1099032301679575699}
+    - targetCorrespondingSourceObject: {fileID: -3480699329000672020, guid: 955fa8d74deb1aa42a89eb634ed0c8f1, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 2575791086746097223}
+    - targetCorrespondingSourceObject: {fileID: -3480699329000672020, guid: 955fa8d74deb1aa42a89eb634ed0c8f1, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 7874847121397989753}
+    - targetCorrespondingSourceObject: {fileID: -3480699329000672020, guid: 955fa8d74deb1aa42a89eb634ed0c8f1, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 3947785200608197505}
     - targetCorrespondingSourceObject: {fileID: 6502182839619065283, guid: 955fa8d74deb1aa42a89eb634ed0c8f1, type: 3}
       insertIndex: -1
       addedObject: {fileID: 527897360556037492}
@@ -973,19 +1109,23 @@ MonoBehaviour:
   roamDelay: 5
   attackRange: 100
   corpse: {fileID: 0}
-  blood: {fileID: 0}
-  bloodHits: []
+  blood: {fileID: 767729875679334921, guid: 754caa0e01b13eb4b9186463b5f2afdd, type: 3}
+  bloodHits:
+  - {fileID: 1099032301679575699}
+  - {fileID: 7874847121397989753}
+  - {fileID: 3947785200608197505}
+  - {fileID: 2575791086746097223}
   enemyPrefab: 
   canAttack: 1
   corpseParts:
-    head: {fileID: 0}
-    torso: {fileID: 0}
-    leftHand: {fileID: 0}
-    rightHand: {fileID: 0}
-    legs: {fileID: 0}
+    head: {fileID: 1604589698921734978, guid: 3dc195e4815025143aaabe1e50b2b4ad, type: 3}
+    torso: {fileID: 992527465005872472, guid: 486327f0b11f61c458b3119f0ff8a1f4, type: 3}
+    leftHand: {fileID: 1878968904969398724, guid: 62f73d6583a604943bbab85af86950d1, type: 3}
+    rightHand: {fileID: 1878968904969398724, guid: 62f73d6583a604943bbab85af86950d1, type: 3}
+    legs: {fileID: 992527465005872472, guid: 486327f0b11f61c458b3119f0ff8a1f4, type: 3}
   healthGain: 5
   power: {fileID: 6238471719548748225, guid: ebb6fc29a5cb4ad4c9ea0778c8a334c2, type: 3}
-  powerSpeed: 30
+  powerSpeed: 100
   aimLoc: {fileID: 2405388752199314152}
   playerLayer:
     serializedVersion: 2
@@ -1530,6 +1670,11 @@ CharacterJoint:
   m_EnablePreprocessing: 0
   m_MassScale: 1
   m_ConnectedMassScale: 1
+--- !u!4 &8313933614182248785 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: -3480699329000672020, guid: 955fa8d74deb1aa42a89eb634ed0c8f1, type: 3}
+  m_PrefabInstance: {fileID: 4382869902503593405}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &9154752571557685493 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: -4332706925441422008, guid: 955fa8d74deb1aa42a89eb634ed0c8f1, type: 3}

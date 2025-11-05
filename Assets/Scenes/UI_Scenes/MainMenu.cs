@@ -20,14 +20,31 @@ public class MainMenu : MonoBehaviour
         difficulties.Add("Normal", Difficulty.Normal);
         difficulties.Add("Challenging", Difficulty.Challenging);
         difficulties.Add("Hard", Difficulty.Hard);
-
+        
         SaveablePlayer.saveFile = new SaveablePlayer();
         saveFile = SaveablePlayer.saveFile;
         string data = PlayerPrefs.GetString("Data","");
 
+        if(SceneManager.GetActiveScene() != SceneManager.GetSceneByBuildIndex(0))
+        {
+            GetComponent<Canvas>().enabled = false;
+            mainMenu.SetActive(false);
+            settingsPage.SetActive(false);
+        }
+
+        print(data);
         if (data == "") return;
 
-        SaveablePlayer.saveFile = JsonUtility.FromJson<SaveablePlayer>(data);
+        saveFile = JsonUtility.FromJson<SaveablePlayer>(data);
+        print(saveFile.characterChosen);
+        if (saveFile.characterChosen != null && saveFile.characterChosen != "")
+        {
+            print("spawn in character");
+            Cursor.lockState = CursorLockMode.Locked;
+            uisToEnableOnPlay[0].transform.Find("Characters").GetComponent<CharacterSelection>().MakeCharacter(saveFile.characterChosen);
+            uisToEnableOnPlay[0].transform.Find("Characters").gameObject.SetActive(false);
+        }
+
         print(SaveablePlayer.saveFile.difficulty);
 
         foreach(var (key, val) in difficulties)
@@ -79,6 +96,12 @@ public class MainMenu : MonoBehaviour
             mainMenu.SetActive(false);
             settingsPage.SetActive(false);
             Cursor.lockState = CursorLockMode.Locked;
+
+            if(saveFile.characterChosen != "")
+            {
+                uisToEnableOnPlay[0].GetComponent<CharacterSelection>().MakeCharacter(saveFile.characterChosen);
+                uisToEnableOnPlay[0].SetActive(false);
+            }
         }
 
         Time.timeScale = 1;

@@ -41,11 +41,19 @@ public class LoadScene : MonoBehaviour
     {
         if(!other.transform.CompareTag("Player")) yield return null;
 
-        SaveablePlayer save = other.transform.GetComponent<SaveablePlayer>();
+        SaveablePlayer save = SaveablePlayer.saveFile;
         if (successDoor)
         {
-            if(!save.roomsFinished.Contains(roomName))
+            if (!save.roomsFinished.Contains(roomName))
+            {
                 save.roomsFinished.Add(roomName);
+
+                if(roomName == "Speed1")
+                    SaveablePlayer.saveFile.speedRoom2 = true;
+                if (roomName == "Speed2")
+                    SaveablePlayer.saveFile.speedRoom3 = true;
+            }
+
         }
 
         if (challengeRoom)

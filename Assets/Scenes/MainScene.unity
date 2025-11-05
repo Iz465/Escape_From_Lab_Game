@@ -19710,6 +19710,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerCharModel: {fileID: 5324372976683105097, guid: e7c9fab9265d7bb46ad2f888ff13391e, type: 3}
+  bloodCharacterModel: {fileID: 0}
+  warriorCharacterModel: {fileID: 0}
 --- !u!1 &885722573
 GameObject:
   m_ObjectHideFlags: 0
@@ -24024,7 +24026,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3487181696206192981, guid: 9aca99aafd64aa643a003c40d84c032a, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4805488704247242259, guid: 9aca99aafd64aa643a003c40d84c032a, type: 3}
       propertyPath: uisToEnableOnPlay.Array.size

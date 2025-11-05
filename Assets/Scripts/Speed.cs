@@ -19,6 +19,7 @@ public class Speed : PlayerInfo
     float lastPowerUsage;
 
     bool phazePoint = false; //true and false will indicate left and right camera position
+    SaveablePlayer saveFile;
 
     void Start()
     {
@@ -38,6 +39,7 @@ public class Speed : PlayerInfo
         meleeAttackAnimation = "Melee";
         animator = transform.GetComponent<Animator>();
         attackDuration = 0.33f;
+        saveFile = SaveablePlayer.saveFile;
     }
 
     void Run()
@@ -51,7 +53,7 @@ public class Speed : PlayerInfo
         movement.velocity = movement.direction * Time.deltaTime;
         Vector3 vel = movement.velocity;
 
-        if (Input.GetKey(KeyCode.LeftShift))
+        if (Input.GetKey(KeyCode.LeftShift) && saveFile.superRun)
         {
             if (!highSpeedMode)
             {
@@ -104,7 +106,9 @@ public class Speed : PlayerInfo
 
     public void HighSpeedMode()
     {
+        if (!saveFile.slowTime) return;
         if (stamina < 0) return;
+
         highSpeedMode = !highSpeedMode;
         Time.timeScale = highSpeedMode ? highSpeedModeScale : 1;
         Time.fixedDeltaTime = 0.02f * Time.timeScale;
@@ -112,7 +116,9 @@ public class Speed : PlayerInfo
 
     void Dash()
     {
+        if (!saveFile.dash) return;
         if(stamina < dashCost) return;
+
         if (Input.GetKeyDown(KeyCode.E))
         {
             playerInfo.stamina -= dashCost;
@@ -132,7 +138,9 @@ public class Speed : PlayerInfo
 
     void Phaze()
     {
+        if(!saveFile.phaze) return;
         if (stamina < 0) return;
+
         if (Input.GetKeyDown(KeyCode.Q))
         {
             phazeMode = !phazeMode;

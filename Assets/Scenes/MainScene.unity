@@ -7492,6 +7492,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   sceneIndex: 7
+  successDoor: 0
+  challengeRoom: 1
+  roomToFinish: Speed2
+  roomName: 
 --- !u!65 &315154737
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -7777,6 +7781,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   sceneIndex: 3
+  successDoor: 0
+  challengeRoom: 1
+  roomToFinish: Ice2
+  roomName: 
 --- !u!65 &317139351
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -10677,6 +10685,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   sceneIndex: 3
+  successDoor: 0
+  challengeRoom: 1
+  roomToFinish: Ice1
+  roomName: 
 --- !u!65 &413226424
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -43601,6 +43613,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   sceneIndex: 4
+  successDoor: 0
+  challengeRoom: 1
+  roomToFinish: Speed1
+  roomName: 
 --- !u!65 &1632057392
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -45273,6 +45289,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   sceneIndex: 2
+  successDoor: 0
+  challengeRoom: 1
+  roomToFinish: 
+  roomName: 
 --- !u!65 &1705388747
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -57281,6 +57301,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   sceneIndex: 7
+  successDoor: 0
+  challengeRoom: 1
+  roomToFinish: 
+  roomName: 
 --- !u!65 &2077945516
 BoxCollider:
   m_ObjectHideFlags: 0

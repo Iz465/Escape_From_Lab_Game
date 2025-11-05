@@ -23,6 +23,8 @@ TagManager:
   - Power
   - Corpse
   - EnemyAttack
+  - Object
+  - Floor
   - Bullet
   - Wall
   - Trap

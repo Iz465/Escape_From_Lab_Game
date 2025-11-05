@@ -1,3 +1,4 @@
+using System.Collections;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -66,17 +67,19 @@ public class CharacterSelection : MonoBehaviour
     void Blood()
     {
         Transform newPlayerModel = Instantiate(bloodCharacterModel);
-        newPlayerModel.GetComponent<Move>().useOtherScript = true;
         FinishSetup(newPlayerModel);
+
     }
 
     void Warrior()
     {
         Transform newPlayerModel = Instantiate(warriorCharacterModel);
-        newPlayerModel.GetComponent<Move>().useOtherScript = true;
         FinishSetup(newPlayerModel);
+     
+
     }
 
+  
     void FinishSetup(Transform newPlayerModel)
     {
         newPlayerModel.parent = null;
@@ -90,5 +93,8 @@ public class CharacterSelection : MonoBehaviour
 
         Destroy(GameObject.Find("Camera"));
         gameObject.SetActive(false);
+
     }
+
+
 }

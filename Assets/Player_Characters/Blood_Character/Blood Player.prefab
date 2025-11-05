@@ -171,12 +171,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   controller: {fileID: 4661378002182716094}
-  direction: {x: 0, y: 0, z: 0}
+  direction: {x: 0, y: -0.05, z: 0}
   acceleration: 0
-  velocity: {x: 0, y: 0, z: 0}
+  velocity: {x: 0, y: -250, z: 0}
   useOtherScript: 0
   walkSpeed: 9
-  runSpeed: 1
+  runSpeed: 0
   fallAcceleration: 5
   jumpStrength: 1.5
   torso: {fileID: 859633713533346852}
@@ -217,6 +217,7 @@ MonoBehaviour:
     stamina: 100
     maxStamina: 100
   playerHitParticle: {fileID: 4596544553357837919, guid: a8701d6069fe3cb43944a3ef5cfbeeab, type: 3}
+  audioSource: {fileID: 0}
 --- !u!65 &6184887894105021891
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -856,6 +857,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   cooldown: 1.5
   dodgeDistance: 10
+  footstepSound: {fileID: 0}
 --- !u!114 &5300485575251470231
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -31,7 +31,7 @@ public class MeleeAgent : Agent
     public override void OnEpisodeBegin()
     {
 
-        bool playerNotOnMine = false;
+        bool playerNotOnMine = true;
         transform.localPosition = new Vector3(10.38f, 0, -7.98f);
 
         while (!playerNotOnMine)

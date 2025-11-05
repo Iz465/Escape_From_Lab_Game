@@ -76,6 +76,7 @@ public class CharacterSelection : MonoBehaviour
 
         newPlayerModel.position = GameObject.FindGameObjectWithTag("Spawn").transform.position;
 
+        SaveablePlayer.saveFile.playedBefore = true;
         Destroy(GameObject.Find("Camera"));
         gameObject.SetActive(false);
     }

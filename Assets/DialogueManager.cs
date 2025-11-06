@@ -7,42 +7,50 @@ using UnityEngine.UI;
 using static Unity.Entities.EntitiesJournaling;
 using static UnityEngine.Rendering.DebugUI.Table;
 using UnityEngine.UIElements;
+using TMPro;
 
 public class DialogueManager : MonoBehaviour
 {
-    [SerializeField] private Text dialogueText;
-    [SerializeField] private DialogueScriptableSystem dialogueObject;
-    
+    [SerializeField] private TextMeshProUGUI dialogueText;
+    [SerializeField] private GameObject dialogueParent;
+    [SerializeField] public float typingSpeed;
+    [SerializeField] private AudioClip typingSound;
+    [SerializeField] private AudioSource audioSource;
 
-    private bool doOnce = true;
 
 
-    private void Update()
+
+    public IEnumerator ShowDialogueSlowly(string sentence ,float wordSpeed, float dialogueAmount)
     {
-        if (doOnce)
+        Debug.Log("SHOW DIALOGUE");
+        dialogueParent.SetActive(true);
+        foreach (Transform child in dialogueParent.GetComponentInChildren<Transform>(true))
+            child.gameObject.SetActive(true);
+
+        dialogueText.enabled = true;
+        dialogueText.text = "";
+
+        foreach (char c in sentence)
         {
-            doOnce = false; 
-            StartCoroutine(SwitchDialogue(5));
+            dialogueText.text += c;
+            if (audioSource) audioSource.PlayOneShot(typingSound, 0.5f);
+            yield return new WaitForSeconds(wordSpeed);
         }
-        
- 
+
+        if (dialogueAmount > 0)
+            dialogueAmount -= 1;
+            StartCoroutine(ShowDialogueSlowly(sentence, wordSpeed, dialogueAmount));
+
+        StartCoroutine(DisableDialogue(5));
+
     }
 
-    private IEnumerator SwitchDialogue(float time)
+    private IEnumerator DisableDialogue(float time)
     {
-        int number = -1;
-        while (true)
-        {
-            yield return new WaitForSeconds(time);
-            number++;
-            switch (number)
-            {
-                case 0: dialogueText.text = dialogueObject.dialogue[0]; Debug.Log(dialogueObject.dialogue[0]); break;
-                case 1: dialogueText.text = dialogueObject.dialogue[1]; break;
-                case 2: dialogueText.text = dialogueObject.dialogue[2]; break;
-                case 3: dialogueText.text = dialogueObject.dialogue[3]; number = -1; break;
-            }
-        }
+        yield return new WaitForSeconds(time);
+
+        foreach (Transform child in dialogueParent.GetComponentInChildren<Transform>(true))
+            child.gameObject.SetActive(false);
     }
 
 
@@ -51,3 +59,27 @@ public class DialogueManager : MonoBehaviour
 
 
 }
+
+
+/*
+  private IEnumerator SwitchDialogue(float time)
+  {
+
+      int number = -1;
+      while (true)
+      {
+          yield return new WaitForSeconds(time);
+          number++;
+          switch (number)
+          {
+              case 0: StartCoroutine(ShowDialogueSlowly(dialogueObject.dialogue[0], typingSpeed)); break;
+              case 1: StartCoroutine(ShowDialogueSlowly(dialogueObject.dialogue[1], typingSpeed)); break;
+              case 2: StartCoroutine(ShowDialogueSlowly(dialogueObject.dialogue[2], typingSpeed)); break;
+              case 3: StartCoroutine(ShowDialogueSlowly(dialogueObject.dialogue[3], typingSpeed)); break;
+          }
+          time = switchSpeed;
+      }
+
+
+  } 
+*/

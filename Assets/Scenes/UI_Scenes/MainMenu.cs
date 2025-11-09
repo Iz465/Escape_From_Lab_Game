@@ -8,7 +8,7 @@ using UnityEngine.UI;
 
 public class MainMenu : MonoBehaviour
 {
-    SaveablePlayer saveFile;
+    public static SaveablePlayer saveFile = null;
     private void Start()
     {
         modes.Add("Exclusive Full Screen", FullScreenMode.ExclusiveFullScreen);
@@ -21,31 +21,32 @@ public class MainMenu : MonoBehaviour
         difficulties.Add("Challenging", Difficulty.Challenging);
         difficulties.Add("Hard", Difficulty.Hard);
         
-        SaveablePlayer.saveFile = new SaveablePlayer();
-        saveFile = SaveablePlayer.saveFile;
+        saveFile = new SaveablePlayer();
         string data = PlayerPrefs.GetString("Data","");
+        saveFile = JsonUtility.FromJson<SaveablePlayer>(data);
 
         if(SceneManager.GetActiveScene() != SceneManager.GetSceneByBuildIndex(0))
         {
             GetComponent<Canvas>().enabled = false;
             mainMenu.SetActive(false);
             settingsPage.SetActive(false);
+            
+            if (data == "") return;
+            if (saveFile.characterChosen != null && saveFile.characterChosen != "")
+            {
+                print("spawn in character");
+                Cursor.lockState = CursorLockMode.Locked;
+                Transform characterSelection = uisToEnableOnPlay[0].transform.Find("Characters");
+                characterSelection.GetComponent<CharacterSelection>().MakeCharacter(saveFile.characterChosen);
+                characterSelection.gameObject.SetActive(false);
+            }
         }
 
         print(data);
-        if (data == "") return;
 
-        saveFile = JsonUtility.FromJson<SaveablePlayer>(data);
         print(saveFile.characterChosen);
-        if (saveFile.characterChosen != null && saveFile.characterChosen != "")
-        {
-            print("spawn in character");
-            Cursor.lockState = CursorLockMode.Locked;
-            uisToEnableOnPlay[0].transform.Find("Characters").GetComponent<CharacterSelection>().MakeCharacter(saveFile.characterChosen);
-            uisToEnableOnPlay[0].transform.Find("Characters").gameObject.SetActive(false);
-        }
 
-        print(SaveablePlayer.saveFile.difficulty);
+        print(saveFile.difficulty);
 
         foreach(var (key, val) in difficulties)
         {
@@ -116,8 +117,12 @@ public class MainMenu : MonoBehaviour
     public void Exit()
     {
         //save
+        if (saveFile.characterChosen != null)
+            saveFile.playedBefore = true;
+
         print("saving");
         string save = JsonUtility.ToJson(saveFile);
+        print(save);
         PlayerPrefs.SetString("Data", save);
         PlayerPrefs.Save();
         print("saved");

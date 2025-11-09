@@ -41,7 +41,7 @@ public class LoadScene : MonoBehaviour
     {
         if(!other.transform.CompareTag("Player")) yield return null;
 
-        SaveablePlayer save = SaveablePlayer.saveFile;
+        SaveablePlayer save = MainMenu.saveFile;
         if (successDoor)
         {
             if (!save.roomsFinished.Contains(roomName))
@@ -49,9 +49,9 @@ public class LoadScene : MonoBehaviour
                 save.roomsFinished.Add(roomName);
 
                 if(roomName == "Speed1")
-                    SaveablePlayer.saveFile.speedRoom2 = true;
+                    MainMenu.saveFile.speedRoom2 = true;
                 if (roomName == "Speed2")
-                    SaveablePlayer.saveFile.speedRoom3 = true;
+                    MainMenu.saveFile.speedRoom3 = true;
             }
 
         }

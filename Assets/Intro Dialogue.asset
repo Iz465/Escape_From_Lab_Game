@@ -13,10 +13,13 @@ MonoBehaviour:
   m_Name: Intro Dialogue
   m_EditorClassIdentifier: 
   dialogue:
-  - Good morning trainees. We have prepared food for you down in the dining area.
-    Training will begin shortly.
-  - Training will now commence. Please make your way to the training rooms down the
-    hall.
+  - 'Welcome Trainees
+
+'
+  - This is the lab
+  - We hope you had a good rest
+  - 'We have prepared food for you in the dining area. '
+  - When training begins please make your way to the training rooms down the hall.
   - 'Each training room has been created to push you to the limit. To succeed you
     must use your unique arsenal of skills that each room has been designed around. '
   - Good luck trainee. We will be watching...

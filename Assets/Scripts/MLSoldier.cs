@@ -21,8 +21,21 @@ public class MLSoldier : Agent
     public bool showReward;
     public bool showWins;
 
+    Rigidbody body;
+
     public float upperX, lowerX, upperZ, lowerZ;
     public LayerMask mask;
+    float wentBehindPlayer;
+
+    private void Start()
+    {
+        target = transform.parent.Find("Player");
+        upperX = walls[0].transform.position.x;
+        lowerX = walls[1].transform.position.x;
+        upperZ = walls[0].transform.position.z;
+        lowerZ = walls[1].transform.position.z;
+        body = GetComponent<Rigidbody>();
+    }
     public override void OnEpisodeBegin()
     {
         /*float upperX = 325.3f;
@@ -45,10 +58,18 @@ public class MLSoldier : Agent
     {
         sensor.AddObservation(transform.position);
         sensor.AddObservation(target.position);
+        sensor.AddObservation(target.forward);
+
+        sensor.AddObservation(upperX);// = walls[0].transform.position.x;
+        sensor.AddObservation(lowerX);// = walls[1].transform.position.x;
+        sensor.AddObservation(upperZ);// = walls[0].transform.position.z;
+        sensor.AddObservation(lowerZ);// = walls[1].transform.position.z;
 
         Vector3 dir = (target.position - transform.position);
         sensor.AddObservation(dir.normalized);
         sensor.AddObservation(dir.magnitude);
+
+        
 
     }
     public override void OnActionReceived(ActionBuffers actions)
@@ -58,8 +79,9 @@ public class MLSoldier : Agent
         float second = actions.ContinuousActions[1];
 
         //transform.position += new Vector3(first, 0, second) * Time.deltaTime * walkSpeed;
-        GetComponent<Rigidbody>().position += new Vector3(first, 0, second) * Time.deltaTime * walkSpeed;
-        //GetComponent<Rigidbody>().MovePosition(transform.position + );
+        //GetComponent<Rigidbody>().Move(new Vector3(first, 0, second) * Time.deltaTime * walkSpeed, Quaternion.identity);
+        //GetComponent<Rigidbody>().position += new Vector3(first, 0, second) * Time.deltaTime * walkSpeed;
+        body.MovePosition(transform.position + new Vector3(first, 0, second)*Time.deltaTime*walkSpeed);
     }
 
     public override void Heuristic(in ActionBuffers actionsOut)
@@ -85,7 +107,7 @@ public class MLSoldier : Agent
         }
     }
 
-    void Collision()
+    /*void Collision()
     {
         RaycastHit hit;
 
@@ -105,25 +127,36 @@ public class MLSoldier : Agent
         {
             CheckCollision(hit);
         }
-    }
+    }*/
 
-    private void OnTriggerEnter(Collider other)
+    /*private void OnTriggerEnter(Collider other)
     {
         if (other.transform.CompareTag("Player"))
         {
             print("Player hit");
-            SetReward(1);
-            EndEpisode();
+            //SetReward(1);
+            //EndEpisode();
 
             //AddReward(-0.1f);
             //health -= 5;
         }
         if (other.transform.CompareTag("Wall"))
         {
-            SetReward(-1);
-            EndEpisode();
+            //SetReward(-1);
+            //EndEpisode();
         }
         print(other.transform.tag);
+    }*/
+    private void OnCollisionStay(Collision collision)
+    {
+        if (collision.transform.CompareTag("Player"))
+        {
+            print("hit player");
+            AddReward(-0.01f);
+            //EndEpisode();
+            //AddReward(-0.1f);
+            //health -= 5;
+        }
     }
     private void OnCollisionEnter(Collision collision)
     {
@@ -131,16 +164,16 @@ public class MLSoldier : Agent
         if (collision.transform.CompareTag("Player"))
         {
             print("hit player");
-            SetReward(1);
-            EndEpisode();
+            AddReward(-0.01f);
+            //EndEpisode();
             //AddReward(-0.1f);
             //health -= 5;
         }
-        if (collision.transform.CompareTag("Wall"))
+        /*if (collision.transform.CompareTag("Wall"))
         {
-            SetReward(-1);
-            EndEpisode();
-        }
+            AddReward(-0.5f);
+            OnEpisodeBegin(); // reset position without ending abruptly
+        }*/
         print(collision.transform.tag);
         /*
         if (collision.transform.CompareTag("Wall"))
@@ -201,23 +234,50 @@ public class MLSoldier : Agent
         EndEpisode();
     }
 
+    void IsBehindPlayer()
+    {
+        Vector3 playerDir = target.position - transform.position;
+        Vector3 playerFace = target.forward;
+
+        if(playerDir.magnitude < 4 && playerDir.magnitude > 2)
+        {
+            if (Vector3.Dot(playerDir.normalized, playerFace) < 0.5f)
+            {
+                float angleResult = -Vector3.Dot(playerDir.normalized, playerFace);
+                wentBehindPlayer += Time.deltaTime;
+                AddReward(angleResult * 0.02f);
+
+                if (wentBehindPlayer > 5)
+                    Finish();
+            }
+            else
+            {
+                AddReward(-0.01f);
+                wentBehindPlayer = 0;
+            }
+        }
+        
+    }
+
     private void FixedUpdate()
     {
         //Collision();
-        if (transform.position.x > upperX + 5 ||
-        transform.position.x < lowerX - 5 ||
-        transform.position.z > upperZ + 5 ||
-        transform.position.z < lowerZ - 5)
+
+        if(
+            transform.position.x > upperX||
+            transform.position.x <  lowerX||
+            transform.position.z > upperZ||
+            transform.position.z < lowerZ)
         {
-            AddReward(-0.5f);
-            OnEpisodeBegin(); // reset position without ending abruptly
+            AddReward(-0.001f);
+            OnEpisodeBegin();
         }
 
         float dist = ((transform.position - target.position).magnitude);
-        AddReward(-0.001f*dist);
+        if(dist > 2)
+            AddReward(Mathf.Clamp01(1f - dist / 10f) * 0.002f);
 
-        if (dist < 2f)
-            AddReward(0.01f);
+        IsBehindPlayer();
 
         //if(showReward)
             //print("reward: "+GetCumulativeReward().ToString());

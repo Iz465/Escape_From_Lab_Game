@@ -9,6 +9,7 @@ public class CharacterSelection : MonoBehaviour
     public Transform playerCharModel;
     [SerializeField] Transform bloodCharacterModel;
     [SerializeField] Transform warriorCharacterModel;
+    SaveablePlayer saveFile;
 
     private void Start()
     {
@@ -16,8 +17,17 @@ public class CharacterSelection : MonoBehaviour
         transform.Find("Ice").GetComponent<Button>().onClick.AddListener(Ice);
         transform.Find("Blood").GetComponent<Button>().onClick.AddListener(Blood);
         transform.Find("Warrior").GetComponent<Button>().onClick.AddListener(Warrior);
+        saveFile = SaveablePlayer.saveFile;
     }
 
+    public void MakeCharacter(string character)
+    {
+        print(character);
+        if (character == "Speed")
+            Speed();
+        if(character == "Ice")
+            Ice();
+    }
 
     void Speed()
     {
@@ -41,6 +51,7 @@ public class CharacterSelection : MonoBehaviour
         speed.highSpeedModeScale = 0.01f;
         speed.highSpeedModeCost = 2;
         */
+        saveFile.characterChosen = "Speed";
         newPlayerModel.GetComponent<Move>().useOtherScript = true;
         Destroy(newPlayerModel.GetComponent<Ice>());
         FinishSetup(newPlayerModel);
@@ -60,6 +71,7 @@ public class CharacterSelection : MonoBehaviour
         ice.iceFloor = Resources.Load<Transform>("iceFloor");
         ice.iceSpike = Resources.Load<Transform>("spike");
         */
+        SaveablePlayer.saveFile.characterChosen = "Ice";
         Destroy(newPlayerModel.GetComponent<Speed>());
         FinishSetup(newPlayerModel);
     }
@@ -91,6 +103,8 @@ public class CharacterSelection : MonoBehaviour
 
         newPlayerModel.position = GameObject.FindGameObjectWithTag("Spawn").transform.position;
 
+        saveFile.playedBefore = true;
+        print(saveFile.characterChosen);
         Destroy(GameObject.Find("Camera"));
         gameObject.SetActive(false);
 

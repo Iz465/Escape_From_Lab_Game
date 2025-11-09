@@ -20,7 +20,7 @@ public class DialogueManager : MonoBehaviour
 
 
 
-    public IEnumerator ShowDialogueSlowly(string sentence ,float wordSpeed, float dialogueAmount)
+    public IEnumerator ShowDialogueSlowly(string sentence ,float wordSpeed)
     {
         Debug.Log("SHOW DIALOGUE");
         dialogueParent.SetActive(true);
@@ -37,11 +37,7 @@ public class DialogueManager : MonoBehaviour
             yield return new WaitForSeconds(wordSpeed);
         }
 
-        if (dialogueAmount > 0)
-            dialogueAmount -= 1;
-            StartCoroutine(ShowDialogueSlowly(sentence, wordSpeed, dialogueAmount));
-
-        StartCoroutine(DisableDialogue(5));
+        StartCoroutine(DisableDialogue(2));
 
     }
 

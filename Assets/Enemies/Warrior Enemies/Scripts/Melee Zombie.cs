@@ -53,4 +53,14 @@ public class MeleeZombie : navmeshtestscript
    
     }
 
+    private void ExplodeSound()      
+    {
+        if (attackSound) audioSource.PlayOneShot(attackSound);
+    }
+
+    private void Explode()
+    {
+
+    }
+
 }

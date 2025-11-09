@@ -23,7 +23,8 @@ public class BreakableWall : MonoBehaviour
 
     public void WallDamage(float damage)
     {
-        audioSource.PlayOneShot(hitSound);
+        if (hitSound) audioSource.PlayOneShot(hitSound);
+
         Debug.Log($"Health before: {staticHealth}");
         staticHealth -= damage;
         Debug.Log($"Health after: {staticHealth}");
@@ -34,7 +35,10 @@ public class BreakableWall : MonoBehaviour
     private void BreakWall()
     {
         staticHealth = 60;
-        AudioSource.PlayClipAtPoint(hitSound, transform.position);
+        Player player = FindAnyObjectByType<Player>();
+        if (player && hitSound) player.audioSource.PlayOneShot(hitSound);
+
+
         Collider collider = GetComponent<Collider>();
         Bounds bounds = collider.bounds;
 

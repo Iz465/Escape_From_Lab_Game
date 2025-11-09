@@ -38,6 +38,7 @@ public class BloodZombie : MonoBehaviour
 
     private void Update()
     {
+        if (!player) return;
         float distanceToPlayer = Vector3.Distance(transform.position, player.transform.position);
         if (distanceToPlayer <= 80)
             agent.SetDestination(player.transform.position);
@@ -86,7 +87,13 @@ public class BloodZombie : MonoBehaviour
         {
 
             GameObject ragdoll = Instantiate(bodypart, transform.position + new Vector3(0, height, 0), Quaternion.identity);
-            Vector3 hitDirection = (ragdoll.transform.position - player.transform.position).normalized;
+
+            Vector3 hitDirection = -transform.forward;
+
+            if (player) hitDirection = (ragdoll.transform.position - player.transform.position).normalized;
+
+        
+
             ragdoll.transform.rotation = Quaternion.LookRotation(hitDirection) * Quaternion.Euler(90, 0, 0);
 
 

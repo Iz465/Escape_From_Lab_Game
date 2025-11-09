@@ -39,17 +39,16 @@ public class GlobalEnemyManager : MonoBehaviour
 
 
     public static List<GameObject> delayedSpawns = new List<GameObject>();
+
     public void EmptyEnemies(GameObject enemy)
     {
+        totalEnemies.Remove(enemy);
         enemiesInRange.Remove(enemy);
         if (enemiesInRange.Count <= 0)
         {
             Debug.Log("No Enemies Left!");
 
-         
-
-           
-            
+  
         }
 
    

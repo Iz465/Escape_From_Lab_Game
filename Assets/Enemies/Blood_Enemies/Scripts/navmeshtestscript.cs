@@ -82,7 +82,7 @@ public class navmeshtestscript : MonoBehaviour // Readd this to to the chase ai 
         animator = GetComponent<Animator>();
         player = FindAnyObjectByType<Player>();
         globalEnemyManager = FindFirstObjectByType<GlobalEnemyManager>();
-        if (globalEnemyManager) globalEnemyManager.AddEnemy(gameObject);
+        GlobalEnemyManager.totalEnemies.Add(gameObject);
         audioSource = GetComponent<AudioSource>();
 
     }

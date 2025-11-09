@@ -12,4 +12,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a05d79f71fe3d2c4aa909460f64d090e, type: 3}
   m_Name: Warrior Room Dialogue
   m_EditorClassIdentifier: Assembly-CSharp::DialogueScriptableSystem
-  dialogue: []
+  dialogue:
+  - 'Welcome to the warrior rooms
+
+'
+  - You must battle your way through extreme danger if you are to survive
+  - Monsters
+  - Evil Knights
+  - Stone walls will block your path. Destroy them with your axe
+  - Make your way to the red door to escape.

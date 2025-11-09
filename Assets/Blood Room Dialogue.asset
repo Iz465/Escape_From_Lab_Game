@@ -14,8 +14,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   dialogue:
   - Welcome To The Blood Rooms
-  - 'We should warn you, there is currenty a mist coloured in blood inhabiting these
-    rooms. Contact with this mist will cause severe damage to your body if you stay
-    too long. Complete your training before it''s too late '
-  - Use your blood powers to defeat the enemies. You can either drink the blood in
-    the fountains scattered around the lab to replenish or drain the enemies health.
+  - We have released a blood coloured mist in this room that will slowly damage you
+    over time.
+  - 'Evil mages roam these rooms. '
+  - Exploding Zombies
+  - Drink the blood in the fountains scattered around the lab to replenish your health.
+  - Reach the red door to complete your training

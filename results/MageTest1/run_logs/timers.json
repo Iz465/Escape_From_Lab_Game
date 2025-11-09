@@ -1,0 +1,47 @@
+{
+    "name": "root",
+    "metadata": {
+        "timer_format_version": "0.1.0",
+        "start_time_seconds": "1762589944",
+        "python_version": "3.10.11 (tags/v3.10.11:7d4cc5a, Apr  5 2023, 00:38:17) [MSC v.1929 64 bit (AMD64)]",
+        "command_line_arguments": "D:\\Unity_Projects\\Escape_From_Lab_Game\\venv\\Scripts\\mlagents-learn D:/Unity_Projects/Escape_From_Lab_Game/config/MageAgent.yaml --run-id=MageTest1 --force",
+        "mlagents_version": "1.1.0",
+        "mlagents_envs_version": "1.1.0",
+        "communication_protocol_version": "1.5.0",
+        "pytorch_version": "2.2.0+cpu",
+        "numpy_version": "1.23.5",
+        "end_time_seconds": "1762589998"
+    },
+    "total": 53.949633500000346,
+    "count": 1,
+    "self": 0.007584499995573424,
+    "children": {
+        "run_training.setup": {
+            "total": 0.09560210000199731,
+            "count": 1,
+            "self": 0.09560210000199731
+        },
+        "TrainerController.start_learning": {
+            "total": 53.846446900002775,
+            "count": 1,
+            "self": 0.00039030000334605575,
+            "children": {
+                "TrainerController._reset_env": {
+                    "total": 53.8460386999941,
+                    "count": 1,
+                    "self": 53.8460386999941
+                },
+                "trainer_threads": {
+                    "total": 1.00000761449337e-06,
+                    "count": 1,
+                    "self": 1.00000761449337e-06
+                },
+                "TrainerController._save_models": {
+                    "total": 1.68999977177009e-05,
+                    "count": 1,
+                    "self": 1.68999977177009e-05
+                }
+            }
+        }
+    }
+}

@@ -36,10 +36,26 @@ public class MeleeMage : navmeshtestscript
         if (!powerInstance) return;
         Rigidbody rb = powerInstance.GetComponent<Rigidbody>();
         if (!rb) return;
-        Collider collider = player.GetComponent<Collider>();
-        Vector3 aimDir = (collider.bounds.center - aimLoc.position).normalized;
-        rb.collisionDetectionMode = CollisionDetectionMode.Continuous;
-        rb.AddForce(aimDir * powerSpeed, ForceMode.Impulse);
+        if (player)
+        {
+
+            Collider collider = player.GetComponent<Collider>();
+
+            if (collider)
+            {
+                Vector3 aimDir = (collider.bounds.center - aimLoc.position).normalized;
+                rb.collisionDetectionMode = CollisionDetectionMode.Continuous;
+                rb.AddForce(aimDir * powerSpeed, ForceMode.Impulse);
+
+            }
+
+        }
+
+        else rb.AddForce(transform.forward * powerSpeed, ForceMode.Impulse);
+
+
+
+
 
     }
 

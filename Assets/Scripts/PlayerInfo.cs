@@ -28,7 +28,6 @@ public class PlayerInfo : MonoBehaviour
 
     protected IEnumerator MeleeAttack(Animator animator)
     {
-        print("punching");
         animator.speed = 1 / Time.timeScale;
         animator.SetBool("Idle", false);
         attacked = Time.time + meleeAttackCooldown * Time.timeScale;
@@ -42,7 +41,6 @@ public class PlayerInfo : MonoBehaviour
 
     protected void DamageEnemy()
     {
-        print(transform.name);
         GameObject[] enemies = GameObject.FindGameObjectsWithTag("Enemy");
 
         foreach (GameObject enemy in enemies)

@@ -1,3 +1,4 @@
+using System.Collections;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -16,7 +17,16 @@ public class CharacterSelection : MonoBehaviour
         transform.Find("Ice").GetComponent<Button>().onClick.AddListener(Ice);
         transform.Find("Blood").GetComponent<Button>().onClick.AddListener(Blood);
         transform.Find("Warrior").GetComponent<Button>().onClick.AddListener(Warrior);
-        saveFile = SaveablePlayer.saveFile;
+        StartCoroutine(WaitForLoad());
+    }
+
+    IEnumerator WaitForLoad()
+    {
+        while (MainMenu.saveFile == null)
+            yield return null;
+
+        saveFile = MainMenu.saveFile;
+        print(JsonUtility.ToJson(saveFile));
     }
 
     public void MakeCharacter(string character)
@@ -30,6 +40,7 @@ public class CharacterSelection : MonoBehaviour
 
     void Speed()
     {
+        StartCoroutine(WaitForLoad());
         Transform newPlayerModel = Instantiate(playerCharModel);
         /*Speed speed = newPlayerModel.AddComponent<Speed>();
 
@@ -51,6 +62,7 @@ public class CharacterSelection : MonoBehaviour
         speed.highSpeedModeCost = 2;
         */
         saveFile.characterChosen = "Speed";
+        print(JsonUtility.ToJson(saveFile));
         newPlayerModel.GetComponent<Move>().useOtherScript = true;
         Destroy(newPlayerModel.GetComponent<Ice>());
         FinishSetup(newPlayerModel);
@@ -70,7 +82,7 @@ public class CharacterSelection : MonoBehaviour
         ice.iceFloor = Resources.Load<Transform>("iceFloor");
         ice.iceSpike = Resources.Load<Transform>("spike");
         */
-        SaveablePlayer.saveFile.characterChosen = "Ice";
+        MainMenu.saveFile.characterChosen = "Ice";
         Destroy(newPlayerModel.GetComponent<Speed>());
         FinishSetup(newPlayerModel);
     }
@@ -100,7 +112,6 @@ public class CharacterSelection : MonoBehaviour
 
         newPlayerModel.position = GameObject.FindGameObjectWithTag("Spawn").transform.position;
 
-        saveFile.playedBefore = true;
         print(saveFile.characterChosen);
         Destroy(GameObject.Find("Camera"));
         gameObject.SetActive(false);

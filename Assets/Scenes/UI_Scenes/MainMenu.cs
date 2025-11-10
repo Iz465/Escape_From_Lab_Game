@@ -24,6 +24,8 @@ public class MainMenu : MonoBehaviour
         saveFile = new SaveablePlayer();
         string data = PlayerPrefs.GetString("Data","");
         saveFile = JsonUtility.FromJson<SaveablePlayer>(data);
+        saveFile.playedBefore = false;
+        saveFile.characterChosen = "";
 
         if(SceneManager.GetActiveScene() != SceneManager.GetSceneByBuildIndex(0))
         {
@@ -41,6 +43,7 @@ public class MainMenu : MonoBehaviour
                 characterSelection.gameObject.SetActive(false);
             }
         }
+
 
         print(data);
 

@@ -11,6 +11,8 @@ public class CharacterSelection : MonoBehaviour
     [SerializeField] Transform warriorCharacterModel;
     SaveablePlayer saveFile;
 
+    string chosenCharacter;
+
     private void Start()
     {
         transform.Find("Speed").GetComponent<Button>().onClick.AddListener(Speed);
@@ -29,6 +31,16 @@ public class CharacterSelection : MonoBehaviour
         print(JsonUtility.ToJson(saveFile));
     }
 
+    IEnumerator SelectCharacter()
+    {
+        Text text = transform.Find("Confirm").GetComponentInChildren<Text>();
+        text.text = " Please select a character";
+
+        yield return new WaitForSeconds(2);
+
+        text.text = "Confirm";
+    }
+
     public void MakeCharacter(string character)
     {
         print(character);
@@ -38,45 +50,49 @@ public class CharacterSelection : MonoBehaviour
             Ice();
     }
 
-    void Speed()
+    public void Confirm()
     {
         StartCoroutine(WaitForLoad());
+
+        if(chosenCharacter == null)
+        {
+            StartCoroutine(SelectCharacter());
+            return;
+        }
+
         Transform newPlayerModel = Instantiate(playerCharModel);
-        /*Speed speed = newPlayerModel.AddComponent<Speed>();
+        saveFile.characterChosen = chosenCharacter;
+        
+        if(chosenCharacter == "Speed")
+        {
+            newPlayerModel.GetComponent<Move>().useOtherScript = true;
+            Destroy(newPlayerModel.GetComponent<Ice>());
+        }
+        if(chosenCharacter == "Ice")
+        {
+            newPlayerModel.GetComponent <Move>().useOtherScript = true;
+            Destroy(newPlayerModel.GetComponent<Speed>());
+        }
 
-        speed.normalWalk = 7;
-        speed.normalRun = 150;
-        speed.highSpeedWalk = 500;
-        speed.highSpeedRun = 3000;
-        speed.dashSpeed = 30;
-        speed.dashDuration = 0.02f;
+        if(chosenCharacter == "Blood")
+        {
+            newPlayerModel = Instantiate(bloodCharacterModel);
+            newPlayerModel.GetComponent<Move>().useOtherScript = false;
+        }
 
-        speed.normalRunCost = 2.5f;
-        speed.highSpeedRunCost = 5;
-        speed.dashCost = 10;
-        speed.phazeCost = 7.5f;
+        if(chosenCharacter == "Warrior")
+        {
+            newPlayerModel = Instantiate(warriorCharacterModel);
+            newPlayerModel.GetComponent<Move>().useOtherScript = true;
+        }
 
-        speed.regenRate = 15;
-
-        speed.highSpeedModeScale = 0.01f;
-        speed.highSpeedModeCost = 2;
-        */
-        saveFile.characterChosen = "Speed";
-        print(JsonUtility.ToJson(saveFile));
-        newPlayerModel.GetComponent<Move>().useOtherScript = true;
-        Destroy(newPlayerModel.GetComponent<Ice>());
         FinishSetup(newPlayerModel);
     }
+    void Speed() => chosenCharacter = "Speed";
 
-    void Ice()
-    {
-        Transform newPlayerModel = Instantiate(playerCharModel);
-        newPlayerModel.GetComponent <Move>().useOtherScript = true;
-        /*Ice ice = newPlayerModel.AddComponent<Ice>();
+    void Ice() => chosenCharacter = "Ice";
 
-        ice.iceSpeed = 15;
-        ice.walkSpeed = 10;
-        ice.characterHeight = 5;
+    void Blood() => chosenCharacter = "Blood";
 
         ice.iceWall = Resources.Load<Transform>("Ice wall");
         ice.iceFloor = Resources.Load<Transform>("iceFloor");

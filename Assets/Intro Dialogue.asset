@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Intro Dialogue
   m_EditorClassIdentifier: 
   dialogue:
-  - 'Welcome Trainees
+  - 'Welcome to the lab
 
 '
   - This is the lab

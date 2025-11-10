@@ -1,4 +1,5 @@
 using System.Collections;
+using System.Runtime.CompilerServices;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -10,6 +11,7 @@ public class LoadScene : MonoBehaviour
 
     public string roomToFinish;
     public string roomName;
+    [SerializeField] private bool movePlayerToScene = true;
 
     private void OnTriggerEnter(Collider other)
     {
@@ -32,7 +34,8 @@ public class LoadScene : MonoBehaviour
         }
 
         Scene nextScene = SceneManager.GetSceneByBuildIndex(sceneIndex);
-        SceneManager.MoveGameObjectToScene(obj, nextScene);
+        if (movePlayerToScene)
+            SceneManager.MoveGameObjectToScene(obj, nextScene);
         yield return null;
         SceneManager.UnloadSceneAsync(current);
     }

@@ -1,4 +1,6 @@
 using System.Collections;
+using System.Collections.Generic;
+using Unity.MLAgents.Integrations.Match3;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -11,7 +13,10 @@ public class CharacterSelection : MonoBehaviour
     [SerializeField] Transform warriorCharacterModel;
     SaveablePlayer saveFile;
 
-    string chosenCharacter;
+    string chosenCharacter = null;
+    Transform cam;
+    [SerializeField] List<Transform> camPositions = new List<Transform>();
+    public float cameraMoveDuration;
 
     private void Start()
     {
@@ -19,6 +24,8 @@ public class CharacterSelection : MonoBehaviour
         transform.Find("Ice").GetComponent<Button>().onClick.AddListener(Ice);
         transform.Find("Blood").GetComponent<Button>().onClick.AddListener(Blood);
         transform.Find("Warrior").GetComponent<Button>().onClick.AddListener(Warrior);
+
+        cam = GameObject.Find("Camera").transform;
         StartCoroutine(WaitForLoad());
     }
 
@@ -48,6 +55,55 @@ public class CharacterSelection : MonoBehaviour
             Speed();
         if(character == "Ice")
             Ice();
+
+        if( character == "Blood")
+            Blood();
+        
+        if(character == "Warrior")
+            Warrior();
+
+        Confirm();
+    }
+
+    float progress = 0;
+    bool move = false;
+    Vector3 startPosition;
+    Quaternion startRotation;
+    void MoveCamera()
+    {
+        int index = 0;
+
+        if (chosenCharacter == "Speed")
+            index = 0;
+
+        if (chosenCharacter == "Teleportation")
+            index = 1;
+
+        if (chosenCharacter == "Ice")
+            index = 2;
+
+        if(chosenCharacter == "Blood")
+            index = 3;
+
+        if(chosenCharacter == "Warrior")
+            index = 4;
+
+        if(chosenCharacter == "Fire")
+            index = 5;
+
+
+        Quaternion rotation = camPositions[index].rotation;
+        Quaternion finalRotation = Quaternion.Lerp(startRotation, rotation, progress);
+        Vector3 pos = Vector3.Lerp(startPosition, camPositions[index].position, progress);
+
+        progress += Time.deltaTime/cameraMoveDuration;
+        cam.transform.SetPositionAndRotation(pos, finalRotation);
+
+        if(progress >= 1)
+        {
+            progress = 0;
+            move = false;
+        }
     }
 
     public void Confirm()
@@ -88,37 +144,39 @@ public class CharacterSelection : MonoBehaviour
 
         FinishSetup(newPlayerModel);
     }
-    void Speed() => chosenCharacter = "Speed";
+    void Speed() 
+    { 
+        chosenCharacter = "Speed"; 
+        move = true;
+        startRotation = cam.rotation;
+        startPosition = cam.position;
+    }
 
-    void Ice() => chosenCharacter = "Ice";
-
-    void Blood() => chosenCharacter = "Blood";
-
-        ice.iceWall = Resources.Load<Transform>("Ice wall");
-        ice.iceFloor = Resources.Load<Transform>("iceFloor");
-        ice.iceSpike = Resources.Load<Transform>("spike");
-        */
-        MainMenu.saveFile.characterChosen = "Ice";
-        Destroy(newPlayerModel.GetComponent<Speed>());
-        FinishSetup(newPlayerModel);
+    void Ice()
+    {
+        chosenCharacter = "Ice";
+        move = true;
+        startRotation = cam.rotation;
+        startPosition = cam.position;
     }
 
     void Blood()
     {
-        Transform newPlayerModel = Instantiate(bloodCharacterModel);
-        FinishSetup(newPlayerModel);
-
+        chosenCharacter = "Blood";
+        move = true;
+        startRotation = cam.rotation;
+        startPosition = cam.position;
     }
 
     void Warrior()
     {
-        Transform newPlayerModel = Instantiate(warriorCharacterModel);
-        FinishSetup(newPlayerModel);
-     
-
+        chosenCharacter = "Warrior";
+        move = true;
+        startRotation = cam.rotation;
+        startPosition = cam.position;
     }
 
-  
+
     void FinishSetup(Transform newPlayerModel)
     {
         newPlayerModel.parent = null;
@@ -136,5 +194,14 @@ public class CharacterSelection : MonoBehaviour
 
     }
 
+    private void Update()
+    {
+        if (!move)
+        {
+            progress = 0;
+            return;
+        }
 
+        MoveCamera();
+    }
 }

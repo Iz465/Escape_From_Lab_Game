@@ -86,8 +86,11 @@ public class MainMenu : MonoBehaviour
             }
         }
 
+
+
         if(SceneManager.GetActiveScene() == SceneManager.GetSceneByBuildIndex(0))
         {
+            Debug.Log("SCENE LOADED");
             SceneManager.LoadScene(1);
         }
         else
@@ -102,7 +105,14 @@ public class MainMenu : MonoBehaviour
                 uisToEnableOnPlay[0].GetComponent<CharacterSelection>().MakeCharacter(saveFile.characterChosen);
                 uisToEnableOnPlay[0].SetActive(false);
             }
+
+
+
         }
+
+        Debug.Log(saveFile.characterChosen);
+        if (saveFile.characterChosen == null)
+            SceneManager.LoadScene(17);
 
         Time.timeScale = 1;
     }

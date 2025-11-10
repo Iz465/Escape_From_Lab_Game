@@ -50,6 +50,12 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Blood_Room_Scenes/Blood_Room_4.unity
     guid: 5b22ba41b09b1c7498d9ca977843e205
+  - enabled: 1
+    path: Assets/Scenes/Blood_Room_Scenes/Cutscene Blood.unity
+    guid: 23a594695343b0647a2d1559f34858ed
+  - enabled: 1
+    path: Assets/Scenes/Warrior_Rooms/Warrior Cutscene.unity
+    guid: 34363a6f9502d3c46877cbec586ce7f1
   m_configObjects:
     com.unity.input.settings.actions: {fileID: -944628639613478452, guid: 052faaac586de48259a63d0c4782560b, type: 3}
   m_UseUCBPForAssetBundles: 0

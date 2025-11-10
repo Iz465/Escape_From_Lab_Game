@@ -6,11 +6,10 @@ public class CutsceneManager : MonoBehaviour
 {
     private PlayableDirector director;
     [SerializeField] private string levelName;
-
+   
     private void Start()
     {
         director = GetComponent<PlayableDirector>();
-
         director.stopped += StartLevel;
     }
 
@@ -18,5 +17,7 @@ public class CutsceneManager : MonoBehaviour
     {
         SceneManager.LoadScene(levelName);
     }
+    
+    
 
 }

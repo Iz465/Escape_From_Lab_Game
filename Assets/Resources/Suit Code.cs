@@ -5,9 +5,8 @@ public class SuitCode : MonoBehaviour
 {
    
     [SerializeField] private AnimationClip walk;
-    [SerializeField] private Transform spawnPosition;
-    [SerializeField] private Transform targetPosition;
-
+    [SerializeField] private AudioSource audioSource;
+    [SerializeField] private AudioClip footSound;
     
     private void Start()
     {
@@ -37,6 +36,10 @@ public class SuitCode : MonoBehaviour
         transform.position = end;
     }
 
+    private void MakeFootSound()
+    {
+        if (footSound) audioSource.PlayOneShot(footSound);
+    }
   
 
 }

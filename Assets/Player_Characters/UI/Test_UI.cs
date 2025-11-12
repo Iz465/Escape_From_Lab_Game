@@ -12,8 +12,17 @@ public class Test_UI : MonoBehaviour
     [SerializeField]
     private Player player;
 
+    private void Start()
+    {
+        if (!player)
+        {
+            player = FindAnyObjectByType<Player>();
+            if (!player)
+                Debug.Log("CANT FIND PLAYER");
+        }
+      
+    }
 
-   
 
     private void Update()
     {
@@ -26,6 +35,8 @@ public class Test_UI : MonoBehaviour
             if (abilityOneSlider) abilityOneSlider.value = Player.abilityCooldown;
 
         } 
+
+
 
     }
 }

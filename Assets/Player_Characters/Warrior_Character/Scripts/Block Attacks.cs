@@ -40,10 +40,9 @@ public class BlockAttacks : MonoBehaviour
         playerCollider = GetComponentInParent<Collider>();
         particleInUse = ParticleInUse.none;
 
-        redBorder.enabled = false;
-        greenBorder.enabled = false;
-        blueBorder.enabled = false;
-
+        if (redBorder) redBorder.enabled = false;
+        if (greenBorder) greenBorder.enabled = false;
+        if (blueBorder) blueBorder.enabled = false;
     }
     public void BlockRed(InputAction.CallbackContext context)
     {

@@ -90,9 +90,9 @@ public class MainMenu : MonoBehaviour
             }
         }
 
+     
 
-
-        if(SceneManager.GetActiveScene() == SceneManager.GetSceneByBuildIndex(0))
+        if (SceneManager.GetActiveScene() == SceneManager.GetSceneByBuildIndex(0))
         {
             Debug.Log("SCENE LOADED");
             SceneManager.LoadScene(1);
@@ -110,13 +110,11 @@ public class MainMenu : MonoBehaviour
                 uisToEnableOnPlay[0].SetActive(false);
             }
 
-
-
         }
 
-        Debug.Log(saveFile.characterChosen);
-        if (saveFile.playedBefore == false)
-            SceneManager.LoadScene(17);
+        if (saveFile == null)
+            SceneManager.LoadScene(18);
+
 
         Time.timeScale = 1;
     }

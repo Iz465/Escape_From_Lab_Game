@@ -24,4 +24,6 @@ public class SaveablePlayer
     public bool iceRoom1;
     public bool iceRoom2;
     public bool iceRoom3;
+
+    public bool initialTutorial;
 }

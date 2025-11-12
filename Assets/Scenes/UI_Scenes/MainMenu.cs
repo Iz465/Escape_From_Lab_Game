@@ -1,3 +1,4 @@
+using System.Collections;
 using System.Collections.Generic;
 using NUnit.Framework;
 using UnityEngine;
@@ -24,8 +25,7 @@ public class MainMenu : MonoBehaviour
         saveFile = new SaveablePlayer();
         string data = PlayerPrefs.GetString("Data","");
         saveFile = JsonUtility.FromJson<SaveablePlayer>(data);
-        saveFile.playedBefore = false;
-        saveFile.characterChosen = "";
+        print(data);
 
         if(SceneManager.GetActiveScene() != SceneManager.GetSceneByBuildIndex(0))
         {
@@ -44,13 +44,6 @@ public class MainMenu : MonoBehaviour
             }
         }
 
-
-        print(data);
-
-        print(saveFile.characterChosen);
-
-        print(saveFile.difficulty);
-
         foreach(var (key, val) in difficulties)
         {
             if(val == saveFile.difficulty)
@@ -59,6 +52,16 @@ public class MainMenu : MonoBehaviour
                 return;
             }
         }
+    }
+    public static IEnumerator WaitForLoad()
+    {
+        while (saveFile == null)
+        {
+            yield return new WaitForSeconds(0.1f);
+        }
+        
+
+        yield return null;
     }
 
     public enum Difficulty 

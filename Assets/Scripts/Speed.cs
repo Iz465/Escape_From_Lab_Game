@@ -39,7 +39,7 @@ public class Speed : PlayerInfo
         meleeAttackAnimation = "Melee";
         animator = transform.GetComponent<Animator>();
         attackDuration = 0.33f;
-        saveFile = SaveablePlayer.saveFile;
+        saveFile = MainMenu.saveFile;
     }
 
     void Run()

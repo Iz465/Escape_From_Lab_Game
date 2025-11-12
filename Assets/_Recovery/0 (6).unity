@@ -20573,6 +20573,84 @@ Transform:
   m_Children: []
   m_Father: {fileID: 1190186194}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &783556709
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 783556712}
+  - component: {fileID: 783556711}
+  - component: {fileID: 783556710}
+  m_Layer: 0
+  m_Name: Intro dialogue 7
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &783556710
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 783556709}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e52de21a22b6dd44c9cc19f810c65059, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Events:
+    m_Signals:
+    - {fileID: 11400000, guid: b78b1b2d72001b14196d54582ea46908, type: 2}
+    m_Events:
+    - m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 783556711}
+          m_TargetAssemblyTypeName: PlayDialogue, Assembly-CSharp
+          m_MethodName: DialogueTriggered
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+--- !u!114 &783556711
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 783556709}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 310a22c60f7ac604b90a16fb3ae91ef7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  dialogueIndex: 6
+  dialogueScriptableObject: {fileID: 11400000, guid: 8f00d722e7c935d41b66f1e7c27c28c9, type: 2}
+  dialogueManager: {fileID: 1849308748}
+--- !u!4 &783556712
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 783556709}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -0.05309, y: 0.85, z: 5.11832}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &786598840
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -24539,16 +24617,18 @@ PlayableDirector:
     value: {fileID: 1453295337}
   - key: {fileID: -4170150293189418426, guid: 3cc7fdff3ddfeda41be71c422a4eec45, type: 2}
     value: {fileID: 1265841964}
-  - key: {fileID: -8550274209203101112, guid: 3cc7fdff3ddfeda41be71c422a4eec45, type: 2}
+  - key: {fileID: -6588014057677137757, guid: 3cc7fdff3ddfeda41be71c422a4eec45, type: 2}
     value: {fileID: 77746249}
-  - key: {fileID: -6925333851527129811, guid: 3cc7fdff3ddfeda41be71c422a4eec45, type: 2}
+  - key: {fileID: -8550274209203101112, guid: 3cc7fdff3ddfeda41be71c422a4eec45, type: 2}
     value: {fileID: 457681258}
-  - key: {fileID: 4733243073102233447, guid: 3cc7fdff3ddfeda41be71c422a4eec45, type: 2}
+  - key: {fileID: -6925333851527129811, guid: 3cc7fdff3ddfeda41be71c422a4eec45, type: 2}
     value: {fileID: 343868556}
-  - key: {fileID: 4461373978171104822, guid: 3cc7fdff3ddfeda41be71c422a4eec45, type: 2}
+  - key: {fileID: 4733243073102233447, guid: 3cc7fdff3ddfeda41be71c422a4eec45, type: 2}
     value: {fileID: 156534805}
-  - key: {fileID: -4754896210565999430, guid: 3cc7fdff3ddfeda41be71c422a4eec45, type: 2}
+  - key: {fileID: 4461373978171104822, guid: 3cc7fdff3ddfeda41be71c422a4eec45, type: 2}
     value: {fileID: 1572358218}
+  - key: {fileID: -4754896210565999430, guid: 3cc7fdff3ddfeda41be71c422a4eec45, type: 2}
+    value: {fileID: 783556710}
   m_ExposedReferences:
     m_References: []
 --- !u!4 &936348338
@@ -61877,5 +61957,6 @@ SceneRoots:
   - {fileID: 343868558}
   - {fileID: 156534807}
   - {fileID: 1572358220}
+  - {fileID: 783556712}
   - {fileID: 2135206291}
   - {fileID: 1324582171}

@@ -1832,7 +1832,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 88b00ef25b5ca3143bf389321f52849d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  health: 180
+  health: 160
   roamRadius: 100
   roamDelay: 2
   attackRange: 5

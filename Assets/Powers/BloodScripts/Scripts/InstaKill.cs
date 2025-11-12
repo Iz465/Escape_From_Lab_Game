@@ -14,7 +14,7 @@ public class InstaKill : BasePower, ICollide
     private Collider[] enemyDetected;
     private Collider powerCollider;
     private bool isHeldDown;
-
+    [SerializeField] public AudioClip attackSound;
 
 
     private List<GameObject> enemyHit = new List<GameObject>();
@@ -60,6 +60,8 @@ public class InstaKill : BasePower, ICollide
     // animation event called during the part where the animation forms an attack
     private void StartInstaKill()
     {
+        if (attackSound) player.audioSource.PlayOneShot(attackSound, 3f);
+        
         if (!cam) return;
         cameraShake = cam.GetComponent<CameraShake>();
         if (!cameraShake) return;

@@ -49,7 +49,7 @@ public class BloodMage : navmeshtestscript
             agent.isStopped = true;
 
         canAttack = false;
-     
+        
 
 
 
@@ -98,8 +98,10 @@ public class BloodMage : navmeshtestscript
     protected override void Attack()
     {
 
+        audioSource.PlayOneShot(attackSound, 3f);
+
         if (distanceToPlayer >= 10) speed = 100;
-        if (distanceToPlayer < 10) speed = 70;
+        if (distanceToPlayer < 10) speed = 50;
         number++;
 
         
@@ -207,6 +209,7 @@ public class BloodMage : navmeshtestscript
     
     private void InstantAttack()
     {
+        audioSource.PlayOneShot(attackSound, 3f);
         animator.SetBool("InstantAttack", true);
         number = 3;
 
@@ -222,7 +225,7 @@ public class BloodMage : navmeshtestscript
     private void ResetInstantAttack(float time)
     {
         animator.SetBool("InstantAttack", false);
-        StartCoroutine(ResetAttack(2));
+        StartCoroutine(ResetAttack(1));
     }
 
 

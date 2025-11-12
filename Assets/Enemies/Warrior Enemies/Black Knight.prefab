@@ -1890,6 +1890,8 @@ MonoBehaviour:
   - {fileID: 8300000, guid: aa2a30ccc477bb144a9085e65fe79f0f, type: 3}
   - {fileID: 8300000, guid: 8eeba4020969472439ad4d2d03d23090, type: 3}
   deathSound: {fileID: 8300000, guid: c8f96a97f2f4992428c217a81627396c, type: 3}
+  attackSounds: []
+  attackSound: {fileID: 8300000, guid: 202fffeeda1ce0f408e126799d4dbbea, type: 3}
   corpseParts:
     head: {fileID: 1604589698921734978, guid: 1422ffee39ce39a47b06e8835f629dd2, type: 3}
     torso: {fileID: 992527465005872472, guid: ac1d22ed94cb7004a8a17517c065fb8c, type: 3}
@@ -1907,6 +1909,9 @@ MonoBehaviour:
   healthGain: 10
   swordParticle: {fileID: 2879452947444175344, guid: ce08d9904c4049440be9fc3de8b462c6, type: 3}
   swordLocation: {fileID: 1773943180945175834}
+  firstStepSound: {fileID: 8300000, guid: 10d8fab6604b26c47bd9744551a02698, type: 3}
+  secondStepSound: {fileID: 8300000, guid: 4d682315b0154e147ba0055f52f8d5d4, type: 3}
+  swordHitSound: {fileID: 8300000, guid: efc05bdc972a5f046a8fd33155490e19, type: 3}
 --- !u!82 &-9089521684979050119
 AudioSource:
   m_ObjectHideFlags: 0

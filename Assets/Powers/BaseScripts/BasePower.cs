@@ -172,18 +172,17 @@ public class BasePower : MonoBehaviour
         float yLoc = 15;
         float zLoc = 15;
 
-        var powerLoc = powerInstance.transform.position;
+        var powerLocation = powerInstance.transform.position;
 
         powerInstance.transform.rotation = Quaternion.LookRotation(Vector3.forward);
 
-        Vector3 forwardPos = cam.transform.forward * zLoc;
-        powerLoc.z = forwardPos.z;
-        powerInstance.transform.position += forwardPos;
+        Vector3 forwardPosition = cam.transform.forward * zLoc;
+        powerLocation.z = forwardPosition.z;
        
-        var upPos = powerInstance.transform.position;
-        upPos.y = yLoc;
-        powerInstance.transform.position = upPos;
-        
+        var upPosistion = player.transform.position;
+        upPosistion.y += yLoc;
+        upPosistion.z = powerLocation.z;
+        powerInstance.transform.position = upPosistion;
     }
 
     virtual protected void ShootPower()

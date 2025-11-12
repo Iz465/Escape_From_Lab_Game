@@ -1753,6 +1753,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 645245881}
     - target: {fileID: 6817666453106957175, guid: 7752c019e5860b6429fc9ebffb9eebc2, type: 3}
+      propertyPath: stats.health
+      value: 100
+      objectReference: {fileID: 0}
+    - target: {fileID: 6817666453106957175, guid: 7752c019e5860b6429fc9ebffb9eebc2, type: 3}
       propertyPath: stats.maxHealth
       value: 100
       objectReference: {fileID: 0}
@@ -19628,32 +19632,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 1935255894}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &1871337382 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 7747909431218568758, guid: 02e0b3b90040a2442b2dc3b8cc0f2360, type: 3}
-  m_PrefabInstance: {fileID: 8464861506692246577}
-  m_PrefabAsset: {fileID: 0}
---- !u!65 &1871337383
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1871337382}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &1875917590 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 1833855726124883766, guid: 585f3ffd0be993540b4aa0fc9972085e, type: 3}
@@ -24787,6 +24765,14 @@ PrefabInstance:
       propertyPath: player
       value: 
       objectReference: {fileID: 645245883}
+    - target: {fileID: 5854879650677558903, guid: 02e0b3b90040a2442b2dc3b8cc0f2360, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5854879650677558903, guid: 02e0b3b90040a2442b2dc3b8cc0f2360, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 7747909431218568758, guid: 02e0b3b90040a2442b2dc3b8cc0f2360, type: 3}
       propertyPath: m_Name
       value: Warrior/Blood UI
@@ -24871,13 +24857,18 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8749086945269285396, guid: 02e0b3b90040a2442b2dc3b8cc0f2360, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8749086945269285396, guid: 02e0b3b90040a2442b2dc3b8cc0f2360, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 7747909431218568758, guid: 02e0b3b90040a2442b2dc3b8cc0f2360, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 1871337383}
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 02e0b3b90040a2442b2dc3b8cc0f2360, type: 3}
 --- !u!4 &8469172532194314230
 Transform:

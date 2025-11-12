@@ -1,6 +1,7 @@
 using System;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.UI;
 
 public class BlockAttacks : MonoBehaviour
 {
@@ -18,7 +19,7 @@ public class BlockAttacks : MonoBehaviour
       blue,
       none
     }
-
+    
   
 
     [HideInInspector] public static ParticleInUse particleInUse;
@@ -27,18 +28,33 @@ public class BlockAttacks : MonoBehaviour
     private Collider playerCollider;
     private GameObject[] currentParticle = new GameObject[1];
 
-     
+    [SerializeField] private Image redBorder;
+    [SerializeField] private Image greenBorder;
+    [SerializeField] private Image blueBorder;
+
+
+
 
     private void Start()
     {
         playerCollider = GetComponentInParent<Collider>();
         particleInUse = ParticleInUse.none;
+
+        redBorder.enabled = false;
+        greenBorder.enabled = false;
+        blueBorder.enabled = false;
+
     }
     public void BlockRed(InputAction.CallbackContext context)
     {
         if (!context.performed) return;
         SwitchParticle(particleTypes.redParticle);
         particleInUse = ParticleInUse.red;
+
+       
+        redBorder.enabled = true;
+        greenBorder.enabled = false;
+        blueBorder.enabled = false;
     }
 
     public void BlockGreen(InputAction.CallbackContext context)
@@ -46,6 +62,10 @@ public class BlockAttacks : MonoBehaviour
         if (!context.performed) return;
         SwitchParticle(particleTypes.greenParticle);
         particleInUse = ParticleInUse.green;
+
+        redBorder.enabled = false;
+        greenBorder.enabled = true;
+        blueBorder.enabled = false;
     }
 
     public void BlockBlue(InputAction.CallbackContext context)
@@ -53,6 +73,10 @@ public class BlockAttacks : MonoBehaviour
         if (!context.performed) return;
         SwitchParticle(particleTypes.blueParticle);
         particleInUse = ParticleInUse.blue;
+
+        redBorder.enabled = false;
+        greenBorder.enabled = false;
+        blueBorder.enabled = true;
     }
 
     private void SwitchParticle(GameObject particle)

@@ -2,6 +2,7 @@ using System.Collections;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.AI;
+using UnityEngine.Audio;
 
 public class BloodZombie : MonoBehaviour
 {
@@ -11,6 +12,10 @@ public class BloodZombie : MonoBehaviour
     [SerializeField] private ParticleSystem explosion;
     [SerializeField] private Transform explosionLocation;
     [SerializeField] private LayerMask playerLayer;
+    [SerializeField] private AudioClip footstepSound;
+    [SerializeField] private AudioClip attackSound;
+    private AudioSource audioSource;
+    private GlobalEnemyManager globalEnemyManager;
 
     [System.Serializable]
     public struct CorpseParts
@@ -31,9 +36,11 @@ public class BloodZombie : MonoBehaviour
         agent = GetComponent<NavMeshAgent>();
         player = FindAnyObjectByType<Player>();
         animator = GetComponent<Animator>();
-
+        audioSource = GetComponent<AudioSource>();
         line = GetComponent<linescript>();
-       
+        globalEnemyManager = FindAnyObjectByType<GlobalEnemyManager>();
+
+
     }
 
     private void Update()
@@ -50,6 +57,17 @@ public class BloodZombie : MonoBehaviour
         }
         
 
+    }
+
+    private void FootstepSound()
+    {
+        globalEnemyManager.CheckEnemySound(footstepSound, "footsteps", audioSource);
+
+    }
+
+    private void ExplodeSound()
+    {
+        if (attackSound) player.audioSource.PlayOneShot(attackSound);
     }
 
     private void Explode()

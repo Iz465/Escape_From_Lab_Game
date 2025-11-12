@@ -6,8 +6,9 @@ public class Test_UI : MonoBehaviour
 {
     [SerializeField]
     private Text healthText;
-    [SerializeField]
-    private  Text staminaText;
+    [SerializeField] private Slider healthBar;
+    [SerializeField] private Slider abilityOneSlider;
+
     [SerializeField]
     private Player player;
 
@@ -18,10 +19,12 @@ public class Test_UI : MonoBehaviour
     {
         if (player)
         {
-            if (healthText)
-                healthText.text = $"Health : {player.stats.health}";
-            if (staminaText)
-                staminaText.text = $"Stamina : {player.stats.stamina}";
+            if (healthText) healthText.text = $"Health : {player.stats.health}";
+
+            if (healthBar) healthBar.value = player.stats.health;
+         
+            if (abilityOneSlider) abilityOneSlider.value = Player.abilityCooldown;
+
         } 
 
     }

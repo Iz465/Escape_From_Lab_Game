@@ -14,6 +14,7 @@ public class SlamMelee : BasePower
     {
         base.Start();
         line = GetComponent<linescript>();
+        Player.abilityCooldown = cooldown;
     }
 
     // slam ability can only be called once its been reset.
@@ -65,10 +66,18 @@ public class SlamMelee : BasePower
         
     }
 
+
     private IEnumerator ResetSlam(float time)
     {
-        yield return new WaitForSeconds(time);
+        Player.abilityCooldown = 0;
+
+        while (Player.abilityCooldown < time)
+        {
+            Player.abilityCooldown += Time.deltaTime;
+            yield return null;
+        }
         Debug.Log("HAMMER RESET");
+        Player.abilityCooldown = cooldown;
         canAttack = true;
     }
 

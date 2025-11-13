@@ -14,17 +14,18 @@ public class MLSoldier : Agent
     float lastDamage;
 
     public List<Transform> walls = new List<Transform>();
+    public List<Transform> goodWalls = new List<Transform>();
 
-    [SerializeField] CharacterController controller;
+    //[SerializeField] CharacterController controller;
 
     public float walkSpeed = 4;
-    public bool showReward;
-    public bool showWins;
+    bool showReward;
+    bool showWins;
 
     Rigidbody body;
 
-    public float upperX, lowerX, upperZ, lowerZ;
-    public LayerMask mask;
+    float upperX, lowerX, upperZ, lowerZ;
+    LayerMask mask;
     float wentBehindPlayer;
 
     private void Start()
@@ -34,6 +35,7 @@ public class MLSoldier : Agent
         lowerX = walls[1].transform.position.x;
         upperZ = walls[0].transform.position.z;
         lowerZ = walls[1].transform.position.z;
+        
         body = GetComponent<Rigidbody>();
     }
     public override void OnEpisodeBegin()
@@ -69,7 +71,10 @@ public class MLSoldier : Agent
         sensor.AddObservation(dir.normalized);
         sensor.AddObservation(dir.magnitude);
 
-        
+        foreach(Transform wall in goodWalls)
+        {
+            sensor.AddObservation(wall.position);
+        }
 
     }
     public override void OnActionReceived(ActionBuffers actions)
@@ -91,23 +96,19 @@ public class MLSoldier : Agent
         actions[1] = Input.GetAxis("Vertical");
 
     }
-
+    /*
     void CheckCollision(RaycastHit hit)
     {
         print(hit.transform.name);
-        if (hit.transform.CompareTag("Player"))
-        {
-            AddReward(1);
-            EndEpisode();
-        }
+        
         if (hit.transform.CompareTag("Wall"))
         {
-            AddReward(-1);
+            AddReward(-0.01f);
             EndEpisode();
         }
     }
 
-    /*void Collision()
+    void Collision()
     {
         RaycastHit hit;
 
@@ -127,7 +128,7 @@ public class MLSoldier : Agent
         {
             CheckCollision(hit);
         }
-    }*/
+    }
 
     /*private void OnTriggerEnter(Collider other)
     {
@@ -147,6 +148,7 @@ public class MLSoldier : Agent
         }
         print(other.transform.tag);
     }*/
+    /*
     private void OnCollisionStay(Collision collision)
     {
         if (collision.transform.CompareTag("Player"))
@@ -157,7 +159,8 @@ public class MLSoldier : Agent
             //AddReward(-0.1f);
             //health -= 5;
         }
-    }
+    }*/
+    /*
     private void OnCollisionEnter(Collision collision)
     {
 
@@ -173,7 +176,7 @@ public class MLSoldier : Agent
         {
             AddReward(-0.5f);
             OnEpisodeBegin(); // reset position without ending abruptly
-        }*/
+        }
         print(collision.transform.tag);
         /*
         if (collision.transform.CompareTag("Wall"))
@@ -181,13 +184,13 @@ public class MLSoldier : Agent
             AddReward(-0.1f);
             OnEpisodeBegin();
         }
-        /*if (collision.transform.CompareTag("Player"))
+        if (collision.transform.CompareTag("Player"))
         {
             AddReward(.1f);
             EndEpisode();
         }
-          //BadMistake();*/
-    }
+          //BadMistake();
+    }*/
     
     /*void IsInRange()
     {
@@ -215,14 +218,92 @@ public class MLSoldier : Agent
         RaycastHit hit;
         bool normalRay = Physics.Raycast(transform.position, direction.normalized, out hit, direction.magnitude, raycastLayer);
 
-        if(normalRay && hit.transform.CompareTag("Player")){
+        if (!normalRay) return;
+        if (hit.transform.CompareTag("Player"))
+        {
             RaycastHit hitinfo;
             bool widerRay = Physics.BoxCast(transform.position, new Vector3(0.5f, 0.5f, 0.5f), direction, out hitinfo);
-            if (widerRay && hitinfo.transform.CompareTag("Obstacle"))
+            if (widerRay)
             {
-                AddReward(1);
+                if (hitinfo.transform.CompareTag("Obstacle"))
+                {
+                    print("found perfect spot");
+                    SetReward(2);
+                    EndEpisode();
+                }
+                else
+                {
+                    if (hitinfo.transform.CompareTag("Player"))
+                    {
+                        AddReward(-0.01f);
+                    }
+                }
             }
         }
+        else
+        {
+            AddReward(-0.01f);
+        }
+            
+            
+        
+    }
+
+    void IsCloseToPlayer()
+    {
+        float dist = Vector3.Distance(transform.position, target.position);
+        if (dist < 15f)
+        {
+            // Closer = worse (up to -0.01)
+            AddReward(-Mathf.Clamp01((15f - dist) / 15f) * 0.01f);
+        }
+    }
+
+    void IsCloseToWall()
+    {
+        float bestDist = float.MaxValue;
+        Transform foundWall = null;
+
+        foreach(Transform wall in goodWalls)
+        {
+            if ((wall.position - target.position).magnitude < 10)
+            {
+                if((transform.position - wall.position).magnitude < 10)
+                {
+                    print("too close to player");
+                    AddReward(-0.01f);
+                }
+                continue;
+            }
+
+            float wallDist = (wall.position - transform.position).magnitude;
+            if (wallDist < 25 && bestDist > wallDist)
+            {
+                bestDist = wallDist;
+                foundWall = wall;
+            }
+        }
+
+        if(foundWall != null)
+        {
+            print("wall found");
+            AddReward(Mathf.Clamp01((25f - bestDist) / 25f) * 0.02f);
+        }
+
+        /*foreach(Transform wall in goodWalls)
+        {
+            if ((wall.position - transform.position).magnitude < 25)
+            {
+                if ((target.position - wall.position).magnitude < 10)
+                {
+                    AddReward(-0.01f);
+                }
+                else
+                {
+                    AddReward(0.01f);
+                }
+            }
+        }*/
     }
 
     void Finish()
@@ -233,11 +314,17 @@ public class MLSoldier : Agent
         //SetReward(1);
         EndEpisode();
     }
-
+    /*
     void IsBehindPlayer()
     {
         Vector3 playerDir = target.position - transform.position;
         Vector3 playerFace = target.forward;
+
+        if((transform.position-(target.position-playerFace)).magnitude < 1)
+        {
+            SetReward(2);
+            EndEpisode();
+        }
 
         if(playerDir.magnitude < 4 && playerDir.magnitude > 2)
         {
@@ -258,11 +345,11 @@ public class MLSoldier : Agent
         }
         
     }
-
+    */
     private void FixedUpdate()
     {
         //Collision();
-
+        if (!Academy.Instance.IsCommunicatorOn) return;
         if(
             transform.position.x > upperX||
             transform.position.x <  lowerX||
@@ -273,11 +360,15 @@ public class MLSoldier : Agent
             OnEpisodeBegin();
         }
 
-        float dist = ((transform.position - target.position).magnitude);
-        if(dist > 2)
-            AddReward(Mathf.Clamp01(1f - dist / 10f) * 0.002f);
+        IsCloseToPlayer();
+        //IsCloseToWall();
+        IsBehindWall();
 
-        IsBehindPlayer();
+        float dist = ((transform.position - target.position).magnitude);
+        if(dist > 4 && dist < 80)
+            AddReward(0.001f*dist);
+
+        //IsBehindPlayer();
 
         //if(showReward)
             //print("reward: "+GetCumulativeReward().ToString());

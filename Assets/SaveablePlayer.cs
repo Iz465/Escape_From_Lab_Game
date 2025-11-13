@@ -24,17 +24,6 @@ public class SaveablePlayer
     public bool iceRoom1;
     public bool iceRoom2;
     public bool iceRoom3;
-    
 
-    // Isak stuff
-
-    public bool bloodRoom1;
-    public bool bloodRoom2;
-    public bool bloodRoom3;
-    public bool bloodRoom4;
-
-    public bool warriorRoom1;
-    public bool warriorRoom2;
-    public bool warriorRoom3;
-
+    public bool initialTutorial;
 }

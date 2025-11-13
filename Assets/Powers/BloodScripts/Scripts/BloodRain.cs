@@ -38,13 +38,24 @@ public class BloodRain : BasePower
 
     }
 
-    // Attack can only be used again once this is called
+    // Attack can only be used again once THIS ienumerator has finished 
     private IEnumerator ResetAttack(int time)
     {
-        yield return new WaitForSeconds(time);
-        Debug.Log("Blood Rain active!");
+        Player.abilityCooldown = 0;
+
+        while (Player.abilityCooldown < time)
+        {
+            Player.abilityCooldown += Time.deltaTime;
+            yield return null;
+        }
+        Debug.Log("BlOOD RAIN RESET");
+        Player.abilityCooldown = 35;
         canAttack = true;
+
     }
+
+
+
 
     // Animation event 
     private void StartBloodRain()

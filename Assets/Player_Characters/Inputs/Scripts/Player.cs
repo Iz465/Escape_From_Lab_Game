@@ -22,7 +22,8 @@ public class Player : MonoBehaviour, IDamageTaken
     [HideInInspector] public static bool canDamage = true;
     [SerializeField] public ParticleSystem playerHitParticle;
     [HideInInspector] public static float abilityCooldown = 30;
-    
+    [HideInInspector] public static float ability2Cooldown = 15;
+
     public AudioSource audioSource;
     private void Start()
     {

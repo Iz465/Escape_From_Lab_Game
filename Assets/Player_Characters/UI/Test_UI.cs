@@ -17,6 +17,8 @@ public class Test_UI : MonoBehaviour
     [SerializeField] private Slider abilityOneSlider;
     [SerializeField] private Speed speed;
 
+    [SerializeField] private Slider abilityTwoSlider;
+
     [SerializeField]
     private Player player;
 
@@ -45,6 +47,12 @@ public class Test_UI : MonoBehaviour
             if (healthBar) healthBar.value = player.stats.health;
          
             if (abilityOneSlider) abilityOneSlider.value = Player.abilityCooldown;
+
+            if (abilityTwoSlider)
+            {
+                abilityTwoSlider.enabled = true;
+                abilityTwoSlider.value = Player.ability2Cooldown;
+            }
 
         }
 

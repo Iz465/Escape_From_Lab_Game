@@ -187,7 +187,7 @@ public class CharacterSelection : MonoBehaviour
         info.maxHealth = 100;
 
         newPlayerModel.position = GameObject.FindGameObjectWithTag("Spawn").transform.position;
-
+        Debug.Log("SPAWNING");
         print(saveFile.characterChosen);
         Destroy(GameObject.Find("Camera"));
         gameObject.SetActive(false);

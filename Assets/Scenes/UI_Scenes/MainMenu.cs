@@ -24,7 +24,8 @@ public class MainMenu : MonoBehaviour
         
         saveFile = new SaveablePlayer();
         string data = PlayerPrefs.GetString("Data","");
-        saveFile = JsonUtility.FromJson<SaveablePlayer>(data);
+        if(data != "")
+            saveFile = JsonUtility.FromJson<SaveablePlayer>(data);
         print(data);
 
         if(SceneManager.GetActiveScene() != SceneManager.GetSceneByBuildIndex(0))
@@ -44,7 +45,10 @@ public class MainMenu : MonoBehaviour
             }
         }
 
-        foreach(var (key, val) in difficulties)
+
+        difficultyText.text = "Normal";
+        if (data == "") return;
+        foreach (var (key, val) in difficulties)
         {
             if(val == saveFile.difficulty)
             {

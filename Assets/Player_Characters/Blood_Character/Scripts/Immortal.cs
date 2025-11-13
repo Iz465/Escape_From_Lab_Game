@@ -34,8 +34,17 @@ public class Immortal : MonoBehaviour
 
     private IEnumerator ResetCast(float time)
     {
-        yield return new WaitForSeconds(time);
+        Player.ability2Cooldown = 0;
+
+        while (Player.ability2Cooldown < time)
+        {
+            Player.ability2Cooldown += Time.deltaTime;
+            yield return null;
+        }
+        Debug.Log("IMMORTALITY RESET");
+        Player.ability2Cooldown = 15;
         canCast = true;
+
     }
 
 }

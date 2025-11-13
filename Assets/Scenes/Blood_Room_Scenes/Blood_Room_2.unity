@@ -23794,6 +23794,22 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8749086945269285396, guid: 02e0b3b90040a2442b2dc3b8cc0f2360, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8749086945269285396, guid: 02e0b3b90040a2442b2dc3b8cc0f2360, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9006279981085926097, guid: 02e0b3b90040a2442b2dc3b8cc0f2360, type: 3}
+      propertyPath: m_Text
+      value: 'Ability One : RMB
+
+
+
+'
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects:
     - {fileID: 1987686495313294447, guid: 02e0b3b90040a2442b2dc3b8cc0f2360, type: 3}

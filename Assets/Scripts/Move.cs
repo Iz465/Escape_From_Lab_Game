@@ -35,6 +35,13 @@ public class Move : MonoBehaviour
             fallSpeed -= fallAcceleration * Time.deltaTime;
             fallSpeed = Mathf.Clamp(fallSpeed, -50, 10);
         }
+
+        else if (!controller.isGrounded)
+        {
+           
+            fallSpeed -= fallAcceleration * Time.deltaTime;
+            fallSpeed = Mathf.Clamp(fallSpeed, -50, 10);
+        }
         //print(hit.transform);
 
         //head bumps

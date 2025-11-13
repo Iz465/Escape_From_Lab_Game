@@ -7,6 +7,7 @@ public class MeleeZombie : navmeshtestscript
 
     [SerializeField] private LayerMask playerLayer;
     [SerializeField] private AudioClip footstepSound;
+  
 
     protected override void Start()
     {
@@ -26,7 +27,7 @@ public class MeleeZombie : navmeshtestscript
     private void EnableHit()
     {
         if (BlockAttacks.particleInUse != BlockAttacks.ParticleInUse.red)
-            player.TakeDamage(5);
+            player.TakeDamage(2);
      
      
     }

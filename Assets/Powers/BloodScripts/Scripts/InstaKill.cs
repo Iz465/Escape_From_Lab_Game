@@ -28,10 +28,12 @@ public class InstaKill : BasePower, ICollide
     }
 
     // Checks every frame whether player is holding down mouse or not. This is so the player can spam the power without having to click many times
+
+
     private void Update()
     {
-        if (animator)
-            animator.SetBool("Continued", isHeldDown);
+      //  if (animator)
+      //      animator.SetBool("Continued", isHeldDown);
         if (Input.GetMouseButton(0))
         {
         

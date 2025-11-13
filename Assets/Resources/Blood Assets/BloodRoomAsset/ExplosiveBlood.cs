@@ -4,15 +4,20 @@ using UnityEngine;
 public class ExplosiveBlood : MonoBehaviour
 {
     [SerializeField] private ParticleSystem explosion;
+    [SerializeField] private AudioClip explosionSound;
+
+    private Player playerAudio;
     private void Start()
     {
         BloodLevel.explosiveBloodAmount.Add(gameObject);
+        playerAudio = FindAnyObjectByType<Player>();
     }
     private void OnTriggerEnter(Collider other)
     {
-        navmeshtestscript checkEnemy = other.GetComponent<navmeshtestscript>();
-        Player checkPlayer = other.GetComponent<Player>();
-        if (!checkEnemy || checkEnemy) return;
+
+        if (playerAudio)
+            playerAudio.audioSource.PlayOneShot(explosionSound);
+
 
         Collider[] bodies = Physics.OverlapSphere(transform.position, 5f);
         HashSet<GameObject> unique = new HashSet<GameObject>();

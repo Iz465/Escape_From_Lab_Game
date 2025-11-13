@@ -61,7 +61,7 @@ public class navmeshtestscript : MonoBehaviour // Readd this to to the chase ai 
 
 
     [Header("Objects")]
-    protected Player player;
+    [SerializeField] protected Player player;
 
     // Agent variables
     protected NavMeshAgent agent;
@@ -80,7 +80,7 @@ public class navmeshtestscript : MonoBehaviour // Readd this to to the chase ai 
         agent = GetComponent<NavMeshAgent>();
         timer = roamDelay;
         animator = GetComponent<Animator>();
-        player = FindAnyObjectByType<Player>();
+        if (!player) player = FindAnyObjectByType<Player>();
         globalEnemyManager = FindFirstObjectByType<GlobalEnemyManager>();
         GlobalEnemyManager.totalEnemies.Add(gameObject);
         audioSource = GetComponent<AudioSource>();

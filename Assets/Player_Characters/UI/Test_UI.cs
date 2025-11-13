@@ -7,7 +7,15 @@ public class Test_UI : MonoBehaviour
     [SerializeField]
     private Text healthText;
     [SerializeField] private Slider healthBar;
+
+    [SerializeField]
+    private Text staminaText;
+    [SerializeField] private Slider staminaBar;
+
+
+
     [SerializeField] private Slider abilityOneSlider;
+    [SerializeField] private Speed speed;
 
     [SerializeField]
     private Player player;
@@ -20,6 +28,10 @@ public class Test_UI : MonoBehaviour
             if (!player)
                 Debug.Log("CANT FIND PLAYER");
         }
+
+        if (!speed)
+            speed = FindAnyObjectByType<Speed>();
+
       
     }
 
@@ -34,9 +46,20 @@ public class Test_UI : MonoBehaviour
          
             if (abilityOneSlider) abilityOneSlider.value = Player.abilityCooldown;
 
-        } 
+        }
 
+        else if(speed)
+        {
+            if (healthText) healthText.text = $"Health : {speed.health}";
 
+            if (healthBar) healthBar.value = speed.health;
+
+            if (staminaText) staminaText.text = $"Stamina : {speed.stamina}";
+
+            if (staminaBar) staminaBar.value = speed.stamina;
+        }
+
+   
 
     }
 }

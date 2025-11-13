@@ -1,0 +1,38 @@
+{
+    "Soldier": {
+        "checkpoints": [
+            {
+                "steps": 182010,
+                "file_path": "results\\Soldier_07\\Soldier\\Soldier-182010.onnx",
+                "reward": null,
+                "creation_time": 1762477858.320368,
+                "auxillary_file_paths": [
+                    "results\\Soldier_07\\Soldier\\Soldier-182010.pt"
+                ]
+            },
+            {
+                "steps": 247031,
+                "file_path": "results\\Soldier_07\\Soldier\\Soldier-247031.onnx",
+                "reward": null,
+                "creation_time": 1762480219.9247863,
+                "auxillary_file_paths": [
+                    "results\\Soldier_07\\Soldier\\Soldier-247031.pt"
+                ]
+            }
+        ],
+        "final_checkpoint": {
+            "steps": 247031,
+            "file_path": "results\\Soldier_07\\Soldier.onnx",
+            "reward": null,
+            "creation_time": 1762480219.9247863,
+            "auxillary_file_paths": [
+                "results\\Soldier_07\\Soldier\\Soldier-247031.pt"
+            ]
+        }
+    },
+    "metadata": {
+        "stats_format_version": "0.3.0",
+        "mlagents_version": "1.1.0",
+        "torch_version": "2.2.0+cpu"
+    }
+}

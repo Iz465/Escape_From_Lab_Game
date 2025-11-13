@@ -17,6 +17,7 @@ public class CharacterSelection : MonoBehaviour
     Transform cam;
     [SerializeField] List<Transform> camPositions = new List<Transform>();
     public float cameraMoveDuration;
+    [SerializeField] GameObject controlInfo;
 
     private void Start()
     {
@@ -24,15 +25,17 @@ public class CharacterSelection : MonoBehaviour
         transform.Find("Ice").GetComponent<Button>().onClick.AddListener(Ice);
         transform.Find("Blood").GetComponent<Button>().onClick.AddListener(Blood);
         transform.Find("Warrior").GetComponent<Button>().onClick.AddListener(Warrior);
-
+        transform.Find("Confirm").GetComponent<Button>().onClick.AddListener(Confirm);
+        print("controls");
         cam = GameObject.Find("Camera").transform;
         StartCoroutine(WaitForLoad());
+        print("loaded");
     }
 
     IEnumerator WaitForLoad()
     {
         while (MainMenu.saveFile == null)
-            yield return null;
+            yield return new WaitForSeconds(0.1f);
 
         saveFile = MainMenu.saveFile;
         print(JsonUtility.ToJson(saveFile));
@@ -108,14 +111,14 @@ public class CharacterSelection : MonoBehaviour
 
     public void Confirm()
     {
-        StartCoroutine(WaitForLoad());
-
+        print("confirming");
         if(chosenCharacter == null)
         {
             StartCoroutine(SelectCharacter());
             return;
         }
 
+        print("new character");
         Transform newPlayerModel = Instantiate(playerCharModel);
         saveFile.characterChosen = chosenCharacter;
         
@@ -142,6 +145,7 @@ public class CharacterSelection : MonoBehaviour
             newPlayerModel.GetComponent<Move>().useOtherScript = true;
         }
 
+        print("made character");
         FinishSetup(newPlayerModel);
     }
     void Speed() 
@@ -191,6 +195,7 @@ public class CharacterSelection : MonoBehaviour
         print(saveFile.characterChosen);
         Destroy(GameObject.Find("Camera"));
         gameObject.SetActive(false);
+        controlInfo.SetActive(true);
 
     }
 

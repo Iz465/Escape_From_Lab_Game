@@ -1,10 +1,7 @@
 using System.Collections;
-using Mono.Cecil.Cil;
-using Unity.VisualScripting;
 using UnityEditor.Rendering;
 using UnityEngine;
 using UnityEngine.UI;
-using static Unity.Entities.EntitiesJournaling;
 using static UnityEngine.Rendering.DebugUI.Table;
 using UnityEngine.UIElements;
 using TMPro;

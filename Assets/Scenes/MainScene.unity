@@ -15261,7 +15261,7 @@ MonoBehaviour:
   challengeRoom: 0
   roomToFinish: 
   roomName: 
-  movePlayerToScene: 1
+  movePlayerToScene: 0
 --- !u!65 &568182770
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -27799,6 +27799,7 @@ PrefabInstance:
   serializedVersion: 2
   m_Modification:
     serializedVersion: 3
+    m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: -8679921383154817045, guid: 061208e5e13dafb4aaa26f86d9e71634, type: 3}
       propertyPath: m_LocalScale.x
@@ -28085,11 +28086,6 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 061208e5e13dafb4aaa26f86d9e71634, type: 3}
---- !u!4 &1003239242 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 061208e5e13dafb4aaa26f86d9e71634, type: 3}
-  m_PrefabInstance: {fileID: 1003239241}
-  m_PrefabAsset: {fileID: 0}
 --- !u!4 &1004026538 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 1086bb4392bb6824fa1eba96277e6ac9, type: 3}
@@ -32173,7 +32169,7 @@ MonoBehaviour:
   challengeRoom: 0
   roomToFinish: 
   roomName: 
-  movePlayerToScene: 1
+  movePlayerToScene: 0
 --- !u!65 &1106789020
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -35328,7 +35324,7 @@ MonoBehaviour:
   challengeRoom: 0
   roomToFinish: 
   roomName: 
-  movePlayerToScene: 1
+  movePlayerToScene: 0
 --- !u!65 &1214533553
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -41288,7 +41284,7 @@ MonoBehaviour:
   challengeRoom: 0
   roomToFinish: 
   roomName: 
-  movePlayerToScene: 1
+  movePlayerToScene: 0
 --- !u!65 &1456250673
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -45782,7 +45778,7 @@ MonoBehaviour:
   challengeRoom: 0
   roomToFinish: 
   roomName: 
-  movePlayerToScene: 1
+  movePlayerToScene: 0
 --- !u!65 &1604140742
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -49121,7 +49117,7 @@ MonoBehaviour:
   challengeRoom: 0
   roomToFinish: 
   roomName: 
-  movePlayerToScene: 1
+  movePlayerToScene: 0
 --- !u!65 &1725624184
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -60069,7 +60065,7 @@ MonoBehaviour:
   challengeRoom: 0
   roomToFinish: 
   roomName: 
-  movePlayerToScene: 1
+  movePlayerToScene: 0
 --- !u!65 &2046493750
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -64803,3 +64799,4 @@ SceneRoots:
   - {fileID: 53657814}
   - {fileID: 1070827273}
   - {fileID: 7379299592004498108}
+  - {fileID: 1003239241}

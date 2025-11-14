@@ -1,4 +1,4 @@
-using JetBrains.Rider.Unity.Editor;
+
 using UnityEngine;
 
 public class DangerSpawner : MonoBehaviour

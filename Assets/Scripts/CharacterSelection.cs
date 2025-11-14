@@ -35,7 +35,10 @@ public class CharacterSelection : MonoBehaviour
     IEnumerator WaitForLoad()
     {
         while (MainMenu.saveFile == null)
+        {
+            print("waiting");
             yield return new WaitForSeconds(0.1f);
+        }
 
         saveFile = MainMenu.saveFile;
         print(JsonUtility.ToJson(saveFile));
@@ -56,13 +59,13 @@ public class CharacterSelection : MonoBehaviour
         print(character);
         if (character == "Speed")
             Speed();
-        if(character == "Ice")
+        if (character == "Ice")
             Ice();
 
-        if( character == "Blood")
+        if (character == "Blood")
             Blood();
-        
-        if(character == "Warrior")
+
+        if (character == "Warrior")
             Warrior();
 
         Confirm();
@@ -85,13 +88,13 @@ public class CharacterSelection : MonoBehaviour
         if (chosenCharacter == "Ice")
             index = 2;
 
-        if(chosenCharacter == "Blood")
+        if (chosenCharacter == "Blood")
             index = 3;
 
-        if(chosenCharacter == "Warrior")
+        if (chosenCharacter == "Warrior")
             index = 4;
 
-        if(chosenCharacter == "Fire")
+        if (chosenCharacter == "Fire")
             index = 5;
 
 
@@ -99,10 +102,10 @@ public class CharacterSelection : MonoBehaviour
         Quaternion finalRotation = Quaternion.Lerp(startRotation, rotation, progress);
         Vector3 pos = Vector3.Lerp(startPosition, camPositions[index].position, progress);
 
-        progress += Time.deltaTime/cameraMoveDuration;
+        progress += Time.deltaTime / cameraMoveDuration;
         cam.transform.SetPositionAndRotation(pos, finalRotation);
 
-        if(progress >= 1)
+        if (progress >= 1)
         {
             progress = 0;
             move = false;
@@ -112,7 +115,7 @@ public class CharacterSelection : MonoBehaviour
     public void Confirm()
     {
         print("confirming");
-        if(chosenCharacter == null)
+        if (chosenCharacter == null)
         {
             StartCoroutine(SelectCharacter());
             return;
@@ -121,25 +124,25 @@ public class CharacterSelection : MonoBehaviour
         print("new character");
         Transform newPlayerModel = Instantiate(playerCharModel);
         saveFile.characterChosen = chosenCharacter;
-        
-        if(chosenCharacter == "Speed")
+
+        if (chosenCharacter == "Speed")
         {
             newPlayerModel.GetComponent<Move>().useOtherScript = true;
             Destroy(newPlayerModel.GetComponent<Ice>());
         }
-        if(chosenCharacter == "Ice")
+        if (chosenCharacter == "Ice")
         {
-            newPlayerModel.GetComponent <Move>().useOtherScript = true;
+            newPlayerModel.GetComponent<Move>().useOtherScript = true;
             Destroy(newPlayerModel.GetComponent<Speed>());
         }
 
-        if(chosenCharacter == "Blood")
+        if (chosenCharacter == "Blood")
         {
             newPlayerModel = Instantiate(bloodCharacterModel);
             newPlayerModel.GetComponent<Move>().useOtherScript = false;
         }
 
-        if(chosenCharacter == "Warrior")
+        if (chosenCharacter == "Warrior")
         {
             newPlayerModel = Instantiate(warriorCharacterModel);
             newPlayerModel.GetComponent<Move>().useOtherScript = false;
@@ -148,9 +151,9 @@ public class CharacterSelection : MonoBehaviour
         print("made character");
         FinishSetup(newPlayerModel);
     }
-    void Speed() 
-    { 
-        chosenCharacter = "Speed"; 
+    void Speed()
+    {
+        chosenCharacter = "Speed";
         move = true;
         startRotation = cam.rotation;
         startPosition = cam.position;
@@ -183,6 +186,8 @@ public class CharacterSelection : MonoBehaviour
 
     void FinishSetup(Transform newPlayerModel)
     {
+        Transform chair = GameObject.Find(chosenCharacter + "Chair").transform;
+        newPlayerModel.position = chair.position;
         newPlayerModel.parent = null;
         PlayerInfo info = newPlayerModel.AddComponent<PlayerInfo>();
 
@@ -190,7 +195,7 @@ public class CharacterSelection : MonoBehaviour
         info.stamina = 100;
         info.maxHealth = 100;
 
-        newPlayerModel.position = GameObject.FindGameObjectWithTag("Spawn").transform.position;
+        Destroy(chair.Find("Character").gameObject);
 
         print(saveFile.characterChosen);
         Destroy(GameObject.Find("Camera"));

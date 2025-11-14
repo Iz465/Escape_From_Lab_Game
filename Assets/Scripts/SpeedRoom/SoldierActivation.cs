@@ -16,12 +16,16 @@ public class SoldierActivation : MonoBehaviour
 
         foreach (Transform t in soldiersToActivate)
         {
-            t.GetComponent<PlayerTargeting>().enabled = true;
+            if (t == null) continue;
+            t.gameObject.SetActive(true);
+            //t.GetComponent<PlayerTargeting>().enabled = true;
         }
 
         foreach(Transform t in soldiersToDeactivate)
         {
-            t.GetComponent <PlayerTargeting>().enabled = false;
+            if (t == null) continue;
+            t.gameObject.SetActive(true);
+            //t.GetComponent <PlayerTargeting>().enabled = false;
         }
         
     }

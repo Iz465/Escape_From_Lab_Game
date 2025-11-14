@@ -111,10 +111,14 @@ public class MainMenu : MonoBehaviour
             settingsPage.SetActive(false);
             Cursor.lockState = CursorLockMode.Locked;
 
-            if(saveFile.characterChosen != "")
+            if (!GameObject.FindGameObjectWithTag("Player"))
             {
-                uisToEnableOnPlay[0].GetComponent<CharacterSelection>().MakeCharacter(saveFile.characterChosen);
-                uisToEnableOnPlay[0].SetActive(false);
+                if(saveFile.characterChosen != "")
+                {
+                    uisToEnableOnPlay[0].GetComponent<CharacterSelection>().MakeCharacter(saveFile.characterChosen);
+                    uisToEnableOnPlay[0].SetActive(false);
+                }
+
             }
 
         }

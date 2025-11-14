@@ -55,6 +55,7 @@ public class Spikes : MonoBehaviour
             if (topArray[0].position.y > bottomY)
             {
                 topPosition = topArray[0].position.y - moveSpeed * Time.deltaTime;
+                //topArray[0].GetComponent<Rigidbody>().MovePosition(new Vector3(0, -moveSpeed * Time.deltaTime, 0));
                 topArray[0].Translate(new Vector3(0, -moveSpeed * Time.deltaTime, 0), Space.World);
             }
             else
@@ -68,6 +69,7 @@ public class Spikes : MonoBehaviour
             if(topArray[0].position.y < topy)
             {
                 topPosition = topArray[0].position.y + moveSpeed * Time.deltaTime;
+                //topArray[0].GetComponent<Rigidbody>().MovePosition(new Vector3(0, moveSpeed * Time.deltaTime, 0));
                 topArray[0].Translate(new Vector3(0, moveSpeed * Time.deltaTime, 0), Space.World);
             }
             else
@@ -80,6 +82,7 @@ public class Spikes : MonoBehaviour
         for(int i = 1; i < topArray.Count; i++)
         {
             float direction = topPosition - topArray[i].position.y;
+            //topArray[i].GetComponent<Rigidbody>().MovePosition(new Vector3(0, direction * Time.deltaTime, 0));
             topArray[i].Translate(new Vector3(0,direction*Time.deltaTime, 0), Space.World);
         }
     }
@@ -91,6 +94,7 @@ public class Spikes : MonoBehaviour
         for (int i = 0; i < bottomArray.Count; i++)
         {
             float direction = yGoal - bottomArray[i].position.y;
+            //bottomArray[i].GetComponent<Rigidbody>().MovePosition(new Vector3(0, direction * Time.deltaTime, 0));
             bottomArray[i].Translate(new Vector3(0, direction*Time.deltaTime, 0),Space.World);
         }
     }

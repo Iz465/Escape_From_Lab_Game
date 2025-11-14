@@ -571,7 +571,7 @@ MonoBehaviour:
   normalRun: 150
   highSpeedWalk: 500
   highSpeedRun: 30000
-  dashSpeed: 30
+  dashSpeed: 300
   dashDuration: 0.02
   normalRunCost: 2.5
   highSpeedRunCost: 5

@@ -52,9 +52,15 @@ public class LoadScene : MonoBehaviour
                 save.roomsFinished.Add(roomName);
 
                 if(roomName == "Speed1")
+                {
+                    MainMenu.saveFile.havePlayedSpeedRoom1 = true;
                     MainMenu.saveFile.speedRoom2 = true;
+                }
                 if (roomName == "Speed2")
+                {
+                    MainMenu.saveFile.havePlayedSpeedRoom2 = true;
                     MainMenu.saveFile.speedRoom3 = true;
+                }
             }
 
         }

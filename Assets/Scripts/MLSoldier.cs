@@ -4,6 +4,7 @@ using Unity.MLAgents.Actuators;
 using Unity.MLAgents.Sensors;
 using NUnit.Framework;
 using System.Collections.Generic;
+using System.Collections;
 
 public class MLSoldier : Agent
 {
@@ -22,7 +23,7 @@ public class MLSoldier : Agent
     bool showReward;
     bool showWins;
 
-    Rigidbody body;
+    [SerializeField] Rigidbody body;
 
     float upperX, lowerX, upperZ, lowerZ;
     LayerMask mask;
@@ -30,14 +31,26 @@ public class MLSoldier : Agent
 
     private void Start()
     {
-        target = transform.parent.Find("Player");
+        //target = transform.parent.Find("Player");
         upperX = walls[0].transform.position.x;
         lowerX = walls[1].transform.position.x;
         upperZ = walls[0].transform.position.z;
         lowerZ = walls[1].transform.position.z;
         
-        body = GetComponent<Rigidbody>();
+        //body = GetComponent<Rigidbody>();
+
+        StartCoroutine(WaitForPlayer());
     }
+
+    IEnumerator WaitForPlayer()
+    {
+        if(!GameObject.FindGameObjectWithTag("Player"))
+            yield return new WaitForEndOfFrame();
+
+        target = GameObject.FindGameObjectWithTag("Player").transform;
+        yield return null;
+    }
+
     public override void OnEpisodeBegin()
     {
         /*float upperX = 325.3f;
@@ -86,7 +99,8 @@ public class MLSoldier : Agent
         //transform.position += new Vector3(first, 0, second) * Time.deltaTime * walkSpeed;
         //GetComponent<Rigidbody>().Move(new Vector3(first, 0, second) * Time.deltaTime * walkSpeed, Quaternion.identity);
         //GetComponent<Rigidbody>().position += new Vector3(first, 0, second) * Time.deltaTime * walkSpeed;
-        body.MovePosition(transform.position + new Vector3(first, 0, second)*Time.deltaTime*walkSpeed);
+        body.linearVelocity = new Vector3(first, 0, second) * walkSpeed;
+        //body.MovePosition(transform.position + new Vector3(first,0, second)*Time.deltaTime*walkSpeed);
     }
 
     public override void Heuristic(in ActionBuffers actionsOut)

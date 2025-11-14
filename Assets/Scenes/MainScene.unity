@@ -1516,7 +1516,7 @@ GameObject:
   m_Component:
   - component: {fileID: 53657814}
   m_Layer: 0
-  m_Name: InitialChair (3)
+  m_Name: BloodChair
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -13205,7 +13205,7 @@ GameObject:
   m_Component:
   - component: {fileID: 490693545}
   m_Layer: 0
-  m_Name: InitialChair
+  m_Name: TeleportationChair
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -15133,7 +15133,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 061208e5e13dafb4aaa26f86d9e71634, type: 3}
       propertyPath: m_Name
-      value: Character (3)
+      value: Character
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 061208e5e13dafb4aaa26f86d9e71634, type: 3}
       propertyPath: m_Layer
@@ -17735,7 +17735,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 061208e5e13dafb4aaa26f86d9e71634, type: 3}
       propertyPath: m_Name
-      value: Character (4)
+      value: Character
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 061208e5e13dafb4aaa26f86d9e71634, type: 3}
       propertyPath: m_Layer
@@ -29193,7 +29193,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1048004778}
   m_Layer: 0
-  m_Name: InitialChair (1)
+  m_Name: SpeedChair
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -30215,7 +30215,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1070827273}
   m_Layer: 0
-  m_Name: InitialChair (4)
+  m_Name: WarriorChair
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -32684,7 +32684,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 061208e5e13dafb4aaa26f86d9e71634, type: 3}
       propertyPath: m_Name
-      value: Character (1)
+      value: Character
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 061208e5e13dafb4aaa26f86d9e71634, type: 3}
       propertyPath: m_Layer
@@ -38242,7 +38242,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1348656690}
   m_Layer: 0
-  m_Name: InitialChair (2)
+  m_Name: IceChair
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -47223,6 +47223,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 00253fa264f0ee44f979e64f4bdcbdb8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  room: 
+  guide: {fileID: 0}
+  spokenGuide: {fileID: 0}
 --- !u!4 &1636028155
 Transform:
   m_ObjectHideFlags: 0
@@ -50577,7 +50580,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 061208e5e13dafb4aaa26f86d9e71634, type: 3}
       propertyPath: m_Name
-      value: Character (2)
+      value: Character
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 061208e5e13dafb4aaa26f86d9e71634, type: 3}
       propertyPath: m_Layer
@@ -64521,9 +64524,13 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1760755330597552980, guid: 913feef19420e6d4c8bc84cc7220db2a, type: 3}
+      propertyPath: m_Name
+      value: Character
+      objectReference: {fileID: 0}
     - target: {fileID: 2920678099334557482, guid: 913feef19420e6d4c8bc84cc7220db2a, type: 3}
       propertyPath: m_Name
-      value: InitialChair (5)
+      value: FireChair
       objectReference: {fileID: 0}
     - target: {fileID: 7213871092623660708, guid: 913feef19420e6d4c8bc84cc7220db2a, type: 3}
       propertyPath: m_LocalPosition.x

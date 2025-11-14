@@ -43,7 +43,10 @@ public class Speed : PlayerInfo
     void Run()
     {
         if(stamina <= 0)
+        {
             highSpeedMode = false;
+            return;
+        }
 
         movement.velocity = movement.direction * Time.deltaTime;
         Vector3 vel = movement.velocity;
@@ -58,7 +61,7 @@ public class Speed : PlayerInfo
             }
             else
             {
-                playerInfo.stamina -= (highSpeedRunCost + highSpeedModeCost) * Time.deltaTime;
+                playerInfo.stamina -= (highSpeedRunCost + highSpeedModeCost) * Time.deltaTime/Time.timeScale;
                 //movement.velocity *= highSpeedRun;
                 vel.x *= highSpeedRun;
                 vel.z *= highSpeedRun;
@@ -75,7 +78,7 @@ public class Speed : PlayerInfo
             }
             else
             {
-                playerInfo.stamina -= highSpeedModeCost * Time.deltaTime;
+                playerInfo.stamina -= highSpeedModeCost * Time.deltaTime/Time.timeScale;
                 lastPowerUsage = Time.time;
                 //movement.velocity *= highSpeedWalk;
                 vel.x *= highSpeedWalk;
@@ -94,8 +97,8 @@ public class Speed : PlayerInfo
         //left click to attack
         if (Input.GetMouseButtonDown(0))
         {
-            DamageEnemy();
             StartCoroutine(MeleeAttack(animator));
+            DamageEnemy();
         }
     }
 
@@ -109,6 +112,7 @@ public class Speed : PlayerInfo
 
     void Dash()
     {
+        if(stamina < dashCost) return;
         if (Input.GetKeyDown(KeyCode.E))
         {
             playerInfo.stamina -= dashCost;
@@ -128,6 +132,7 @@ public class Speed : PlayerInfo
 
     void Phaze()
     {
+        if (stamina < 0) return;
         if (Input.GetKeyDown(KeyCode.Q))
         {
             phazeMode = !phazeMode;
@@ -168,6 +173,7 @@ public class Speed : PlayerInfo
 
     void Heal()
     {
+        if (stamina < 0) return;
         if (playerInfo.health < playerInfo.maxHealth)
             if (playerInfo.lastDamageTime < Time.time - 5)
                 playerInfo.health += regenRate * Time.deltaTime;
@@ -198,8 +204,22 @@ public class Speed : PlayerInfo
 
         if (health <= 0 && spawnPosition != null)
         {
+            GetComponent<CharacterController>().enabled = false;
             transform.position = spawnPosition.position;
             health = maxHealth;
+            GetComponent<CharacterController>().enabled = true;
+        }
+
+        if (highSpeedMode)
+        {
+            stamina -= highSpeedModeCost * Time.timeScale;
+
+            if(stamina < 0)
+            {
+                highSpeedMode = false;
+                Time.timeScale =  1;
+                Time.fixedDeltaTime = 0.02f * Time.timeScale;
+            }
         }
 
         if (animator.GetBool(meleeAttackAnimation))

@@ -46,12 +46,19 @@ public class PlayerInfo : MonoBehaviour
 
         foreach (GameObject enemy in enemies)
         {
+            print("found enemy");
             Transform enemyTransform = enemy.transform;
             if ((enemyTransform.position - transform.position).magnitude > 4) continue;
+            print("enemy close");
             Vector3 enemyDirection = (enemyTransform.position - transform.position).normalized;
 
             if (Vector3.Dot(enemyDirection, transform.forward) < 0.5f) continue;
-            enemy.GetComponent<Soldier>().GotHit();
+            print("looking at enemy");
+            if (enemy.TryGetComponent(out Soldier s))
+                s.GotHit();
+            if (enemy.TryGetComponent(out PlayerTargeting p))
+                p.TakeDamage();
+                //enemy.GetComponent<Soldier>().GotHit();
         }
     }
 }

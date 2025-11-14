@@ -142,7 +142,7 @@ public class CharacterSelection : MonoBehaviour
         if(chosenCharacter == "Warrior")
         {
             newPlayerModel = Instantiate(warriorCharacterModel);
-            newPlayerModel.GetComponent<Move>().useOtherScript = true;
+            newPlayerModel.GetComponent<Move>().useOtherScript = false;
         }
 
         print("made character");

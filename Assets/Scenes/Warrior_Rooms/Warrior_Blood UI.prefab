@@ -1783,7 +1783,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   healthText: {fileID: 323459711354751579}
   healthBar: {fileID: 7712513164221984458}
+  staminaText: {fileID: 0}
+  staminaBar: {fileID: 0}
   abilityOneSlider: {fileID: 5205486221546101424}
+  speed: {fileID: 0}
+  abilityTwoSlider: {fileID: 0}
   player: {fileID: 0}
 --- !u!114 &7697210360495932711
 MonoBehaviour:

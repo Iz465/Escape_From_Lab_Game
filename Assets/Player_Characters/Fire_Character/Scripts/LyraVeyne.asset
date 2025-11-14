@@ -13,10 +13,11 @@ MonoBehaviour:
   m_Name: LyraVeyne
   m_EditorClassIdentifier: 
   characterName: Lyra Veyne
-  health: 84
-  Stamina: 100
+  health: 66.7
+  Stamina: 93.87008
   sprintSpeed: 3
   walkSpeed: 1.5
   jumpHeight: 2
   rotationSpeed: 720
-  DisplayStamina: 100
+  DisplayStamina: 94
+  DisplayHealth: 67

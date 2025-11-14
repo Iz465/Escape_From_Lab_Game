@@ -43,6 +43,8 @@ public class FirePlayerMovement : MonoBehaviour
     /*Movement Animators*/
     private bool isJumping;
     private bool isGrounded;
+    private bool isFalling;
+    private bool jumped;
     private float InputMagnitude;
 
     private void Start()
@@ -53,13 +55,12 @@ public class FirePlayerMovement : MonoBehaviour
     }
     private void Update()
     {
-        
         float horizontal = Input.GetAxis("Horizontal");
         float vertical = Input.GetAxis("Vertical");
 
         Vector3 movementDirection = new Vector3(horizontal, 0, vertical);
         InputMagnitude = Mathf.Clamp01(movementDirection.magnitude);
-
+        
 
 
         if (Input.GetKey(KeyCode.LeftShift)|| Input.GetKey(KeyCode.RightShift))
@@ -98,9 +99,10 @@ public class FirePlayerMovement : MonoBehaviour
             LastOnGroundTime = Time.time;
         }
 
-        if (Input.GetButton("Jump"))
+        if (Input.GetButtonDown("Jump"))
         {
             LastJumpTime = Time.time;
+            
         }
 
         if (Time.time - LastOnGroundTime <= GracePeriod)
@@ -108,19 +110,21 @@ public class FirePlayerMovement : MonoBehaviour
             controller.stepOffset = originalStepOffset;
             ySpeed = -0.5f;
             animator.SetBool(name: "IsGrounded", true);
-            isGrounded = true;
-            animator.SetBool(name: "IsJumping", false);
-            isJumping = false;
             animator.SetBool(name: "IsFalling", false);
+            isGrounded = true;
+            isJumping = false;
+            
             
             if (Time.time - LastJumpTime <= GracePeriod && lyraVeyne.Stamina >= 15f)
             {
-                ySpeed = Mathf.Sqrt(jumpHeight * -3 * Gravity);
-                animator.SetBool(name: "IsJumping", true);
+                Debug.Log("jumped :"+ jumped);
+                animator.SetTrigger(name: "Jump");
                 lyraVeyne.ReduceStamina(StaminaDrain_Jump);
+                jumped = true;
                 isJumping = true;
                 LastJumpTime = null;
                 LastOnGroundTime = null;
+                
             }
         }
         else
@@ -135,7 +139,7 @@ public class FirePlayerMovement : MonoBehaviour
             }
         }
 
-        
+        if (animator.GetBool("IsJumping")) ySpeed = Mathf.Sqrt(jumpHeight * -3 * Gravity);
 
         if (movementDirection != Vector3.zero)
         {
@@ -155,16 +159,21 @@ public class FirePlayerMovement : MonoBehaviour
             Vector3 velocity = HorizontalSpeed * InputMagnitude * movementDirection;
             velocity.y = ySpeed;
             controller.Move(velocity * Time.deltaTime);
-
+            
         }
+       
     }
+    
+ 
+    
     private void OnAnimatorMove()
     {
         if (isGrounded)
         {
             Vector3 velocity = animator.deltaPosition;
-            velocity.y = ySpeed * Time.deltaTime; 
+            //velocity.y = ySpeed * Time.deltaTime; 
             controller.Move(velocity);
+            jumped = false;
         }
         
 

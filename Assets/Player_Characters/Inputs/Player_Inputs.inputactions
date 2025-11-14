@@ -1,5 +1,4 @@
 {
-    "version": 1,
     "name": "Player_Inputs",
     "maps": [
         {
@@ -345,6 +344,15 @@
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": false
+                },
+                {
+                    "name": "Jump",
+                    "type": "Button",
+                    "id": "d523806f-a91e-4fcc-8f7e-6eea3dcdce80",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
                 }
             ],
             "bindings": [
@@ -384,7 +392,7 @@
                 {
                     "name": "",
                     "id": "b3fa0a13-dbcc-4c70-9c36-2c1311db4eb3",
-                    "path": "<Mouse>/leftButton",
+                    "path": "<Mouse>/rightButton",
                     "interactions": "Press",
                     "processors": "",
                     "groups": "",
@@ -411,6 +419,28 @@
                     "processors": "",
                     "groups": "",
                     "action": "AreaAttack",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "7c762db4-e1a8-47db-b524-0f51f8e06112",
+                    "path": "<Keyboard>/space",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Jump",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "5849594e-9312-4a5e-9273-76a45a126ed8",
+                    "path": "<Gamepad>/buttonNorth",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Jump",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

@@ -1,12 +1,15 @@
+using System;
 using System.Collections;
 using System.ComponentModel;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.InputSystem.XR;
+using static Unity.Barracuda.TextureAsTensorData;
 
 public class FirePlayerInputs : MonoBehaviour
 {
+    [SerializeField]
     private Animator animator;
     [SerializeField]
     private CharacterController controller;
@@ -31,38 +34,39 @@ public class FirePlayerInputs : MonoBehaviour
         Debug.Log("Attack 1 Input Received");
         if (!context.performed) return;
         animator.SetTrigger("Attack_1");
-
-        
-            AnimatorStateInfo stateInfo = animator.GetCurrentAnimatorStateInfo(0);
-            
-            AnimationClip clip = animator.runtimeAnimatorController.animationClips[0];
-            if (clip.name == animationName)
-            {
-                float normalizedTime = stateInfo.normalizedTime % 1; // Get normalized time (0 to 1)
-                int currentFrame = Mathf.FloorToInt(normalizedTime * clip.frameRate * clip.length);
-
-                Debug.Log($"Current Frame: {currentFrame}");
-            }
-            
-        
-
-        
-        GameObject fireball = Instantiate(FireballPrefab, FiringPoint.position, Quaternion.identity);
-        
-        fireball.GetComponent<Rigidbody>().AddRelativeForce(FiringPoint.forward* FireBall_Speed, ForceMode.Impulse);
-        GameObject.Destroy(fireball,7F);
+        StartCoroutine(FireFireBall());
     }
-    public void AnimationAttackFindFrame( )//Make corfute ot count frames 
+    IEnumerator FireFireBall()
     {
+        Debug.Log("Coroutine Started");
+       
+       
+        yield return new WaitUntil(() =>animator.GetBool("AttackReady"),TimeSpan.FromSeconds(15),() => Debug.Log("Fire Ball timed out"));
+        GameObject fireball = Instantiate(FireballPrefab, FiringPoint.position, Quaternion.identity);
 
+        fireball.GetComponent<Rigidbody>().AddRelativeForce(FiringPoint.forward * FireBall_Speed, ForceMode.Impulse);
+        GameObject.Destroy(fireball, 7F);
+        Debug.Log("Coroutine Ended");
     }
+    
     public void Attack_2_AreaBlast(InputAction.CallbackContext context)
     {
         if (!context.performed) return;
         animator.SetTrigger("Attack_2");
     }
-    
+    public void Jump(InputAction.CallbackContext context)
+    {
+        if (!context.performed) return;
+        animator.SetTrigger("Jump");
+    }
+    IEnumerator Jumping()
+    {
+        
+        yield return new WaitUntil(() => animator.GetBool("IsJumping"), TimeSpan.FromSeconds(15), () => Debug.Log("Jumping Timed out"));
+           
 
+
+    }
     // Update is called once per frame
     void Update()
     {

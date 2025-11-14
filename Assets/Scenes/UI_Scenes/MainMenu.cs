@@ -89,7 +89,8 @@ public class MainMenu : MonoBehaviour
 
     public void Play()
     {
-        if(uisToEnableOnPlay.Count > 0)
+        Time.timeScale = 1;
+        if (uisToEnableOnPlay.Count > 0)
         {
             for(int i = 0; i < uisToEnableOnPlay.Count; i++)
             {

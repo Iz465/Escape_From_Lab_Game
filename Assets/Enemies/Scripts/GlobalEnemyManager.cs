@@ -61,30 +61,32 @@ public class GlobalEnemyManager : MonoBehaviour
         enemyType.Remove(enemy);
         if (enemyType.Count > 0) return;
 
-
         if (delayedSpawns.Count == 0) return;
-        
+
+        List<GameObject> toRemove = new List<GameObject>();
+
         foreach (GameObject oldSpawn in delayedSpawns)
         {
             SpawnEnemy enemySpawn = oldSpawn.GetComponent<SpawnEnemy>();
             StartCoroutine(enemySpawn.StartSound(1));
+
             foreach (GameObject spawn in enemySpawn.enemySpawns)
             {
                 Instantiate(enemySpawn.spawnParticle, spawn.transform.position, Quaternion.identity);
                 StartCoroutine(enemySpawn.SpawnIn(spawn, 1));
-
             }
+
             enemySpawn.waveAmount -= 1;
-
             if (enemySpawn.waveAmount <= 0)
-                delayedSpawns.Remove(oldSpawn);
-
+                toRemove.Add(oldSpawn);
         }
 
-        
-
-        
+        foreach (var oldSpawn in toRemove)
+        {
+            delayedSpawns.Remove(oldSpawn);
+        }
     }
+
 
 
 

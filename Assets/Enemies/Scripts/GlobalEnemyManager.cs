@@ -149,4 +149,15 @@ public class GlobalEnemyManager : MonoBehaviour
         }
 
     }
+
+    [HideInInspector] public static float healthMultiplier = 1;
+    [HideInInspector] public static float speedMultiplier = 1;
+    [HideInInspector] public static float waveAmount = 3;
+    
+
+    public static void UpdateEnemyStats(float healthAmount, float speedAmount)
+    {
+        healthMultiplier = healthAmount;
+        speedMultiplier = speedAmount;
+    }
 }

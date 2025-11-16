@@ -1,10 +1,18 @@
 using System.Collections;
+using System.Runtime.CompilerServices;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
 public class LoadScene : MonoBehaviour
 {
     [SerializeField] int sceneIndex;
+    public bool successDoor;
+    public bool challengeRoom;
+
+    public string roomToFinish;
+    public string roomName;
+    [SerializeField] private bool movePlayerToScene = true;
+
     private void OnTriggerEnter(Collider other)
     {
         if(other.transform.gameObject.layer == LayerMask.NameToLayer("Player"))
@@ -14,7 +22,7 @@ public class LoadScene : MonoBehaviour
         }
     }
 
-    IEnumerator Load(Collider other)
+    IEnumerator Spawn(GameObject obj)
     {
         Scene current = SceneManager.GetActiveScene();
 
@@ -26,8 +34,52 @@ public class LoadScene : MonoBehaviour
         }
 
         Scene nextScene = SceneManager.GetSceneByBuildIndex(sceneIndex);
-        SceneManager.MoveGameObjectToScene(other.transform.gameObject, nextScene);
+        if (movePlayerToScene)
+            SceneManager.MoveGameObjectToScene(obj, nextScene);
         yield return null;
         SceneManager.UnloadSceneAsync(current);
+    }
+
+    IEnumerator Load(Collider other)
+    {
+        if(!other.transform.CompareTag("Player")) yield return null;
+
+        SaveablePlayer save = MainMenu.saveFile;
+        if (successDoor)
+        {
+            if (!save.roomsFinished.Contains(roomName))
+            {
+                save.roomsFinished.Add(roomName);
+
+                if(roomName == "Speed1")
+                {
+                    MainMenu.saveFile.havePlayedSpeedRoom1 = true;
+                    MainMenu.saveFile.speedRoom2 = true;
+                }
+                if (roomName == "Speed2")
+                {
+                    MainMenu.saveFile.havePlayedSpeedRoom2 = true;
+                    MainMenu.saveFile.speedRoom3 = true;
+                }
+            }
+
+        }
+
+        if (challengeRoom)
+        {
+            if(roomToFinish == "")
+            {
+                yield return Spawn(other.transform.gameObject);
+            }else if (save.roomsFinished.Contains(roomToFinish))
+            {
+                yield return Spawn(other.transform.gameObject);
+            }
+        }
+        else
+        {
+            yield return Spawn(other.transform.gameObject);
+        }
+
+        
     }
 }

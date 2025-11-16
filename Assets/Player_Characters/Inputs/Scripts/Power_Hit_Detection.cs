@@ -9,6 +9,7 @@ public class Power_Hit_Detection : MonoBehaviour
     protected ICollide iCollide;
     private ObjectPoolManager poolManager;
     protected navmeshtestscript enemy;
+
     
 
     private void Awake()
@@ -20,14 +21,14 @@ public class Power_Hit_Detection : MonoBehaviour
 
     virtual protected void OnCollisionEnter(Collision collision)
     {
-        Debug.Log($"Power hit: {collision.gameObject}");
+     //   Debug.Log($"Power hit: {collision.gameObject}");
         enemy = collision.gameObject.GetComponent<navmeshtestscript>();
         ApplyDamage();
     }
 
     private void OnTriggerEnter(Collider other)
     {
-        Debug.Log($"Power hit: {other.gameObject}");
+   //     Debug.Log($"Power hit: {other.gameObject}");
         enemy = other.gameObject.GetComponent<navmeshtestscript>();
         ApplyDamage();
     }
@@ -45,6 +46,7 @@ public class Power_Hit_Detection : MonoBehaviour
             return;
         }
 
+ 
         enemy.TakeDamage(power.stats.damage);
         poolManager.ReleaseToPool(gameObject);
     }

@@ -1,13 +1,19 @@
 using System.Collections;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class PlayerSpawner : MonoBehaviour
 {
     bool spawned = false;
     Transform plr;
+    public string room;
+    public Text guide;
+    public AudioSource spokenGuide;
+
     private void Start()
     {
         StartCoroutine(WaitForPlayer());
+        Introduce();
     }
 
     IEnumerator WaitForPlayer()
@@ -30,11 +36,24 @@ public class PlayerSpawner : MonoBehaviour
             
         }
 
+        plr.GetComponent<CharacterController>().enabled = false;
         yield return new WaitForSeconds(0.3f);
         plr.position = transform.position;
         plr.GetComponent<Move>().enabled = true;
         spawned = true;
+        plr.GetComponent<CharacterController>().enabled = true;
         print("player spawned");
+    }
+
+    void Introduce()
+    {
+        if(room == "Speed1")
+        {
+            if (MainMenu.saveFile.havePlayedSpeedRoom1) return;
+            spokenGuide.Play();
+            guide.text = "Press E to dash";
+            MainMenu.saveFile.dash = true;
+        }
     }
 
     private void Update()

@@ -16,17 +16,23 @@ public class BloodLevel : MonoBehaviour
     }
 
 
+  //  float randomX;
+  //  float randomZ;
     void Update()
     {
-        player.stats.health -= 1f * Time.deltaTime;
+        if (player)
+            player.stats.health -= 1f * Time.deltaTime;
 
         if (!resetMove) return;
+     //   randomX = Random.Range(-1f, 1f);
+     //   randomZ = Random.Range(-1f, 1f);
         foreach (GameObject explosive in explosiveBloodAmount)
         {
             if(explosive)
                 StartCoroutine(MoveExplosive(explosive, 2f));
         }
         resetMove = false;
+
     }
 
     private IEnumerator MoveExplosive(GameObject explosive, float timer)

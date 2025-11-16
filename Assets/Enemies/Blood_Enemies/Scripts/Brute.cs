@@ -1,7 +1,7 @@
 using System.Collections;
 using UnityEngine;
 
-public class Brute : BloodEnemy
+public class Brute : navmeshtestscript
 {
     [SerializeField] LayerMask playerLayer;
     private bool attack;

@@ -2,9 +2,10 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Runtime.CompilerServices;
 using UnityEditor;
-using UnityEditor.Rendering.LookDev;
 using UnityEngine;
+using Unity.MLAgents;
 using UnityEngine.AI;
+using Unity.MLAgents.Actuators;
 
 public class navmeshtestscript : MonoBehaviour // Readd this to to the chase ai script.
 {
@@ -14,17 +15,24 @@ public class navmeshtestscript : MonoBehaviour // Readd this to to the chase ai 
     [SerializeField] private float roamRadius = 10f;
     [SerializeField] private float roamDelay = 5f;
     [SerializeField] protected float attackRange;
-    [SerializeField] private GameObject corpse;
+    [SerializeField] private string attackName;
+   
+    [SerializeField] public bool canHitMultiple = false;
+
 
     [Header("Blood Stuff")]
     [SerializeField] protected GameObject blood;
-    [SerializeField] protected List<Transform> bloodHits;
+    [SerializeField] protected List<Transform> bloodHitLocations;
+    [SerializeField] private Transform particleHitLocation;
+    [SerializeField] private List<AudioClip> fleshSounds;
+    [SerializeField] private AudioClip deathSound;
+    [SerializeField] protected List<AudioClip> attackSounds;
+    [SerializeField] protected AudioClip attackSound;
+   
+    protected AudioSource audioSource;
 
-
-    [SerializeField] private string enemyPrefab;
-    private static GameObject currentEnemyAttacking;
-
-    [System.Serializable] public struct CorpseParts
+    [System.Serializable]
+    public struct CorpseParts
     {
         public GameObject head;
         public GameObject torso;
@@ -34,50 +42,57 @@ public class navmeshtestscript : MonoBehaviour // Readd this to to the chase ai 
 
     }
 
-    // Object References
+    [System.Serializable]
+    public struct CorpseLocations
+    {
+        public Transform head;
+        public Transform torso;
+        public Transform leftHand;
+        public Transform rightHand;
+        public Transform legs;
+
+    }
+
+
+    [SerializeField] private CorpseParts corpseParts;
+    [SerializeField] private CorpseLocations corpseLocations;
+
+
+
     [Header("Objects")]
-    protected Player player;
+    [SerializeField] protected Player player;
 
     // Agent variables
     protected NavMeshAgent agent;
     protected Animator animator;
-    protected CharacterController controller;
-    private Collider enemyCollider;
     private float timer = 0f;
-    public bool canAttack = true;
+    [HideInInspector] public bool canAttack = true;
     protected float distanceToPlayer;
-    public static List<GameObject> deadEnemies = new List<GameObject>();
+
     protected GlobalEnemyManager globalEnemyManager;
-    private Brute brute;
-    protected bool canRotate;
-
-
-    protected float rotateSpeed;
+    
+    protected bool canRotate = true;
+    [SerializeField] protected float rotateSpeed = 5f;
 
     virtual protected void Start()
     {
         agent = GetComponent<NavMeshAgent>();
         timer = roamDelay;
         animator = GetComponent<Animator>();
-        controller = GetComponent<CharacterController>();
-        player = FindAnyObjectByType<Player>();
-        rotateSpeed = 5f;
+        if (!player) player = FindAnyObjectByType<Player>();
         globalEnemyManager = FindFirstObjectByType<GlobalEnemyManager>();
-        GlobalEnemyManager.levelComplete = false;
-        if (globalEnemyManager)
-            globalEnemyManager.AddEnemy(gameObject);
-        brute = GetComponent<Brute>(); // bandaid
-        canRotate = true;
-        enemyCollider = GetComponent<Collider>();
+        GlobalEnemyManager.totalEnemies.Add(gameObject);
+        audioSource = GetComponent<AudioSource>();
+
     }
 
+    // Enemy constantly roaming / chasing player depending on options.
     virtual protected void Update()
     {
         timer += Time.deltaTime;
 
-        if (!agent) return;
-        if (!player) return;
-        if (!animator) return;
+        if (!agent || !player || !animator) return;
+
 
         distanceToPlayer = Vector3.Distance(transform.position, player.transform.position);
 
@@ -97,17 +112,15 @@ public class navmeshtestscript : MonoBehaviour // Readd this to to the chase ai 
             animator.SetBool("Roam", false);
         else
             animator.SetBool("Roam", true);
+
     }
 
-    private static int random;
-    
+  
+    // Enemy Chases player and attacks when in certain range
     virtual protected void ChasePlayer()
     {
-        Vector3 lookDirection = player.transform.position - transform.position;
-        lookDirection.y = 0; // keeps horizontal rotation only
-        if (canRotate)
-            transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(lookDirection), Time.deltaTime * rotateSpeed);
-
+      
+        FacePlayer();
 
         if (distanceToPlayer > attackRange && canAttack)
         {
@@ -122,47 +135,34 @@ public class navmeshtestscript : MonoBehaviour // Readd this to to the chase ai 
             
             GlobalEnemyManager.enemiesInRange.Add(gameObject);
 
-            if (agent.isOnNavMesh && !brute) // bandaid
+            if (agent.isOnNavMesh) 
                 agent.isStopped = true;
 
             if (canAttack)
-            {
                 AttackPlayer();
-             
-            /*    random = globalEnemyManager.RandomiseAttack();
-                int num = 0;
-                foreach (GameObject enemy in GlobalEnemyManager.enemiesInRange)
-                {
-                    if (num == random)
-                        if (gameObject == enemy)
-                            if (enemy != currentEnemyAttacking && GlobalEnemyManager.enemiesInRange.Count > 1)
-                            {
-                                currentEnemyAttacking = enemy;
-                                AttackPlayer();
-                            }
-                          
-                            else if (GlobalEnemyManager.enemiesInRange.Count == 1)
-                                AttackPlayer();
-                    num++; 
-                } */
-            
-            }
-        
+
         }
             
         
     }
 
+    protected void FacePlayer()
+    {
+        Vector3 lookDirection = player.transform.position - transform.position;
+        lookDirection.y = 0; // keeps horizontal rotation only
+        if (canRotate)
+            transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(lookDirection), Time.deltaTime * rotateSpeed);
+    }
 
     virtual protected void AttackPlayer()
     {
-        animator.SetBool("CanAttack", true);
-       
-        canAttack = false;
+       canAttack = false;
+       animator.SetTrigger(attackName);
            
     }
 
 
+    // When Enemy cant find player it roams around.
     private Vector3 RandomLocation()
     {
         float randomDir = Random.Range(5f, roamRadius);
@@ -178,35 +178,48 @@ public class navmeshtestscript : MonoBehaviour // Readd this to to the chase ai 
 
     virtual protected void Attack()
     {
-        Debug.Log("Attack!");
+        // Override in children classes
     }
 
+    // Everytime the enemy gets hit by the player
     virtual public void TakeDamage(float damageTaken)
     {
-        Debug.Log(enemyCollider);
-        if (player.playerHitParticle) Instantiate(player.playerHitParticle, enemyCollider.bounds.center + new Vector3(0, 2, 0), transform.rotation); // bandaid solution
+        
+        if (fleshSounds.Count > 0)
+        {
+            int randomSound = Random.Range(0, fleshSounds.Count);
+            globalEnemyManager.CheckEnemySound(fleshSounds[randomSound], "flesh", audioSource);
+        }
+       
+
+        if (player.playerHitParticle) Instantiate(player.playerHitParticle, particleHitLocation.position, Quaternion.identity); 
         if (blood) ShowBlood();
         health -= damageTaken;
         Debug.Log($"Taking damage! Health Left : {health}");
         if (health <= 0)
             EnemyDeath();
-
     }
 
+    // Blood particles spawned whenever enemy is hit
     private void ShowBlood()
     {
         
-        foreach (Transform bloodLocation in bloodHits)
+        foreach (Transform bloodLocation in bloodHitLocations)
         {
            GameObject bloodInstance = Instantiate(blood, bloodLocation);
            Destroy(bloodInstance, 0.5f); 
         }
     }
 
-    [SerializeField] private CorpseParts corpseParts = new CorpseParts();
+
     [SerializeField] private float healthGain;
+
     virtual protected void EnemyDeath()
     {
+     
+        if (fleshSounds.Count > 0) globalEnemyManager.CheckEnemySound(fleshSounds[0], "flesh", player.audioSource);
+        if (deathSound) globalEnemyManager.CheckEnemySound(deathSound, "death", player.audioSource);
+
 
         canAttack = true;
 
@@ -215,41 +228,37 @@ public class navmeshtestscript : MonoBehaviour // Readd this to to the chase ai 
 
      
         player.stats.health += healthGain;
-        player.stats.health = Mathf.Clamp(player.stats.health, 0, 100);
-        
- 
+        player.stats.health = Mathf.Clamp(player.stats.health, 0, player.stats.maxHealth);
 
-   /*     if (corpse)
+        for (int i = 0; i < 4;  i++)
         {
-            GameObject prefab = Resources.Load<GameObject>(enemyPrefab);
-            if (prefab)
-                deadEnemies.Add(prefab);
-
-            else
-                Debug.LogWarning($"Prefab : {enemyPrefab} Not available");
+            if (corpseParts.head)
+                MakeRagdoll(corpseParts.head, corpseLocations.head, 0);
         }
-   */
-        
-        if (corpseParts.head)
-            MakeRagdoll(corpseParts.head,3);
+
         if (corpseParts.legs)
-            MakeRagdoll(corpseParts.legs,1);
+            MakeRagdoll(corpseParts.legs, corpseLocations.legs, 0.05f);
         if (corpseParts.rightHand)
-            MakeRagdoll(corpseParts.rightHand, 2.5f);
+            MakeRagdoll(corpseParts.rightHand, corpseLocations.rightHand, 0.05f);
         if (corpseParts.leftHand)
-            MakeRagdoll(corpseParts.leftHand,2.5f);
+            MakeRagdoll(corpseParts.leftHand, corpseLocations.leftHand, -0.05f);
         if (corpseParts.torso)
-            MakeRagdoll(corpseParts.torso, 2.5f);
+            MakeRagdoll(corpseParts.torso, corpseLocations.torso, 0);
 
         Destroy(gameObject);
     }
 
-    private void MakeRagdoll(GameObject bodypart, float height)
+
+
+
+    // dismemberment for when enemy dies
+    private void MakeRagdoll(GameObject bodypart, Transform spawnLocation, float xValue)
     {
         if (bodypart)
         {
+           
 
-            GameObject ragdoll = Instantiate(bodypart, transform.position + new Vector3(0, height, 0), Quaternion.identity);
+            GameObject ragdoll = Instantiate(bodypart, spawnLocation.transform.position, Quaternion.identity);
             Vector3 hitDirection = (ragdoll.transform.position - player.transform.position).normalized;
             ragdoll.transform.rotation = Quaternion.LookRotation(hitDirection) * Quaternion.Euler(90, 0, 0);
 
@@ -257,8 +266,9 @@ public class navmeshtestscript : MonoBehaviour // Readd this to to the chase ai 
             Rigidbody rigid = ragdoll.GetComponent<Rigidbody>();
             if (rigid)
             {
-                
-                rigid.AddForce(hitDirection * 20, ForceMode.Impulse);
+          
+              //  hitDirection.y = 0.1f;
+                rigid.AddForce(hitDirection.normalized * 15, ForceMode.Impulse);
                 rigid.AddTorque(Random.insideUnitSphere * 1f, ForceMode.Impulse);
                 
             }
@@ -267,6 +277,7 @@ public class navmeshtestscript : MonoBehaviour // Readd this to to the chase ai 
                
         }
     }
+
 
 
 

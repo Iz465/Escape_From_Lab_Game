@@ -3,12 +3,13 @@ using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 
-public class BloodHealer : BloodEnemy
+public class BloodHealer : navmeshtestscript
 {
     private Collider[] corpseCount;
     [SerializeField] private LayerMask corpseLayer;
     private HashSet<GameObject> uniqueCorpse = new HashSet<GameObject>();
     private bool canRevive;
+    public static List<GameObject> deadEnemies = new List<GameObject>();
     protected override void Attack()
     {
         corpseCount = Physics.OverlapSphere(transform.position, 50f, corpseLayer);
@@ -73,14 +74,13 @@ public class BloodHealer : BloodEnemy
   
         foreach (GameObject corpse in uniqueCorpse)
         {
-            if (navmeshtestscript.deadEnemies[0])
-                Debug.Log($"Corpse name is : {corpse}");
-                Instantiate(navmeshtestscript.deadEnemies[0], corpse.transform.position, transform.rotation);
-            navmeshtestscript.deadEnemies.RemoveAt(0);
+            if (deadEnemies[0])
+                Instantiate(deadEnemies[0], corpse.transform.position, transform.rotation);
+            deadEnemies.RemoveAt(0);
             Destroy(corpse);
         } 
         uniqueCorpse.Clear();
-        navmeshtestscript.deadEnemies.Clear();
+        deadEnemies.Clear();
       
     }
 

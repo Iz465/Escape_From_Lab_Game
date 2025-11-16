@@ -74,7 +74,7 @@ PrefabInstance:
       objectReference: {fileID: -1642654745573217572, guid: 02c0b997e876e1343bf4ca71a330ba39, type: 3}
     - target: {fileID: 919132149155446097, guid: 51303f13f67fa8c40987a27960035c53, type: 3}
       propertyPath: m_Name
-      value: Alien 1
+      value: Blood Zombie
       objectReference: {fileID: 0}
     - target: {fileID: 5866666021909216657, guid: 51303f13f67fa8c40987a27960035c53, type: 3}
       propertyPath: m_Controller
@@ -103,6 +103,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 51303f13f67fa8c40987a27960035c53, type: 3}
       insertIndex: -1
       addedObject: {fileID: 2795403916778776896}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 51303f13f67fa8c40987a27960035c53, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: -1185100850803020423}
   m_SourcePrefab: {fileID: 100100000, guid: 51303f13f67fa8c40987a27960035c53, type: 3}
 --- !u!4 &3488772552613344499 stripped
 Transform:
@@ -124,8 +127,8 @@ NavMeshAgent:
   m_Enabled: 1
   m_AgentTypeID: 0
   m_Radius: 0.5
-  m_Speed: 8
-  m_Acceleration: 13
+  m_Speed: 12
+  m_Acceleration: 100
   avoidancePriority: 99
   m_AngularSpeed: 120
   m_StoppingDistance: 0
@@ -153,6 +156,8 @@ MonoBehaviour:
   playerLayer:
     serializedVersion: 2
     m_Bits: 8
+  footstepSound: {fileID: 8300000, guid: 8e99e00bc5ddd6f4aa5f5e94e6993238, type: 3}
+  attackSound: {fileID: 8300000, guid: b35bc73399427be45bdd75bf1bc3f838, type: 3}
   corpseParts:
     head: {fileID: 1604589698921734978, guid: 3dc195e4815025143aaabe1e50b2b4ad, type: 3}
     torso: {fileID: 992527465005872472, guid: 486327f0b11f61c458b3119f0ff8a1f4, type: 3}
@@ -195,6 +200,8 @@ LineRenderer:
   m_RayTracingAccelStructBuildFlagsOverride: 0
   m_RayTracingAccelStructBuildFlags: 1
   m_SmallMeshCulling: 1
+  m_ForceMeshLod: -1
+  m_MeshLodSelectionBias: 0
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -216,6 +223,7 @@ LineRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
+  m_GlobalIlluminationMeshLod: 0
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
@@ -303,3 +311,100 @@ MeshCollider:
   m_Convex: 0
   m_CookingOptions: 30
   m_Mesh: {fileID: -5597002278806442958, guid: 51303f13f67fa8c40987a27960035c53, type: 3}
+--- !u!82 &-1185100850803020423
+AudioSource:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4260770879771176521}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: 0}
+  m_audioClip: {fileID: 0}
+  m_Resource: {fileID: 0}
+  m_PlayOnAwake: 1
+  m_Volume: 1
+  m_Pitch: 1
+  Loop: 0
+  Mute: 0
+  Spatialize: 0
+  SpatializePostEffects: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4

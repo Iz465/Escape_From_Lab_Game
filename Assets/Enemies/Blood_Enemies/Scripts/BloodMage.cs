@@ -6,21 +6,22 @@ using static UnityEngine.GraphicsBuffer;
 using static UnityEngine.ParticleSystem;
 using static UnityEngine.UI.Image;
 
-public class BloodMage : BloodEnemy
+public class BloodMage : navmeshtestscript
 {
     [SerializeField] private GameObject power;
     [SerializeField] private float speed;
+    [SerializeField] private float instantAttackSpeed;
     [SerializeField] private Transform aimLoc;
     [SerializeField] private GameObject beamPrefab;
     [SerializeField] private GameObject circleInstantPrefab;
     [SerializeField] private GameObject instantAttackPrefab;
     [SerializeField] private LayerMask playerLayer;
 
-    int number;
+    int number = 0;
     private static bool attack;
     private bool beam;
     private static bool instantAttack;
-    private float beamLength;
+    private float beamLength = 20f;
     private GameObject beamInstance;
 
     private static List<BloodMage> bloodMages = new List<BloodMage>();
@@ -30,11 +31,7 @@ public class BloodMage : BloodEnemy
     protected override void Start()
     {
         base.Start();
-        number = 0;
-        beamLength = 20f;
         bloodMages.Add(this);
-
-
     }
 
     protected override void Update()
@@ -52,7 +49,7 @@ public class BloodMage : BloodEnemy
             agent.isStopped = true;
 
         canAttack = false;
-     
+        
 
 
 
@@ -66,6 +63,7 @@ public class BloodMage : BloodEnemy
         if (mageInUse[0] == null)
         {
             int num = Random.Range(0, 2);
+        
             switch (num)
             {
                 case 0: attack = true; break;
@@ -99,11 +97,14 @@ public class BloodMage : BloodEnemy
 
     protected override void Attack()
     {
-     
-        number++;
-        if (distanceToPlayer >= 10) speed = 80;
+
+        audioSource.PlayOneShot(attackSound, 3f);
+
+        if (distanceToPlayer >= 10) speed = 100;
         if (distanceToPlayer < 10) speed = 50;
-  
+        number++;
+
+        
         GameObject powerInstance = Instantiate(power, aimLoc.position, transform.rotation);
 
         if (!powerInstance) return;
@@ -115,6 +116,7 @@ public class BloodMage : BloodEnemy
         rb.AddForce(aimDir * speed, ForceMode.Impulse); 
          
     }
+
 
 
     private IEnumerator ResetAnim(int time)
@@ -204,13 +206,15 @@ public class BloodMage : BloodEnemy
 
     private Vector3 startingPosition;
     private GameObject circleAttackInstance;
+    
     private void InstantAttack()
     {
+        audioSource.PlayOneShot(attackSound, 3f);
         animator.SetBool("InstantAttack", true);
         number = 3;
 
         startingPosition = player.transform.position;
-        StartCoroutine(HitPlayer(1f));
+        StartCoroutine(HitPlayer(instantAttackSpeed));
         circleAttackInstance = Instantiate(circleInstantPrefab, player.transform.position, Quaternion.identity);
 
         circleAttackInstance.transform.localScale = new Vector3(2, 2, 2);
@@ -221,7 +225,7 @@ public class BloodMage : BloodEnemy
     private void ResetInstantAttack(float time)
     {
         animator.SetBool("InstantAttack", false);
-        StartCoroutine(ResetAttack(2));
+        StartCoroutine(ResetAttack(1));
     }
 
 

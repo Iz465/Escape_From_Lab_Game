@@ -4,66 +4,64 @@ using UnityEngine.ProBuilder.Shapes;
 
 public class MeleeZombie : navmeshtestscript
 {
-    [SerializeField] private Transform point1;
-    [SerializeField] private Transform point2;
-    [SerializeField] private Transform point1Second;
-    [SerializeField] private Transform point2Second;
-    [SerializeField] private Transform point1Third;
-    [SerializeField] private Transform point2Third;
-    [SerializeField] private LayerMask playerLayer;
-    private bool checkHitbox;
-    private bool canHit;
 
+    [SerializeField] private LayerMask playerLayer;
+    [SerializeField] private AudioClip footstepSound;
+  
 
     protected override void Start()
     {
         base.Start();
-  
-        checkHitbox = false;
-        canHit = false;
-        rotateSpeed = 100;
-
-    }
-
-
-
-    protected override void AttackPlayer()
-    {
-        canAttack = false;
- 
-
-        animator.SetTrigger("MeleeCombo");
-
-
+        GlobalEnemyManager.totalMeleeZombies.Add(gameObject);
     }
 
 
     private void ResetAttack()
     {
-     
-        Debug.Log("Resetting");
-
-
         canAttack = true;
     }
 
 
+    // Window during attack animation that enemy can damage
+
     private void EnableHit()
     {
-        canHit = true;
-        checkHitbox = true;
-
         if (BlockAttacks.particleInUse != BlockAttacks.ParticleInUse.red)
-            player.TakeDamage(5);
-
+            player.TakeDamage(2);
+     
+     
     }
 
-    private void DisableHit()
+ 
+
+    protected override void EnemyDeath()
     {
-        canHit = false;
-        checkHitbox = false;
-        rotateSpeed = 5f;
+     
+        base.EnemyDeath();
+        globalEnemyManager.RespawnEnemyWave(GlobalEnemyManager.totalMeleeZombies, gameObject);
+       
     }
 
+    private void PlayMeleeScream()
+    {
+        int randomSound = Random.Range(0, attackSounds.Count);
+        globalEnemyManager.CheckEnemySound(attackSounds[randomSound], "attack", audioSource); 
+    }
+
+    private void FootstepSound()
+    {
+        globalEnemyManager.CheckEnemySound(footstepSound, "footsteps", audioSource);
+   
+    }
+
+    private void ExplodeSound()      
+    {
+        if (attackSound) audioSource.PlayOneShot(attackSound);
+    }
+
+    private void Explode()
+    {
+
+    }
 
 }

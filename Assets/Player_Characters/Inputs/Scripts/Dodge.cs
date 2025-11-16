@@ -8,19 +8,20 @@ public class Dodge : MonoBehaviour
     private Animator animator;
     [SerializeField] private float cooldown;
     [SerializeField] private float dodgeDistance;
-    private bool canDodge;
-    
+    private bool canDodge = true;
+    private Player player;
+    [SerializeField] private AudioClip footstepSound;
     private void Start()
     {
         animator = GetComponent<Animator>();
-        canDodge = true;
+        player = GetComponentInParent<Player>();
+       
     }
     public void DodgeLeft(InputAction.CallbackContext context)
     {
         if (!context.performed) return;
         if (!canDodge) return;
-        animator.SetTrigger("DodgeLeft");
-        StartCoroutine(DodgeLeftTimer(0.3f));
+        StartCoroutine(DodgeLeftTimer(0.1f));
         canDodge = false;
         StartCoroutine(ResetDodge(cooldown));
 
@@ -31,8 +32,7 @@ public class Dodge : MonoBehaviour
     {
         if (!context.performed) return;
         if (!canDodge) return;
-        animator.SetTrigger("DodgeRight");
-        StartCoroutine(DodgeRightTimer(0.3f));
+        StartCoroutine(DodgeRightTimer(0.1f));
         canDodge = false;
         StartCoroutine(ResetDodge(cooldown));
     }
@@ -41,8 +41,7 @@ public class Dodge : MonoBehaviour
     {
         if (!context.performed) return;
         if (!canDodge) return;
-        animator.SetTrigger("DodgeBack");
-        StartCoroutine(DodgeBackTimer(0.3f));
+        StartCoroutine(DodgeBackTimer(0.1f));
         canDodge = false;
         StartCoroutine(ResetDodge(cooldown));
     }
@@ -52,7 +51,7 @@ public class Dodge : MonoBehaviour
         float timer = 0; 
         Vector3 startLoc = transform.root.localPosition;
         Vector3 left = -transform.root.right;
-        Vector3 endLoc = startLoc + left * 6f;  // Always moves to left no matter player rotation. dodgeDistance
+        Vector3 endLoc = startLoc + left * dodgeDistance;  // Always moves to left no matter player rotation. dodgeDistance
 
         while (timer < time)
         {
@@ -68,7 +67,7 @@ public class Dodge : MonoBehaviour
         float timer = 0;
         Vector3 startLoc = transform.root.localPosition;
         Vector3 right = transform.root.right;
-        Vector3 endLoc = startLoc + right * 6f;  // Always moves to left no matter player rotation.
+        Vector3 endLoc = startLoc + right * dodgeDistance;  // Always moves to left no matter player rotation.
 
         while (timer < time)
         {
@@ -84,7 +83,7 @@ public class Dodge : MonoBehaviour
         float timer = 0;
         Vector3 startLoc = transform.root.localPosition;
         Vector3 back = -transform.root.forward;
-        Vector3 endLoc = startLoc + back * 4f;  // Always moves to left no matter player rotation. 
+        Vector3 endLoc = startLoc + back * dodgeDistance;  // Always moves to left no matter player rotation. 
 
         while (timer < time)
         {
@@ -110,10 +109,15 @@ public class Dodge : MonoBehaviour
         animator.SetBool("DodgeBack", false);
     }
 
+
     private IEnumerator ResetDodge(float time)
     {
         yield return new WaitForSeconds(time);
         canDodge = true;
     }
 
+    private void PlayFootstepSound()
+    {
+        player.audioSource.PlayOneShot(footstepSound);
+    }
 }

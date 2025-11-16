@@ -35,6 +35,13 @@ public class Move : MonoBehaviour
             fallSpeed -= fallAcceleration * Time.deltaTime;
             fallSpeed = Mathf.Clamp(fallSpeed, -50, 10);
         }
+
+        else if (!controller.isGrounded)
+        {
+           
+            fallSpeed -= fallAcceleration * Time.deltaTime;
+            fallSpeed = Mathf.Clamp(fallSpeed, -50, 10);
+        }
         //print(hit.transform);
 
         //head bumps
@@ -52,6 +59,7 @@ public class Move : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.Space))
         {
+            Debug.Log("JUMP");
             if(Physics.Raycast(transform.position + new Vector3(0, controller.center.y - 0.1f, 0), Vector3.down, height / 2, checkLayer))
             {
                 fallSpeed = jumpStrength;

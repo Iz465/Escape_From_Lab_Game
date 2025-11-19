@@ -15,8 +15,11 @@ public class CompleteLevel : MonoBehaviour
         if (GlobalEnemyManager.levelComplete)
         {
             Debug.Log("Level Complete!");
+            DynamicDifficultyManager.CalculateDifficulty();
             SceneManager.LoadScene(levelName);
         }
+
+
           
     }
 }

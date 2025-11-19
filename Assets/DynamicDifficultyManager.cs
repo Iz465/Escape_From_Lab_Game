@@ -25,16 +25,18 @@ public class DynamicDifficultyManager : MonoBehaviour
  
 
     // The difficulty changes based on how the player performed in the level.
-    private void CalculateDifficulty()
+    public static void CalculateDifficulty()
     {
         // adds the time to it. Every 30 seconds adds 5 difficulty points to it.
         difficultyPoints += Mathf.Floor(time / 30f) * 5f;
 
         // Each death adds 5 difficulty points
-        difficultyPoints += deaths * 5;
+        difficultyPoints += deaths * 10;
 
-        // 15 percent of damage taken is converted into difficulty points
-        difficultyPoints += damage / 15;
+        // 30 percent of damage taken is converted into difficulty points
+        difficultyPoints += damage * 0.3f;
+
+        Debug.Log($"TOTAL DIFFICULTY POINTS: {difficultyPoints}");
 
         // Too easy for player
         if (difficultyPoints < 25)
@@ -70,11 +72,5 @@ public class DynamicDifficultyManager : MonoBehaviour
 
   
 
-    private void OnTriggerEnter(Collider other)
-    {
-        Player player = other.GetComponent<Player>();
-        if (!player) return;
-        CalculateDifficulty();
-    }
-
+  
 }

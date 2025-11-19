@@ -84,6 +84,9 @@ public class navmeshtestscript : MonoBehaviour // Readd this to to the chase ai 
         GlobalEnemyManager.totalEnemies.Add(gameObject);
         audioSource = GetComponent<AudioSource>();
 
+        health *= GlobalEnemyManager.healthMultiplier;
+
+
     }
 
     private void InitializeEnemyStats()

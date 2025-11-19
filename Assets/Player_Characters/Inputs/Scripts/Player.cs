@@ -65,6 +65,7 @@ public class Player : MonoBehaviour, IDamageTaken
     {
         if (!canDamage) return;
         stats.health -= damageTaken;
+        DynamicDifficultyManager.damage += damageTaken;
         if (stats.health <= 0)
             PlayerDeath();
     }
@@ -73,9 +74,10 @@ public class Player : MonoBehaviour, IDamageTaken
     // when the player dies the active scene / level restarts for the player to try again
     private void PlayerDeath() 
     {
+        DynamicDifficultyManager.deaths += 1;
         Debug.Log("You have died");
         UnityEngine.SceneManagement.Scene scene = SceneManager.GetActiveScene();
-        Debug.Log($"Scene name : {scene.name}");
+      
         SceneManager.LoadScene(scene.name);
 
     }

@@ -11,7 +11,7 @@ public class navmeshtestscript : MonoBehaviour // Readd this to to the chase ai 
 {
     // Stats
     [Header("Stats")]
-    [SerializeField] private float health;
+    [SerializeField] public float health;
     [SerializeField] private float roamRadius = 10f;
     [SerializeField] private float roamDelay = 5f;
     [SerializeField] protected float attackRange;
@@ -84,6 +84,14 @@ public class navmeshtestscript : MonoBehaviour // Readd this to to the chase ai 
         GlobalEnemyManager.totalEnemies.Add(gameObject);
         audioSource = GetComponent<AudioSource>();
 
+        health *= GlobalEnemyManager.healthMultiplier;
+
+
+    }
+
+    private void InitializeEnemyStats()
+    {
+        health *= GlobalEnemyManager.healthMultiplier;
     }
 
     // Enemy constantly roaming / chasing player depending on options.

@@ -35,6 +35,7 @@ public class PlayerSpawner : MonoBehaviour
             plr.GetComponent<Speed>().spawnPosition = transform;
             
         }
+        plr.transform.position = transform.position;
 
         plr.GetComponent<CharacterController>().enabled = false;
         yield return new WaitForSeconds(0.3f);

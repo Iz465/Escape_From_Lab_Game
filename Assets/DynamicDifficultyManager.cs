@@ -40,31 +40,31 @@ public class DynamicDifficultyManager : MonoBehaviour
 
         // Too easy for player
         if (difficultyPoints < 25)
-            GlobalEnemyManager.UpdateEnemyStats(1.2f, 1.2f);
+            GlobalEnemyManager.UpdateEnemyStats(1.2f);
 
 
 
 
         // Slightly Too easy for player
         if (difficultyPoints < 50 && difficultyPoints >= 25)
-            GlobalEnemyManager.UpdateEnemyStats(1.1f, 1.1f);
+            GlobalEnemyManager.UpdateEnemyStats(1.1f);
 
 
 
 
         // Perfect difficulty
         else if (difficultyPoints >= 50 && difficultyPoints < 100)
-            GlobalEnemyManager.UpdateEnemyStats(1, 1);
+            GlobalEnemyManager.UpdateEnemyStats(1);
 
 
         // Slightly too hard for player
         else if (difficultyPoints >= 100)
-            GlobalEnemyManager.UpdateEnemyStats(0.9f, 0.9f);
+            GlobalEnemyManager.UpdateEnemyStats(0.9f);
 
 
         // Too hard for player 
         else if (difficultyPoints > 150 && difficultyPoints <= 100)
-            GlobalEnemyManager.UpdateEnemyStats(0.8f, 0.8f);
+            GlobalEnemyManager.UpdateEnemyStats(0.8f);
         
         difficultyPoints = 0;
     }

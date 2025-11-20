@@ -87,7 +87,7 @@ public class BloodZombie : MonoBehaviour
       
         Collider[] playerCheck = Physics.OverlapSphere(transform.position, 4, playerLayer);
         if (playerCheck.Length > 0)
-            player.TakeDamage(50);
+            player.TakeDamage(50 * GlobalEnemyManager.damageMultiplier);
 
         Destroy(gameObject);
 

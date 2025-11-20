@@ -114,14 +114,14 @@ public class EvilKnight : navmeshtestscript
         globalEnemyManager.CheckEnemySound(attackSound, "attack", audioSource);
 
         if (randomNumber == 0)
-            if (BlockAttacks.particleInUse != BlockAttacks.ParticleInUse.red) player.TakeDamage(15);
+            if (BlockAttacks.particleInUse != BlockAttacks.ParticleInUse.red) player.TakeDamage(15 * GlobalEnemyManager.damageMultiplier);
 
 
         if (randomNumber == 1)
-            if (BlockAttacks.particleInUse != BlockAttacks.ParticleInUse.green) player.TakeDamage(15);
+            if (BlockAttacks.particleInUse != BlockAttacks.ParticleInUse.green) player.TakeDamage(15 * GlobalEnemyManager.damageMultiplier);
 
         if (randomNumber == 2)
-            if (BlockAttacks.particleInUse != BlockAttacks.ParticleInUse.blue) player.TakeDamage(15);
+            if (BlockAttacks.particleInUse != BlockAttacks.ParticleInUse.blue) player.TakeDamage(15 * GlobalEnemyManager.damageMultiplier);
 
         canHit = true;
     }

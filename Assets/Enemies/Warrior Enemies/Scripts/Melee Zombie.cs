@@ -27,7 +27,7 @@ public class MeleeZombie : navmeshtestscript
     private void EnableHit()
     {
         if (BlockAttacks.particleInUse != BlockAttacks.ParticleInUse.red)
-            player.TakeDamage(2);
+            player.TakeDamage(2 * GlobalEnemyManager.damageMultiplier);
      
      
     }

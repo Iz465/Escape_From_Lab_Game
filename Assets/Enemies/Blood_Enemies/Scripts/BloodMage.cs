@@ -43,6 +43,7 @@ public class BloodMage : navmeshtestscript
     }
 
 
+    // Randomizes attack
     protected override void AttackPlayer()
     {
         if (agent.isOnNavMesh)
@@ -94,7 +95,7 @@ public class BloodMage : navmeshtestscript
 
     }
 
-
+    // First attack for the mage.
     protected override void Attack()
     {
 
@@ -102,6 +103,7 @@ public class BloodMage : navmeshtestscript
 
         if (distanceToPlayer >= 10) speed = 100;
         if (distanceToPlayer < 10) speed = 50;
+        speed *= GlobalEnemyManager.speedMultiplier;
         number++;
 
         
@@ -155,6 +157,7 @@ public class BloodMage : navmeshtestscript
 
     }
 
+    // Second mage attack
     private void BeamAttack()
     {
         rotateSpeed = 3f;
@@ -207,6 +210,7 @@ public class BloodMage : navmeshtestscript
     private Vector3 startingPosition;
     private GameObject circleAttackInstance;
     
+    // third attack for mage
     private void InstantAttack()
     {
         audioSource.PlayOneShot(attackSound, 3f);

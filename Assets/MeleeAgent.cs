@@ -121,6 +121,7 @@ public class MeleeAgent : Agent
         Debug.Log($"Collided with: {collision}");
     }
 
+    /*
     private void OnTriggerEnter(Collider other)
     {
 
@@ -150,7 +151,7 @@ public class MeleeAgent : Agent
 
         EndEpisode();
     }
-
+    */
 }
 // mlagents-learn D:/Unity_Projects/Escape_From_Lab_Game/config/MeleeAgent.yaml --run-id=MeleeEnemyTest1 --force
 

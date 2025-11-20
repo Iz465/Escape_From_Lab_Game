@@ -83,9 +83,9 @@ public class BlackKnight : navmeshtestscript
         audioSource.PlayOneShot(swordHitSound, 3f);
         switch (oldNumber)
         {
-            case 0: if (BlockAttacks.particleInUse != BlockAttacks.ParticleInUse.red) player.TakeDamage(25); break;
-            case 1: if (BlockAttacks.particleInUse != BlockAttacks.ParticleInUse.green) player.TakeDamage(25); break;
-            case 2: if (BlockAttacks.particleInUse != BlockAttacks.ParticleInUse.blue) player.TakeDamage(25); break;
+            case 0: if (BlockAttacks.particleInUse != BlockAttacks.ParticleInUse.red) player.TakeDamage(25 * GlobalEnemyManager.damageMultiplier); break;
+            case 1: if (BlockAttacks.particleInUse != BlockAttacks.ParticleInUse.green) player.TakeDamage(25 * GlobalEnemyManager.damageMultiplier); break;
+            case 2: if (BlockAttacks.particleInUse != BlockAttacks.ParticleInUse.blue) player.TakeDamage(25 * GlobalEnemyManager.damageMultiplier); break;
         }
     }
 

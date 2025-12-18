@@ -48,7 +48,7 @@ EditorBuildSettings:
     path: Assets/Scenes/Blood_Room_Scenes/Blood_Room_3.unity
     guid: 6c16340dacc63be498ff29fd37cd3e85
   - enabled: 1
-    path: Assets/Scenes/Blood_Room_Scenes/Blood_Room_4.unity
+    path: Assets/Scenes/Blood_Room_Scenes/Blood_Room_3.unity
     guid: 5b22ba41b09b1c7498d9ca977843e205
   - enabled: 1
     path: Assets/Scenes/Blood_Room_Scenes/Cutscene Blood.unity
@@ -62,6 +62,9 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Intro Cutscene.unity
     guid: acfb4c54abd7c92408722224de3be578
+  - enabled: 1
+    path: Assets/Scenes/Warrior_Rooms/Warrior_Room_4.unity
+    guid: a67fdd029ac6bd147a6b799ce05b08b5
   m_configObjects:
     com.unity.input.settings.actions: {fileID: -944628639613478452, guid: 052faaac586de48259a63d0c4782560b, type: 3}
   m_UseUCBPForAssetBundles: 0

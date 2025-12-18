@@ -15,6 +15,14 @@ public class SpawnEnemy : MonoBehaviour
     public bool spawnAfter;
     public int waveAmount = 0;
     [SerializeField] public AudioClip spawnSound;
+
+
+    private List<GameObject> enemiesAlive = new List<GameObject>(); // this tracks the enemies alive that the specific spawn made.
+
+    public List<SpawnEnemy> spawns = new List<SpawnEnemy>(); // different enemy spawns that can spawn after this one ends. 
+
+    public List<SpawnEnemy> spawnsBeforeRespawning = new List<SpawnEnemy>();
+   
     private void OnTriggerEnter(Collider other)
     {
         
@@ -31,29 +39,78 @@ public class SpawnEnemy : MonoBehaviour
             GlobalEnemyManager.delayedSpawns.Add(gameObject);
             return;
         }
-        
 
 
+
+        ActivateSpawn();
+
+
+       Collider collider = gameObject.GetComponent<Collider>(); // spawner can only be triggered once.
+       collider.enabled = false;
+    }
+
+    public void ActivateSpawn()
+    {
         foreach (GameObject spawn in enemySpawns)
         {
-           
+
             Instantiate(spawnParticle, spawn.transform.position, Quaternion.identity);
-    //        Debug.Log($"Duration: {spawnParticle.duration}");
+
             StartCoroutine(SpawnIn(spawn, 1));
         }
-            
 
-        
+
+
         Debug.Log("Player Entered!");
         StartCoroutine(StartSound(1));
-      
-        Destroy(gameObject, 2f);
+
     }
 
     public IEnumerator SpawnIn(GameObject spawn, float time)
     {
         yield return new WaitForSeconds(time);
-        Instantiate(enemyPrefab, spawn.transform.position, Quaternion.identity);
+        GameObject enemyAlive = Instantiate(enemyPrefab, spawn.transform.position, Quaternion.identity);
+        navmeshtestscript navmeshtest = enemyAlive.GetComponent<navmeshtestscript>();
+        navmeshtest.enemiesSpawner = this;
+        enemiesAlive.Add(enemyAlive);
+
+    }
+
+    public void RemoveEnemy(GameObject enemy)
+    {
+        Debug.Log("REMOVING ENEMY FROM SPAWN COUNT");
+        enemiesAlive.Remove(enemy);
+        if (enemiesAlive.Count == 0)
+        {
+            Debug.Log("All ENEMIES IN THE SPAWN ARE DEAD");
+
+            if (waveAmount > 0) // respawns the enemy wave.
+            {
+                ActivateSpawn();
+                waveAmount -= 1;
+            }
+
+
+            else
+            {
+                spawnsBeforeRespawning.Remove(this);
+                foreach (SpawnEnemy checkSpawwn in spawnsBeforeRespawning)
+                {
+                    checkSpawwn.spawnsBeforeRespawning.Remove(this);
+                }
+
+                if (spawnsBeforeRespawning.Count == 0)
+                {
+                    foreach (SpawnEnemy spawn in spawns)
+                        spawn.ActivateSpawn();
+                    Destroy(gameObject);
+                }
+
+            
+           
+            }
+     
+        }
 
     }
 

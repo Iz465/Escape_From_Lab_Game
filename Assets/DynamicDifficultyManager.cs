@@ -28,7 +28,7 @@ public class DynamicDifficultyManager : MonoBehaviour
     public static void CalculateDifficulty()
     {
         // adds the time to it. Every 30 seconds adds 5 difficulty points to it.
-        difficultyPoints += Mathf.Floor(time / 30f) * 5f;
+  /*      difficultyPoints += Mathf.Floor(time / 30f) * 5f;
 
         // Each death adds 5 difficulty points
         difficultyPoints += deaths * 10;
@@ -66,7 +66,7 @@ public class DynamicDifficultyManager : MonoBehaviour
         else if (difficultyPoints > 150 && difficultyPoints <= 100)
             GlobalEnemyManager.UpdateEnemyStats(0.8f, 0.8f);
         
-        difficultyPoints = 0;
+        difficultyPoints = 0; */
     }
     
 

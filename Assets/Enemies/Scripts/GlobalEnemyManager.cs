@@ -8,6 +8,7 @@ public class GlobalEnemyManager : MonoBehaviour
 {
     public static bool enemyAttacking;
     public static HashSet<GameObject> enemiesInRange = new HashSet<GameObject>();
+    public static HashSet<GameObject> knightsInRange = new HashSet<GameObject>();
     public static HashSet<GameObject> totalEnemies = new HashSet<GameObject>();
     public static HashSet<GameObject> totalMeleeZombies = new HashSet<GameObject>();
     public static HashSet<GameObject> totalEvilKnights = new HashSet<GameObject>();
@@ -46,7 +47,7 @@ public class GlobalEnemyManager : MonoBehaviour
         enemiesInRange.Remove(enemy);
         if (enemiesInRange.Count <= 0)
         {
-            Debug.Log("No Enemies Left!");
+          //  Debug.Log("No Enemies Left!");
 
   
         }

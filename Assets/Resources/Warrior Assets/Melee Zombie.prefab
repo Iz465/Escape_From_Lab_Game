@@ -802,8 +802,13 @@ MonoBehaviour:
     leftHand: {fileID: 6208417085786966124}
     rightHand: {fileID: 2969385067910743142}
     legs: {fileID: 7202601047369507919}
+  playerCanDash: 1
+  player: {fileID: 0}
   canAttack: 1
   rotateSpeed: 100
+  canMove: 1
+  enemyMesh: {fileID: 4842361650491524794}
+  enemiesSpawner: {fileID: 0}
   healthGain: 1
   playerLayer:
     serializedVersion: 2
@@ -933,6 +938,11 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!137 &4842361650491524794 stripped
+SkinnedMeshRenderer:
+  m_CorrespondingSourceObject: {fileID: -805120583256877662, guid: 51303f13f67fa8c40987a27960035c53, type: 3}
+  m_PrefabInstance: {fileID: 4026259141824336664}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &8670052969366071284 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -3480699329000672020, guid: 51303f13f67fa8c40987a27960035c53, type: 3}

@@ -22,6 +22,11 @@ public class EvilKnight : navmeshtestscript
     private bool canHit = false;
     private int randomNumber;
 
+    [SerializeField] private float combatRadius; // the range at which enemies stop and stare while only one enemy goes into the attack range to attack
+    private static EvilKnight[] knightAttacking = new EvilKnight[1];
+
+    private Coroutine tauntCoroutine;
+
     // Enemy randomly chooses an attack
 
     protected override void Start()
@@ -29,13 +34,98 @@ public class EvilKnight : navmeshtestscript
         base.Start();
         GlobalEnemyManager.totalEvilKnights.Add(gameObject);
         randomNumber = Random.Range(0, 3);
+        agent.updateRotation = false;
+        agent.speed = 8;
+        animator.SetBool("ChosenEnemy", true);
 
     }
+
+    private bool enteredRange = false;
+    private bool checkEnteredRangeOnce = false;
+    private bool disableMovement = true;
+    protected override void ChasePlayer()
+    {
+        FacePlayer();
+
+        if (distanceToPlayer > attackRange && canAttack && disableMovement)
+        {
+            if (!agent.isOnNavMesh) return;
+            agent.isStopped = false;
+            agent.SetDestination(player.transform.position);
+            GlobalEnemyManager.enemiesInRange.Remove(gameObject);
+
+        }
+
+
+        if (distanceToPlayer <= attackRange)
+        {
+            enteredRange = true;
+            checkEnteredRangeOnce = true;
+
+            GlobalEnemyManager.enemiesInRange.Add(gameObject);
+
+
+            if (agent.isOnNavMesh)
+                agent.isStopped = true;
+
+            if (canAttack)
+                AttackPlayer();
+
+        }
+
+        if (distanceToPlayer >= combatRadius)
+        {
+            enteredRange = false;
+        }
+
+
+
+        if (!enteredRange)
+        {
+            if (checkEnteredRangeOnce)
+            {
+                
+                agent.isStopped = true;
+                checkEnteredRangeOnce = false;
+                disableMovement = false;
+                enemiesMovementDisabledAmount++;
+
+                float time = 0;
+                for (int i = 0; i < enemiesMovementDisabledAmount; i++)
+                {
+                    time += 3;
+                    if (enemiesMovementDisabledAmount == 0) time = 0;
+                }
+
+                
+
+                StartCoroutine(ReEnableMovement(time));
+            }
+       
+        }
+
+
+
+
+    
+        
+    }
+
+    static int enemiesMovementDisabledAmount = 0;
+
+    private IEnumerator ReEnableMovement (float time)
+    {
+        yield return new WaitForSeconds(time);
+        disableMovement = true;
+        enemiesMovementDisabledAmount--;
+
+
+    }
+    
 
     private bool firstTime = true;
     protected override void AttackPlayer()
     {
-  
 
         canAttack = false;
         rotateSpeed = 20;
@@ -79,7 +169,8 @@ public class EvilKnight : navmeshtestscript
     // Added this for enemy to glide towards player during a specific attack and look more natural
     private IEnumerator StepDistance(float timer, float distance)
     {
-
+        yield return null;
+        /*
         float time = 0;
         Vector3 originalPosition = transform.position;
         Vector3 endPosition = originalPosition + transform.forward * distance;
@@ -88,7 +179,7 @@ public class EvilKnight : navmeshtestscript
             transform.position = Vector3.Lerp(originalPosition, endPosition, time / timer);
             time += Time.deltaTime;
             yield return null;
-        }
+        } */
     }
 
     private void ResetAnim()
@@ -103,8 +194,8 @@ public class EvilKnight : navmeshtestscript
     {
         yield return new WaitForSeconds(time);
         canAttack = true;
-    
     }
+
 
 
     
@@ -147,14 +238,13 @@ public class EvilKnight : navmeshtestscript
     }
 
 
-    protected override void EnemyDeath()
+
+
+    private IEnumerator ActivateTaunt(float time)
     {
-
-        base.EnemyDeath();
-        globalEnemyManager.RespawnEnemyWave(GlobalEnemyManager.totalEvilKnights, gameObject);
-
+        yield return new WaitForSeconds(time);
+        animator.SetTrigger("Taunt");
     }
-
     
 }
 

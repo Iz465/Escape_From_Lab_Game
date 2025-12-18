@@ -3,9 +3,8 @@ using System.Collections.Generic;
 using System.Runtime.CompilerServices;
 using UnityEditor;
 using UnityEngine;
-using Unity.MLAgents;
 using UnityEngine.AI;
-using Unity.MLAgents.Actuators;
+
 
 public class navmeshtestscript : MonoBehaviour // Readd this to to the chase ai script.
 {
@@ -57,7 +56,7 @@ public class navmeshtestscript : MonoBehaviour // Readd this to to the chase ai 
     [SerializeField] private CorpseParts corpseParts;
     [SerializeField] private CorpseLocations corpseLocations;
 
-
+    [HideInInspector] public bool playerCanDash = true;
 
     [Header("Objects")]
     [SerializeField] protected Player player;
@@ -73,7 +72,11 @@ public class navmeshtestscript : MonoBehaviour // Readd this to to the chase ai 
     
     protected bool canRotate = true;
     [SerializeField] protected float rotateSpeed = 5f;
+    [HideInInspector] public bool canMove = true;
 
+    [SerializeField] public SkinnedMeshRenderer enemyMesh;
+
+    [HideInInspector] public SpawnEnemy enemiesSpawner;
     virtual protected void Start()
     {
         agent = GetComponent<NavMeshAgent>();
@@ -98,6 +101,8 @@ public class navmeshtestscript : MonoBehaviour // Readd this to to the chase ai 
     virtual protected void Update()
     {
         timer += Time.deltaTime;
+
+        if (!canMove) return;
 
         if (!agent || !player || !animator) return;
 
@@ -136,14 +141,17 @@ public class navmeshtestscript : MonoBehaviour // Readd this to to the chase ai 
             agent.isStopped = false;
             agent.SetDestination(player.transform.position);
             GlobalEnemyManager.enemiesInRange.Remove(gameObject);
+           
         }
 
-        else if (distanceToPlayer <= attackRange)
+   
+        if (distanceToPlayer <= attackRange)
         {
-            
-            GlobalEnemyManager.enemiesInRange.Add(gameObject);
 
-            if (agent.isOnNavMesh) 
+            GlobalEnemyManager.enemiesInRange.Add(gameObject);
+   
+
+            if (agent.isOnNavMesh)
                 agent.isStopped = true;
 
             if (canAttack)
@@ -203,7 +211,11 @@ public class navmeshtestscript : MonoBehaviour // Readd this to to the chase ai 
         if (player.playerHitParticle) Instantiate(player.playerHitParticle, particleHitLocation.position, Quaternion.identity); 
         if (blood) ShowBlood();
         health -= damageTaken;
-        Debug.Log($"Taking damage! Health Left : {health}");
+     //   Debug.Log($"Taking damage! Health Left : {health}");
+
+        Vector3 endPosition = player.transform.forward;
+  
+
         if (health <= 0)
             EnemyDeath();
     }
@@ -228,6 +240,8 @@ public class navmeshtestscript : MonoBehaviour // Readd this to to the chase ai 
         if (fleshSounds.Count > 0) globalEnemyManager.CheckEnemySound(fleshSounds[0], "flesh", player.audioSource);
         if (deathSound) globalEnemyManager.CheckEnemySound(deathSound, "death", player.audioSource);
 
+        if (enemiesSpawner) enemiesSpawner.RemoveEnemy(gameObject);
+        else Debug.Log("NO ENEMY SPAWNER");
 
         canAttack = true;
 

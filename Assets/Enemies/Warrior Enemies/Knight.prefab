@@ -994,6 +994,10 @@ PrefabInstance:
       value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 3027896407205900740, guid: d0ded03e6a7e0084d92ee10ebb8c119d, type: 3}
+      propertyPath: m_UpdateWhenOffscreen
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3027896407205900740, guid: d0ded03e6a7e0084d92ee10ebb8c119d, type: 3}
       propertyPath: 'm_Materials.Array.data[0]'
       value: 
       objectReference: {fileID: 2100000, guid: a8e6fa71d74b319418bc7d2e67c9cd57, type: 2}
@@ -1025,6 +1029,10 @@ PrefabInstance:
       propertyPath: m_Controller
       value: 
       objectReference: {fileID: 9100000, guid: 23cd255b3f532504c9b529ef6b8b965f, type: 2}
+    - target: {fileID: 5866666021909216657, guid: d0ded03e6a7e0084d92ee10ebb8c119d, type: 3}
+      propertyPath: m_CullingMode
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 5866666021909216657, guid: d0ded03e6a7e0084d92ee10ebb8c119d, type: 3}
       propertyPath: m_ApplyRootMotion
       value: 0
@@ -1126,9 +1134,6 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: d0ded03e6a7e0084d92ee10ebb8c119d, type: 3}
       insertIndex: -1
       addedObject: {fileID: -4585563582029769789}
-    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: d0ded03e6a7e0084d92ee10ebb8c119d, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 7979763514396763758}
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: d0ded03e6a7e0084d92ee10ebb8c119d, type: 3}
       insertIndex: -1
       addedObject: {fileID: 3667655974722019951}
@@ -1407,6 +1412,11 @@ CharacterJoint:
   m_EnablePreprocessing: 0
   m_MassScale: 1
   m_ConnectedMassScale: 1
+--- !u!137 &1960318886776572667 stripped
+SkinnedMeshRenderer:
+  m_CorrespondingSourceObject: {fileID: 3027896407205900740, guid: d0ded03e6a7e0084d92ee10ebb8c119d, type: 3}
+  m_PrefabInstance: {fileID: 3544698053132745535}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1961964110740506258 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 3029523901680860589, guid: d0ded03e6a7e0084d92ee10ebb8c119d, type: 3}
@@ -1808,7 +1818,7 @@ NavMeshAgent:
   m_Enabled: 1
   m_AgentTypeID: 0
   m_Radius: 2
-  m_Speed: 8
+  m_Speed: 4
   m_Acceleration: 100
   avoidancePriority: 50
   m_AngularSpeed: 1000
@@ -1832,7 +1842,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 88b00ef25b5ca3143bf389321f52849d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  health: 160
+  health: 120
   roamRadius: 100
   roamDelay: 2
   attackRange: 5
@@ -1865,8 +1875,13 @@ MonoBehaviour:
     leftHand: {fileID: 6193230382221361770}
     rightHand: {fileID: 6904080135867401359}
     legs: {fileID: 966548066634019334}
+  playerCanDash: 1
+  player: {fileID: 0}
   canAttack: 1
   rotateSpeed: 5
+  canMove: 1
+  enemyMesh: {fileID: 1960318886776572667}
+  enemiesSpawner: {fileID: 0}
   healthGain: 5
   castLocation: {fileID: 1773943180945175834}
   redAttack: {fileID: 2879452947444175344, guid: b1d0180c491663b4495930ea2aad7b17, type: 3}
@@ -1875,6 +1890,7 @@ MonoBehaviour:
   firstStepSound: {fileID: 8300000, guid: 10d8fab6604b26c47bd9744551a02698, type: 3}
   secondStepSound: {fileID: 8300000, guid: 4d682315b0154e147ba0055f52f8d5d4, type: 3}
   swordHitSound: {fileID: 8300000, guid: efc05bdc972a5f046a8fd33155490e19, type: 3}
+  combatRadius: 20
 --- !u!111 &-4585563582029769789
 Animation:
   m_ObjectHideFlags: 0
@@ -1891,36 +1907,6 @@ Animation:
   m_AnimatePhysics: 0
   m_UpdateMode: 0
   m_CullingType: 0
---- !u!114 &7979763514396763758
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4463108774348179054}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5d1c4e0b1822b495aa52bc52839ecb30, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_BrainParameters:
-    VectorObservationSize: 1
-    NumStackedVectorObservations: 1
-    m_ActionSpec:
-      m_NumContinuousActions: 0
-      BranchSizes: 01000000
-    VectorActionSize: 01000000
-    VectorActionDescriptions: []
-    VectorActionSpaceType: 0
-    hasUpgradedBrainParametersWithActionSpec: 1
-  m_Model: {fileID: 0}
-  m_InferenceDevice: 0
-  m_BehaviorType: 0
-  m_BehaviorName: Enemy DDA
-  TeamId: 0
-  m_UseChildSensors: 1
-  m_UseChildActuators: 1
-  m_ObservableAttributeHandling: 0
 --- !u!65 &3667655974722019951
 BoxCollider:
   m_ObjectHideFlags: 0

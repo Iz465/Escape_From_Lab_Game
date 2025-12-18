@@ -443,15 +443,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 955fa8d74deb1aa42a89eb634ed0c8f1, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 54.615
+      value: 62.142906
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 955fa8d74deb1aa42a89eb634ed0c8f1, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -0.23
+      value: 0.5645809
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 955fa8d74deb1aa42a89eb634ed0c8f1, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -15.842
+      value: 17.07
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 955fa8d74deb1aa42a89eb634ed0c8f1, type: 3}
       propertyPath: m_LocalRotation.w
@@ -528,6 +528,10 @@ PrefabInstance:
     - target: {fileID: -4278032810995721380, guid: 955fa8d74deb1aa42a89eb634ed0c8f1, type: 3}
       propertyPath: m_Layer
       value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: -3980780951373865430, guid: 955fa8d74deb1aa42a89eb634ed0c8f1, type: 3}
+      propertyPath: m_UpdateWhenOffscreen
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: -3980780951373865430, guid: 955fa8d74deb1aa42a89eb634ed0c8f1, type: 3}
       propertyPath: 'm_Materials.Array.data[0]'
@@ -686,6 +690,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 9100000, guid: 5b2d273f857b0de468b1ac0154a2cd0e, type: 2}
     - target: {fileID: 5866666021909216657, guid: 955fa8d74deb1aa42a89eb634ed0c8f1, type: 3}
+      propertyPath: m_CullingMode
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5866666021909216657, guid: 955fa8d74deb1aa42a89eb634ed0c8f1, type: 3}
       propertyPath: m_ApplyRootMotion
       value: 0
       objectReference: {fileID: 0}
@@ -748,6 +756,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 955fa8d74deb1aa42a89eb634ed0c8f1, type: 3}
       insertIndex: -1
       addedObject: {fileID: 6635605908140003372}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 955fa8d74deb1aa42a89eb634ed0c8f1, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 9117445068895849020}
     - targetCorrespondingSourceObject: {fileID: 1082271958561512970, guid: 955fa8d74deb1aa42a89eb634ed0c8f1, type: 3}
       insertIndex: -1
       addedObject: {fileID: 7598273955065257397}
@@ -1296,7 +1307,7 @@ MeshCollider:
   m_LayerOverridePriority: 0
   m_IsTrigger: 0
   m_ProvidesContacts: 0
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 5
   m_Convex: 0
   m_CookingOptions: 30
@@ -1335,7 +1346,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9807c1a81f2102f45b4b1ffdc332fad9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  health: 100
+  health: 60
   roamRadius: 100
   roamDelay: 5
   attackRange: 100
@@ -1366,8 +1377,12 @@ MonoBehaviour:
     leftHand: {fileID: 3948156851891679018}
     rightHand: {fileID: 6145029821508467270}
     legs: {fileID: 6713776861013719785}
+  playerCanDash: 1
+  player: {fileID: 0}
   canAttack: 1
   rotateSpeed: 5
+  canMove: 1
+  enemyMesh: {fileID: 0}
   healthGain: 5
   power: {fileID: 6238471719548748225, guid: ebb6fc29a5cb4ad4c9ea0778c8a334c2, type: 3}
   powerSpeed: 100
@@ -1469,6 +1484,27 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!65 &9117445068895849020
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3463968663809784044}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 512
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 0.15, y: 0.19171886, z: 0.15}
+  m_Center: {x: 0, y: 0.0863622, z: 0}
 --- !u!1 &3735195381266815927 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 1082271958561512970, guid: 955fa8d74deb1aa42a89eb634ed0c8f1, type: 3}

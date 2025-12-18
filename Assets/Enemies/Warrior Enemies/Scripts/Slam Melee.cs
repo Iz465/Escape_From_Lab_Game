@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using static ArcSwing;
 
 public class SlamMelee : BasePower
 {
@@ -22,13 +23,20 @@ public class SlamMelee : BasePower
     {
         if (!context.performed) return;
         if (!canAttack) return;
-        base.StartAttack(context);
-        line.toggleCircle = true;
 
+
+        animator.SetBool("NotAttacking", false);
+
+
+        animator.SetTrigger(stats.powerName);
+        line.toggleCircle = true;
         canAttack = false;
         StartCoroutine(ResetSlam(cooldown));
 
+
     }
+
+  
 
     // Damages any enemies that are in the hammer radius the moment it hits the ground. 
     public void HitGround()
@@ -80,6 +88,16 @@ public class SlamMelee : BasePower
         canAttack = true;
     }
 
+
+    private void CombatStateEntered()
+    {
+        animator.SetBool("NotAttacking", false);
+    }
+
+    private void NonCombatStateEntered()
+    {
+        animator.SetBool("NotAttacking", true);
+    }
 
     // shows in the editor how big the radius will be
     private void OnDrawGizmos()

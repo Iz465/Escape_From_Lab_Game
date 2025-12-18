@@ -69,6 +69,13 @@ ModelImporter:
         floatParameter: 0.5
         intParameter: 0
         messageOptions: 0
+      - time: 0.14528437
+        functionName: AllowCombo
+        data: 
+        objectReferenceParameter: {instanceID: 0}
+        floatParameter: 0
+        intParameter: 0
+        messageOptions: 0
       - time: 0.43551955
         functionName: CanArcSwipe
         data: 
@@ -78,6 +85,13 @@ ModelImporter:
         messageOptions: 0
       - time: 0.67451876
         functionName: StartCameraShake
+        data: 
+        objectReferenceParameter: {instanceID: 0}
+        floatParameter: 0
+        intParameter: 0
+        messageOptions: 0
+      - time: 0.98381877
+        functionName: UnallowCombo
         data: 
         objectReferenceParameter: {instanceID: 0}
         floatParameter: 0

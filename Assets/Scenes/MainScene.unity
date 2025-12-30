@@ -2257,6 +2257,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: Door (5)
       objectReference: {fileID: 0}
+    - target: {fileID: 6909522244784596834, guid: 245c0de6546343542a72aa131d361b4b, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6909522244784596834, guid: 245c0de6546343542a72aa131d361b4b, type: 3}
+      propertyPath: m_TagString
+      value: Door
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -5413,6 +5421,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: Door (7)
       objectReference: {fileID: 0}
+    - target: {fileID: 6909522244784596834, guid: 245c0de6546343542a72aa131d361b4b, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6909522244784596834, guid: 245c0de6546343542a72aa131d361b4b, type: 3}
+      propertyPath: m_TagString
+      value: Door
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -7933,7 +7949,7 @@ MonoBehaviour:
   sceneIndex: 7
   successDoor: 0
   challengeRoom: 1
-  roomToFinish: Speed2
+  roomToFinish: 
   roomName: 
   movePlayerToScene: 1
 --- !u!65 &315154737
@@ -10183,6 +10199,14 @@ PrefabInstance:
     - target: {fileID: 6909522244784596834, guid: 245c0de6546343542a72aa131d361b4b, type: 3}
       propertyPath: m_Name
       value: Door (8)
+      objectReference: {fileID: 0}
+    - target: {fileID: 6909522244784596834, guid: 245c0de6546343542a72aa131d361b4b, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6909522244784596834, guid: 245c0de6546343542a72aa131d361b4b, type: 3}
+      propertyPath: m_TagString
+      value: Door
       objectReference: {fileID: 0}
     - target: {fileID: 6909522244784596834, guid: 245c0de6546343542a72aa131d361b4b, type: 3}
       propertyPath: m_StaticEditorFlags
@@ -18491,6 +18515,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: Door (9)
       objectReference: {fileID: 0}
+    - target: {fileID: 6909522244784596834, guid: 245c0de6546343542a72aa131d361b4b, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6909522244784596834, guid: 245c0de6546343542a72aa131d361b4b, type: 3}
+      propertyPath: m_TagString
+      value: Door
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -20323,6 +20355,14 @@ PrefabInstance:
       value: Door (4)
       objectReference: {fileID: 0}
     - target: {fileID: 6909522244784596834, guid: 245c0de6546343542a72aa131d361b4b, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6909522244784596834, guid: 245c0de6546343542a72aa131d361b4b, type: 3}
+      propertyPath: m_TagString
+      value: Door
+      objectReference: {fileID: 0}
+    - target: {fileID: 6909522244784596834, guid: 245c0de6546343542a72aa131d361b4b, type: 3}
       propertyPath: m_StaticEditorFlags
       value: 0
       objectReference: {fileID: 0}
@@ -22008,6 +22048,14 @@ PrefabInstance:
     - target: {fileID: 6909522244784596834, guid: 245c0de6546343542a72aa131d361b4b, type: 3}
       propertyPath: m_Name
       value: Door (8)
+      objectReference: {fileID: 0}
+    - target: {fileID: 6909522244784596834, guid: 245c0de6546343542a72aa131d361b4b, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6909522244784596834, guid: 245c0de6546343542a72aa131d361b4b, type: 3}
+      propertyPath: m_TagString
+      value: Door
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -23757,6 +23805,14 @@ PrefabInstance:
       value: Door (7)
       objectReference: {fileID: 0}
     - target: {fileID: 6909522244784596834, guid: 245c0de6546343542a72aa131d361b4b, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6909522244784596834, guid: 245c0de6546343542a72aa131d361b4b, type: 3}
+      propertyPath: m_TagString
+      value: Door
+      objectReference: {fileID: 0}
+    - target: {fileID: 6909522244784596834, guid: 245c0de6546343542a72aa131d361b4b, type: 3}
       propertyPath: m_StaticEditorFlags
       value: 0
       objectReference: {fileID: 0}
@@ -24131,6 +24187,7 @@ MonoBehaviour:
   playerCharModel: {fileID: 5324372976683105097, guid: e7c9fab9265d7bb46ad2f888ff13391e, type: 3}
   bloodCharacterModel: {fileID: 4760173679925032191, guid: 86c5a7ad85c47fa4e8f0aec2fa00bc76, type: 3}
   warriorCharacterModel: {fileID: 4739983413517698786, guid: 7752c019e5860b6429fc9ebffb9eebc2, type: 3}
+  cam: {fileID: 1188715722}
   camPositions:
   - {fileID: 1123473395}
   - {fileID: 859912258}
@@ -24140,6 +24197,9 @@ MonoBehaviour:
   - {fileID: 1247063764}
   cameraMoveDuration: 1
   controlInfo: {fileID: 427514207}
+  activateTags:
+  - Door
+  activate: []
 --- !u!1 &885722573
 GameObject:
   m_ObjectHideFlags: 0
@@ -27029,7 +27089,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6909522244784596834, guid: 245c0de6546343542a72aa131d361b4b, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6909522244784596834, guid: 245c0de6546343542a72aa131d361b4b, type: 3}
+      propertyPath: m_TagString
+      value: Door
       objectReference: {fileID: 0}
     - target: {fileID: 6909522244784596834, guid: 245c0de6546343542a72aa131d361b4b, type: 3}
       propertyPath: m_StaticEditorFlags
@@ -29060,7 +29124,7 @@ PrefabInstance:
     - target: {fileID: 4805488704247242259, guid: 9aca99aafd64aa643a003c40d84c032a, type: 3}
       propertyPath: 'uisToEnableOnPlay.Array.data[0]'
       value: 
-      objectReference: {fileID: 2091780318}
+      objectReference: {fileID: 885117545}
     - target: {fileID: 8145079368962517549, guid: 9aca99aafd64aa643a003c40d84c032a, type: 3}
       propertyPath: m_Pivot.x
       value: 0
@@ -39454,7 +39518,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6909522244784596834, guid: 245c0de6546343542a72aa131d361b4b, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6909522244784596834, guid: 245c0de6546343542a72aa131d361b4b, type: 3}
+      propertyPath: m_TagString
+      value: Door
       objectReference: {fileID: 0}
     - target: {fileID: 6909522244784596834, guid: 245c0de6546343542a72aa131d361b4b, type: 3}
       propertyPath: m_StaticEditorFlags
@@ -40134,6 +40202,14 @@ PrefabInstance:
     - target: {fileID: 6909522244784596834, guid: 245c0de6546343542a72aa131d361b4b, type: 3}
       propertyPath: m_Name
       value: Door (6)
+      objectReference: {fileID: 0}
+    - target: {fileID: 6909522244784596834, guid: 245c0de6546343542a72aa131d361b4b, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6909522244784596834, guid: 245c0de6546343542a72aa131d361b4b, type: 3}
+      propertyPath: m_TagString
+      value: Door
       objectReference: {fileID: 0}
     - target: {fileID: 6909522244784596834, guid: 245c0de6546343542a72aa131d361b4b, type: 3}
       propertyPath: m_StaticEditorFlags
@@ -46795,7 +46871,7 @@ MonoBehaviour:
   sceneIndex: 4
   successDoor: 0
   challengeRoom: 1
-  roomToFinish: Speed1
+  roomToFinish: 
   roomName: 
   movePlayerToScene: 1
 --- !u!65 &1632057392
@@ -57155,6 +57231,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: Door (4)
       objectReference: {fileID: 0}
+    - target: {fileID: 6909522244784596834, guid: 245c0de6546343542a72aa131d361b4b, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6909522244784596834, guid: 245c0de6546343542a72aa131d361b4b, type: 3}
+      propertyPath: m_TagString
+      value: Door
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects:
     - {fileID: 773261996306699354, guid: 245c0de6546343542a72aa131d361b4b, type: 3}
@@ -64752,6 +64836,14 @@ PrefabInstance:
     - target: {fileID: 6909522244784596834, guid: 245c0de6546343542a72aa131d361b4b, type: 3}
       propertyPath: m_Name
       value: Door (4)
+      objectReference: {fileID: 0}
+    - target: {fileID: 6909522244784596834, guid: 245c0de6546343542a72aa131d361b4b, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6909522244784596834, guid: 245c0de6546343542a72aa131d361b4b, type: 3}
+      propertyPath: m_TagString
+      value: Door
       objectReference: {fileID: 0}
     - target: {fileID: 6909522244784596834, guid: 245c0de6546343542a72aa131d361b4b, type: 3}
       propertyPath: m_StaticEditorFlags

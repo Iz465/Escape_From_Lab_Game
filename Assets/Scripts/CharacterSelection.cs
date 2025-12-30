@@ -1,9 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
-using Unity.MLAgents.Integrations.Match3;
-using Unity.VisualScripting;
 using UnityEngine;
-using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class CharacterSelection : MonoBehaviour
@@ -14,10 +11,13 @@ public class CharacterSelection : MonoBehaviour
     SaveablePlayer saveFile;
 
     string chosenCharacter = null;
-    Transform cam;
+    public Transform cam;
     [SerializeField] List<Transform> camPositions = new List<Transform>();
     public float cameraMoveDuration;
     [SerializeField] GameObject controlInfo;
+
+    public List<string> activateTags = new List<string>();
+    public List<GameObject> activate = new List<GameObject>();
 
     private void Start()
     {
@@ -27,8 +27,10 @@ public class CharacterSelection : MonoBehaviour
         transform.Find("Warrior").GetComponent<Button>().onClick.AddListener(Warrior);
         transform.Find("Confirm").GetComponent<Button>().onClick.AddListener(Confirm);
         print("controls");
-        cam = GameObject.Find("Camera").transform;
-        StartCoroutine(WaitForLoad());
+        saveFile = MainMenu.saveFile;
+        print(JsonUtility.ToJson(saveFile));
+        //cam = GameObject.Find("Camera").transform;
+        //StartCoroutine(WaitForLoad());
         print("loaded");
     }
 
@@ -68,6 +70,7 @@ public class CharacterSelection : MonoBehaviour
         if (character == "Warrior")
             Warrior();
 
+        print("make character function");
         Confirm();
     }
 
@@ -122,16 +125,18 @@ public class CharacterSelection : MonoBehaviour
         }
 
         print("new character");
-        Transform newPlayerModel = Instantiate(playerCharModel);
-        saveFile.characterChosen = chosenCharacter;
+        Transform newPlayerModel = null;
+        //saveFile.characterChosen = chosenCharacter;
 
         if (chosenCharacter == "Speed")
         {
+            newPlayerModel = Instantiate(playerCharModel);
             newPlayerModel.GetComponent<Move>().useOtherScript = true;
             Destroy(newPlayerModel.GetComponent<Ice>());
         }
         if (chosenCharacter == "Ice")
         {
+            newPlayerModel = Instantiate(playerCharModel);
             newPlayerModel.GetComponent<Move>().useOtherScript = true;
             Destroy(newPlayerModel.GetComponent<Speed>());
         }
@@ -149,12 +154,14 @@ public class CharacterSelection : MonoBehaviour
         }
 
         print("made character");
+        newPlayerModel.tag = "Player";
         FinishSetup(newPlayerModel);
     }
     void Speed()
     {
         chosenCharacter = "Speed";
         move = true;
+        print(cam.rotation);
         startRotation = cam.rotation;
         startPosition = cam.position;
     }
@@ -186,10 +193,11 @@ public class CharacterSelection : MonoBehaviour
 
     void FinishSetup(Transform newPlayerModel)
     {
+        saveFile.characterChosen = chosenCharacter;
         Transform chair = GameObject.Find(chosenCharacter + "Chair").transform;
         newPlayerModel.position = chair.position;
         newPlayerModel.parent = null;
-        PlayerInfo info = newPlayerModel.AddComponent<PlayerInfo>();
+        PlayerInfo info = newPlayerModel.gameObject.AddComponent<PlayerInfo>();
 
         info.health = 100;
         info.stamina = 100;
@@ -197,10 +205,22 @@ public class CharacterSelection : MonoBehaviour
 
         Destroy(chair.Find("Character").gameObject);
 
-        print(saveFile.characterChosen);
+        //print(saveFile.characterChosen);
         Destroy(GameObject.Find("Camera"));
-        gameObject.SetActive(false);
         controlInfo.SetActive(true);
+
+        foreach(string tag in activateTags)
+        {
+            GameObject[] obj = GameObject.FindGameObjectsWithTag(tag);
+            print(obj);
+            foreach (GameObject obj2 in obj)
+                obj2.SetActive(true);
+
+        }
+        foreach (GameObject obj in activate)
+            obj.SetActive(true);
+
+        gameObject.SetActive(false);
 
     }
 

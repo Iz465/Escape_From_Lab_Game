@@ -133,7 +133,7 @@ GameObject:
   - component: {fileID: 41960767}
   m_Layer: 0
   m_Name: Obstacle10
-  m_TagString: Untagged
+  m_TagString: Obstacle
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 2147483647
@@ -364,6 +364,9 @@ GameObject:
   - component: {fileID: 63255676}
   - component: {fileID: 63255675}
   - component: {fileID: 63255679}
+  - component: {fileID: 63255681}
+  - component: {fileID: 63255680}
+  - component: {fileID: 63255682}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -455,7 +458,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -409.10516, y: 88.56, z: -243.133}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 1, y: 3, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
@@ -467,20 +470,81 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 63255674}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: f030afda0e299ff4e993c1c6b7271fc4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  health: 1e+9
-  stamina: 100000000
+  health: 100
+  stamina: 100
   lastDamageTime: 0
-  maxHealth: 1e+9
+  maxHealth: 100
   animator: {fileID: 0}
   meleeAttackAnimation: 
   meleeAttackCooldown: 0
   attackDuration: 0
   spawnPosition: {fileID: 63255678}
+--- !u!195 &63255680
+NavMeshAgent:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 63255674}
+  m_Enabled: 1
+  m_AgentTypeID: 0
+  m_Radius: 0.5
+  m_Speed: 0.3
+  m_Acceleration: 8
+  avoidancePriority: 50
+  m_AngularSpeed: 120
+  m_StoppingDistance: 2
+  m_AutoTraverseOffMeshLink: 1
+  m_AutoBraking: 1
+  m_AutoRepath: 1
+  m_Height: 1
+  m_BaseOffset: 0.5
+  m_WalkableMask: 4294967295
+  m_ObstacleAvoidanceType: 4
+--- !u!114 &63255681
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 63255674}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ef850f62b20c7664191751f951f91579, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  enemy: {fileID: 424355608}
+  agent: {fileID: 63255680}
+--- !u!143 &63255682
+CharacterController:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 63255674}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Height: 1
+  m_Radius: 0.5
+  m_SlopeLimit: 45
+  m_StepOffset: 0.3
+  m_SkinWidth: 0.08
+  m_MinMoveDistance: 0.001
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1001 &74991876
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -701,10 +765,18 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 3953977015386693576, guid: 5c10accc304513b46bb7365ed7758847, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4604555960342556399, guid: 5c10accc304513b46bb7365ed7758847, type: 3}
       propertyPath: m_Model
       value: 
       objectReference: {fileID: 5022602860645237092, guid: f6033ae89e798c74cb0f96628a8a8cdc, type: 3}
+    - target: {fileID: 4604555960342556399, guid: 5c10accc304513b46bb7365ed7758847, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4604555960342556399, guid: 5c10accc304513b46bb7365ed7758847, type: 3}
       propertyPath: m_BehaviorName
       value: Soldier
@@ -738,9 +810,17 @@ PrefabInstance:
       value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 5302654274822150268, guid: 5c10accc304513b46bb7365ed7758847, type: 3}
+      propertyPath: body
+      value: 
+      objectReference: {fileID: 122057390}
+    - target: {fileID: 5302654274822150268, guid: 5c10accc304513b46bb7365ed7758847, type: 3}
       propertyPath: target
       value: 
       objectReference: {fileID: 63255678}
+    - target: {fileID: 5302654274822150268, guid: 5c10accc304513b46bb7365ed7758847, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 8530387768052934501, guid: 5c10accc304513b46bb7365ed7758847, type: 3}
       propertyPath: m_LocalPosition.x
       value: -389.1
@@ -787,7 +867,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 9018975944430435807, guid: 5c10accc304513b46bb7365ed7758847, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 2483232656782030016, guid: 5c10accc304513b46bb7365ed7758847, type: 3}
@@ -1001,7 +1081,7 @@ GameObject:
   - component: {fileID: 339623914}
   m_Layer: 0
   m_Name: Obstacle13
-  m_TagString: Untagged
+  m_TagString: Obstacle
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 2147483647
@@ -1108,6 +1188,7 @@ GameObject:
   - component: {fileID: 387249209}
   - component: {fileID: 387249208}
   - component: {fileID: 387249207}
+  - component: {fileID: 387249211}
   m_Layer: 0
   m_Name: path (9)
   m_TagString: Untagged
@@ -1222,6 +1303,38 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 387249205}
   m_Mesh: {fileID: 10209, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!114 &387249211
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 387249205}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7a5ac11cc976e418e8d13136b07e1f52, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_SerializedVersion: 0
+  m_AgentTypeID: 0
+  m_CollectObjects: 0
+  m_Size: {x: 10, y: 10, z: 10}
+  m_Center: {x: 0, y: 2, z: 0}
+  m_LayerMask:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_UseGeometry: 0
+  m_DefaultArea: 0
+  m_GenerateLinks: 0
+  m_IgnoreNavMeshAgent: 1
+  m_IgnoreNavMeshObstacle: 1
+  m_OverrideTileSize: 0
+  m_TileSize: 256
+  m_OverrideVoxelSize: 0
+  m_VoxelSize: 0.33333334
+  m_MinRegionArea: 2
+  m_NavMeshData: {fileID: 23800000, guid: 97e562284af2eda4189b7e62d80083cd, type: 2}
+  m_BuildHeightMesh: 0
 --- !u!1 &391603093
 GameObject:
   m_ObjectHideFlags: 0
@@ -1236,7 +1349,7 @@ GameObject:
   - component: {fileID: 391603095}
   m_Layer: 0
   m_Name: Wall (16)
-  m_TagString: Untagged
+  m_TagString: Wall
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1250,7 +1363,7 @@ Transform:
   m_GameObject: {fileID: 391603093}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: 0.8396162, z: -0, w: 0.5431802}
-  m_LocalPosition: {x: 147.84741, y: 0, z: -90.20102}
+  m_LocalPosition: {x: 147.84741, y: -0.83999634, z: -90.20102}
   m_LocalScale: {x: 1, y: 6, z: 100.59035}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1344,7 +1457,7 @@ GameObject:
   - component: {fileID: 407352182}
   m_Layer: 0
   m_Name: Wall (21)
-  m_TagString: Untagged
+  m_TagString: Wall
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1358,7 +1471,7 @@ Transform:
   m_GameObject: {fileID: 407352180}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0.5432308, z: -0, w: 0.83958346}
-  m_LocalPosition: {x: 348.1, y: 0, z: -35.700012}
+  m_LocalPosition: {x: 348.1, y: -1.1900024, z: -35.700012}
   m_LocalScale: {x: 1, y: 6, z: 100.59036}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1446,17 +1559,25 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 3953977015386693576, guid: 5c10accc304513b46bb7365ed7758847, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 4604555960342556399, guid: 5c10accc304513b46bb7365ed7758847, type: 3}
       propertyPath: m_Model
       value: 
-      objectReference: {fileID: 5022602860645237092, guid: f6033ae89e798c74cb0f96628a8a8cdc, type: 3}
+      objectReference: {fileID: 0}
+    - target: {fileID: 4604555960342556399, guid: 5c10accc304513b46bb7365ed7758847, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 4604555960342556399, guid: 5c10accc304513b46bb7365ed7758847, type: 3}
       propertyPath: m_BehaviorName
       value: Soldier
       objectReference: {fileID: 0}
     - target: {fileID: 4604555960342556399, guid: 5c10accc304513b46bb7365ed7758847, type: 3}
       propertyPath: m_BehaviorType
-      value: 2
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4604555960342556399, guid: 5c10accc304513b46bb7365ed7758847, type: 3}
       propertyPath: m_BrainParameters.VectorActionSpaceType
@@ -1464,7 +1585,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4604555960342556399, guid: 5c10accc304513b46bb7365ed7758847, type: 3}
       propertyPath: m_BrainParameters.VectorObservationSize
-      value: 100
+      value: 200
       objectReference: {fileID: 0}
     - target: {fileID: 4604555960342556399, guid: 5c10accc304513b46bb7365ed7758847, type: 3}
       propertyPath: m_BrainParameters.VectorActionSize.Array.size
@@ -1515,9 +1636,21 @@ PrefabInstance:
       value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 5302654274822150268, guid: 5c10accc304513b46bb7365ed7758847, type: 3}
+      propertyPath: body
+      value: 
+      objectReference: {fileID: 424355604}
+    - target: {fileID: 5302654274822150268, guid: 5c10accc304513b46bb7365ed7758847, type: 3}
       propertyPath: target
       value: 
       objectReference: {fileID: 63255678}
+    - target: {fileID: 5302654274822150268, guid: 5c10accc304513b46bb7365ed7758847, type: 3}
+      propertyPath: MaxStep
+      value: 200000
+      objectReference: {fileID: 0}
+    - target: {fileID: 5302654274822150268, guid: 5c10accc304513b46bb7365ed7758847, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 5302654274822150268, guid: 5c10accc304513b46bb7365ed7758847, type: 3}
       propertyPath: walls.Array.size
       value: 4
@@ -1661,7 +1794,7 @@ PrefabInstance:
       addedObject: {fileID: 424355602}
     - targetCorrespondingSourceObject: {fileID: 9018975944430435807, guid: 5c10accc304513b46bb7365ed7758847, type: 3}
       insertIndex: -1
-      addedObject: {fileID: 424355610}
+      addedObject: {fileID: 424355604}
   m_SourcePrefab: {fileID: 100100000, guid: 5c10accc304513b46bb7365ed7758847, type: 3}
 --- !u!1 &424355600 stripped
 GameObject:
@@ -1680,7 +1813,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 424355600}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: a5245611af2f8364ea4aff368ee1f29a, type: 3}
   m_Name: 
@@ -1695,33 +1828,36 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 9187929913624680529, guid: 5c10accc304513b46bb7365ed7758847, type: 3}
   m_PrefabInstance: {fileID: 424355599}
   m_PrefabAsset: {fileID: 0}
---- !u!54 &424355610
-Rigidbody:
+--- !u!143 &424355604
+CharacterController:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 424355600}
-  serializedVersion: 5
-  m_Mass: 1
-  m_LinearDamping: 0
-  m_AngularDamping: 0.05
-  m_CenterOfMass: {x: 0, y: 0, z: 0}
-  m_InertiaTensor: {x: 1, y: 1, z: 1}
-  m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_Material: {fileID: 0}
   m_IncludeLayers:
     serializedVersion: 2
     m_Bits: 0
   m_ExcludeLayers:
     serializedVersion: 2
     m_Bits: 0
-  m_ImplicitCom: 1
-  m_ImplicitTensor: 1
-  m_UseGravity: 1
-  m_IsKinematic: 0
-  m_Interpolate: 0
-  m_Constraints: 84
-  m_CollisionDetection: 0
+  m_LayerOverridePriority: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Height: 2
+  m_Radius: 0.5
+  m_SlopeLimit: 45
+  m_StepOffset: 0.1
+  m_SkinWidth: 0.08
+  m_MinMoveDistance: 0.001
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!4 &424355608 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 8530387768052934501, guid: 5c10accc304513b46bb7365ed7758847, type: 3}
+  m_PrefabInstance: {fileID: 424355599}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &626261890
 GameObject:
   m_ObjectHideFlags: 0
@@ -1741,7 +1877,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &626261891
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2080,7 +2216,7 @@ GameObject:
   - component: {fileID: 695239391}
   m_Layer: 0
   m_Name: Wall (28)
-  m_TagString: Untagged
+  m_TagString: Wall
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2094,8 +2230,8 @@ Transform:
   m_GameObject: {fileID: 695239389}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: 0.7014071, z: -0, w: 0.7127609}
-  m_LocalPosition: {x: 43.697205, y: 0, z: 79.15939}
-  m_LocalScale: {x: 1, y: 6, z: 121.23167}
+  m_LocalPosition: {x: 37.4528, y: -0.69999695, z: 79.0591}
+  m_LocalScale: {x: 1, y: 6, z: 133.72618}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1225677384}
@@ -2188,7 +2324,7 @@ GameObject:
   - component: {fileID: 746623266}
   m_Layer: 0
   m_Name: Obstacle4
-  m_TagString: Untagged
+  m_TagString: Obstacle
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 2147483647
@@ -2530,7 +2666,7 @@ GameObject:
   - component: {fileID: 797799796}
   m_Layer: 0
   m_Name: Obstacle3
-  m_TagString: Untagged
+  m_TagString: Obstacle
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 2147483647
@@ -2741,7 +2877,7 @@ GameObject:
   - component: {fileID: 840622787}
   m_Layer: 0
   m_Name: Obstacle2
-  m_TagString: Untagged
+  m_TagString: Obstacle
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 2147483647
@@ -3100,6 +3236,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Speed_Ice ui
       objectReference: {fileID: 0}
+    - target: {fileID: 2964371338706573694, guid: cab60fe984840554fa01530dfefe0f72, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 3402765252320946437, guid: cab60fe984840554fa01530dfefe0f72, type: 3}
       propertyPath: m_Pivot.x
       value: 0
@@ -3182,19 +3322,19 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6487340532584761397, guid: cab60fe984840554fa01530dfefe0f72, type: 3}
       propertyPath: m_AnchorMax.x
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6487340532584761397, guid: cab60fe984840554fa01530dfefe0f72, type: 3}
       propertyPath: m_AnchorMax.y
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7619436032098285235, guid: cab60fe984840554fa01530dfefe0f72, type: 3}
       propertyPath: m_AnchorMax.x
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7619436032098285235, guid: cab60fe984840554fa01530dfefe0f72, type: 3}
       propertyPath: m_AnchorMax.y
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -3215,7 +3355,7 @@ GameObject:
   - component: {fileID: 889268781}
   m_Layer: 0
   m_Name: Obstacle12
-  m_TagString: Untagged
+  m_TagString: Obstacle
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 2147483647
@@ -3431,7 +3571,7 @@ GameObject:
   - component: {fileID: 914151080}
   m_Layer: 0
   m_Name: Wall (22)
-  m_TagString: Untagged
+  m_TagString: Wall
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -3445,7 +3585,7 @@ Transform:
   m_GameObject: {fileID: 914151078}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0.5432308, z: -0, w: 0.83958346}
-  m_LocalPosition: {x: 388.5, y: 0, z: 54.5}
+  m_LocalPosition: {x: 388.5, y: -1.19, z: 54.5}
   m_LocalScale: {x: 1, y: 6, z: 100.59036}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -3539,7 +3679,7 @@ GameObject:
   - component: {fileID: 959399765}
   m_Layer: 0
   m_Name: Wall (23)
-  m_TagString: Untagged
+  m_TagString: Wall
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -3553,7 +3693,7 @@ Transform:
   m_GameObject: {fileID: 959399763}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: 0.2095503, z: -0, w: 0.97779787}
-  m_LocalPosition: {x: 413.09622, y: 0, z: -13.470001}
+  m_LocalPosition: {x: 413.09622, y: -1.1900024, z: -13.470001}
   m_LocalScale: {x: 1, y: 6, z: 92.764435}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -3647,7 +3787,7 @@ GameObject:
   - component: {fileID: 991829206}
   m_Layer: 0
   m_Name: Obstacle8
-  m_TagString: Untagged
+  m_TagString: Obstacle
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 2147483647
@@ -3796,7 +3936,7 @@ GameObject:
   - component: {fileID: 1001854782}
   m_Layer: 0
   m_Name: Obstacle7
-  m_TagString: Untagged
+  m_TagString: Obstacle
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 2147483647
@@ -4139,7 +4279,7 @@ GameObject:
   - component: {fileID: 1063403261}
   m_Layer: 0
   m_Name: Wall (19)
-  m_TagString: Untagged
+  m_TagString: Wall
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -4153,7 +4293,7 @@ Transform:
   m_GameObject: {fileID: 1063403259}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0.9777851, z: -0, w: -0.20960999}
-  m_LocalPosition: {x: 111.620026, y: 0, z: -48.25}
+  m_LocalPosition: {x: 111.620026, y: -0.83999634, z: -48.25}
   m_LocalScale: {x: 1, y: 6, z: 47.469105}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -4358,7 +4498,7 @@ GameObject:
   - component: {fileID: 1136781678}
   m_Layer: 0
   m_Name: Wall (24)
-  m_TagString: Untagged
+  m_TagString: Wall
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -4372,7 +4512,7 @@ Transform:
   m_GameObject: {fileID: 1136781676}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: 0.2095503, z: -0, w: 0.97779787}
-  m_LocalPosition: {x: 325, y: 0, z: 36}
+  m_LocalPosition: {x: 325, y: -1.1900024, z: 36}
   m_LocalScale: {x: 1, y: 6, z: 92.764435}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -4466,7 +4606,7 @@ GameObject:
   - component: {fileID: 1204706881}
   m_Layer: 0
   m_Name: Wall (18)
-  m_TagString: Untagged
+  m_TagString: Wall
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -4480,7 +4620,7 @@ Transform:
   m_GameObject: {fileID: 1204706879}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: 0.83615386, z: -0, w: 0.548495}
-  m_LocalPosition: {x: 230.29532, y: 0, z: -18.075317}
+  m_LocalPosition: {x: 230.29532, y: -0.83999634, z: -18.075317}
   m_LocalScale: {x: 1, y: 6, z: 8.3932905}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -4619,7 +4759,7 @@ GameObject:
   - component: {fileID: 1258855068}
   m_Layer: 0
   m_Name: Wall (20)
-  m_TagString: Untagged
+  m_TagString: Wall
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -4633,7 +4773,7 @@ Transform:
   m_GameObject: {fileID: 1258855066}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0.9777851, z: -0, w: -0.20960999}
-  m_LocalPosition: {x: 133.03, y: 0, z: -0.25}
+  m_LocalPosition: {x: 133.03, y: -0.83999634, z: -0.25}
   m_LocalScale: {x: 1, y: 6, z: 44.73234}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -4727,7 +4867,7 @@ GameObject:
   - component: {fileID: 1264397271}
   m_Layer: 0
   m_Name: Obstacle1
-  m_TagString: Untagged
+  m_TagString: Obstacle
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 2147483647
@@ -4829,10 +4969,18 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 3953977015386693576, guid: 5c10accc304513b46bb7365ed7758847, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4604555960342556399, guid: 5c10accc304513b46bb7365ed7758847, type: 3}
       propertyPath: m_Model
       value: 
       objectReference: {fileID: 5022602860645237092, guid: f6033ae89e798c74cb0f96628a8a8cdc, type: 3}
+    - target: {fileID: 4604555960342556399, guid: 5c10accc304513b46bb7365ed7758847, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4604555960342556399, guid: 5c10accc304513b46bb7365ed7758847, type: 3}
       propertyPath: m_BehaviorName
       value: Soldier
@@ -4898,9 +5046,17 @@ PrefabInstance:
       value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 5302654274822150268, guid: 5c10accc304513b46bb7365ed7758847, type: 3}
+      propertyPath: body
+      value: 
+      objectReference: {fileID: 122057390}
+    - target: {fileID: 5302654274822150268, guid: 5c10accc304513b46bb7365ed7758847, type: 3}
       propertyPath: target
       value: 
       objectReference: {fileID: 63255678}
+    - target: {fileID: 5302654274822150268, guid: 5c10accc304513b46bb7365ed7758847, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 5302654274822150268, guid: 5c10accc304513b46bb7365ed7758847, type: 3}
       propertyPath: walls.Array.size
       value: 4
@@ -5031,7 +5187,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 9018975944430435807, guid: 5c10accc304513b46bb7365ed7758847, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 2483232656782030016, guid: 5c10accc304513b46bb7365ed7758847, type: 3}
@@ -5113,10 +5269,18 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 3953977015386693576, guid: 5c10accc304513b46bb7365ed7758847, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4604555960342556399, guid: 5c10accc304513b46bb7365ed7758847, type: 3}
       propertyPath: m_Model
       value: 
       objectReference: {fileID: 5022602860645237092, guid: f6033ae89e798c74cb0f96628a8a8cdc, type: 3}
+    - target: {fileID: 4604555960342556399, guid: 5c10accc304513b46bb7365ed7758847, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4604555960342556399, guid: 5c10accc304513b46bb7365ed7758847, type: 3}
       propertyPath: m_BehaviorName
       value: Soldier
@@ -5182,9 +5346,17 @@ PrefabInstance:
       value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 5302654274822150268, guid: 5c10accc304513b46bb7365ed7758847, type: 3}
+      propertyPath: body
+      value: 
+      objectReference: {fileID: 122057390}
+    - target: {fileID: 5302654274822150268, guid: 5c10accc304513b46bb7365ed7758847, type: 3}
       propertyPath: target
       value: 
       objectReference: {fileID: 63255678}
+    - target: {fileID: 5302654274822150268, guid: 5c10accc304513b46bb7365ed7758847, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 5302654274822150268, guid: 5c10accc304513b46bb7365ed7758847, type: 3}
       propertyPath: walls.Array.size
       value: 4
@@ -5315,7 +5487,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 9018975944430435807, guid: 5c10accc304513b46bb7365ed7758847, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 2483232656782030016, guid: 5c10accc304513b46bb7365ed7758847, type: 3}
@@ -5621,7 +5793,7 @@ GameObject:
   - component: {fileID: 1409397659}
   m_Layer: 0
   m_Name: Wall (17)
-  m_TagString: Untagged
+  m_TagString: Wall
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -5635,7 +5807,7 @@ Transform:
   m_GameObject: {fileID: 1409397657}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0.9777851, z: -0, w: -0.20960999}
-  m_LocalPosition: {x: 214.14001, y: 0, z: -65.19}
+  m_LocalPosition: {x: 214.14001, y: -0.83999634, z: -65.19}
   m_LocalScale: {x: 1, y: 6, z: 100.59033}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -5723,10 +5895,18 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 3953977015386693576, guid: 5c10accc304513b46bb7365ed7758847, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4604555960342556399, guid: 5c10accc304513b46bb7365ed7758847, type: 3}
       propertyPath: m_Model
       value: 
       objectReference: {fileID: 5022602860645237092, guid: f6033ae89e798c74cb0f96628a8a8cdc, type: 3}
+    - target: {fileID: 4604555960342556399, guid: 5c10accc304513b46bb7365ed7758847, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4604555960342556399, guid: 5c10accc304513b46bb7365ed7758847, type: 3}
       propertyPath: m_BehaviorName
       value: Soldier
@@ -5792,9 +5972,17 @@ PrefabInstance:
       value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 5302654274822150268, guid: 5c10accc304513b46bb7365ed7758847, type: 3}
+      propertyPath: body
+      value: 
+      objectReference: {fileID: 122057390}
+    - target: {fileID: 5302654274822150268, guid: 5c10accc304513b46bb7365ed7758847, type: 3}
       propertyPath: target
       value: 
       objectReference: {fileID: 63255678}
+    - target: {fileID: 5302654274822150268, guid: 5c10accc304513b46bb7365ed7758847, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 5302654274822150268, guid: 5c10accc304513b46bb7365ed7758847, type: 3}
       propertyPath: walls.Array.size
       value: 4
@@ -5925,7 +6113,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 9018975944430435807, guid: 5c10accc304513b46bb7365ed7758847, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 2483232656782030016, guid: 5c10accc304513b46bb7365ed7758847, type: 3}
@@ -6167,7 +6355,7 @@ GameObject:
   - component: {fileID: 1531503987}
   m_Layer: 0
   m_Name: Obstacle9
-  m_TagString: Untagged
+  m_TagString: Obstacle
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 2147483647
@@ -6269,10 +6457,18 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 3953977015386693576, guid: 5c10accc304513b46bb7365ed7758847, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4604555960342556399, guid: 5c10accc304513b46bb7365ed7758847, type: 3}
       propertyPath: m_Model
       value: 
       objectReference: {fileID: 5022602860645237092, guid: f6033ae89e798c74cb0f96628a8a8cdc, type: 3}
+    - target: {fileID: 4604555960342556399, guid: 5c10accc304513b46bb7365ed7758847, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4604555960342556399, guid: 5c10accc304513b46bb7365ed7758847, type: 3}
       propertyPath: m_BehaviorName
       value: Soldier
@@ -6338,9 +6534,17 @@ PrefabInstance:
       value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 5302654274822150268, guid: 5c10accc304513b46bb7365ed7758847, type: 3}
+      propertyPath: body
+      value: 
+      objectReference: {fileID: 122057390}
+    - target: {fileID: 5302654274822150268, guid: 5c10accc304513b46bb7365ed7758847, type: 3}
       propertyPath: target
       value: 
       objectReference: {fileID: 63255678}
+    - target: {fileID: 5302654274822150268, guid: 5c10accc304513b46bb7365ed7758847, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 5302654274822150268, guid: 5c10accc304513b46bb7365ed7758847, type: 3}
       propertyPath: walls.Array.size
       value: 4
@@ -6471,7 +6675,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 9018975944430435807, guid: 5c10accc304513b46bb7365ed7758847, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 2483232656782030016, guid: 5c10accc304513b46bb7365ed7758847, type: 3}
@@ -6559,7 +6763,7 @@ GameObject:
   - component: {fileID: 1562656614}
   m_Layer: 0
   m_Name: Wall (26)
-  m_TagString: Untagged
+  m_TagString: Wall
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -6573,7 +6777,7 @@ Transform:
   m_GameObject: {fileID: 1562656612}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: 0.99996775, z: -0, w: 0.008032284}
-  m_LocalPosition: {x: -23.618591, y: 0, z: 28.58609}
+  m_LocalPosition: {x: -23.618591, y: -0.69999695, z: 28.58609}
   m_LocalScale: {x: 1, y: 6, z: 99.164345}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -6897,7 +7101,7 @@ GameObject:
   - component: {fileID: 1647806883}
   m_Layer: 0
   m_Name: Wall (15)
-  m_TagString: Untagged
+  m_TagString: Wall
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -6911,7 +7115,7 @@ Transform:
   m_GameObject: {fileID: 1647806881}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: 0.83615386, z: -0, w: 0.548495}
-  m_LocalPosition: {x: 181.58972, y: 0, z: 3.074585}
+  m_LocalPosition: {x: 181.58972, y: -0.84, z: 3.074585}
   m_LocalScale: {x: 1, y: 6, z: 87.16919}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -7114,7 +7318,7 @@ GameObject:
   - component: {fileID: 1677505030}
   m_Layer: 0
   m_Name: Obstacle
-  m_TagString: Untagged
+  m_TagString: Obstacle
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 2147483647
@@ -7222,7 +7426,7 @@ GameObject:
   - component: {fileID: 1715702503}
   m_Layer: 0
   m_Name: Wall (25)
-  m_TagString: Untagged
+  m_TagString: Wall
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -7236,8 +7440,8 @@ Transform:
   m_GameObject: {fileID: 1715702501}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: 0.99996775, z: -0, w: 0.008032284}
-  m_LocalPosition: {x: 104.30151, y: 0, z: 35.053497}
-  m_LocalScale: {x: 1, y: 6, z: 90.2725}
+  m_LocalPosition: {x: 104.3748, y: -0.7, z: 30.493}
+  m_LocalScale: {x: 1, y: 6, z: 108.73869}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1225677384}
@@ -7330,7 +7534,7 @@ GameObject:
   - component: {fileID: 1730474993}
   m_Layer: 0
   m_Name: Obstacle0
-  m_TagString: Untagged
+  m_TagString: Obstacle
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 2147483647
@@ -7438,7 +7642,7 @@ GameObject:
   - component: {fileID: 1731445159}
   m_Layer: 0
   m_Name: Obstacle5
-  m_TagString: Untagged
+  m_TagString: Obstacle
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 2147483647
@@ -7546,7 +7750,7 @@ GameObject:
   - component: {fileID: 1774435237}
   m_Layer: 0
   m_Name: Wall (27)
-  m_TagString: Untagged
+  m_TagString: Wall
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -7560,8 +7764,8 @@ Transform:
   m_GameObject: {fileID: 1774435235}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: 0.7014071, z: -0, w: 0.7127609}
-  m_LocalPosition: {x: 41.55591, y: 0, z: -20.22052}
-  m_LocalScale: {x: 1, y: 6, z: 128.62776}
+  m_LocalPosition: {x: 39.0482, y: -0.69999695, z: -20.2608}
+  m_LocalScale: {x: 1, y: 6, z: 133.64426}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1225677384}
@@ -7757,10 +7961,22 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 3953977015386693576, guid: 5c10accc304513b46bb7365ed7758847, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4604555960342556399, guid: 5c10accc304513b46bb7365ed7758847, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 5302654274822150268, guid: 5c10accc304513b46bb7365ed7758847, type: 3}
       propertyPath: target
       value: 
       objectReference: {fileID: 63255678}
+    - target: {fileID: 5302654274822150268, guid: 5c10accc304513b46bb7365ed7758847, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 8530387768052934501, guid: 5c10accc304513b46bb7365ed7758847, type: 3}
       propertyPath: m_LocalPosition.x
       value: 154.5111
@@ -7836,7 +8052,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1804421505}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: a5245611af2f8364ea4aff368ee1f29a, type: 3}
   m_Name: 
@@ -8087,7 +8303,7 @@ GameObject:
   - component: {fileID: 1880233099}
   m_Layer: 0
   m_Name: Obstacle11
-  m_TagString: Untagged
+  m_TagString: Obstacle
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 2147483647
@@ -8197,7 +8413,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &1882796761
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -8242,7 +8458,7 @@ GameObject:
   - component: {fileID: 2068629705}
   m_Layer: 0
   m_Name: Obstacle6
-  m_TagString: Untagged
+  m_TagString: Obstacle
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 2147483647

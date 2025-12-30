@@ -10,6 +10,8 @@ using UnityEngine.UI;
 public class MainMenu : MonoBehaviour
 {
     public static SaveablePlayer saveFile = null;
+    GameObject plr = null;
+
     private void Start()
     {
         modes.Add("Exclusive Full Screen", FullScreenMode.ExclusiveFullScreen);
@@ -89,7 +91,7 @@ public class MainMenu : MonoBehaviour
 
     public void Play()
     {
-        if(uisToEnableOnPlay.Count > 0)
+        if(uisToEnableOnPlay.Count > 0 && plr == null)
         {
             for(int i = 0; i < uisToEnableOnPlay.Count; i++)
             {
@@ -111,7 +113,7 @@ public class MainMenu : MonoBehaviour
             settingsPage.SetActive(false);
             Cursor.lockState = CursorLockMode.Locked;
 
-            if (!GameObject.FindGameObjectWithTag("Player"))
+            if (plr == null)
             {
                 if(saveFile.characterChosen != "")
                 {
@@ -119,6 +121,11 @@ public class MainMenu : MonoBehaviour
                     uisToEnableOnPlay[0].SetActive(false);
                 }
 
+            }
+            else
+            {
+                print("main scene with player");
+                plr.SetActive(true);
             }
 
         }
@@ -292,6 +299,8 @@ public class MainMenu : MonoBehaviour
     void Pause()
     {
         Time.timeScale = 0;
+        plr = GameObject.FindGameObjectWithTag("Player");
+        plr.SetActive(false);
         mainMenu.SetActive(true);
         GetComponent<Canvas>().enabled = true;
         Cursor.lockState = CursorLockMode.None;

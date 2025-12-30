@@ -19,8 +19,8 @@ public class OpenDoor : MonoBehaviour
         doorAngle = transform.Find("doorAngle");
         angle = doorAngle.localEulerAngles.y;
         interact = transform.Find("Canvas");
-
-        StartCoroutine(WaitForPlayer());
+        plr = GameObject.FindGameObjectWithTag("Player").transform;
+        //StartCoroutine(WaitForPlayer());
     }
 
     IEnumerator WaitForPlayer()

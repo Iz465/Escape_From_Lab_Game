@@ -11,6 +11,7 @@ TagManager:
   - Spawn
   - Wall
   - Obstacle
+  - Door
   layers:
   - Default
   - TransparentFX
@@ -28,8 +29,6 @@ TagManager:
   - Bullet
   - Wall
   - Trap
-  - 
-  - 
   - 
   - 
   - 

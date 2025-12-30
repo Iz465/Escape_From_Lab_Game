@@ -1,37 +1,24 @@
 using System.Collections;
-using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.AI;
 
 public class Trash : MonoBehaviour
 {
     public Transform enemy;
-    public float health;
-    float lastDamage;
+    [SerializeField] NavMeshAgent agent;
 
     private void Start()
     {
-        //StartCoroutine(Chase());
+        StartCoroutine(Walk());
     }
 
-    IEnumerator Chase()
+    IEnumerator Walk()
     {
-        while (true)
-        {
-            GetComponent<NavMeshAgent>().SetDestination(enemy.position);
-            yield return new WaitForSeconds(1);
-
+        while (true) 
+        { 
+            agent.SetDestination(enemy.position);
+            yield return new WaitForSeconds(5);
         }
-    }
 
-    public bool TakeDamage()
-    {
-        if(Time.time > lastDamage)
-        {
-            lastDamage = Time.time + 1;
-            health -= 5;
-            return true;
-        }
-        return false;
     }
 }

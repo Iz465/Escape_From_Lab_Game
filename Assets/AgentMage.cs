@@ -3,7 +3,6 @@ using System.Diagnostics;
 using Unity.MLAgents;
 using Unity.MLAgents.Actuators;
 using Unity.MLAgents.Sensors;
-using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UIElements;
 

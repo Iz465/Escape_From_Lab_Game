@@ -53,7 +53,7 @@ public class Speed : PlayerInfo
         movement.velocity = movement.direction * Time.deltaTime;
         Vector3 vel = movement.velocity;
 
-        if (Input.GetKey(KeyCode.LeftShift) && saveFile.superRun)
+        if (Input.GetKey(KeyCode.LeftShift))
         {
             if (!highSpeedMode)
             {
@@ -106,7 +106,6 @@ public class Speed : PlayerInfo
 
     public void HighSpeedMode()
     {
-        if (!saveFile.slowTime) return;
         if (stamina < 0) return;
 
         highSpeedMode = !highSpeedMode;
@@ -116,7 +115,6 @@ public class Speed : PlayerInfo
 
     void Dash()
     {
-        if (!saveFile.dash) return;
         if(stamina < dashCost) return;
 
         if (Input.GetKeyDown(KeyCode.E))
@@ -138,7 +136,6 @@ public class Speed : PlayerInfo
 
     void Phaze()
     {
-        if(!saveFile.phaze) return;
         if (stamina < 0) return;
 
         if (Input.GetKeyDown(KeyCode.Q))
@@ -151,7 +148,9 @@ public class Speed : PlayerInfo
                 if (phazeMode)
                 {
                     obj.layer = LayerMask.NameToLayer("Phaze");
+                    if (!obj.TryGetComponent<MeshRenderer>(out MeshRenderer r)) continue;
                     MeshRenderer renderer = obj.GetComponent<MeshRenderer>();
+                    if (renderer != null) continue;
                     Material mat = renderer.material;
                     Color matColor = mat.color;
                     matColor.a = 0.5f;
@@ -160,6 +159,7 @@ public class Speed : PlayerInfo
                 }
                 else{
                     obj.layer = LayerMask.NameToLayer("Default");
+                    if (!obj.TryGetComponent<MeshRenderer>(out MeshRenderer r)) continue;
                     MeshRenderer renderer = obj.GetComponent<MeshRenderer>();
                     Material mat = renderer.material;
                     Color matColor = mat.color;
@@ -174,7 +174,7 @@ public class Speed : PlayerInfo
         {
             cam.position += phazePoint ? cam.right*0.1f : cam.right *-0.1f;
             phazePoint = !phazePoint;
-            playerInfo.stamina -= phazeCost;
+            playerInfo.stamina -= phazeCost * Time.deltaTime;
             lastPowerUsage = Time.time;
         }
     }

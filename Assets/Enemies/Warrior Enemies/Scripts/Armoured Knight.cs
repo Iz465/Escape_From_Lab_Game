@@ -250,7 +250,7 @@ public class ArmouredKnight : navmeshtestscript
 
     private void DamagePlayer()
     {
-        Debug.Log($"stored number at damage player function: {storedNumber[0]}");
+      //  Debug.Log($"stored number at damage player function: {storedNumber[0]}");
         audioSource.PlayOneShot(swordHitSound, 3f);
         switch (storedNumber[0])
         {
@@ -286,7 +286,7 @@ public class ArmouredKnight : navmeshtestscript
     {
         ParticleSystem swordInstance = Instantiate(swordParticle, swordLocation);
         audioSource.PlayOneShot(attackSound);
-        Debug.Log($"Select colour function stored number: {storedNumber[0]}");
+  //      Debug.Log($"Select colour function stored number: {storedNumber[0]}");
         switch (storedNumber[0])
         {
             case 0: LoopChildren(swordInstance, Color.red); break;

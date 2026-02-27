@@ -1818,7 +1818,7 @@ NavMeshAgent:
   m_Enabled: 1
   m_AgentTypeID: 0
   m_Radius: 2
-  m_Speed: 4
+  m_Speed: 12
   m_Acceleration: 100
   avoidancePriority: 50
   m_AngularSpeed: 1000
@@ -1890,7 +1890,6 @@ MonoBehaviour:
   firstStepSound: {fileID: 8300000, guid: 10d8fab6604b26c47bd9744551a02698, type: 3}
   secondStepSound: {fileID: 8300000, guid: 4d682315b0154e147ba0055f52f8d5d4, type: 3}
   swordHitSound: {fileID: 8300000, guid: efc05bdc972a5f046a8fd33155490e19, type: 3}
-  combatRadius: 20
 --- !u!111 &-4585563582029769789
 Animation:
   m_ObjectHideFlags: 0

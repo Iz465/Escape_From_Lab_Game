@@ -22,10 +22,10 @@ public class EvilKnight : navmeshtestscript
     private bool canHit = false;
     private int randomNumber;
 
-    [SerializeField] private float combatRadius; // the range at which enemies stop and stare while only one enemy goes into the attack range to attack
-    private static EvilKnight[] knightAttacking = new EvilKnight[1];
 
-    private Coroutine tauntCoroutine;
+
+
+
 
     // Enemy randomly chooses an attack
 
@@ -35,14 +35,17 @@ public class EvilKnight : navmeshtestscript
         GlobalEnemyManager.totalEvilKnights.Add(gameObject);
         randomNumber = Random.Range(0, 3);
         agent.updateRotation = false;
-        agent.speed = 8;
         animator.SetBool("ChosenEnemy", true);
 
     }
 
+
+    /*
     private bool enteredRange = false;
     private bool checkEnteredRangeOnce = false;
     private bool disableMovement = true;
+
+    
     protected override void ChasePlayer()
     {
         FacePlayer();
@@ -109,8 +112,10 @@ public class EvilKnight : navmeshtestscript
 
     
         
-    }
+    } 
 
+    
+     
     static int enemiesMovementDisabledAmount = 0;
 
     private IEnumerator ReEnableMovement (float time)
@@ -121,7 +126,7 @@ public class EvilKnight : navmeshtestscript
 
 
     }
-    
+    */
 
     private bool firstTime = true;
     protected override void AttackPlayer()

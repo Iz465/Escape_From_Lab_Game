@@ -78,11 +78,11 @@ public class SpawnEnemy : MonoBehaviour
 
     public void RemoveEnemy(GameObject enemy)
     {
-        Debug.Log("REMOVING ENEMY FROM SPAWN COUNT");
+  //      Debug.Log("REMOVING ENEMY FROM SPAWN COUNT");
         enemiesAlive.Remove(enemy);
         if (enemiesAlive.Count == 0)
         {
-            Debug.Log("All ENEMIES IN THE SPAWN ARE DEAD");
+         //   Debug.Log("All ENEMIES IN THE SPAWN ARE DEAD");
 
             if (waveAmount > 0) // respawns the enemy wave.
             {

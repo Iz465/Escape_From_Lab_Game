@@ -90,8 +90,8 @@ public class Move : MonoBehaviour
         {
             if (Input.GetKey(KeyCode.LeftShift))
             {
-                direction.x *= runSpeed;
-                direction.z *= runSpeed;
+              //  direction.x *= runSpeed;
+            //    direction.z *= runSpeed;
             }
         }
 

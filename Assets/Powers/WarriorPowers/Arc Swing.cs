@@ -64,6 +64,7 @@ public class ArcSwing : BasePower
     [SerializeField] private float enemyDashDistance = 35;
     [SerializeField] private List<Transform> castPoints = new List<Transform>();
 
+    private bool hitPillarCheck = false;
 
     private void StartCombo()
     {
@@ -90,7 +91,7 @@ public class ArcSwing : BasePower
             bool hitEnemy = Physics.Linecast(castPoints[i].position, castPoints[i].position + cam.transform.forward * enemyDashDistance, out enemyOutHit, combinedMask);
 
 
-            if (!hitEnemy)
+            if (!hitEnemy) 
             {
                 hittableObject = null;
                 if (!hitPillar)
@@ -103,7 +104,7 @@ public class ArcSwing : BasePower
 
             castFound = true;
 
-            if (!hitPillar)
+            if (!hitPillar) // If swing is targeting an enemy, not the pillar.
             {
                 enemyDashDistance = 35;
                 if (enemyHit[0] == enemyOutHit.collider.gameObject || enemyHit[0] == null)
@@ -116,21 +117,22 @@ public class ArcSwing : BasePower
 
                 else
                 {
-                    Debug.Log(enemyHit[0]);
+                //    Debug.Log(enemyHit[0]); // if a different enemy then the original target is being hit
                     hittableObject = null;
                 }
             }
 
 
-            if (hitPillar)
+            if (hitPillar) // if swing is targeting a pillar
             {
 
                 if (!canHitPillar) return;
                 enemyDashDistance = 50;
                 hittableObject = pillarHit.collider.gameObject;
                 canCombo = false;
-             
+                hitPillarCheck = true;
                 animator.SetTrigger("Kick");
+               
                 canHitPillar = false;
                 Player.canDamage = false;
                 StartCoroutine(ResetPillarHit(1f));
@@ -150,7 +152,7 @@ public class ArcSwing : BasePower
             {
                 MeleeHitDetection.damage = stats.damage;
                 BreakableWall.canHitWall = true;
-
+             
                 if (hittableObject != null)
                 {
                     navmeshtestscript enemy = hittableObject.gameObject.GetComponent<navmeshtestscript>();
@@ -158,6 +160,7 @@ public class ArcSwing : BasePower
                 }
 
                 canCombo = true;
+                hitPillarCheck = false;
                 animator.SetTrigger("Arc Swing");
 
             }
@@ -199,11 +202,12 @@ public class ArcSwing : BasePower
     }
 
     private Coroutine resetCoroutine;
+
     private IEnumerator TravelToEnemy(float timer)
     {
 
-        if (attackDisabled) yield break;
-        if (!hittableObject) yield break;
+        if (attackDisabled && !hitPillarCheck) { Debug.Log("CANT TRAVEL TO ENEMY"); yield break; }
+        if (!hittableObject && !hitPillarCheck) yield break;
         navmeshtestscript enemy = hittableObject.gameObject.GetComponent<navmeshtestscript>();
         if (enemy) if (!enemy.playerCanDash) yield break;
 
@@ -229,8 +233,9 @@ public class ArcSwing : BasePower
             float smoothTime = Mathf.SmoothStep(0f, 1f, t);
 
             Vector3 nextPosition = startLocation + dashVector * smoothTime;
-
-            controller.Move(nextPosition - controller.transform.position);
+            
+            if (controller)
+                controller.Move(nextPosition - controller.transform.position);
             
             time += Time.deltaTime;
             yield return null;

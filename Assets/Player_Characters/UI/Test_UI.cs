@@ -1,4 +1,5 @@
 using TMPro;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -19,8 +20,14 @@ public class Test_UI : MonoBehaviour
 
     [SerializeField] private Slider abilityTwoSlider;
 
+
+
     [SerializeField]
     private Player player;
+
+    [SerializeField] private Image enemyTargeted;
+
+
 
     private void Start()
     {
@@ -29,12 +36,15 @@ public class Test_UI : MonoBehaviour
             player = FindAnyObjectByType<Player>();
             if (!player)
                 Debug.Log("CANT FIND PLAYER");
+
+         
         }
 
         if (!speed)
             speed = FindAnyObjectByType<Speed>();
 
-      
+
+  
     }
 
 
@@ -53,6 +63,16 @@ public class Test_UI : MonoBehaviour
                 abilityTwoSlider.enabled = true;
                 abilityTwoSlider.value = Player.ability2Cooldown;
             }
+
+            if (enemyTargeted)
+            {
+                if (ArcSwing.enemyHit[0] != null) enemyTargeted.color = Color.white;
+
+                if (ArcSwing.enemyHit[0] == null) enemyTargeted.color = Color.black;
+                
+            }
+   
+           
 
         }
 

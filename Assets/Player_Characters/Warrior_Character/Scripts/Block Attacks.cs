@@ -19,8 +19,10 @@ public class BlockAttacks : MonoBehaviour
       blue,
       none
     }
-    
-  
+
+
+
+
 
     [HideInInspector] public static ParticleInUse particleInUse;
 
@@ -50,10 +52,10 @@ public class BlockAttacks : MonoBehaviour
         SwitchParticle(particleTypes.redParticle);
         particleInUse = ParticleInUse.red;
 
-       
-        redBorder.enabled = true;
-        greenBorder.enabled = false;
-        blueBorder.enabled = false;
+        if (redBorder) redBorder.enabled = true;
+        if (greenBorder) greenBorder.enabled = false;
+        if (blueBorder) blueBorder.enabled = false;
+
     }
 
     public void BlockGreen(InputAction.CallbackContext context)

@@ -27,20 +27,15 @@ public class MeleeZombie : navmeshtestscript
     private void EnableHit()
     {
         if (BlockAttacks.particleInUse != BlockAttacks.ParticleInUse.red)
-            player.TakeDamage(2 * GlobalEnemyManager.damageMultiplier);
+            player.TakeDamage(4);
      
      
     }
 
  
 
-    protected override void EnemyDeath()
-    {
-     
-        base.EnemyDeath();
-        globalEnemyManager.RespawnEnemyWave(GlobalEnemyManager.totalMeleeZombies, gameObject);
-       
-    }
+
+    
 
     private void PlayMeleeScream()
     {

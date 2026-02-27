@@ -2,13 +2,16 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using static ArcSwing;
 
 public class SlamMelee : BasePower
 {
     private linescript line;
     [SerializeField] private LayerMask enemyLayer;
     [SerializeField] private float cooldown;
-    bool canAttack = true; 
+    bool canAttack = true;
+
+    [SerializeField] private Transform hammerLoc;
     protected override void Start()
     {
         base.Start();
@@ -22,19 +25,28 @@ public class SlamMelee : BasePower
     {
         if (!context.performed) return;
         if (!canAttack) return;
-        base.StartAttack(context);
-        line.toggleCircle = true;
 
+        hammerLoc.localPosition = new Vector3(-0.22f, -0.09f, 0.28f);
+        hammerLoc.localRotation = new Quaternion(0.09301f, -0.24000f, 0.11363f, 0.95960f);
+        animator.SetBool("NotAttacking", false);
+
+
+        animator.SetTrigger(stats.powerName);
+        line.toggleCircle = true;
         canAttack = false;
         StartCoroutine(ResetSlam(cooldown));
 
+
     }
+
+  
 
     // Damages any enemies that are in the hammer radius the moment it hits the ground. 
     public void HitGround()
     {
+        hammerLoc.localPosition = new Vector3(-0.22f, -0.09f, 0.28f);
+        hammerLoc.localRotation = new Quaternion(0.09301f, -0.24000f, 0.11363f, 0.95960f);
 
-     
         line.toggleCircle = false;
         line.DisableCircle();
 
@@ -80,6 +92,16 @@ public class SlamMelee : BasePower
         canAttack = true;
     }
 
+
+    private void CombatStateEntered()
+    {
+        animator.SetBool("NotAttacking", false);
+    }
+
+    private void NonCombatStateEntered()
+    {
+        animator.SetBool("NotAttacking", true);
+    }
 
     // shows in the editor how big the radius will be
     private void OnDrawGizmos()

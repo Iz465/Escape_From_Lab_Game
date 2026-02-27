@@ -15,7 +15,7 @@ public class Move : MonoBehaviour
     public float walkSpeed;
 
     //fall/just parameters
-    float fallSpeed = 0;
+    public float fallSpeed = 0;
     [Header("Multiplies based on walk speed")]
     public float runSpeed;
     public float fallAcceleration = 5;
@@ -71,6 +71,8 @@ public class Move : MonoBehaviour
         Jump();
         Fall();
 
+        if (controller.enabled == false) return;
+
         direction = new Vector3();
         if (Input.GetKey(KeyCode.W))
             direction += transform.forward;
@@ -88,8 +90,8 @@ public class Move : MonoBehaviour
         {
             if (Input.GetKey(KeyCode.LeftShift))
             {
-                direction.x *= runSpeed;
-                direction.z *= runSpeed;
+              //  direction.x *= runSpeed;
+            //    direction.z *= runSpeed;
             }
         }
 

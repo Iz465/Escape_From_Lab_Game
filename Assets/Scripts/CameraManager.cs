@@ -36,7 +36,7 @@ public class CameraManager : MonoBehaviour
         lookY -= mouseDir.y;
 
         // Clamp vertical look angle to prevent flipping
-        lookY = Mathf.Clamp(lookY, -45, 45);
+        lookY = Mathf.Clamp(lookY, -50, 60); // -45, 45 original
 
         // Rotate the player and camera based on mouse movement
         transform.Rotate(0, lookX, 0f);
@@ -45,15 +45,12 @@ public class CameraManager : MonoBehaviour
         // Adjust camera position based on raycast to avoid clipping through objects
         RaycastHit hit;
         Transform rayTransform = rayLocation != null ? rayLocation : transform;
+        int mask = ~(LayerMask.GetMask("Player", "Enemy"));
 
-     
-        if (Physics.Raycast(rayTransform.position, -camTarget.forward, out hit, camDistance))
+        if (Physics.Raycast(rayTransform.position, -camTarget.forward, out hit, camDistance, mask))
         {
-            if (hit.transform.gameObject.layer != LayerMask.NameToLayer("Player") &&
-                hit.transform.gameObject.layer != LayerMask.NameToLayer("Enemy"))
-            {
-                camDistance = hit.distance - 0.1f;
-            }
+            camDistance = hit.distance - 0.1f;
+            
         }
 
         // stops constant camera glitching

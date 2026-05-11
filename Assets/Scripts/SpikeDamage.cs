@@ -41,4 +41,12 @@ public class SpikeDamage : MonoBehaviour
             DamagePlayer(collision.transform.GetComponent<PlayerInfo>());
         }
     }
+
+    private void OnControllerColliderHit(ControllerColliderHit hit)
+    {
+        if (hit.transform.GetComponent<PlayerInfo>() != null)
+        {
+            DamagePlayer(hit.transform.GetComponent<PlayerInfo>());
+        }
+    }
 }

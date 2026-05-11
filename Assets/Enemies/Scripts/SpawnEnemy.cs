@@ -9,13 +9,30 @@ using System;
 public class SpawnEnemy : MonoBehaviour
 {
     public List<GameObject> enemySpawns = new List<GameObject>();
+
     public GameObject enemyPrefab;
     public ParticleSystem spawnParticle;
+    public bool spawnAfter;
+    public int waveAmount = 0;
+    [SerializeField] public AudioClip spawnSound;
     private void OnTriggerEnter(Collider other)
     {
+        
         Player player = other.GetComponent<Player>();
     
         if (!player) return;
+
+        Collider box = gameObject.GetComponent<Collider>();
+        box.enabled = false;
+
+
+        if (spawnAfter)
+        {
+            GlobalEnemyManager.delayedSpawns.Add(gameObject);
+            return;
+        }
+        
+
 
         foreach (GameObject spawn in enemySpawns)
         {
@@ -25,20 +42,26 @@ public class SpawnEnemy : MonoBehaviour
             StartCoroutine(SpawnIn(spawn, 1));
         }
             
+
         
         Debug.Log("Player Entered!");
-
-        Collider box = gameObject.GetComponent<Collider>();
-     
-        box.enabled = false;
+        StartCoroutine(StartSound(1));
+      
         Destroy(gameObject, 2f);
     }
 
-    private IEnumerator SpawnIn(GameObject spawn, float time)
+    public IEnumerator SpawnIn(GameObject spawn, float time)
     {
         yield return new WaitForSeconds(time);
         Instantiate(enemyPrefab, spawn.transform.position, Quaternion.identity);
 
+    }
+
+    public IEnumerator StartSound(float time)
+    {
+        yield return new WaitForSeconds(time);
+        AudioSource audioSource = GetComponent<AudioSource>();
+        audioSource.PlayOneShot(spawnSound);
     }
 
 }

@@ -3,8 +3,10 @@ using UnityEngine;
 public class BloodPool : MonoBehaviour
 {
     [SerializeField] private Player player;
+    [SerializeField] private AudioClip drinkSound;
+    [SerializeField] private AudioSource audioSource;
 
-
+  
 
     private void OnTriggerEnter(Collider other)
     {
@@ -15,6 +17,9 @@ public class BloodPool : MonoBehaviour
             player.stats.health = Mathf.Clamp(player.stats.health, 0, 100);
             Destroy(gameObject);
         }
+
+        if (drinkSound)
+            audioSource.PlayOneShot(drinkSound);
   
     }
 }

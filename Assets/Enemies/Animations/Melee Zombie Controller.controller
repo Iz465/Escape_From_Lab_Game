@@ -96,7 +96,7 @@ AnimatorStateMachine:
     m_Position: {x: 40, y: 240, z: 0}
   - serializedVersion: 1
     m_State: {fileID: 4536086721599465172}
-    m_Position: {x: -250, y: 340, z: 0}
+    m_Position: {x: -260, y: 390, z: 0}
   - serializedVersion: 1
     m_State: {fileID: -4480017553488509459}
     m_Position: {x: 0, y: 0, z: 0}
@@ -236,7 +236,7 @@ AnimatorState:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: Melee Combo
-  m_Speed: 1.2
+  m_Speed: 2
   m_CycleOffset: 0
   m_Transitions:
   - {fileID: 8510148041621317196}

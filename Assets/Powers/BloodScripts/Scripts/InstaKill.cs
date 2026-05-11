@@ -13,11 +13,12 @@ public class InstaKill : BasePower, ICollide
     private LayerMask enemyLayer;
     private Collider[] enemyDetected;
     private Collider powerCollider;
-    private bool canAttack;
+    private bool isHeldDown;
+    [SerializeField] public AudioClip attackSound;
 
 
     private List<GameObject> enemyHit = new List<GameObject>();
-    CameraShake cameraShake;
+    private CameraShake cameraShake;
 
     private void Awake()
     {
@@ -26,44 +27,52 @@ public class InstaKill : BasePower, ICollide
       
     }
 
-    protected override void Start()
+    // Checks every frame whether player is holding down mouse or not. This is so the player can spam the power without having to click many times
+
+
+    private void Update()
     {
-        base.Start();
-        canAttack = true;
-  
-     
+      //  if (animator)
+      //      animator.SetBool("Continued", isHeldDown);
+        if (Input.GetMouseButton(0))
+        {
+        
+            isHeldDown = true;
+        }
+         
+        if (Input.GetMouseButtonUp(0))
+        {
+    
+            isHeldDown = false;
+        }
+        
     }
 
 
     public override void StartAttack(InputAction.CallbackContext context)
     {
-        if (!context.performed) return;
-  //      if (!UseStamina()) return;
+       
+        if (!context.started) return;
+        animator.SetTrigger(stats.powerName);
 
 
-        if (canAttack)
-        {
-            canAttack = false;
-            Debug.Log($"starting attack!!!");
-            base.StartAttack(context);
-        }
-
-        else if (!canAttack) 
-        {
-            Debug.Log($"Unable to attack!");
-        }
-           
     }
 
+
+    // animation event called during the part where the animation forms an attack
     private void StartInstaKill()
     {
+        if (attackSound) player.audioSource.PlayOneShot(attackSound, 3f);
+        
         if (!cam) return;
         cameraShake = cam.GetComponent<CameraShake>();
         if (!cameraShake) return;
-        StartCoroutine(cameraShake.Shake(0.1f));
+        StartCoroutine(cameraShake.Shake(0.1f, 0.1f, 0.1f));
         Attack();
     }
 
+
+    // Power either destroys on enemy or ricochets depending on enemy amount.
     public void CollideResult(Collider objectHit, GameObject power)
     {
         Debug.Log("Activating insta kill");
@@ -110,26 +119,8 @@ public class InstaKill : BasePower, ICollide
       
     }
 
-    private void StartShake()
-    {
-        if (!cam) return;
-        cameraShake = cam.GetComponent<CameraShake>();
-        if (!cameraShake) return;
-        StartCoroutine(cameraShake.Shake(0.1f));
-    }
 
-    private void ResetAnim()
-    {
-        canAttack = true;
-    }
-
-    private IEnumerator ResetAttack(float time)
-    {
-        yield return new WaitForSeconds(time);
-        canAttack = true;
-    }
-
-
+    // These are bandaid fixes required to show the animation event is here. will remove them soon.
     private void CombatStateEntered()
     {
 

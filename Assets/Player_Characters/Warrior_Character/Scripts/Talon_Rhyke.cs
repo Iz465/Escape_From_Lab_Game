@@ -1,69 +1,96 @@
+using System.Collections.Generic;
+using Unity.MLAgents.Sensors;
 using UnityEngine;
 
 public class Talon_Rhyke : Player
 {
-    private Move move;
-    private Animator animator;
+
     [SerializeField] private Transform point1;
     [SerializeField] private Transform point2;
+    [SerializeField] private Transform point3;
+    [SerializeField] private Transform point4;
+    [SerializeField] private Transform point5;
+    [SerializeField] private Transform point6;
     [SerializeField] private LayerMask enemyLayer;
+    [SerializeField] private LayerMask wallLayer;
+    [SerializeField] public AudioClip hammerSwingSound;
 
-    private void Start()
-    {
-        move = GetComponent<Move>();
-        animator = GetComponentInChildren<Animator>();
-    }
+
+
     protected override void Update()
     {
         base.Update();
-        if (!animator)
-        {
-            Debug.Log("No Animator");
-            return;
-        }
-
-        if (Input.GetKeyDown(KeyCode.P))
-        {
-            Debug.Log("Pausing for debug!");
-            Debug.Break();
-        }
-
-
-        Vector3 movement = move.controller.velocity;
-
-        // Ignores jumping/falling
-        Vector3 horizontalVelocity = new Vector3(movement.x, 0, movement.z);
-
-
-        if (horizontalVelocity.magnitude > 0.1f)
-            animator.SetBool("Moving", true);
-
-        else
-            animator.SetBool("Moving", false);
-
 
         if (MeleeHitDetection.canTrigger)
             CheckEnemyHit();
 
-    
-
-
     }
 
+ 
 
 
     private void CheckEnemyHit()
     {
-        RaycastHit hit; 
-        bool checkPlayer = Physics.Linecast(point1.position, point2.position, out hit,enemyLayer);
-
-        if (checkPlayer)
+        RaycastHit hit;
+        bool canDamage = false;
+        RaycastHit storedHit = default;
+        bool checkEnemy = Physics.Linecast(point1.position, point2.position, out hit, enemyLayer);
+        if (checkEnemy && !canDamage)
         {
-            navmeshtestscript enemy = hit.collider.gameObject.GetComponent<navmeshtestscript>();
+            storedHit = hit;
+            canDamage = true;
+        }
+
+            bool checkEnemy2 = Physics.Linecast(point3.position, point4.position, out hit, enemyLayer);
+        if (checkEnemy2 && !canDamage)
+        {
+            storedHit = hit;
+            canDamage = true;
+        }
+
+
+        bool checkEnemy3 = Physics.Linecast(point5.position, point6.position, out hit, enemyLayer);
+        if (checkEnemy3 && !canDamage)
+        {
+            storedHit = hit;
+            canDamage = true;
+        }
+
+
+            if (canDamage)
+        {
+            navmeshtestscript enemy = storedHit.collider.gameObject.GetComponent<navmeshtestscript>();
             if (!enemy)
-                enemy = hit.collider.gameObject.GetComponentInParent<navmeshtestscript>();
+                enemy = storedHit.collider.gameObject.GetComponentInParent<navmeshtestscript>();
             enemy.TakeDamage(20);
-            MeleeHitDetection.canTrigger = false;
+
+
+            if (!enemy.canHitMultiple || MeleeHitDetection.enemiesHit.Contains(enemy))
+            {
+                MeleeHitDetection.canTrigger = false;
+                return;
+            }
+
+            MeleeHitDetection.enemiesHit.Add(enemy);
+
+        }
+
+
+        bool checkWall = Physics.Linecast(point1.position, point2.position, out hit, wallLayer);
+        bool checkWall2 = Physics.Linecast(point3.position, point4.position, out hit, wallLayer);
+        bool checkWall3 = Physics.Linecast(point5.position, point6.position, out hit, wallLayer);
+
+        if (checkWall && BreakableWall.canHitWall || checkWall2 && BreakableWall.canHitWall || checkWall3 && BreakableWall.canHitWall)
+        {
+
+
+            BreakableWall wall = hit.collider.gameObject.GetComponent<BreakableWall>();
+            if (!wall) return;
+
+            
+            Instantiate(playerHitParticle, hit.point, Quaternion.identity);
+            wall.WallDamage(20);
+            BreakableWall.canHitWall = false;
         }
     }
 
@@ -71,7 +98,9 @@ public class Talon_Rhyke : Player
     {
         Gizmos.color = Color.yellow;
         Gizmos.DrawLine(point1.position, point2.position);
- 
-    }
+        Gizmos.DrawLine(point3.position, point4.position);
+        Gizmos.DrawLine(point5.position, point6.position);
 
     }
+
+}

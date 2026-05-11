@@ -104,6 +104,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   power: {fileID: -2446333469775463948}
+  hitParticle: {fileID: 4596544553357837919, guid: 8eb503696b886e04faff8fc0f480d473, type: 3}
 --- !u!114 &-2446333469775463948
 MonoBehaviour:
   m_ObjectHideFlags: 0

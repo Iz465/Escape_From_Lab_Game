@@ -47,7 +47,7 @@ BoxCollider:
     m_Bits: 0
   m_ExcludeLayers:
     serializedVersion: 2
-    m_Bits: 128
+    m_Bits: 0
   m_LayerOverridePriority: 0
   m_IsTrigger: 1
   m_ProvidesContacts: 0
@@ -68,6 +68,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   explosion: {fileID: 720325515038598322, guid: 07d51ac5e9c3ed041958f0dc9946fd3b, type: 3}
+  explosionSound: {fileID: 8300000, guid: 47fe0d5512620674f91f94711206517c, type: 3}
 --- !u!1001 &1833232916897977900
 PrefabInstance:
   m_ObjectHideFlags: 0

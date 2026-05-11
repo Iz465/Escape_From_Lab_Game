@@ -1,19 +1,17 @@
+using System.Collections.Generic;
 using UnityEngine;
 
 public class MeleeHitDetection : MonoBehaviour
 {
    
     private navmeshtestscript enemy;
-    public static bool canTrigger;
+    public static bool canTrigger = false;
     public static float damage;
     [SerializeField] private Animator animator;
+    [HideInInspector] public static HashSet<navmeshtestscript> enemiesHit = new HashSet<navmeshtestscript>();
 
-  
 
-    private void Start()
-    {
-    //    canTrigger = false;
-    }
+ 
     private void OnTriggerEnter(Collider other)
     {
     /*

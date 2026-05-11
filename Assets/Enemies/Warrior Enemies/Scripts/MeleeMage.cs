@@ -8,22 +8,13 @@ using static UnityEngine.UI.Image;
 
 public class MeleeMage : navmeshtestscript
 {
+    [Header("Magic Attack stuff")]
     [SerializeField] private GameObject power;
     [SerializeField] private float powerSpeed;
     [SerializeField] private Transform aimLoc;
-    [SerializeField] private LayerMask playerLayer;
-
-    int number;
 
 
-
-    protected override void Start()
-    {
-        base.Start();
-        number = 0;
-     
-    
-    }
+    private int number = 0;
 
 
 
@@ -33,23 +24,38 @@ public class MeleeMage : navmeshtestscript
         animator.SetBool("CanAttack", true);
     }
 
-
+    // Creates an attack that has rigid body so it can move towards player.
     protected override void Attack()
     {
      
   
         number++;
-        
-  
+   //     audioSource.PlayOneShot(attackSound, 0.1f);
         GameObject powerInstance = Instantiate(power, aimLoc.position, transform.rotation);
 
         if (!powerInstance) return;
         Rigidbody rb = powerInstance.GetComponent<Rigidbody>();
         if (!rb) return;
-        Collider collider = player.GetComponent<Collider>();
-        Vector3 aimDir = (collider.bounds.center - aimLoc.position).normalized;
-        rb.collisionDetectionMode = CollisionDetectionMode.Continuous;
-        rb.AddForce(aimDir * powerSpeed, ForceMode.Impulse);
+        if (player)
+        {
+
+            Collider collider = player.GetComponent<Collider>();
+
+            if (collider)
+            {
+                Vector3 aimDir = (collider.bounds.center - aimLoc.position).normalized;
+                rb.collisionDetectionMode = CollisionDetectionMode.Continuous;
+                rb.AddForce(aimDir * powerSpeed, ForceMode.Impulse);
+
+            }
+
+        }
+
+        else rb.AddForce(transform.forward * powerSpeed, ForceMode.Impulse);
+
+
+
+
 
     }
 

@@ -1,3 +1,4 @@
+using System.Collections;
 using System.Collections.Generic;
 using NUnit.Framework;
 using UnityEngine;
@@ -5,8 +6,10 @@ using UnityEngine.InputSystem;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
+
 public class MainMenu : MonoBehaviour
 {
+    public static SaveablePlayer saveFile = null;
     private void Start()
     {
         modes.Add("Exclusive Full Screen", FullScreenMode.ExclusiveFullScreen);
@@ -18,6 +21,51 @@ public class MainMenu : MonoBehaviour
         difficulties.Add("Normal", Difficulty.Normal);
         difficulties.Add("Challenging", Difficulty.Challenging);
         difficulties.Add("Hard", Difficulty.Hard);
+        
+        saveFile = new SaveablePlayer();
+        string data = PlayerPrefs.GetString("Data","");
+        if(data != "")
+            saveFile = JsonUtility.FromJson<SaveablePlayer>(data);
+        print(data);
+
+        if(SceneManager.GetActiveScene() != SceneManager.GetSceneByBuildIndex(0))
+        {
+            GetComponent<Canvas>().enabled = false;
+            mainMenu.SetActive(false);
+            settingsPage.SetActive(false);
+            
+            if (data == "") return;
+            if (saveFile.characterChosen != null && saveFile.characterChosen != "")
+            {
+                print("spawn in character");
+                Cursor.lockState = CursorLockMode.Locked;
+                Transform characterSelection = uisToEnableOnPlay[0].transform.Find("Characters");
+                characterSelection.GetComponent<CharacterSelection>().MakeCharacter(saveFile.characterChosen);
+                characterSelection.gameObject.SetActive(false);
+            }
+        }
+
+
+        difficultyText.text = "Normal";
+        if (data == "") return;
+        foreach (var (key, val) in difficulties)
+        {
+            if(val == saveFile.difficulty)
+            {
+                difficultyText.text = key;
+                return;
+            }
+        }
+    }
+    public static IEnumerator WaitForLoad()
+    {
+        while (saveFile == null)
+        {
+            yield return new WaitForSeconds(0.1f);
+        }
+        
+
+        yield return null;
     }
 
     public enum Difficulty 
@@ -49,9 +97,11 @@ public class MainMenu : MonoBehaviour
             }
         }
 
-        if(SceneManager.GetActiveScene() == SceneManager.GetSceneByBuildIndex(0))
+     
+
+        if (SceneManager.GetActiveScene() == SceneManager.GetSceneByBuildIndex(0))
         {
-            SceneManager.LoadScene(9);
+            SceneManager.LoadScene(1);
         }
         else
         {
@@ -59,7 +109,22 @@ public class MainMenu : MonoBehaviour
             mainMenu.SetActive(false);
             settingsPage.SetActive(false);
             Cursor.lockState = CursorLockMode.Locked;
+
+            if (!GameObject.FindGameObjectWithTag("Player"))
+            {
+                if(saveFile.characterChosen != "")
+                {
+                    uisToEnableOnPlay[0].GetComponent<CharacterSelection>().MakeCharacter(saveFile.characterChosen);
+                    uisToEnableOnPlay[0].SetActive(false);
+                }
+
+            }
+
         }
+
+        if (saveFile == null)
+            SceneManager.LoadScene(18);
+
 
         Time.timeScale = 1;
     }
@@ -70,7 +135,20 @@ public class MainMenu : MonoBehaviour
         mainMenu.SetActive(false);
     }
 
-    public void Exit() => Application.Quit();
+    public void Exit()
+    {
+        //save
+        if (saveFile.characterChosen != null)
+            saveFile.playedBefore = true;
+
+        print("saving");
+        string save = JsonUtility.ToJson(saveFile);
+        print(save);
+        PlayerPrefs.SetString("Data", save);
+        PlayerPrefs.Save();
+        print("saved");
+        Application.Quit(); 
+    }
     #endregion
 
     #region screenmode
@@ -151,6 +229,7 @@ public class MainMenu : MonoBehaviour
             if (goNext)
             {
                 difficulty = value;
+                saveFile.difficulty = difficulty;
                 difficultyText.text = key;
                 return;
             }
@@ -164,6 +243,7 @@ public class MainMenu : MonoBehaviour
                 {
                     difficultyText.text = "Easy";
                     difficulty = Difficulty.Easy;
+                    saveFile.difficulty = difficulty;
                     return;
                 }
 
@@ -193,11 +273,13 @@ public class MainMenu : MonoBehaviour
                 {
                     difficultyText.text = prevKey;
                     difficulty = prevValue;
+                    saveFile.difficulty = difficulty;
                 }
                 else
                 {
                     difficultyText.text = "Hard";
                     difficulty = Difficulty.Hard;
+                    saveFile.difficulty = difficulty;
                     return;
                 }
             }

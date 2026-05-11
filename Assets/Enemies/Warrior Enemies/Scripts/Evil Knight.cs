@@ -1,13 +1,12 @@
 using System.Collections;
 using UnityEngine;
+using UnityEngine.ProBuilder.MeshOperations;
 
 public class EvilKnight : navmeshtestscript
 {
     [Header("Magic Details")]
-    [SerializeField] private ParticleSystem magicAttack;
-    [SerializeField] private GameObject magicCast;
     [SerializeField] private Transform castLocation;
-    [SerializeField] private LayerMask playerLayer;
+
 
 
     [Header("Attack Types")]
@@ -15,34 +14,69 @@ public class EvilKnight : navmeshtestscript
     [SerializeField] private ParticleSystem greenAttack;
     [SerializeField] private ParticleSystem blueAttack;
 
-
+    [Header("Sounds")]
+    [SerializeField] private AudioClip firstStepSound;
+    [SerializeField] private AudioClip secondStepSound;
+    [SerializeField] private AudioClip swordHitSound;
+    
     private bool canHit = false;
+    private int randomNumber;
+
+    // Enemy randomly chooses an attack
+
+    protected override void Start()
+    {
+        base.Start();
+        GlobalEnemyManager.totalEvilKnights.Add(gameObject);
+        randomNumber = Random.Range(0, 3);
+
+    }
+
+    private bool firstTime = true;
     protected override void AttackPlayer()
     {
+  
+
         canAttack = false;
         rotateSpeed = 20;
-        int randomNumber = Random.Range(0, 2);
-    
+   
+        int oldNumber = randomNumber;
+
+        while (oldNumber == randomNumber)
+        {
+            randomNumber = Random.Range(0, 3);
+        }
+
+        if (firstTime)
+        {
+            randomNumber = 0;
+            firstTime = false;
+        } 
+
         if (randomNumber == 0)
         {
             Instantiate(redAttack, castLocation);
-            animator.SetTrigger("Swipe");
+            animator.SetTrigger("Down Attack");
         }
+
         if (randomNumber == 1)
         {
             Instantiate(greenAttack, castLocation); ;
             StartCoroutine(StepDistance(0.5f, 1f));
             animator.SetTrigger("Down Attack");
         }
+        
 
+        if (randomNumber == 2)
+        {
+            Instantiate(blueAttack, castLocation);
+            animator.SetTrigger("Down Attack");
+        }
 
 
     }
 
- 
-
- 
-
+    // Added this for enemy to glide towards player during a specific attack and look more natural
     private IEnumerator StepDistance(float timer, float distance)
     {
 
@@ -63,55 +97,65 @@ public class EvilKnight : navmeshtestscript
         StartCoroutine(CanAttack(0f));
     }
 
+
+
     private IEnumerator CanAttack(float time)
     {
         yield return new WaitForSeconds(time);
         canAttack = true;
+    
     }
 
-    private ParticleSystem summonMagic;
-    private void SummonMagic()
-    {
-        summonMagic = Instantiate(magicAttack, castLocation);
 
-    }
-
-    private void CastMagic()
-    {
-        summonMagic.Stop();
-        GameObject magicCastInstance = Instantiate(magicCast, castLocation.position + new Vector3(0, 0.5f, 0), transform.rotation);
-        Rigidbody body = magicCastInstance.GetComponent<Rigidbody>();
-        if (!body) return;
-        Collider collider = player.GetComponent<Collider>();
-        Vector3 aimDirection = (collider.bounds.center - castLocation.position).normalized;
-        body.collisionDetectionMode = CollisionDetectionMode.Continuous;
-        body.AddForce(aimDirection * 100, ForceMode.Impulse);
-      
-    }
-
+    
+    // The window during the enemies attack animation that allows them to damage the player.
     private void EnableHit()
     {
-        AnimatorStateInfo state = animator.GetCurrentAnimatorStateInfo(0);
-        if (state.IsName("Swipe"))
-        {
-            if (BlockAttacks.particleInUse != BlockAttacks.ParticleInUse.red) player.TakeDamage(35);
-        }
-           
-        else if (state.IsName("Down Attack"))
-        {
-            if (BlockAttacks.particleInUse != BlockAttacks.ParticleInUse.green) player.TakeDamage(35);
-        }
-         
+        globalEnemyManager.CheckEnemySound(attackSound, "attack", audioSource);
 
-                canHit = true;
+        if (randomNumber == 0)
+            if (BlockAttacks.particleInUse != BlockAttacks.ParticleInUse.red) player.TakeDamage(15);
+
+
+        if (randomNumber == 1)
+            if (BlockAttacks.particleInUse != BlockAttacks.ParticleInUse.green) player.TakeDamage(15);
+
+        if (randomNumber == 2)
+            if (BlockAttacks.particleInUse != BlockAttacks.ParticleInUse.blue) player.TakeDamage(15);
+
+        canHit = true;
     }
 
+
+   
     private void DisableHit()
     {
+        audioSource.PlayOneShot(swordHitSound, 3f);
         canHit = false;
+
+
+    }
+
+    private void FirstKnightStep()
+    {
+        globalEnemyManager.CheckEnemySound(firstStepSound, "footsteps", audioSource);
+    }
+
+    private void SecondKnightStep()
+    {
+        globalEnemyManager.CheckEnemySound(secondStepSound, "footsteps", audioSource);
     }
 
 
+    protected override void EnemyDeath()
+    {
+
+        base.EnemyDeath();
+        globalEnemyManager.RespawnEnemyWave(GlobalEnemyManager.totalEvilKnights, gameObject);
+
+    }
+
+    
 }
 
 

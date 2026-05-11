@@ -1,18 +1,19 @@
 using System.Collections;
+using System.Collections.Generic;
 using System.Security.Cryptography.X509Certificates;
-using UnityEditor.Rendering.LookDev;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using static Unity.Physics.Math;
-using static UnityEditor.Timeline.TimelinePlaybackControls;
+
 
 public class ArcSwing : BasePower
 {
     [SerializeField] private LayerMask enemyLayer;
+    [SerializeField] private LayerMask wallLayer;
     [SerializeField] private Collider playerCollider;
     [SerializeField] private ParticleSystem hitParticle;
     [SerializeField] private Transform axeTransform;
-
+    [SerializeField] private AudioClip hammerSwingSound;
     [System.Serializable] public struct AxePositions 
     {
         [SerializeField] public Vector3 idlePosition;
@@ -24,10 +25,11 @@ public class ArcSwing : BasePower
 
     private int number;
     private bool canCombo = false;
-    private GameObject enemy;
+    private GameObject hittableObject;
     private bool heldDown;
 
-   
+    private GameObject[] enemyHit = new GameObject[1];
+
     public override void StartAttack(InputAction.CallbackContext context)
     {
         if (context.performed)
@@ -47,40 +49,63 @@ public class ArcSwing : BasePower
     private void StartCombo()
     {
         RaycastHit hit;
-
+        
         if (canCombo)
             number++;
 
+        int combinedMask = enemyLayer | wallLayer;
 
-        bool hitEnemy = Physics.Linecast(cam.transform.position, cam.transform.position + cam.transform.forward * 25, out hit, enemyLayer);
-        if (!hitEnemy) return; //{ animator.SetBool("CanCombo", false);  return; }
 
-        enemy = hit.collider.gameObject;
+
+        bool hitEnemy = Physics.Linecast(playerCollider.bounds.center, cam.transform.position + cam.transform.forward * 25, out hit, combinedMask);
+
+        if (!hitEnemy)
+        {
+            hittableObject = null;
+            return;
+        }
+    
+        if (enemyHit[0] == hit.collider.gameObject || enemyHit[0] == null)
+        {
+            enemyHit[0] = hit.collider.gameObject;
+            hittableObject = hit.collider.gameObject;
+        }
+
+
+        else
+        {
+            Debug.Log(enemyHit[0]);
+            hittableObject = null;
+        }
+           
+
+
 
         MeleeHitDetection.damage = stats.damage;
+        BreakableWall.canHitWall = true;
         animator.SetTrigger("Arc Swing");
-        Attack();
         canCombo = true;
-        player.playerHitParticle = hitParticle;
+
+       
     }
 
 
 
     private IEnumerator TravelToEnemy(float timer)
     {
-        if (!enemy) yield break;
+        if (!hittableObject) yield break;
         float time = 0;
         CharacterController controller = playerCollider.GetComponent<CharacterController>();
 
         Vector3 startLocation = controller.gameObject.transform.position;
-        Vector3 enemyLocation = enemy.transform.position;
-        Vector3 enemyDirection = (enemyLocation - startLocation).normalized;
+        Vector3 hittableObjectLocation = hittableObject.transform.position;
+        Vector3 hittableObjectDirection = (hittableObjectLocation - startLocation).normalized;
         float stopDistance = 4f;
-        Vector3 stopLocation = enemyLocation - enemyDirection * stopDistance;
+        Vector3 stopLocation = hittableObjectLocation - hittableObjectDirection * stopDistance;
 
         Vector3 dashVector = stopLocation - startLocation;
 
-        float distanceToEnemy = Vector3.Distance(startLocation, enemyLocation);
+        float distanceToEnemy = Vector3.Distance(startLocation, hittableObjectLocation);
         if (distanceToEnemy <= 6) yield break;
 
         while (time < timer)
@@ -104,20 +129,23 @@ public class ArcSwing : BasePower
     private CameraShake cameraShake;
     private void CanArcSwipe()
     {
+        MeleeHitDetection.enemiesHit.Clear();
         MeleeHitDetection.canTrigger = true;
 
         if (number > 0)
             animator.SetBool("CanCombo", true);
+
         else
             animator.SetBool("CanCombo", false);
         number = 0;
+      
  
     }
 
     private void StartCameraShake()
     {
         cameraShake = cam.GetComponent<CameraShake>();
-        StartCoroutine(cameraShake.Shake(0.1f));
+        StartCoroutine(cameraShake.Shake(0.3f, 0.3f, 0.1f));
     }
 
     private void CombatStateEntered()
@@ -125,6 +153,8 @@ public class ArcSwing : BasePower
         axeTransform.localPosition = axePositions.combatPosition;
         axeTransform.localRotation = axePositions.combatRotation;
         animator.SetBool("NotAttacking", false);
+
+        if (player.audioSource) player.audioSource.PlayOneShot(hammerSwingSound);
     }
 
     private void NonCombatStateEntered()
@@ -139,12 +169,15 @@ public class ArcSwing : BasePower
     {
         if (heldDown)
             StartCombo();
+        MeleeHitDetection.canTrigger = false;
     }
 
     private void OnDrawGizmos()
     {
         Gizmos.color = Color.yellow;
-//        Gizmos.DrawLine(cam.transform.position, cam.transform.position + cam.transform.forward * 25);
+
+        
+        Gizmos.DrawLine(playerCollider.bounds.center, cam.transform.position + cam.transform.forward * 25);
   
     }
 

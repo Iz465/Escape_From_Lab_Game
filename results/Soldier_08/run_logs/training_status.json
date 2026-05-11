@@ -1,0 +1,47 @@
+{
+    "Soldier": {
+        "checkpoints": [
+            {
+                "steps": 114002,
+                "file_path": "results\\Soldier_08\\Soldier\\Soldier-114002.onnx",
+                "reward": null,
+                "creation_time": 1762485548.9767325,
+                "auxillary_file_paths": [
+                    "results\\Soldier_08\\Soldier\\Soldier-114002.pt"
+                ]
+            },
+            {
+                "steps": 499966,
+                "file_path": "results\\Soldier_08\\Soldier\\Soldier-499966.onnx",
+                "reward": null,
+                "creation_time": 1762581825.0202224,
+                "auxillary_file_paths": [
+                    "results\\Soldier_08\\Soldier\\Soldier-499966.pt"
+                ]
+            },
+            {
+                "steps": 500030,
+                "file_path": "results\\Soldier_08\\Soldier\\Soldier-500030.onnx",
+                "reward": null,
+                "creation_time": 1762581825.0700595,
+                "auxillary_file_paths": [
+                    "results\\Soldier_08\\Soldier\\Soldier-500030.pt"
+                ]
+            }
+        ],
+        "final_checkpoint": {
+            "steps": 500030,
+            "file_path": "results\\Soldier_08\\Soldier.onnx",
+            "reward": null,
+            "creation_time": 1762581825.0700595,
+            "auxillary_file_paths": [
+                "results\\Soldier_08\\Soldier\\Soldier-500030.pt"
+            ]
+        }
+    },
+    "metadata": {
+        "stats_format_version": "0.3.0",
+        "mlagents_version": "1.1.0",
+        "torch_version": "2.2.0+cpu"
+    }
+}

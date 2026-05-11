@@ -4,13 +4,21 @@ using UnityEngine;
 public class ExplosiveBlood : MonoBehaviour
 {
     [SerializeField] private ParticleSystem explosion;
+    [SerializeField] private AudioClip explosionSound;
+
+    private Player playerAudio;
     private void Start()
     {
         BloodLevel.explosiveBloodAmount.Add(gameObject);
+        playerAudio = FindAnyObjectByType<Player>();
     }
     private void OnTriggerEnter(Collider other)
     {
-       
+
+        if (playerAudio)
+            playerAudio.audioSource.PlayOneShot(explosionSound);
+
+
         Collider[] bodies = Physics.OverlapSphere(transform.position, 5f);
         HashSet<GameObject> unique = new HashSet<GameObject>();
         foreach (Collider body in bodies) 
@@ -18,7 +26,7 @@ public class ExplosiveBlood : MonoBehaviour
             GameObject uniqueBody = body.transform.root.gameObject;
             Player player = uniqueBody.GetComponent<Player>();
             navmeshtestscript enemy = uniqueBody.GetComponent<navmeshtestscript>();
-            if (player || enemy)
+            if (player)
                 unique.Add(uniqueBody);
         }
 
@@ -38,7 +46,8 @@ public class ExplosiveBlood : MonoBehaviour
         BloodLevel.explosiveBloodAmount.Remove(gameObject);
 
         
-        Instantiate(explosion, transform.position, Quaternion.identity); 
+        Instantiate(explosion, transform.position, Quaternion.identity);
+  
         Destroy(gameObject);
     }
 

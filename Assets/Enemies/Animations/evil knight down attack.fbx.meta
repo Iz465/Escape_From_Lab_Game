@@ -35,7 +35,7 @@ ModelImporter:
       takeName: mixamo.com
       internalID: -203655887218126122
       firstFrame: 0
-      lastFrame: 136
+      lastFrame: 74
       wrapMode: 0
       orientationOffsetY: -90
       level: 0
@@ -69,7 +69,7 @@ ModelImporter:
         floatParameter: 0
         intParameter: 0
         messageOptions: 0
-      - time: 0.7370959
+      - time: 0.57545793
         functionName: ResetAnim
         data: 
         objectReferenceParameter: {instanceID: 0}

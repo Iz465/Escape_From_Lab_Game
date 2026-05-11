@@ -1,0 +1,419 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &8522403918915590344
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 5432457083439842055}
+  m_Layer: 0
+  m_Name: tiny size lab cross wall
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 2147483647
+  m_IsActive: 1
+--- !u!4 &5432457083439842055
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8522403918915590344}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 87.67, y: 35.63, z: 254.42}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 6776652150979032611}
+  - {fileID: 2365589552757497209}
+  - {fileID: 8648196337403154702}
+  - {fileID: 7352269612416036883}
+  - {fileID: 4202286129922144609}
+  - {fileID: 1895847501463356428}
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1001 &2147348770200128673
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 5432457083439842055}
+    m_Modifications:
+    - target: {fileID: 4883990443007376002, guid: 1fbb551514b1a3342b1e5598e83865eb, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -11.184578
+      objectReference: {fileID: 0}
+    - target: {fileID: 4883990443007376002, guid: 1fbb551514b1a3342b1e5598e83865eb, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -19.129528
+      objectReference: {fileID: 0}
+    - target: {fileID: 4883990443007376002, guid: 1fbb551514b1a3342b1e5598e83865eb, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4883990443007376002, guid: 1fbb551514b1a3342b1e5598e83865eb, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 4883990443007376002, guid: 1fbb551514b1a3342b1e5598e83865eb, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 4883990443007376002, guid: 1fbb551514b1a3342b1e5598e83865eb, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 4883990443007376002, guid: 1fbb551514b1a3342b1e5598e83865eb, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 4883990443007376002, guid: 1fbb551514b1a3342b1e5598e83865eb, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4883990443007376002, guid: 1fbb551514b1a3342b1e5598e83865eb, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: -90
+      objectReference: {fileID: 0}
+    - target: {fileID: 4883990443007376002, guid: 1fbb551514b1a3342b1e5598e83865eb, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 90
+      objectReference: {fileID: 0}
+    - target: {fileID: 5227759713318019128, guid: 1fbb551514b1a3342b1e5598e83865eb, type: 3}
+      propertyPath: m_Name
+      value: Lab Cross Wall (7)
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 1fbb551514b1a3342b1e5598e83865eb, type: 3}
+--- !u!4 &6776652150979032611 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 4883990443007376002, guid: 1fbb551514b1a3342b1e5598e83865eb, type: 3}
+  m_PrefabInstance: {fileID: 2147348770200128673}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1001 &2724652676333669009
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 5432457083439842055}
+    m_Modifications:
+    - target: {fileID: 4883990443007376002, guid: 1fbb551514b1a3342b1e5598e83865eb, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4883990443007376002, guid: 1fbb551514b1a3342b1e5598e83865eb, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -19.129528
+      objectReference: {fileID: 0}
+    - target: {fileID: 4883990443007376002, guid: 1fbb551514b1a3342b1e5598e83865eb, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4883990443007376002, guid: 1fbb551514b1a3342b1e5598e83865eb, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 4883990443007376002, guid: 1fbb551514b1a3342b1e5598e83865eb, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 4883990443007376002, guid: 1fbb551514b1a3342b1e5598e83865eb, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 4883990443007376002, guid: 1fbb551514b1a3342b1e5598e83865eb, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 4883990443007376002, guid: 1fbb551514b1a3342b1e5598e83865eb, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4883990443007376002, guid: 1fbb551514b1a3342b1e5598e83865eb, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: -90
+      objectReference: {fileID: 0}
+    - target: {fileID: 4883990443007376002, guid: 1fbb551514b1a3342b1e5598e83865eb, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 90
+      objectReference: {fileID: 0}
+    - target: {fileID: 5227759713318019128, guid: 1fbb551514b1a3342b1e5598e83865eb, type: 3}
+      propertyPath: m_Name
+      value: Lab Cross Wall (10)
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 1fbb551514b1a3342b1e5598e83865eb, type: 3}
+--- !u!4 &7352269612416036883 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 4883990443007376002, guid: 1fbb551514b1a3342b1e5598e83865eb, type: 3}
+  m_PrefabInstance: {fileID: 2724652676333669009}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1001 &4306562547510979468
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 5432457083439842055}
+    m_Modifications:
+    - target: {fileID: 4883990443007376002, guid: 1fbb551514b1a3342b1e5598e83865eb, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 41.099773
+      objectReference: {fileID: 0}
+    - target: {fileID: 4883990443007376002, guid: 1fbb551514b1a3342b1e5598e83865eb, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -11.184578
+      objectReference: {fileID: 0}
+    - target: {fileID: 4883990443007376002, guid: 1fbb551514b1a3342b1e5598e83865eb, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4883990443007376002, guid: 1fbb551514b1a3342b1e5598e83865eb, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4883990443007376002, guid: 1fbb551514b1a3342b1e5598e83865eb, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 4883990443007376002, guid: 1fbb551514b1a3342b1e5598e83865eb, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 4883990443007376002, guid: 1fbb551514b1a3342b1e5598e83865eb, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 4883990443007376002, guid: 1fbb551514b1a3342b1e5598e83865eb, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 4883990443007376002, guid: 1fbb551514b1a3342b1e5598e83865eb, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4883990443007376002, guid: 1fbb551514b1a3342b1e5598e83865eb, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: -90
+      objectReference: {fileID: 0}
+    - target: {fileID: 4883990443007376002, guid: 1fbb551514b1a3342b1e5598e83865eb, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 90
+      objectReference: {fileID: 0}
+    - target: {fileID: 5227759713318019128, guid: 1fbb551514b1a3342b1e5598e83865eb, type: 3}
+      propertyPath: m_Name
+      value: Lab Cross Wall (9)
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 1fbb551514b1a3342b1e5598e83865eb, type: 3}
+--- !u!4 &8648196337403154702 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 4883990443007376002, guid: 1fbb551514b1a3342b1e5598e83865eb, type: 3}
+  m_PrefabInstance: {fileID: 4306562547510979468}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1001 &6451419851353390734
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 5432457083439842055}
+    m_Modifications:
+    - target: {fileID: 4883990443007376002, guid: 1fbb551514b1a3342b1e5598e83865eb, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 41.099773
+      objectReference: {fileID: 0}
+    - target: {fileID: 4883990443007376002, guid: 1fbb551514b1a3342b1e5598e83865eb, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4883990443007376002, guid: 1fbb551514b1a3342b1e5598e83865eb, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4883990443007376002, guid: 1fbb551514b1a3342b1e5598e83865eb, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4883990443007376002, guid: 1fbb551514b1a3342b1e5598e83865eb, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 4883990443007376002, guid: 1fbb551514b1a3342b1e5598e83865eb, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 4883990443007376002, guid: 1fbb551514b1a3342b1e5598e83865eb, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 4883990443007376002, guid: 1fbb551514b1a3342b1e5598e83865eb, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 4883990443007376002, guid: 1fbb551514b1a3342b1e5598e83865eb, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4883990443007376002, guid: 1fbb551514b1a3342b1e5598e83865eb, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: -90
+      objectReference: {fileID: 0}
+    - target: {fileID: 4883990443007376002, guid: 1fbb551514b1a3342b1e5598e83865eb, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 90
+      objectReference: {fileID: 0}
+    - target: {fileID: 5227759713318019128, guid: 1fbb551514b1a3342b1e5598e83865eb, type: 3}
+      propertyPath: m_Name
+      value: Lab Cross Wall (12)
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 1fbb551514b1a3342b1e5598e83865eb, type: 3}
+--- !u!4 &1895847501463356428 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 4883990443007376002, guid: 1fbb551514b1a3342b1e5598e83865eb, type: 3}
+  m_PrefabInstance: {fileID: 6451419851353390734}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1001 &7139094107936729083
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 5432457083439842055}
+    m_Modifications:
+    - target: {fileID: 4883990443007376002, guid: 1fbb551514b1a3342b1e5598e83865eb, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -11.184578
+      objectReference: {fileID: 0}
+    - target: {fileID: 4883990443007376002, guid: 1fbb551514b1a3342b1e5598e83865eb, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -7.76
+      objectReference: {fileID: 0}
+    - target: {fileID: 4883990443007376002, guid: 1fbb551514b1a3342b1e5598e83865eb, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4883990443007376002, guid: 1fbb551514b1a3342b1e5598e83865eb, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 4883990443007376002, guid: 1fbb551514b1a3342b1e5598e83865eb, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 4883990443007376002, guid: 1fbb551514b1a3342b1e5598e83865eb, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 4883990443007376002, guid: 1fbb551514b1a3342b1e5598e83865eb, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 4883990443007376002, guid: 1fbb551514b1a3342b1e5598e83865eb, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4883990443007376002, guid: 1fbb551514b1a3342b1e5598e83865eb, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: -90
+      objectReference: {fileID: 0}
+    - target: {fileID: 4883990443007376002, guid: 1fbb551514b1a3342b1e5598e83865eb, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 90
+      objectReference: {fileID: 0}
+    - target: {fileID: 5227759713318019128, guid: 1fbb551514b1a3342b1e5598e83865eb, type: 3}
+      propertyPath: m_Name
+      value: Lab Cross Wall (8)
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 1fbb551514b1a3342b1e5598e83865eb, type: 3}
+--- !u!4 &2365589552757497209 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 4883990443007376002, guid: 1fbb551514b1a3342b1e5598e83865eb, type: 3}
+  m_PrefabInstance: {fileID: 7139094107936729083}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1001 &8761453552675849187
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 5432457083439842055}
+    m_Modifications:
+    - target: {fileID: 4883990443007376002, guid: 1fbb551514b1a3342b1e5598e83865eb, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4883990443007376002, guid: 1fbb551514b1a3342b1e5598e83865eb, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -7.76
+      objectReference: {fileID: 0}
+    - target: {fileID: 4883990443007376002, guid: 1fbb551514b1a3342b1e5598e83865eb, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4883990443007376002, guid: 1fbb551514b1a3342b1e5598e83865eb, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 4883990443007376002, guid: 1fbb551514b1a3342b1e5598e83865eb, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 4883990443007376002, guid: 1fbb551514b1a3342b1e5598e83865eb, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 4883990443007376002, guid: 1fbb551514b1a3342b1e5598e83865eb, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 4883990443007376002, guid: 1fbb551514b1a3342b1e5598e83865eb, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4883990443007376002, guid: 1fbb551514b1a3342b1e5598e83865eb, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: -90
+      objectReference: {fileID: 0}
+    - target: {fileID: 4883990443007376002, guid: 1fbb551514b1a3342b1e5598e83865eb, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 90
+      objectReference: {fileID: 0}
+    - target: {fileID: 5227759713318019128, guid: 1fbb551514b1a3342b1e5598e83865eb, type: 3}
+      propertyPath: m_Name
+      value: Lab Cross Wall (11)
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 1fbb551514b1a3342b1e5598e83865eb, type: 3}
+--- !u!4 &4202286129922144609 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 4883990443007376002, guid: 1fbb551514b1a3342b1e5598e83865eb, type: 3}
+  m_PrefabInstance: {fileID: 8761453552675849187}
+  m_PrefabAsset: {fileID: 0}

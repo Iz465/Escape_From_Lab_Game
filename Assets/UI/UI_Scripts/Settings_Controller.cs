@@ -41,7 +41,7 @@ public class Settings_Controller : MonoBehaviour
     {
         var audioSettings = settingsBindings.audioSettings;
         static float LinearToDecibel(float linear)
-        {
+        {   
             return Mathf.Log10(linear) * 20;
         }
         mainAudioMixer.SetFloat("Volume_Music", LinearToDecibel(audioSettings.MusicVolume));

@@ -51,7 +51,7 @@ public class MainMenu : MonoBehaviour
 
         if(SceneManager.GetActiveScene() == SceneManager.GetSceneByBuildIndex(0))
         {
-            SceneManager.LoadScene(1);
+            SceneManager.LoadScene(9);
         }
         else
         {
